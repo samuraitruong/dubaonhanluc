@@ -1,0 +1,405 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link href="css/style.css" rel="stylesheet" type="text/css" />
+<title>Nhu cau nhan luc va thong tin thi truong lao dong Thanh pho Ho Chi Minh</title>
+<!--[if lte IE 6]>
+<script type="text/javascript" src="supersleight-min.js"></script>
+<![endif]-->
+<script type="text/javascript" src="js/jquery-1.2.6.pack.js"></script>
+<script type="text/javascript" src="js/jquery.droppy.js"></script>
+<script type='text/javascript'>
+  $(function() {
+    $('#nav').droppy({speed: 150});
+  });
+</script>
+<script type='text/javascript'>
+  $(function() {
+    $('#nav2').droppy({speed: 150});
+  });
+</script>
+<link href="css/slideshow.css" rel="stylesheet" type="text/css" />
+
+<script type="text/javascript">
+
+/*** 
+    Simple jQuery Slideshow Script
+    Released by Jon Raasch (jonraasch.com) under FreeBSD license: free to use or modify, not responsible for anything, etc.  Please link out to me if you like it :)
+***/
+
+function slideSwitch() {
+    var $active = $('#slideshow IMG.active');
+
+    if ( $active.length == 0 ) $active = $('#slideshow IMG:last');
+
+    // use this to pull the images in the order they appear in the markup
+    var $next =  $active.next().length ? $active.next()
+        : $('#slideshow IMG:first');
+
+    // uncomment the 3 lines below to pull the images in random order
+    
+    // var $sibs  = $active.siblings();
+    // var rndNum = Math.floor(Math.random() * $sibs.length );
+    // var $next  = $( $sibs[ rndNum ] );
+
+
+    $active.addClass('last-active');
+
+    $next.css({opacity: 0.0})
+        .addClass('active')
+        .animate({opacity: 1.0}, 1000, function() {
+            $active.removeClass('active last-active');
+        });
+}
+
+$(function() {
+   // setInterval( "slideSwitch()", 5000 );
+});
+
+</script>
+
+<script type="text/javascript">
+var newsitems;
+var curritem=0;
+var iPause=0;
+
+$(document).ready(function(){
+    var tickerSelector = "ul#ticker li";
+    newsitems = $(tickerSelector).hide().hover(
+        function(){
+            $(this).addClass("hovered");
+            iPause=1;
+        },
+        function(){
+            $(this).removeClass("hovered");
+            iPause=0;
+        }
+    ).filter(":eq(0)").show().add(tickerSelector).size();
+    setInterval(ticknews,3000); //time in milliseconds
+});
+
+function ticknews() {
+  if (iPause==0){
+    $("#ticker li:eq("+curritem+")").fadeOut("slow",function(){$(this).hide();});
+    curritem = ++curritem%newsitems;
+    $("#ticker li:eq("+curritem+")").fadeIn("slow");
+    }
+}
+</script>
+
+<link rel="Shortcut Icon" href="logo.ico"/>
+<script src="js/function.js" type="text/javascript"></script>
+<script src="js/ajax.js" type="text/javascript"></script>
+<link href="css/news_article.css" rel="stylesheet" t</head>
+
+
+
+
+<body>
+
+<div id="wrapper"></div>
+<!--Wrapper-->
+<div id="page">
+	<div id="header">
+		<div id="logo"><a href="#"><img src="images/logo.jpg" alt="nguonnhanluc" /></a></div>
+		<div id="text_banner"><img src="images/text_banner.jpg" alt="nguonnhanluc" /></div>
+		<div id="mainnav" class="clearfix">
+			<ul id="nav">
+	<li class=""><a href='index.html#neo_content'>TRANG CHỦ</a></li>
+	<li class=""><a href='##neo_content'>GIỚI THIỆU</a>		<ul>
+
+					<li><a href='intro-358-358-Gioi-thieu-ve-trung-tam.html&amp;idActive=267#neo_content'>Giới thiệu về trung tâm</a></li>
+					<li><a href='intro-359-359-Co-cau-to-chuc-bo-may.html&amp;idActive=267#neo_content'>Cơ cấu tổ chức bộ máy</a></li>
+				</ul>
+	</li>
+	<li class=""><a href='articles-268-268-Viec-Lam.html#neo_content'>Việc Làm</a></li>
+	<li class=""><a href='articles-344-344-Khoa-hoc--Dao-tao.html#neo_content'>Khóa học - Đào tạo</a></li>
+	<li class=""><a href='articles-345-345-Gop-y.html#neo_content'>Góp ý</a></li>
+
+	<li class=" end"><a href='intro-254-254-LIEN-HE.html#neo_content'>LIÊN HỆ</a></li>
+</ul>
+				<!--<div id="flag"><a href='#'><img src="images/vn.jpg" alt="nguonnhanluc" /></a><a href='#'><img src="images/en.jpg" alt="nguonnhanluc" /></a></div>-->
+		</div>
+		<!--Main Nav-->
+		<div id="bottom_header" class="clearfix">
+			<div class="text_news">
+					<ul id="ticker">
+			<li><a href="ad-347-347-123-Se-“bung-no”-nhu-cau-nhan-luc-moi-truong.html#neo_content">Sẽ “bùng nổ” nhu cầu nhân lực môi trường</a></li>
+
+			<li><a href="ad-347-347-122-Nhu-cau-nhan-luc-cho-nganh-kinh-te-tai-chinh-rat-cao.html#neo_content">Nhu cầu nhân lực cho ngành kinh tế, tài chính rất cao</a></li>
+			<li><a href="ad-347-347-121-Thieu-du-bao-nhu-cau-nhan-luc.html#neo_content">Thiếu dự báo nhu cầu nhân lực</a></li>
+			<li><a href="ad-357-357-120-Nhung-nganh-hoc-khat-nhan-luc.html#neo_content">Những ngành học 'khát' nhân lực</a></li>
+			<li><a href="ad-357-357-119-NGHIEM-TUC-KHI-CHON-NGANH.html#neo_content">NGHIÊM TÚC KHI CHỌN NGÀNH</a></li>
+			<li><a href="ad-357-357-118-LUU-Y-KHI-DI-XIN-VIEC.html#neo_content">LƯU Ý KHI ĐI XIN VIỆC</a></li>
+		</ul>
+
+	
+			</div>
+			<div class="wrap_support clearfix">
+					
+	<div class="support"><a href="skype:mdnguyen86?chat"><img src="images/skype_on.jpg" alt="skype" /></a><a href="skype:mdnguyen86?chat">Skype</a></div>
+		<div class="support"><a href="ymsgr:sendIM?cuonglongan"><img src="images/yahoo_on.jpg" alt="yahoo" /></a><a href="ymsgr:sendIM?cuonglongan">Yahoo</a></div>
+					
+			</div>
+		</div>
+	</div>
+	<!--Header-->
+
+	<div id="top_content">
+		<div class="top clearfix">
+			<ul id="nav2">
+	<li class=""><a href='articles-346-346-Nghien-cuu-khoa-hoc.html#neo_content'>Nghiên cứu khoa học</a></li>
+	<li class=""><a href='articles-347-347-Du-bao-nhu-cau-nhan-luc.html#neo_content'>Dự báo nhu cầu nhân lực</a></li>
+	<li class=" end"><a href='articles-350-350-Thong-tin-thi-truong-lao-dong.html#neo_content'>Thông tin thị trường lao động</a></li>
+</ul>
+				<div class="search">
+
+				<form method="get" id="searchform" action="/">
+					<input type="text" value="Tìm kiếm" class="box" />
+					<input class="btn" type="button" value="" />
+				</form>
+			</div>
+		</div>
+		<div id="slideshow" class="clear"> <img src="images/1.jpg" alt="Slideshow Image 1" class="active" /></div>
+	</div>
+
+	<a name="neo_content"></a>
+	<!--Top Content-->
+		<div id="wrap_dm" class="clearfix">
+	<div id="wrap_cat">
+		<div id="cat">
+			<div class="top_cat">
+				<h2>DANH MỤC</h2>
+			</div>
+
+			<div class="center_cat">
+				<ul id="nav90">
+	<li class="active"><a href='articles-349-349-Tin-tuc-su-kien.html#neo_content'>1. Tin tức sự kiện</a></li>
+	<li class=""><a href='articles-355-355-Thong-tin-so-lieu-nguon-nhan-luc.html#neo_content'>2. Thông tin số liệu nguồn nhân lực</a></li>
+	<li class=""><a href='http://dubaonhanluchcmc.gov.vn/articles-347-347-Du-bao-nhu-cau-nhan-luc.html#neo_content'>3. Dự báo nhu cầu nhân lực</a></li>
+	<li class=""><a href='articles-350-350-Thong-tin-thi-truong-lao-dong.html#neo_content'>4. Thông tin thị trường lao động</a></li>
+	<li class=""><a href='http://dubaonhanluchcmc.gov.vn/articles-346-346-Nghien-cuu-khoa-hoc.html#neo_content'>5. Nghiên cứu khoa học</a></li>
+
+	<li class=""><a href='http://dubaonhanluchcmc.gov.vn/articles-344-344-Khoa-hoc--Dao-tao.html#neo_content'>6. Thông tin đào tạo và khóa học</a></li>
+	<li class=""><a href='articles-357-357-Tu-van-nhan-luc.html#neo_content'>7. Tư vấn nhân lực</a></li>
+	<li class=""><a href='http://dubaonhanluchcmc.gov.vn/articles-268-268-Viec-Lam.html#neo_content'>8. Thông tin việc làm</a></li>
+	<li class=" end"><a href='articles-354-354-Hoi-dap-chinh-sach-lao-dong.html#neo_content'>9. Hỏi đáp chính sách lao động</a></li>
+</ul>
+				</div>
+			<div class="bottom_cat"><img src="images/bg_lsdm_bottom.jpg" alt="nguonnhanluc" width="291" height="14" /></div>
+
+		</div>
+		<div id="r_module">
+	<div class="r_module_top"><img src="images/top_module.jpg" alt="nguonnhanluc" width="291" height="11" /></div>
+	<div class="r_module_center">
+		<h2>TIÊU ĐIỂM</h2>
+				<div class="tieudiem">
+			<div class="pic"><a href="ad-349-349-96-Xoa-bo-“cat-cu”-thong-tin-lao-dong.html#neo_content"><img src="upload/images/artseed-1247790148.jpg" alt="nguonnhanluc" width="99" height="73" /></a></div>
+			<div class="des">
+
+				<p><a href="ad-349-349-96-Xoa-bo-“cat-cu”-thong-tin-lao-dong.html#neo_content">Xoá bỏ “cát cứ” thông tin lao động</a></p>
+			</div>
+			<div class="clear"></div>
+		</div>
+				<div class="tieudiem">
+			<div class="pic"><a href="ad-349-349-95-Vi-sao-mot-so-doanh-nghiep-van-thieu-nhan-luc.html#neo_content"><img src="upload/images/artseed-1247790184.jpg" alt="nguonnhanluc" width="99" height="73" /></a></div>
+			<div class="des">
+				<p><a href="ad-349-349-95-Vi-sao-mot-so-doanh-nghiep-van-thieu-nhan-luc.html#neo_content">Vì sao một số doanh nghiệp vẫn thiếu nhân lực?</a></p>
+
+			</div>
+			<div class="clear"></div>
+		</div>
+				<div class="tieudiem">
+			<div class="pic"><a href="ad-349-349-94-TUYEN-NGUOI-THEO-TUONG-SO.html#neo_content"><img src="upload/images/artseed-1247749808.jpg" alt="nguonnhanluc" width="99" height="73" /></a></div>
+			<div class="des">
+				<p><a href="ad-349-349-94-TUYEN-NGUOI-THEO-TUONG-SO.html#neo_content">TUYỂN NGƯỜI THEO ...TƯỚNG SỐ</a></p>
+			</div>
+
+			<div class="clear"></div>
+		</div>
+				<div class="tieudiem">
+			<div class="pic"><a href="ad-349-349-90-Thanh-lap-Ban-chi-dao-quoc-gia-ve-dao-tao-theo-nhu-cau-xa-hoi.html#neo_content"><img src="images/pic_01.jpg" alt="nguonnhanluc" width="99" height="73" /></a></div>
+			<div class="des">
+				<p><a href="ad-349-349-90-Thanh-lap-Ban-chi-dao-quoc-gia-ve-dao-tao-theo-nhu-cau-xa-hoi.html#neo_content">Thành lập Ban chỉ đạo quốc gia về đào tạo theo nhu cầu xã hội</a></p>
+			</div>
+			<div class="clear"></div>
+
+		</div>
+				<div class="tieudiem">
+			<div class="pic"><a href="ad-349-349-89-Tang-cuong-phoi-hop-de-thuc-hien-hieu-qua-dao-tao-theo-nhu-cau-xa-hoi.html#neo_content"><img src="images/pic_01.jpg" alt="nguonnhanluc" width="99" height="73" /></a></div>
+			<div class="des">
+				<p><a href="ad-349-349-89-Tang-cuong-phoi-hop-de-thuc-hien-hieu-qua-dao-tao-theo-nhu-cau-xa-hoi.html#neo_content">Tăng cường phối hợp để thực hiện hiệu quả đào tạo theo nhu cầu xã hội</a></p>
+			</div>
+			<div class="clear"></div>
+		</div>
+
+				<div class="tieudiem">
+			<div class="pic"><a href="ad-349-349-93-Dao-tao-nguon-nhan-luc-theo-nhu-cau-thi-truong.html#neo_content"><img src="images/pic_01.jpg" alt="nguonnhanluc" width="99" height="73" /></a></div>
+			<div class="des">
+				<p><a href="ad-349-349-93-Dao-tao-nguon-nhan-luc-theo-nhu-cau-thi-truong.html#neo_content">Đào tạo nguồn nhân lực theo nhu cầu thị trường</a></p>
+			</div>
+			<div class="clear"></div>
+		</div>
+			</div>
+
+	<div class="bottom_cat"><img src="images/bg_lsdm_bottom.jpg" alt="nguonnhanluc" width="291" height="14" /></div>
+</div>
+		<!--r module-->
+		<ul><li><img src="upload/images/artseed-1257658653.jpg" alt="logo" width="291"  align="middle" /></li><li><img src="upload/images/artseed-1257658647.jpg" alt="logo" width="291"  align="middle" /></li></ul>		<!--ad-->
+	</div>
+	<!--wrap cat-->
+	<div id="hot_news" class="ex">
+		<div class="top_hot_news">
+			<h2>Danh mục đặc biệt<a href='#'>Tin tức sự kiện</a></h2>
+
+		</div>
+		<div class="news_article">
+			<div class="top_page clearfix">
+				<div class="fl"><a href="#"><img src="images/sort_a.jpg" alt="nguonnhanluc" /></a> <a href="#"><img src="images/sort_b.jpg" alt="nguonnhanluc" /></a> <a href="#"><img src="images/sort_c.jpg" alt="nguonnhanluc" /></a></div>
+				<div class="pageitem fr">Trang: <a class="active">1</a> | <a href="/nguonnhanluc/index.php?artseed=articles&cid=349&idActive=349&page=2#neo_content">2 | </a><a href="/nguonnhanluc/index.php?artseed=articles&cid=349&idActive=349&page=3#neo_content">3</a></ul></div>
+
+			</div>
+			<!--top page-->
+						<div class="im_news clearfix">
+				<div class="pic"> <a href="ad-349-349-96-Xoa-bo-“cat-cu”-thong-tin-lao-dong.html#neo_content"><img src="upload/images/artseed-1247790148.jpg" width="140" height="110" alt="nguonnhanluc" /></a> </div>
+				<div class="des">
+					<h3><a href="ad-349-349-96-Xoa-bo-“cat-cu”-thong-tin-lao-dong.html#neo_content">Xoá bỏ “cát cứ” thông tin lao động</a> <small>(16/07/2009)</small></h3>
+
+					<p>Hỏi chuyện &ocirc;ng Nguyễn Đại Đồng, Cục trưởng Cục Việc l&agrave;m (Bộ Lao động - Thương binh v&agrave; X&atilde; hội), về vai tr&ograve; của Trung t&acirc;m Dự b&aacute;o nhu cầu nh&acirc;n lực Quốc gia mới th&agrave;nh lập.
+
+
+
+Trung t&acirc;m Dự...</p>
+				</div>
+
+			</div>
+						<div class="im_news_object">
+	<div class="im_news_pic"><a href="ad-349-349-95-Vi-sao-mot-so-doanh-nghiep-van-thieu-nhan-luc.html#neo_content"><img src="upload/images/artseed-1247790184.jpg" alt="nguonnhanluc" width="110" /></a></div>
+	<h3><a href="ad-349-349-95-Vi-sao-mot-so-doanh-nghiep-van-thieu-nhan-luc.html#neo_content">Vì sao một số doanh nghiệp vẫn thiếu nhân lực?</a> <small>(16/07/2009)</small></h3>
+	<p>- Theo b&aacute;o c&aacute;o mới nhất của Bộ LĐ-TB&amp;XH th&igrave; chỉ mới t&iacute;nh qu&yacute; I-2009, qua khảo s&aacute;t v&agrave; b&aacute;o c&aacute;o của 48 tỉnh, th&agrave;nh phố, số lượng lao động mất việc l&agrave;m l&agrave; gần 65.000 người - chiếm 10% lao động đang l&agrave;m việc tại c&aacute;c doanh nghiệp khảo s&aacute;t.
+
+&nbsp;
+
+&nbsp;
+Tuy nhi&ecirc;n, cũng theo Bộ n&agrave;y...</p>
+</div>
+<div class="im_news_object">
+	<div class="im_news_pic"><a href="ad-349-349-94-TUYEN-NGUOI-THEO-TUONG-SO.html#neo_content"><img src="upload/images/artseed-1247749808.jpg" alt="nguonnhanluc" width="110" /></a></div>
+	<h3><a href="ad-349-349-94-TUYEN-NGUOI-THEO-TUONG-SO.html#neo_content">TUYỂN NGƯỜI THEO ...TƯỚNG SỐ</a> <small>(16/07/2009)</small></h3>
+	<p>Vị tr&iacute; dự tuyển c&agrave;ng cao, t&iacute;nh chất c&ocirc;ng việc quan trọng th&igrave; &quot;hồ sơ&rdquo; phụ c&agrave;ng đ&ograve;i hỏi chi tiết. C&oacute; những điều chẳng li&ecirc;n quan g&igrave; đến tr&igrave;nh độ chuy&ecirc;n m&ocirc;n nhưng&nbsp; lại quyết định sự th&agrave;nh bại, gi&uacute;p NLĐ tr&uacute;ng tuyển như: số mạng, h&igrave;nh d&aacute;ng, chiều cao...
+      ...</p>
+
+</div>
+<div class="im_news_object">
+	<h3><a href="ad-349-349-93-Dao-tao-nguon-nhan-luc-theo-nhu-cau-thi-truong.html#neo_content">Đào tạo nguồn nhân lực theo nhu cầu thị trường</a> <small>(16/07/2009)</small></h3>
+	<p>Bao giờ &ldquo;cung&rdquo; mới gặp &ldquo;cầu&rdquo;? Đ&oacute; l&agrave; c&acirc;u hỏi &ndash; năm n&agrave;o cũng được hỏi &ndash; đặt ra trước c&aacute;c nh&agrave; cung ứng v&agrave; nh&agrave; tuyển dụng lao động. V&agrave; chắc chắn kh&ocirc;ng ai trả lời ch&iacute;nh x&aacute;c thời điểm &ldquo;hợp long&rdquo; khi ch&uacute;ng ta c&ograve;n chưa biết thị trường đ&ograve;i hỏi cụ thể g&igrave; ở c&aacute;c cơ sở đ&agrave;o tạo. V&agrave; nh&agrave; trường &ndash; tuy than rằng nh&agrave; tuyển dụng được hưởng...</p>
+
+</div><div class="im_news_object">
+	<h3><a href="ad-349-349-92-Tim-loi-giai-bai-toan-“khat”-nhan-luc-co-tay-nghe.html#neo_content">Tìm lời giải bài toán “khát” nhân lực có tay nghề</a> <small>(16/07/2009)</small></h3>
+	<p>- Ng&agrave;y 10/11, Bộ GD-ĐT tổ chức Hội thảo đ&agrave;o tạo nh&acirc;n lực, nghi&ecirc;n cứu khoa học v&agrave; chuyển giao c&ocirc;ng nghệ đ&aacute;p ứng nhu cầu doanh nghiệp đối với c&aacute;c trường ĐH, CĐ, TCCN, dạy nghề ph&iacute;a Bắc. Đ&acirc;y l&agrave; một trong những vấn đề cấp b&aacute;ch trước thực tế đất nước thiếu lao động c&oacute; kỹ năng đ&agrave;o tạo theo chuẩn của c&ocirc;ng nghiệp.
+
+Tại hội thảo, đ&atilde; c&oacute; 34 doanh nghiệp k&yacute; kết đ&agrave;o tạo nguồn...</p>
+
+</div><div class="im_news_object">
+	<h3><a href="ad-349-349-91-Thao-go-vuong-mac-nguon-nhan-luc-cho-cong-nghe-cao.html#neo_content">Tháo gỡ vướng mắc nguồn nhân lực cho công nghệ cao</a> <small>(16/07/2009)</small></h3>
+	<p>Chỉ c&oacute; 10% kỹ sư c&ocirc;ng nghệ th&ocirc;ng tin đ&aacute;p ứng tốt nhu cầu c&ocirc;ng việc; hơn 10.000 tiến sĩ nhưng phần lớn c&oacute; tr&igrave;nh độ thấp so chuẩn quốc tế... viện - trường - doanh nghiệp bắt tay th&aacute;o gỡ vướng mắc nh&acirc;n lực cho c&ocirc;ng nghệ cao.
+
+Thứ trưởng Bộ Khoa học &amp; C&ocirc;ng nghệ (KH&amp;CN) Nguyễn Văn Lạng đ&atilde; thẳng thắn nh&igrave;n nhận thực trạng nguồn nh&acirc;n lực c&ocirc;ng nghệ cao c&ograve;n thiếu v&agrave; yếu như tr&ecirc;n tại Hội...</p>
+
+</div><div class="im_news_object">
+	<h3><a href="ad-349-349-90-Thanh-lap-Ban-chi-dao-quoc-gia-ve-dao-tao-theo-nhu-cau-xa-hoi.html#neo_content">Thành lập Ban chỉ đạo quốc gia về đào tạo theo nhu cầu xã hội</a> <small>(16/07/2009)</small></h3>
+	<p>(Cổng TTĐT Ch&iacute;nh phủ) - Ng&agrave;y 9/9, Thủ tướng Ch&iacute;nh phủ Nguyễn Tấn Dũng đ&atilde; quyết định th&agrave;nh lập Ban chỉ đạo quốc gia về đ&agrave;o tạo theo nhu cầu x&atilde; hội giai đoạn 2008-2015. Ph&oacute; Thủ tướng Ch&iacute;nh phủ Nguyễn Thiện Nh&acirc;n l&agrave;m Trưởng ban.
+
+
+&nbsp;
+
+Nguồn nh&acirc;n lực sau khi đ&agrave;o tạo theo nhu cầu sẽ được tận dụng triệt để cho sự ph&aacute;t triển x&atilde; hội          
+
+Thứ trưởng Thường trực Bộ Gi&aacute;o dục v&agrave;...</p>
+</div><div class="im_news_object">
+	<h3><a href="ad-349-349-89-Tang-cuong-phoi-hop-de-thuc-hien-hieu-qua-dao-tao-theo-nhu-cau-xa-hoi.html#neo_content">Tăng cường phối hợp để thực hiện hiệu quả đào tạo theo nhu cầu xã hội</a> <small>(16/07/2009)</small></h3>
+
+	<p>Tr&aacute;ch nhiệm của nh&agrave; nước l&agrave; phải dự b&aacute;o nhu cầu nh&acirc;n lực v&agrave; chuyển giao th&ocirc;ng tin cho c&aacute;c trường ĐH, Cao đẳng
+
+
+
+Tại cuộc họp Ban chỉ đạo Quốc gia về đ&agrave;o tạo theo nhu cầu x&atilde; hội (Ban chỉ đạo) chiều ng&agrave;y 6/3, Ph&oacute; Thủ tướng Nguyễn Thiện Nh&acirc;n, Trưởng ban chỉ đạo Quốc gia về đ&agrave;o tạo theo nhu cầu x&atilde; hội, nhấn mạnh: Tr&aacute;ch nhiệm của nh&agrave; nước l&agrave; phải dự b&aacute;o nhu cầu nh&acirc;n...</p>
+
+</div><div class="im_news_object">
+	<h3><a href="ad-349-349-88-Tang-cuong-cong-tac-phoi-hop-de-thuc-hien-hieu-qua-dao-tao-theo-nhu-cau-xa-hoi.html#neo_content">Tăng cường công tác phối hợp để thực hiện hiệu quả đào tạo theo nhu cầu xã hội</a> <small>(16/07/2009)</small></h3>
+	<p>Tại cuộc họp Ban chỉ đạo Quốc gia về đ&agrave;o tạo theo nhu cầu x&atilde; hội (Ban chỉ đạo) chiều ng&agrave;y 6/3, Ph&oacute; Thủ tướng Nguyễn Thiện Nh&acirc;n, Trưởng ban chỉ đạo Quốc gia về đ&agrave;o tạo theo nhu cầu x&atilde; hội, nhấn mạnh: Tr&aacute;ch nhiệm của nh&agrave; nước l&agrave; phải dự b&aacute;o nhu cầu nh&acirc;n lực v&agrave; chuyển giao th&ocirc;ng tin cho c&aacute;c trường Đại học (ĐH), Cao đẳng để c&oacute; căn cứ đ&agrave;o tạo đ&uacute;ng nhu cầu.
+
+
+&nbsp;
+
+Tr&aacute;ch...</p>
+</div><div class="im_news_object">
+	<h3><a href="ad-349-349-87-Tang-cuong-cong-tac-phoi-hop-de-thuc-hien-hieu-qua-dao-tao-theo-nhu-cau-xa-hoi.html#neo_content">Tăng cường công tác phối hợp để thực hiện hiệu quả đào tạo theo nhu cầu xã hội</a> <small>(16/07/2009)</small></h3>
+	<p>Tr&aacute;ch nhiệm của nh&agrave; nước l&agrave; phải dự b&aacute;o nhu cầu nh&acirc;n lực v&agrave; chuyển giao th&ocirc;ng tin cho c&aacute;c trường ĐH, Cao đẳng Ảnh: Chinhphu.vn 
+
+Hanoinet - Ph&oacute; Thủ tướng y&ecirc;u cầu chậm nhất hết năm 2009, tất cả c&aacute;c ng&agrave;nh kinh tế chủ lực phải c&oacute; đề &aacute;n về đ&agrave;o tạo theo nhu cầu x&atilde; hội, kh&ocirc;ng chờ đợi nhau để nhanh ch&oacute;ng đưa chủ trương lớn n&agrave;y v&agrave;o cuộc sống. 
+
+Tại cuộc họp Ban chỉ đạo Quốc...</p>
+
+</div><div class="im_news_object">
+	<h3><a href="ad-349-349-86-Rut-ngan-khoang-cach-ve-cung-va-cau-lao-dong.html#neo_content">Rút ngắn khoảng cách về cung và cầu lao động</a> <small>(16/07/2009)</small></h3>
+	<p>Trong những nỗ lực thu hẹp dần khoảng c&aacute;ch cung-cầu về lao động, một trung t&acirc;m dự b&aacute;o nhu cầu nh&acirc;n lực quốc gia dự kiến sẽ được th&agrave;nh lập trong qu&yacute; 2, nhằm ph&acirc;n t&iacute;ch, dự b&aacute;o nhu cầu thực tế sử dụng lao động của c&aacute;c doanh nghiệp để l&agrave;m cơ sở cho việc đ&agrave;o tạo.
+
+
+&nbsp;
+
+Ảnh minh hoạ.        
+
+&Ocirc;ng Nguyễn Đại Đồng, Cục trưởng Cục Việc l&agrave;m (Bộ Lao động - Thương binh v&agrave; X&atilde; hội) cho biết,...</p>
+</div><div class="im_news_object">
+	<h3><a href="ad-349-349-85-Phat-trien-nguon-nhan-luc-TT&TT-bac-cao-de-hoi-nhap.html#neo_content">Phát triển nguồn nhân lực TT&TT bậc cao để hội nhập</a> <small>(16/07/2009)</small></h3>
+
+	<p>Ph&aacute;t triển nguồn nh&acirc;n lực Th&ocirc;ng tin v&agrave; Truyền th&ocirc;ng sẽ li&ecirc;n quan đến những vấn đề cơ bản như x&aacute;c định mục ti&ecirc;u ph&aacute;t triển Ng&agrave;nh, dự b&aacute;o nhu cầu nh&acirc;n lực, ch&iacute;nh s&aacute;ch đ&agrave;o tạo, bồi dưỡng, chế độ đ&atilde;i ngộ, quản l&yacute; sử dụng&hellip; trong đ&oacute; c&ocirc;ng t&aacute;c đ&agrave;o tạo, bồi dưỡng l&agrave; hết sức quan trọng. Thứ trưởng Bộ TT-TT Trần Đức Lai đ&atilde; trực tiếp trả lời mọi c&acirc;u...</p>
+
+</div>		</div>
+		<div class="bottom_news_article">
+			<div class="top_page clearfix">
+				<div class="fl"><a href="#"><img src="images/sort_a.jpg" alt="nguonnhanluc" /></a> <a href="#"><img src="images/sort_b.jpg" alt="nguonnhanluc" /></a> <a href="#"><img src="images/sort_c.jpg" alt="nguonnhanluc" /></a></div>
+				<div class="pageitem fr">Trang: <a class="active">1</a> | <a href="/nguonnhanluc/index.php?artseed=articles&cid=349&idActive=349&page=2#neo_content">2 | </a><a href="/nguonnhanluc/index.php?artseed=articles&cid=349&idActive=349&page=3#neo_content">3</a></ul></div>
+
+			</div>
+			<!--top page-->
+		</div>
+	</div>
+	<!--hot news-->
+</div>
+	<!-- content-->
+	<div id="partner">
+		<h2>CÁC ĐƠN VỊ TÀI TRỢ</h2>
+
+		<iframe height="65" frameborder="0" width="970" scrolling="no" src="scroll.php"></iframe>
+	</div>
+	<div id="wrap_ad" class="clearfix"><ul><li><img src="upload/images/artseed-1257658387.jpg" alt="logo"   align="middle" /></li><li><img src="upload/images/artseed-1257658365.jpg" alt="logo"   align="middle" /></li></ul></div>
+	<!--partner-->
+	<div id="wrap_footer">
+		<div id="top_footer">
+			<div class="top_footer_inside clearfix">
+				<div class="s1 fl">
+
+					<p>Tổng lượt truy cập: 88&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Số người online: 23</p>
+				</div>
+				<div class="s3 fr"><a href="#"><img src="images/top.jpg" alt="top" /></a><a href="#"><img src="images/icon_home.jpg" alt="home" /></a><a href="#"><img src="images/savebookmark.jpg" alt="bookmark" /></a><a href="#"><img src="images/ico_email.jpg" alt="bookmark" /></a></div>
+			</div>
+		</div>
+		<div id="footer" class="clearfix">
+			<div class="f1">
+				<p>Copyright © 2009 thuộc Trung Tâm Dự báo nhu cầu nhân lực và Thông tin thị trường lao động TPHCM
+					- Sở Lao động - Thương binh và Xã hội giữ trọn bản quyền</p>
+
+			</div>
+			<div class="f2">
+				<p>Copyright © 2009, Van Suong - Vu Tuan Co.,Ld. All rights reserved</p>			</div>
+		</div>
+	</div>
+	<!--wrap footer-->
+</div>
+<!--Page-->
+</body>
+
+</html>
