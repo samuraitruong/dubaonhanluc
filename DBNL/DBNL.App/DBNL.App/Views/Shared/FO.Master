@@ -4,15 +4,15 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <link href="<%=Url.Content("Content")%>/style.css" rel="stylesheet" type="text/css" />
+    <link href="<%=Url.Content("~/Content")%>/style.css" rel="stylesheet" type="text/css" />
     <title>Nhu cau nhan luc va thong tin thi truong lao dong Thanh pho Ho Chi Minh</title>
     <!--[if lte IE 6]>
     <script type="text/javascript" src="supersleight-min.js"></script>
     <![endif]-->
 
-    <script type="text/javascript" src="<%=Url.Content("Scripts")%>/jquery-1.2.6.pack.js"></script>
+    <script type="text/javascript" src="<%=Url.Content("~/Scripts")%>/jquery-1.2.6.pack.js"></script>
 
-    <script type="text/javascript" src="<%=Url.Content("Scripts")%>/jquery.droppy.js"></script>
+    <script type="text/javascript" src="<%=Url.Content("~/Scripts")%>/jquery.droppy.js"></script>
 
     <script type='text/javascript'>
   $(function() {
@@ -26,7 +26,7 @@
   });
     </script>
 
-    <link href="<%=Url.Content("Content")%>/slideshow.css" rel="stylesheet" type="text/css" />
+    <link href="<%=Url.Content("~/Content")%>/slideshow.css" rel="stylesheet" type="text/css" />
 
     <script type="text/javascript">
 
@@ -97,9 +97,9 @@ function ticknews() {
 
     <link rel="Shortcut Icon" href="logo.ico" />
 
-    <script src="<%=Url.Content("Scripts")%>/function.js" type="text/javascript"></script>
+    <script src="<%=Url.Content("~/Scripts")%>/function.js" type="text/javascript"></script>
 
-    <script src="<%=Url.Content("Scripts")%>/ajax.js" type="text/javascript"></script>
+    <script src="<%=Url.Content("~/Scripts")%>/ajax.js" type="text/javascript"></script>
 
 </head>
 <body>
@@ -110,9 +110,9 @@ function ticknews() {
         <div id="header">
             <div id="logo">
                 <a href="#">
-                    <img src="<%=Url.Content("images")%>/logo.jpg" alt="nguonnhanluc" /></a></div>
+                    <img src="<%=Url.Content("~/images")%>/logo.jpg" alt="nguonnhanluc" /></a></div>
             <div id="text_banner">
-                <img src="<%=Url.Content("images")%>/text_banner.jpg" alt="nguonnhanluc" /></div>
+                <img src="<%=Url.Content("~/images")%>/text_banner.jpg" alt="nguonnhanluc" /></div>
             <div id="mainnav" class="clearfix">
                 <ul id="nav">
                     <li class="active"><a href='index.html#neo_content'>TRANG CHỦ</a></li>
@@ -130,7 +130,7 @@ function ticknews() {
                     <li class=""><a href='articles-345-345-Gop-y.html#neo_content'>Góp ý</a></li>
                     <li class=" end"><a href='intro-254-254-LIEN-HE.html#neo_content'>LIÊN HỆ</a></li>
                 </ul>
-                <!--<div id="flag"><a href='#'><img src="<%=Url.Content("images")%>/vn.jpg" alt="nguonnhanluc" /></a><a href='#'><img src="<%=Url.Content("images")%>/en.jpg" alt="nguonnhanluc" /></a></div>-->
+                <!--<div id="flag"><a href='#'><img src="<%=Url.Content("~/images")%>/vn.jpg" alt="nguonnhanluc" /></a><a href='#'><img src="<%=Url.Content("~/images")%>/en.jpg" alt="nguonnhanluc" /></a></div>-->
             </div>
             <!--Main Nav-->
             <div id="bottom_header" class="clearfix">
@@ -153,10 +153,10 @@ function ticknews() {
                 <div class="wrap_support clearfix">
                     <div class="support">
                         <a href="skype:mdnguyen86?chat">
-                            <img src="<%=Url.Content("images")%>/skype_on.jpg" alt="skype" /></a><a href="skype:mdnguyen86?chat">Skype</a></div>
+                            <img src="<%=Url.Content("~/images")%>/skype_on.jpg" alt="skype" /></a><a href="skype:mdnguyen86?chat">Skype</a></div>
                     <div class="support">
                         <a href="ymsgr:sendIM?cuonglongan">
-                            <img src="<%=Url.Content("images")%>/yahoo_on.jpg" alt="yahoo" /></a><a href="ymsgr:sendIM?cuonglongan">Yahoo</a></div>
+                            <img src="<%=Url.Content("~/images")%>/yahoo_on.jpg" alt="yahoo" /></a><a href="ymsgr:sendIM?cuonglongan">Yahoo</a></div>
                 </div>
             </div>
         </div>
@@ -179,7 +179,7 @@ function ticknews() {
                 </div>
             </div>
             <div id="slideshow" class="clear">
-                <img src="<%=Url.Content("images")%>/1.jpg" alt="Slideshow Image 1" class="active" /></div>
+                <img src="<%=Url.Content("~/images")%>/1.jpg" alt="Slideshow Image 1" class="active" /></div>
         </div>
         <a name="neo_content"></a>
         <!--Top Content-->
@@ -213,7 +213,7 @@ function ticknews() {
                         </ul>
                     </div>
                     <div class="bottom_cat">
-                        <img src="<%=Url.Content("images")%>/bg_lsdm_bottom.jpg" alt="nguonnhanluc" width="291" height="14" /></div>
+                        <img src="<%=Url.Content("~/images")%>/bg_lsdm_bottom.jpg" alt="nguonnhanluc" width="291" height="14" /></div>
                     <asp:ContentPlaceHolder ID="UnderMenuContent" runat="server">
                     </asp:ContentPlaceHolder>
                 </div>
@@ -233,14 +233,14 @@ function ticknews() {
         <div id="partner">
             <h2>
                 CÁC ĐƠN VỊ TÀI TRỢ</h2>
-            <iframe height="65" frameborder="0" width="970" scrolling="no" src="scroll.html">
+            <iframe height="65" frameborder="0" width="970" scrolling="no" src="<%=Url.Content("~/scroll.html")%>">
             </iframe>
         </div>
         <div id="wrap_ad" class="clearfix">
             <ul>
                 <li>
-                    <img src="upload/<%=Url.Content("images")%>/artseed-1257658387.jpg" alt="logo" align="middle" /></li><li>
-                        <img src="upload/<%=Url.Content("images")%>/artseed-1257658365.jpg" alt="logo" align="middle" /></li></ul>
+                    <img src="upload/<%=Url.Content("~/images")%>/artseed-1257658387.jpg" alt="logo" align="middle" /></li><li>
+                        <img src="upload/<%=Url.Content("~/images")%>/artseed-1257658365.jpg" alt="logo" align="middle" /></li></ul>
         </div>
         <!--partner-->
         <div id="wrap_footer">
@@ -253,9 +253,9 @@ function ticknews() {
                     </div>
                     <div class="s3 fr">
                         <a href="#">
-                            <img src="<%=Url.Content("images")%>/top.jpg" alt="top" /></a><a href="#"><img src="<%=Url.Content("images")%>/icon_home.jpg"
-                                alt="home" /></a><a href="#"><img src="<%=Url.Content("images")%>/savebookmark.jpg" alt="bookmark" /></a><a
-                                    href="#"><img src="<%=Url.Content("images")%>/ico_email.jpg" alt="bookmark" /></a></div>
+                            <img src="<%=Url.Content("~/images")%>/top.jpg" alt="top" /></a><a href="#"><img src="<%=Url.Content("~/images")%>/icon_home.jpg"
+                                alt="home" /></a><a href="#"><img src="<%=Url.Content("~/images")%>/savebookmark.jpg" alt="bookmark" /></a><a
+                                    href="#"><img src="<%=Url.Content("~/images")%>/ico_email.jpg" alt="bookmark" /></a></div>
                 </div>
             </div>
             <div id="footer" class="clearfix">

@@ -42,6 +42,9 @@ namespace DBNL.App.Models
     partial void InsertContentCategory(ContentCategory instance);
     partial void UpdateContentCategory(ContentCategory instance);
     partial void DeleteContentCategory(ContentCategory instance);
+    partial void InsertContentRelation(ContentRelation instance);
+    partial void UpdateContentRelation(ContentRelation instance);
+    partial void DeleteContentRelation(ContentRelation instance);
     partial void InsertContent(Content instance);
     partial void UpdateContent(Content instance);
     partial void DeleteContent(Content instance);
@@ -130,6 +133,14 @@ namespace DBNL.App.Models
 			}
 		}
 		
+		public System.Data.Linq.Table<ContentRelation> ContentRelations
+		{
+			get
+			{
+				return this.GetTable<ContentRelation>();
+			}
+		}
+		
 		public System.Data.Linq.Table<Content> Contents
 		{
 			get
@@ -215,6 +226,8 @@ namespace DBNL.App.Models
 		
 		private System.DateTime _UpdatedDate;
 		
+		private string _BannerPosition;
+		
     #region Extensibility Method Definitions
     partial void OnLoaded();
     partial void OnValidate(System.Data.Linq.ChangeAction action);
@@ -233,6 +246,8 @@ namespace DBNL.App.Models
     partial void OnCreatedDateChanged();
     partial void OnUpdatedDateChanging(System.DateTime value);
     partial void OnUpdatedDateChanged();
+    partial void OnBannerPositionChanging(string value);
+    partial void OnBannerPositionChanged();
     #endregion
 		
 		public Banner()
@@ -376,6 +391,26 @@ namespace DBNL.App.Models
 					this._UpdatedDate = value;
 					this.SendPropertyChanged("UpdatedDate");
 					this.OnUpdatedDateChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_BannerPosition", DbType="NVarChar(50)")]
+		public string BannerPosition
+		{
+			get
+			{
+				return this._BannerPosition;
+			}
+			set
+			{
+				if ((this._BannerPosition != value))
+				{
+					this.OnBannerPositionChanging(value);
+					this.SendPropertyChanging();
+					this._BannerPosition = value;
+					this.SendPropertyChanged("BannerPosition");
+					this.OnBannerPositionChanged();
 				}
 			}
 		}
@@ -787,6 +822,8 @@ namespace DBNL.App.Models
 		
 		private EntitySet<Content> _Contents;
 		
+		private EntitySet<Navigation> _Navigations;
+		
 		private EntityRef<ContentCategory> _ContentCategory1;
 		
     #region Extensibility Method Definitions
@@ -807,6 +844,7 @@ namespace DBNL.App.Models
 		{
 			this._ContentCategories = new EntitySet<ContentCategory>(new Action<ContentCategory>(this.attach_ContentCategories), new Action<ContentCategory>(this.detach_ContentCategories));
 			this._Contents = new EntitySet<Content>(new Action<Content>(this.attach_Contents), new Action<Content>(this.detach_Contents));
+			this._Navigations = new EntitySet<Navigation>(new Action<Navigation>(this.attach_Navigations), new Action<Navigation>(this.detach_Navigations));
 			this._ContentCategory1 = default(EntityRef<ContentCategory>);
 			OnCreated();
 		}
@@ -921,6 +959,19 @@ namespace DBNL.App.Models
 			}
 		}
 		
+		[Association(Name="ContentCategory_Navigation", Storage="_Navigations", OtherKey="ContentId")]
+		public EntitySet<Navigation> Navigations
+		{
+			get
+			{
+				return this._Navigations;
+			}
+			set
+			{
+				this._Navigations.Assign(value);
+			}
+		}
+		
 		[Association(Name="ContentCategory_ContentCategory", Storage="_ContentCategory1", ThisKey="ParentCategoryId", IsForeignKey=true)]
 		public ContentCategory ContentCategory1
 		{
@@ -998,6 +1049,186 @@ namespace DBNL.App.Models
 			this.SendPropertyChanging();
 			entity.ContentCategory = null;
 		}
+		
+		private void attach_Navigations(Navigation entity)
+		{
+			this.SendPropertyChanging();
+			entity.ContentCategory = this;
+		}
+		
+		private void detach_Navigations(Navigation entity)
+		{
+			this.SendPropertyChanging();
+			entity.ContentCategory = null;
+		}
+	}
+	
+	[Table(Name="ausp_dubao.ContentRelations")]
+	public partial class ContentRelation : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _ContentId;
+		
+		private int _RelatedId;
+		
+		private EntityRef<Content> _Content;
+		
+		private EntityRef<Content> _Content1;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnContentIdChanging(int value);
+    partial void OnContentIdChanged();
+    partial void OnRelatedIdChanging(int value);
+    partial void OnRelatedIdChanged();
+    #endregion
+		
+		public ContentRelation()
+		{
+			this._Content = default(EntityRef<Content>);
+			this._Content1 = default(EntityRef<Content>);
+			OnCreated();
+		}
+		
+		[Column(Storage="_ContentId", DbType="Int NOT NULL", IsPrimaryKey=true)]
+		public int ContentId
+		{
+			get
+			{
+				return this._ContentId;
+			}
+			set
+			{
+				if ((this._ContentId != value))
+				{
+					if (this._Content.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnContentIdChanging(value);
+					this.SendPropertyChanging();
+					this._ContentId = value;
+					this.SendPropertyChanged("ContentId");
+					this.OnContentIdChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_RelatedId", DbType="Int NOT NULL", IsPrimaryKey=true)]
+		public int RelatedId
+		{
+			get
+			{
+				return this._RelatedId;
+			}
+			set
+			{
+				if ((this._RelatedId != value))
+				{
+					if (this._Content1.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnRelatedIdChanging(value);
+					this.SendPropertyChanging();
+					this._RelatedId = value;
+					this.SendPropertyChanged("RelatedId");
+					this.OnRelatedIdChanged();
+				}
+			}
+		}
+		
+		[Association(Name="Content_ContentRelation", Storage="_Content", ThisKey="ContentId", IsForeignKey=true)]
+		public Content Content
+		{
+			get
+			{
+				return this._Content.Entity;
+			}
+			set
+			{
+				Content previousValue = this._Content.Entity;
+				if (((previousValue != value) 
+							|| (this._Content.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._Content.Entity = null;
+						previousValue.ContentRelations.Remove(this);
+					}
+					this._Content.Entity = value;
+					if ((value != null))
+					{
+						value.ContentRelations.Add(this);
+						this._ContentId = value.ContentId;
+					}
+					else
+					{
+						this._ContentId = default(int);
+					}
+					this.SendPropertyChanged("Content");
+				}
+			}
+		}
+		
+		[Association(Name="Content_ContentRelation1", Storage="_Content1", ThisKey="RelatedId", IsForeignKey=true)]
+		public Content Content1
+		{
+			get
+			{
+				return this._Content1.Entity;
+			}
+			set
+			{
+				Content previousValue = this._Content1.Entity;
+				if (((previousValue != value) 
+							|| (this._Content1.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._Content1.Entity = null;
+						previousValue.ContentRelations1.Remove(this);
+					}
+					this._Content1.Entity = value;
+					if ((value != null))
+					{
+						value.ContentRelations1.Add(this);
+						this._RelatedId = value.ContentId;
+					}
+					else
+					{
+						this._RelatedId = default(int);
+					}
+					this.SendPropertyChanged("Content1");
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
 	}
 	
 	[Table(Name="ausp_dubao.Contents")]
@@ -1023,6 +1254,10 @@ namespace DBNL.App.Models
 		private string _Status;
 		
 		private int _Count;
+		
+		private EntitySet<ContentRelation> _ContentRelations;
+		
+		private EntitySet<ContentRelation> _ContentRelations1;
 		
 		private EntityRef<ContentCategory> _ContentCategory;
 		
@@ -1052,6 +1287,8 @@ namespace DBNL.App.Models
 		
 		public Content()
 		{
+			this._ContentRelations = new EntitySet<ContentRelation>(new Action<ContentRelation>(this.attach_ContentRelations), new Action<ContentRelation>(this.detach_ContentRelations));
+			this._ContentRelations1 = new EntitySet<ContentRelation>(new Action<ContentRelation>(this.attach_ContentRelations1), new Action<ContentRelation>(this.detach_ContentRelations1));
 			this._ContentCategory = default(EntityRef<ContentCategory>);
 			OnCreated();
 		}
@@ -1240,6 +1477,32 @@ namespace DBNL.App.Models
 			}
 		}
 		
+		[Association(Name="Content_ContentRelation", Storage="_ContentRelations", OtherKey="ContentId")]
+		public EntitySet<ContentRelation> ContentRelations
+		{
+			get
+			{
+				return this._ContentRelations;
+			}
+			set
+			{
+				this._ContentRelations.Assign(value);
+			}
+		}
+		
+		[Association(Name="Content_ContentRelation1", Storage="_ContentRelations1", OtherKey="RelatedId")]
+		public EntitySet<ContentRelation> ContentRelations1
+		{
+			get
+			{
+				return this._ContentRelations1;
+			}
+			set
+			{
+				this._ContentRelations1.Assign(value);
+			}
+		}
+		
 		[Association(Name="ContentCategory_Content", Storage="_ContentCategory", ThisKey="CategoryId", IsForeignKey=true)]
 		public ContentCategory ContentCategory
 		{
@@ -1292,6 +1555,30 @@ namespace DBNL.App.Models
 			{
 				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
 			}
+		}
+		
+		private void attach_ContentRelations(ContentRelation entity)
+		{
+			this.SendPropertyChanging();
+			entity.Content = this;
+		}
+		
+		private void detach_ContentRelations(ContentRelation entity)
+		{
+			this.SendPropertyChanging();
+			entity.Content = null;
+		}
+		
+		private void attach_ContentRelations1(ContentRelation entity)
+		{
+			this.SendPropertyChanging();
+			entity.Content1 = this;
+		}
+		
+		private void detach_ContentRelations1(ContentRelation entity)
+		{
+			this.SendPropertyChanging();
+			entity.Content1 = null;
 		}
 	}
 	
@@ -1475,7 +1762,15 @@ namespace DBNL.App.Models
 		
 		private string _Image;
 		
+		private int _ContentId;
+		
+		private string _Component;
+		
+		private string _ExternalUrl;
+		
 		private EntitySet<Navigation> _Navigations;
+		
+		private EntityRef<ContentCategory> _ContentCategory;
 		
 		private EntityRef<Navigation> _Navigation1;
 		
@@ -1499,11 +1794,18 @@ namespace DBNL.App.Models
     partial void OnDisplayOrderChanged();
     partial void OnImageChanging(string value);
     partial void OnImageChanged();
+    partial void OnContentIdChanging(int value);
+    partial void OnContentIdChanged();
+    partial void OnComponentChanging(string value);
+    partial void OnComponentChanged();
+    partial void OnExternalUrlChanging(string value);
+    partial void OnExternalUrlChanged();
     #endregion
 		
 		public Navigation()
 		{
 			this._Navigations = new EntitySet<Navigation>(new Action<Navigation>(this.attach_Navigations), new Action<Navigation>(this.detach_Navigations));
+			this._ContentCategory = default(EntityRef<ContentCategory>);
 			this._Navigation1 = default(EntityRef<Navigation>);
 			OnCreated();
 		}
@@ -1672,6 +1974,70 @@ namespace DBNL.App.Models
 			}
 		}
 		
+		[Column(Storage="_ContentId", DbType="Int NOT NULL")]
+		public int ContentId
+		{
+			get
+			{
+				return this._ContentId;
+			}
+			set
+			{
+				if ((this._ContentId != value))
+				{
+					if (this._ContentCategory.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnContentIdChanging(value);
+					this.SendPropertyChanging();
+					this._ContentId = value;
+					this.SendPropertyChanged("ContentId");
+					this.OnContentIdChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_Component", DbType="NVarChar(50)")]
+		public string Component
+		{
+			get
+			{
+				return this._Component;
+			}
+			set
+			{
+				if ((this._Component != value))
+				{
+					this.OnComponentChanging(value);
+					this.SendPropertyChanging();
+					this._Component = value;
+					this.SendPropertyChanged("Component");
+					this.OnComponentChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_ExternalUrl", DbType="VarChar(250)")]
+		public string ExternalUrl
+		{
+			get
+			{
+				return this._ExternalUrl;
+			}
+			set
+			{
+				if ((this._ExternalUrl != value))
+				{
+					this.OnExternalUrlChanging(value);
+					this.SendPropertyChanging();
+					this._ExternalUrl = value;
+					this.SendPropertyChanged("ExternalUrl");
+					this.OnExternalUrlChanged();
+				}
+			}
+		}
+		
 		[Association(Name="Navigation_Navigation", Storage="_Navigations", OtherKey="ParentId")]
 		public EntitySet<Navigation> Navigations
 		{
@@ -1682,6 +2048,40 @@ namespace DBNL.App.Models
 			set
 			{
 				this._Navigations.Assign(value);
+			}
+		}
+		
+		[Association(Name="ContentCategory_Navigation", Storage="_ContentCategory", ThisKey="ContentId", IsForeignKey=true)]
+		public ContentCategory ContentCategory
+		{
+			get
+			{
+				return this._ContentCategory.Entity;
+			}
+			set
+			{
+				ContentCategory previousValue = this._ContentCategory.Entity;
+				if (((previousValue != value) 
+							|| (this._ContentCategory.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._ContentCategory.Entity = null;
+						previousValue.Navigations.Remove(this);
+					}
+					this._ContentCategory.Entity = value;
+					if ((value != null))
+					{
+						value.Navigations.Add(this);
+						this._ContentId = value.ID;
+					}
+					else
+					{
+						this._ContentId = default(int);
+					}
+					this.SendPropertyChanged("ContentCategory");
+				}
 			}
 		}
 		
@@ -2149,6 +2549,8 @@ namespace DBNL.App.Models
 		
 		private string _ContentPermission;
 		
+		private string _ComponentPermission;
+		
 		private EntitySet<UserInRole> _UserInRoles;
 		
     #region Extensibility Method Definitions
@@ -2161,6 +2563,8 @@ namespace DBNL.App.Models
     partial void OnRoleNameChanged();
     partial void OnContentPermissionChanging(string value);
     partial void OnContentPermissionChanged();
+    partial void OnComponentPermissionChanging(string value);
+    partial void OnComponentPermissionChanged();
     #endregion
 		
 		public Role()
@@ -2225,6 +2629,26 @@ namespace DBNL.App.Models
 					this._ContentPermission = value;
 					this.SendPropertyChanged("ContentPermission");
 					this.OnContentPermissionChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_ComponentPermission", DbType="NVarChar(250)")]
+		public string ComponentPermission
+		{
+			get
+			{
+				return this._ComponentPermission;
+			}
+			set
+			{
+				if ((this._ComponentPermission != value))
+				{
+					this.OnComponentPermissionChanging(value);
+					this.SendPropertyChanging();
+					this._ComponentPermission = value;
+					this.SendPropertyChanged("ComponentPermission");
+					this.OnComponentPermissionChanged();
 				}
 			}
 		}
