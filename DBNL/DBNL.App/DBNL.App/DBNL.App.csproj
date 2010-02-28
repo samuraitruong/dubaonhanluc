@@ -40,6 +40,9 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Data.Linq">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
     <Reference Include="System.Drawing" />
     <Reference Include="System.ComponentModel.DataAnnotations">
       <RequiredTargetFramework>3.5</RequiredTargetFramework>
@@ -71,6 +74,11 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="Models\DBNLDataContext.designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DBNLDataContext.dbml</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -107,8 +115,170 @@
     <Content Include="Views\Web.config" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Models\DBNLDataContext.dbml">
+      <Generator>MSLinqToSQLGenerator</Generator>
+      <LastGenOutput>DBNLDataContext.designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{3259AA49-8AA1-44D3-9025-A0B520596A8C}" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Models\DBNLDataContext.dbml.layout">
+      <DependentUpon>DBNLDataContext.dbml</DependentUpon>
+    </None>
+    <Content Include="bin\DBNL.App.dll" />
+    <Content Include="bin\DBNL.App.pdb" />
+    <Content Include="Content\body.css" />
+    <Content Include="Content\content.css" />
+    <Content Include="Content\footer.css" />
+    <Content Include="Content\general.css" />
+    <Content Include="Content\header.css" />
+    <Content Include="Content\ie.css" />
+    <Content Include="Content\menu.css" />
+    <Content Include="Content\menu2.css" />
+    <Content Include="Content\news_article.css" />
+    <Content Include="Content\slideshow.css" />
+    <Content Include="Content\style.css" />
+    <Content Include="Content\submenu.css" />
+    <Content Include="Content\vote.css" />
+    <Content Include="images\1.jpg" />
+    <Content Include="images\2.jpg" />
+    <Content Include="images\ad1.jpg" />
+    <Content Include="images\ad12.jpg" />
+    <Content Include="images\ad12.png" />
+    <Content Include="images\ad2.jpg" />
+    <Content Include="images\ad3.jpg" />
+    <Content Include="images\ad4.jpg" />
+    <Content Include="images\ad_1.jpg" />
+    <Content Include="images\ad_2.jpg" />
+    <Content Include="images\ad_3.jpg" />
+    <Content Include="images\ad_4.jpg" />
+    <Content Include="images\ad_5.jpg" />
+    <Content Include="images\ad_6.jpg" />
+    <Content Include="images\ad_7.jpg" />
+    <Content Include="images\ad_8.jpg" />
+    <Content Include="images\banner1.jpg" />
+    <Content Include="images\banner2.jpg" />
+    <Content Include="images\banner3.jpg" />
+    <Content Include="images\banner4.jpg" />
+    <Content Include="images\banner5.jpg" />
+    <Content Include="images\bg.jpg" />
+    <Content Include="images\bg_bottom_content.jpg" />
+    <Content Include="images\bg_bq.jpg" />
+    <Content Include="images\bg_bq_hover.jpg" />
+    <Content Include="images\bg_center_cat.jpg" />
+    <Content Include="images\bg_dt.gif" />
+    <Content Include="images\bg_dt.jpg" />
+    <Content Include="images\bg_ex.jpg" />
+    <Content Include="images\bg_hot_news.jpg" />
+    <Content Include="images\bg_hot_news2.jpg" />
+    <Content Include="images\bg_lap.jpg" />
+    <Content Include="images\bg_line_dm.gif" />
+    <Content Include="images\bg_line_dm.png" />
+    <Content Include="images\bg_line_dm_end.png" />
+    <Content Include="images\bg_line_dm_hover.gif" />
+    <Content Include="images\bg_line_newsjob.jpg" />
+    <Content Include="images\bg_logo_.jpg" />
+    <Content Include="images\bg_lsdm.jpg" />
+    <Content Include="images\bg_lsdm_bottom.jpg" />
+    <Content Include="images\bg_lsdm_center.jpg" />
+    <Content Include="images\bg_lsnews.jpg" />
+    <Content Include="images\bg_lsnews_bottom.jpg" />
+    <Content Include="images\bg_lsnews_center.jpg" />
+    <Content Include="images\bg_lstitle.jpg" />
+    <Content Include="images\bg_lstitle2.jpg" />
+    <Content Include="images\bg_lstitle_bottom.jpg" />
+    <Content Include="images\bg_lstitle_center.jpg" />
+    <Content Include="images\bg_main.jpg" />
+    <Content Include="images\bg_main_bottom.jpg" />
+    <Content Include="images\bg_main_bottom.png" />
+    <Content Include="images\bg_main_center.jpg" />
+    <Content Include="images\bg_menu.jpg" />
+    <Content Include="images\bg_module.jpg" />
+    <Content Include="images\bg_module.png" />
+    <Content Include="images\bg_module_bottom.jpg" />
+    <Content Include="images\bg_module_bottom.png" />
+    <Content Include="images\bg_module_center.jpg" />
+    <Content Include="images\bg_otherpage.jpg" />
+    <Content Include="images\bg_search.jpg" />
+    <Content Include="images\bg_support.jpg" />
+    <Content Include="images\bg_tnb.jpg" />
+    <Content Include="images\bg_tnb1.jpg" />
+    <Content Include="images\bg_top_footer.jpg" />
+    <Content Include="images\bottom_news_article.png" />
+    <Content Include="images\bottom_news_article2.png" />
+    <Content Include="images\bottom_news_article3.png" />
+    <Content Include="images\b_button.jpg" />
+    <Content Include="images\b_search.jpg" />
+    <Content Include="images\center_module.jpg" />
+    <Content Include="images\chamgach.jpg" />
+    <Content Include="images\en.jpg" />
+    <Content Include="images\error.jpg" />
+    <Content Include="images\flash.jpg" />
+    <Content Include="images\i.jpg" />
+    <Content Include="images\icon_a_title.jpg" />
+    <Content Include="images\icon_b1.png" />
+    <Content Include="images\icon_b2.png" />
+    <Content Include="images\icon_b3.png" />
+    <Content Include="images\icon_cont1.gif" />
+    <Content Include="images\icon_cont1_hover.gif" />
+    <Content Include="images\icon_cont2-05.jpg" />
+    <Content Include="images\icon_cont2.jpg" />
+    <Content Include="images\icon_cont2_hover.jpg" />
+    <Content Include="images\icon_cont3.jpg" />
+    <Content Include="images\icon_home.jpg" />
+    <Content Include="images\icon_li.gif" />
+    <Content Include="images\icon_li_hover.gif" />
+    <Content Include="images\icon_more.jpg" />
+    <Content Include="images\icon_spec.jpg" />
+    <Content Include="images\ico_email.jpg" />
+    <Content Include="images\left_pic01.jpg" />
+    <Content Include="images\line.jpg" />
+    <Content Include="images\line2.jpg" />
+    <Content Include="images\logo-02.jpg" />
+    <Content Include="images\logo.jpg" />
+    <Content Include="images\no-img.jpg" />
+    <Content Include="images\pic02.jpg" />
+    <Content Include="images\pic03.jpg" />
+    <Content Include="images\pic04.jpg" />
+    <Content Include="images\pic05.jpg" />
+    <Content Include="images\pic_001.jpg" />
+    <Content Include="images\pic_01.jpg" />
+    <Content Include="images\pic_logo.jpg" />
+    <Content Include="images\pic_tnb.jpg" />
+    <Content Include="images\savebookmark.jpg" />
+    <Content Include="images\savebookmark_en.jpg" />
+    <Content Include="images\skype_on.jpg" />
+    <Content Include="images\sort_a.jpg" />
+    <Content Include="images\sort_b.jpg" />
+    <Content Include="images\sort_c.jpg" />
+    <Content Include="images\text_banner.jpg" />
+    <Content Include="images\top.jpg" />
+    <Content Include="images\top_logo01.jpg" />
+    <Content Include="images\top_logo02.jpg" />
+    <Content Include="images\top_logo03.jpg" />
+    <Content Include="images\top_logo04.jpg" />
+    <Content Include="images\top_module.jpg" />
+    <Content Include="images\vn.jpg" />
+    <Content Include="images\yahoo_on.jpg" />
+    <Content Include="obj\Debug\DBNL.App.csproj.FileListAbsolute.txt" />
+    <Content Include="obj\Debug\DBNL.App.dll" />
+    <Content Include="obj\Debug\DBNL.App.pdb" />
+    <Content Include="Scripts\ajax.js" />
+    <Content Include="Scripts\drop_down.js" />
+    <Content Include="Scripts\function.js" />
+    <Content Include="Scripts\jquery-1.2.6.min.js" />
+    <Content Include="Scripts\jquery-1.2.6.pack.js" />
+    <Content Include="Scripts\jquery.droppy.js" />
+    <Content Include="Scripts\jquery.form-defaults.js" />
+    <Content Include="Scripts\jquery.js" />
+    <Content Include="scroll.html" />
+    <Content Include="Views\Shared\FO.Master" />
+  </ItemGroup>
+  <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Models\" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v9.0\WebApplications\Microsoft.WebApplication.targets" />
