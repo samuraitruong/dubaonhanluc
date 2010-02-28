@@ -1,0 +1,26 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
+Project("{00000000-0000-0000-0000-000000000000}") = "DBNL.App", "DBNL.App\DBNL.App.csproj", "{393C20C2-D611-41C3-B449-EC4595E716EC}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DBNL.App.Tests", "DBNL.App.Tests\DBNL.App.Tests.csproj", "{0879A188-7327-41BA-B351-D1CF46B55CFF}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{393C20C2-D611-41C3-B449-EC4595E716EC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{393C20C2-D611-41C3-B449-EC4595E716EC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{393C20C2-D611-41C3-B449-EC4595E716EC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{393C20C2-D611-41C3-B449-EC4595E716EC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0879A188-7327-41BA-B351-D1CF46B55CFF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0879A188-7327-41BA-B351-D1CF46B55CFF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0879A188-7327-41BA-B351-D1CF46B55CFF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0879A188-7327-41BA-B351-D1CF46B55CFF}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
