@@ -53,7 +53,10 @@
     <Reference Include="System.Data.DataSetExtensions">
       <RequiredTargetFramework>3.5</RequiredTargetFramework>
     </Reference>
-    <Reference Include="System.Web.Mvc, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
+    <Reference Include="System.Web.Mvc, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Components\System.Web.Mvc.dll</HintPath>
+    </Reference>
     <Reference Include="System.Xml.Linq">
       <RequiredTargetFramework>3.5</RequiredTargetFramework>
     </Reference>
@@ -130,6 +133,7 @@
     </None>
     <Content Include="bin\DBNL.App.dll" />
     <Content Include="bin\DBNL.App.pdb" />
+    <Content Include="bin\System.Web.Mvc.dll" />
     <Content Include="Content\body.css" />
     <Content Include="Content\content.css" />
     <Content Include="Content\footer.css" />
@@ -275,6 +279,7 @@
     <Content Include="Scripts\jquery.form-defaults.js" />
     <Content Include="Scripts\jquery.js" />
     <Content Include="scroll.html" />
+    <Content Include="Views\Home\Test.aspx" />
     <Content Include="Views\Shared\FO.Master" />
   </ItemGroup>
   <ItemGroup>

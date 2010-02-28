@@ -10,6 +10,7 @@
       <Column Name="Status" Type="System.String" DbType="NChar(50) NOT NULL" CanBeNull="false" />
       <Column Name="CreatedDate" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
       <Column Name="UpdatedDate" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="BannerPosition" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
     </Type>
   </Table>
   <Table Name="ausp_dubao.Users" Member="Users">
@@ -40,7 +41,16 @@
       <Column Name="ParentCategoryId" Type="System.Int32" DbType="Int" CanBeNull="true" />
       <Association Name="ContentCategory_ContentCategory" Member="ContentCategories" OtherKey="ParentCategoryId" Type="ContentCategory" />
       <Association Name="ContentCategory_Content" Member="Contents" OtherKey="CategoryId" Type="Content" />
+      <Association Name="ContentCategory_Navigation" Member="Navigations" OtherKey="ContentId" Type="Navigation" />
       <Association Name="ContentCategory_ContentCategory" Member="ContentCategory1" ThisKey="ParentCategoryId" Type="ContentCategory" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="ausp_dubao.ContentRelations" Member="ContentRelations">
+    <Type Name="ContentRelation">
+      <Column Name="ContentId" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="RelatedId" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Association Name="Content_ContentRelation" Member="Content" ThisKey="ContentId" Type="Content" IsForeignKey="true" />
+      <Association Name="Content_ContentRelation1" Member="Content1" ThisKey="RelatedId" Type="Content" IsForeignKey="true" />
     </Type>
   </Table>
   <Table Name="ausp_dubao.Contents" Member="Contents">
@@ -54,6 +64,8 @@
       <Column Name="IsFeatured" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
       <Column Name="Status" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
       <Column Name="Count" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Association Name="Content_ContentRelation" Member="ContentRelations" OtherKey="ContentId" Type="ContentRelation" />
+      <Association Name="Content_ContentRelation1" Member="ContentRelations1" OtherKey="RelatedId" Type="ContentRelation" />
       <Association Name="ContentCategory_Content" Member="ContentCategory" ThisKey="CategoryId" Type="ContentCategory" IsForeignKey="true" />
     </Type>
   </Table>
@@ -76,7 +88,11 @@
       <Column Name="RelativeUrl" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
       <Column Name="DisplayOrder" Type="System.Int32" DbType="Int" CanBeNull="true" />
       <Column Name="Image" Type="System.String" DbType="NVarChar(150)" CanBeNull="true" />
+      <Column Name="ContentId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Component" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="ExternalUrl" Type="System.String" DbType="VarChar(250)" CanBeNull="true" />
       <Association Name="Navigation_Navigation" Member="Navigations" OtherKey="ParentId" Type="Navigation" />
+      <Association Name="ContentCategory_Navigation" Member="ContentCategory" ThisKey="ContentId" Type="ContentCategory" IsForeignKey="true" />
       <Association Name="Navigation_Navigation" Member="Navigation1" ThisKey="ParentId" Type="Navigation" IsForeignKey="true" />
     </Type>
   </Table>
@@ -105,6 +121,7 @@
       <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
       <Column Name="RoleName" Type="System.String" DbType="NVarChar(250) NOT NULL" CanBeNull="false" />
       <Column Name="ContentPermission" Type="System.String" DbType="NVarChar(250)" CanBeNull="true" />
+      <Column Name="ComponentPermission" Type="System.String" DbType="NVarChar(250)" CanBeNull="true" />
       <Association Name="Role_UserInRole" Member="UserInRoles" OtherKey="RoleId" Type="UserInRole" />
     </Type>
   </Table>
