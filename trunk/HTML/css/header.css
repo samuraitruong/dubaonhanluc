@@ -1,0 +1,76 @@
+#header {
+	width:970px;
+	height:194px;
+}
+#logo {
+	float:left;
+	width:230px;
+	height:180px;
+}
+#text_banner {
+	float:left;
+	width:740px;
+	height:98px;
+}
+#mainnav {
+	float:left;
+	width:740px;
+	height:34px;
+}
+#flag {
+	float:right;
+	width:75px;
+	height:34px;
+}
+#flag img { padding-top:5px; padding-left:5px;}
+#bottom_header {
+	display:inline;
+	float:left;
+	width:730px;
+	height:61px;
+	margin-left:10px;
+	background:url(../images/i.jpg) left 15px no-repeat;
+}
+#bottom_header .text_news {
+	display:inline;
+	float:left;
+	width:450px;
+	height:41px;
+	line-height:41px;
+	color:#333;
+	font-size:12px;
+	padding:10px 0;
+	overflow:hidden;
+}
+#bottom_header .text_news #ticker li a {
+	color:#333;
+	padding:10px 0 10px 40px;
+	height:26px;
+	line-height:26px;
+	overflow:hidden;
+}
+#bottom_header .wrap_support {
+	float:right;
+	width:234px;
+	height:41px;
+}
+#bottom_header .wrap_support .support {
+	display:inline;
+	float:left;
+	width:107px;
+	height:41px;
+	margin-left:10px;
+	margin-top:10px;
+	background:url(../images/bg_support.jpg) no-repeat;
+}
+#bottom_header .wrap_support .support a {
+	display:block;
+	padding-top:5px;
+	padding-left:6px;
+	color:#fff;
+	font-size:12px;
+	font-weight:bold;
+}
+#bottom_header .wrap_support .support a:hover { text-decoration:none;}
+#bottom_header .wrap_support .support img { float:left; margin-right:5px;}
+
