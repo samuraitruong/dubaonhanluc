@@ -1,0 +1,32 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DBNL.App", "DBNL.App\DBNL.App.csproj", "{393C20C2-D611-41C3-B449-EC4595E716EC}"
+EndProject
+Project("{00000000-0000-0000-0000-000000000000}") = "DBNL.App.Admin", "DBNL.App.Admin\DBNL.App.Admin.csproj", "{770D3DB8-A69D-4398-9F66-7AE226B5560F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DBNL.App.Models", "DBNL.App.Models\DBNL.App.Models.csproj", "{A8D2094A-076F-4FEF-A749-4C5E3259B282}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{393C20C2-D611-41C3-B449-EC4595E716EC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{393C20C2-D611-41C3-B449-EC4595E716EC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{393C20C2-D611-41C3-B449-EC4595E716EC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{393C20C2-D611-41C3-B449-EC4595E716EC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{770D3DB8-A69D-4398-9F66-7AE226B5560F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{770D3DB8-A69D-4398-9F66-7AE226B5560F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{770D3DB8-A69D-4398-9F66-7AE226B5560F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{770D3DB8-A69D-4398-9F66-7AE226B5560F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A8D2094A-076F-4FEF-A749-4C5E3259B282}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A8D2094A-076F-4FEF-A749-4C5E3259B282}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A8D2094A-076F-4FEF-A749-4C5E3259B282}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A8D2094A-076F-4FEF-A749-4C5E3259B282}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

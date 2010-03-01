@@ -73,17 +73,19 @@
     <Reference Include="System.Web.Mobile" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Areas\Articles\ArticleRoutes.cs" />
-    <Compile Include="Areas\Articles\Controllers\ArticlesController.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\DBNLDataContext.designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DBNLDataContext.dbml</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Areas\Articles\Views\Articles\Index.aspx" />
     <Content Include="Global.asax" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
@@ -116,9 +118,19 @@
     <Content Include="Views\Web.config" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Models\DBNLDataContext.dbml">
+      <Generator>MSLinqToSQLGenerator</Generator>
+      <LastGenOutput>DBNLDataContext.designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
     <Service Include="{3259AA49-8AA1-44D3-9025-A0B520596A8C}" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Models\DBNLDataContext.dbml.layout">
+      <DependentUpon>DBNLDataContext.dbml</DependentUpon>
+    </None>
     <Content Include="bin\DBNL.App.dll" />
     <Content Include="bin\DBNL.App.pdb" />
     <Content Include="bin\System.Web.Mvc.dll" />
@@ -272,17 +284,11 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Areas\Polls\" />
-    <Folder Include="Models\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\DBNL.App.Admin\DBNL.App.Admin.csproj">
       <Project>{770D3DB8-A69D-4398-9F66-7AE226B5560F}</Project>
       <Name>DBNL.App.Admin</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\DBNL.App.Models\DBNL.App.Models.csproj">
-      <Project>{A8D2094A-076F-4FEF-A749-4C5E3259B282}</Project>
-      <Name>DBNL.App.Models</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
@@ -294,6 +300,7 @@
   <!-- To enable MVC area subproject support, uncomment the following two lines: -->
   <UsingTask TaskName="Microsoft.Web.Mvc.Build.CreateAreaManifest" AssemblyName="Microsoft.Web.Mvc.Build, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35" />
   <UsingTask TaskName="Microsoft.Web.Mvc.Build.CopyAreaManifests" AssemblyName="Microsoft.Web.Mvc.Build, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35" />
+
   <Target Name="AfterBuild" DependsOnTargets="AfterBuildCompiler">
     <PropertyGroup>
       <AreasManifestDir>$(ProjectDir)\..\Manifests</AreasManifestDir>
@@ -304,6 +311,7 @@
     <!-- If this is an area parent project, uncomment the following lines: -->
     <CreateAreaManifest AreaName="$(AssemblyName)" AreaType="Parent" AreaPath="$(ProjectDir)" ManifestPath="$(AreasManifestDir)" ContentFiles="@(Content)" />
     <CopyAreaManifests ManifestPath="$(AreasManifestDir)" CrossCopy="false" RenameViews="true" />
+
   </Target>
   <Target Name="AfterBuildCompiler" Condition="'$(MvcBuildViews)'=='true'">
     <AspNetCompiler VirtualPath="temp" PhysicalPath="$(ProjectDir)\..\$(ProjectName)" />

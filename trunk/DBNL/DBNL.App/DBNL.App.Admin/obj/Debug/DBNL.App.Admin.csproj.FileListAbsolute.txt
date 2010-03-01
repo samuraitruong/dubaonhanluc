@@ -1,0 +1,5 @@
+C:\Projects\dubaonhanluc\DBNL\DBNL.App\DBNL.App.Admin\bin\DBNL.App.Admin.dll
+C:\Projects\dubaonhanluc\DBNL\DBNL.App\DBNL.App.Admin\bin\DBNL.App.Admin.pdb
+C:\Projects\dubaonhanluc\DBNL\DBNL.App\DBNL.App.Admin\obj\Debug\ResolveAssemblyReference.cache
+C:\Projects\dubaonhanluc\DBNL\DBNL.App\DBNL.App.Admin\obj\Debug\DBNL.App.Admin.dll
+C:\Projects\dubaonhanluc\DBNL\DBNL.App\DBNL.App.Admin\obj\Debug\DBNL.App.Admin.pdb

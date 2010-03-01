@@ -1,6 +1,5 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-<Database Name="hostpro_dubao" Class="DBNLDataContextDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
-  <Connection Mode="WebSettings" ConnectionString="Data Source=ausp.edu.vn;Initial Catalog=hostpro_dubao;Persist Security Info=True;User ID=ausp_dubao" SettingsObjectName="System.Configuration.ConfigurationManager.ConnectionStrings" SettingsPropertyName="hostpro_dubaoConnectionString" Provider="System.Data.SqlClient" />
+﻿<?xml version="1.0" encoding="utf-8"?><Database Name="hostpro_dubao" Class="DBNLDataContextDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+  <Connection Mode="AppSettings" ConnectionString="Data Source=ausp.edu.vn;Initial Catalog=hostpro_dubao;Persist Security Info=True;User ID=ausp_dubao" SettingsObjectName="DBNL.App.Models.Properties.Settings" SettingsPropertyName="hostpro_dubaoConnectionString" Provider="System.Data.SqlClient" />
   <Table Name="ausp_dubao.Banners" Member="Banners">
     <Type Name="Banner">
       <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
@@ -22,7 +21,7 @@
       <Column Name="Status" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
       <Column Name="CreatedDate" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
       <Column Name="UpdatedDate" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
-      <Association Name="User_UserInRole" Member="UserInRoles" OtherKey="UserId" Type="UserInRole" />
+      <Association Name="User_UserInRole" Member="UserInRoles" ThisKey="Id" OtherKey="UserId" Type="UserInRole" />
     </Type>
   </Table>
   <Table Name="ausp_dubao.Contacts" Member="Contacts">
@@ -39,18 +38,18 @@
       <Column Name="CategoryName" Type="System.String" DbType="NVarChar(150) NOT NULL" CanBeNull="false" />
       <Column Name="[Key]" Member="Key" Type="System.String" DbType="NVarChar(150) NOT NULL" CanBeNull="false" />
       <Column Name="ParentCategoryId" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Association Name="ContentCategory_ContentCategory" Member="ContentCategories" OtherKey="ParentCategoryId" Type="ContentCategory" />
-      <Association Name="ContentCategory_Content" Member="Contents" OtherKey="CategoryId" Type="Content" />
-      <Association Name="ContentCategory_Navigation" Member="Navigations" OtherKey="ContentId" Type="Navigation" />
-      <Association Name="ContentCategory_ContentCategory" Member="ContentCategory1" ThisKey="ParentCategoryId" Type="ContentCategory" IsForeignKey="true" />
+      <Association Name="ContentCategory_ContentCategory" Member="ContentCategories" ThisKey="ID" OtherKey="ParentCategoryId" Type="ContentCategory" />
+      <Association Name="ContentCategory_Content" Member="Contents" ThisKey="ID" OtherKey="CategoryId" Type="Content" />
+      <Association Name="ContentCategory_Navigation" Member="Navigations" ThisKey="ID" OtherKey="ContentId" Type="Navigation" />
+      <Association Name="ContentCategory_ContentCategory" Member="ContentCategory1" ThisKey="ParentCategoryId" OtherKey="ID" Type="ContentCategory" IsForeignKey="true" />
     </Type>
   </Table>
   <Table Name="ausp_dubao.ContentRelations" Member="ContentRelations">
     <Type Name="ContentRelation">
       <Column Name="ContentId" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
       <Column Name="RelatedId" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
-      <Association Name="Content_ContentRelation" Member="Content" ThisKey="ContentId" Type="Content" IsForeignKey="true" />
-      <Association Name="Content_ContentRelation1" Member="Content1" ThisKey="RelatedId" Type="Content" IsForeignKey="true" />
+      <Association Name="Content_ContentRelation" Member="Content" ThisKey="ContentId" OtherKey="ContentId" Type="Content" IsForeignKey="true" />
+      <Association Name="Content_ContentRelation1" Member="Content1" ThisKey="RelatedId" OtherKey="ContentId" Type="Content" IsForeignKey="true" />
     </Type>
   </Table>
   <Table Name="ausp_dubao.Contents" Member="Contents">
@@ -64,9 +63,9 @@
       <Column Name="IsFeatured" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
       <Column Name="Status" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
       <Column Name="Count" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Association Name="Content_ContentRelation" Member="ContentRelations" OtherKey="ContentId" Type="ContentRelation" />
-      <Association Name="Content_ContentRelation1" Member="ContentRelations1" OtherKey="RelatedId" Type="ContentRelation" />
-      <Association Name="ContentCategory_Content" Member="ContentCategory" ThisKey="CategoryId" Type="ContentCategory" IsForeignKey="true" />
+      <Association Name="Content_ContentRelation" Member="ContentRelations" ThisKey="ContentId" OtherKey="ContentId" Type="ContentRelation" />
+      <Association Name="Content_ContentRelation1" Member="ContentRelations1" ThisKey="ContentId" OtherKey="RelatedId" Type="ContentRelation" />
+      <Association Name="ContentCategory_Content" Member="ContentCategory" ThisKey="CategoryId" OtherKey="ID" Type="ContentCategory" IsForeignKey="true" />
     </Type>
   </Table>
   <Table Name="ausp_dubao.Links" Member="Links">
@@ -91,9 +90,9 @@
       <Column Name="ContentId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
       <Column Name="Component" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
       <Column Name="ExternalUrl" Type="System.String" DbType="VarChar(250)" CanBeNull="true" />
-      <Association Name="Navigation_Navigation" Member="Navigations" OtherKey="ParentId" Type="Navigation" />
-      <Association Name="ContentCategory_Navigation" Member="ContentCategory" ThisKey="ContentId" Type="ContentCategory" IsForeignKey="true" />
-      <Association Name="Navigation_Navigation" Member="Navigation1" ThisKey="ParentId" Type="Navigation" IsForeignKey="true" />
+      <Association Name="Navigation_Navigation" Member="Navigations" ThisKey="Id" OtherKey="ParentId" Type="Navigation" />
+      <Association Name="ContentCategory_Navigation" Member="ContentCategory" ThisKey="ContentId" OtherKey="ID" Type="ContentCategory" IsForeignKey="true" />
+      <Association Name="Navigation_Navigation" Member="Navigation1" ThisKey="ParentId" OtherKey="Id" Type="Navigation" IsForeignKey="true" />
     </Type>
   </Table>
   <Table Name="ausp_dubao.PollQuestions" Member="PollQuestions">
@@ -105,7 +104,7 @@
       <Column Name="CreatedDate" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
       <Column Name="UpdatedDate" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
       <Column Name="Responses" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Association Name="Poll_PollQuestion" Member="Poll" ThisKey="PollId" Type="Poll" IsForeignKey="true" />
+      <Association Name="Poll_PollQuestion" Member="Poll" ThisKey="PollId" OtherKey="Id" Type="Poll" IsForeignKey="true" />
     </Type>
   </Table>
   <Table Name="ausp_dubao.Polls" Member="Polls">
@@ -113,7 +112,7 @@
       <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
       <Column Name="PollName" Type="System.String" DbType="NVarChar(250) NOT NULL" CanBeNull="false" />
       <Column Name="Status" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
-      <Association Name="Poll_PollQuestion" Member="PollQuestions" OtherKey="PollId" Type="PollQuestion" />
+      <Association Name="Poll_PollQuestion" Member="PollQuestions" ThisKey="Id" OtherKey="PollId" Type="PollQuestion" />
     </Type>
   </Table>
   <Table Name="ausp_dubao.Roles" Member="Roles">
@@ -122,7 +121,7 @@
       <Column Name="RoleName" Type="System.String" DbType="NVarChar(250) NOT NULL" CanBeNull="false" />
       <Column Name="ContentPermission" Type="System.String" DbType="NVarChar(250)" CanBeNull="true" />
       <Column Name="ComponentPermission" Type="System.String" DbType="NVarChar(250)" CanBeNull="true" />
-      <Association Name="Role_UserInRole" Member="UserInRoles" OtherKey="RoleId" Type="UserInRole" />
+      <Association Name="Role_UserInRole" Member="UserInRoles" ThisKey="Id" OtherKey="RoleId" Type="UserInRole" />
     </Type>
   </Table>
   <Table Name="ausp_dubao.Supporters" Member="Supporters">
@@ -138,8 +137,8 @@
     <Type Name="UserInRole">
       <Column Name="RoleId" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
       <Column Name="UserId" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
-      <Association Name="Role_UserInRole" Member="Role" ThisKey="RoleId" Type="Role" IsForeignKey="true" />
-      <Association Name="User_UserInRole" Member="User" ThisKey="UserId" Type="User" IsForeignKey="true" />
+      <Association Name="Role_UserInRole" Member="Role" ThisKey="RoleId" OtherKey="Id" Type="Role" IsForeignKey="true" />
+      <Association Name="User_UserInRole" Member="User" ThisKey="UserId" OtherKey="Id" Type="User" IsForeignKey="true" />
     </Type>
   </Table>
 </Database>

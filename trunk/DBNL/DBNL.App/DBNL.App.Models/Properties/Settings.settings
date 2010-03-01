@@ -1,0 +1,14 @@
+﻿<?xml version='1.0' encoding='utf-8'?>
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="DBNL.App.Models.Properties" GeneratedClassName="Settings">
+  <Profiles />
+  <Settings>
+    <Setting Name="hostpro_dubaoConnectionString" Type="(Connection string)" Scope="Application">
+      <DesignTimeValue Profile="(Default)">&lt;?xml version="1.0" encoding="utf-16"?&gt;
+&lt;SerializableConnectionString xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema"&gt;
+  &lt;ConnectionString&gt;Data Source=ausp.edu.vn;Initial Catalog=hostpro_dubao;Persist Security Info=True;User ID=ausp_dubao;Password=latuine&lt;/ConnectionString&gt;
+  &lt;ProviderName&gt;System.Data.SqlClient&lt;/ProviderName&gt;
+&lt;/SerializableConnectionString&gt;</DesignTimeValue>
+      <Value Profile="(Default)">Data Source=ausp.edu.vn;Initial Catalog=hostpro_dubao;Persist Security Info=True;User ID=ausp_dubao;Password=latuine</Value>
+    </Setting>
+  </Settings>
+</SettingsFile>
