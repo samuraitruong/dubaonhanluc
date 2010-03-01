@@ -1,0 +1,6 @@
+C:\Projects\dubaonhanluc\DBNL\DBNL.App\DBNL.App.Models\bin\Debug\DBNL.App.Models.dll.config
+C:\Projects\dubaonhanluc\DBNL\DBNL.App\DBNL.App.Models\bin\Debug\DBNL.App.Models.dll
+C:\Projects\dubaonhanluc\DBNL\DBNL.App\DBNL.App.Models\bin\Debug\DBNL.App.Models.pdb
+C:\Projects\dubaonhanluc\DBNL\DBNL.App\DBNL.App.Models\obj\Debug\ResolveAssemblyReference.cache
+C:\Projects\dubaonhanluc\DBNL\DBNL.App\DBNL.App.Models\obj\Debug\DBNL.App.Models.dll
+C:\Projects\dubaonhanluc\DBNL\DBNL.App\DBNL.App.Models\obj\Debug\DBNL.App.Models.pdb

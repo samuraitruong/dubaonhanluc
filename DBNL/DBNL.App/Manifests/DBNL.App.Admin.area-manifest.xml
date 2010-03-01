@@ -1,0 +1,13 @@
+<?xml version="1.0"?>
+<AreaInfo xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <ContentFiles>
+    <string>Views\Administrations\Index.aspx</string>
+    <string>Web.config</string>
+    <string>Web.Debug.config</string>
+    <string>Web.Release.config</string>
+    <string>Views\Web.config</string>
+  </ContentFiles>
+  <Name>DBNL.App.Admin</Name>
+  <Path>C:\Projects\dubaonhanluc\DBNL\DBNL.App\DBNL.App.Admin\</Path>
+  <Type>Child</Type>
+</AreaInfo>
