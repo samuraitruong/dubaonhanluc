@@ -23,7 +23,7 @@ namespace DBNL.App.Models
 	
 	
 	[global::System.Data.Linq.Mapping.DatabaseAttribute(Name="hostpro_dubao")]
-	public partial class DBNLDataContextDataContext : System.Data.Linq.DataContext
+	public partial class DBNLDataContext : System.Data.Linq.DataContext
 	{
 		
 		private static System.Data.Linq.Mapping.MappingSource mappingSource = new AttributeMappingSource();
@@ -71,31 +71,31 @@ namespace DBNL.App.Models
     partial void DeleteUserInRole(UserInRole instance);
     #endregion
 		
-		public DBNLDataContextDataContext() : 
+		public DBNLDataContext() : 
 				base(global::DBNL.App.Models.Properties.Settings.Default.hostpro_dubaoConnectionString, mappingSource)
 		{
 			OnCreated();
 		}
 		
-		public DBNLDataContextDataContext(string connection) : 
+		public DBNLDataContext(string connection) : 
 				base(connection, mappingSource)
 		{
 			OnCreated();
 		}
 		
-		public DBNLDataContextDataContext(System.Data.IDbConnection connection) : 
+		public DBNLDataContext(System.Data.IDbConnection connection) : 
 				base(connection, mappingSource)
 		{
 			OnCreated();
 		}
 		
-		public DBNLDataContextDataContext(string connection, System.Data.Linq.Mapping.MappingSource mappingSource) : 
+		public DBNLDataContext(string connection, System.Data.Linq.Mapping.MappingSource mappingSource) : 
 				base(connection, mappingSource)
 		{
 			OnCreated();
 		}
 		
-		public DBNLDataContextDataContext(System.Data.IDbConnection connection, System.Data.Linq.Mapping.MappingSource mappingSource) : 
+		public DBNLDataContext(System.Data.IDbConnection connection, System.Data.Linq.Mapping.MappingSource mappingSource) : 
 				base(connection, mappingSource)
 		{
 			OnCreated();

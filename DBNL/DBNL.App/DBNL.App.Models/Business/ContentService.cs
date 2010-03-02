@@ -9,7 +9,7 @@ namespace DBNL.App.Models.Business
     {
         public static Content GetContentById(int id)
         {
-            DBNLDataContextDataContext db = new DBNLDataContextDataContext();
+            DBNLDataContext db = new DBNLDataContext();
             Content content = db.Contents.Where(p => p.ContentId == id).SingleOrDefault();
             return content;
 

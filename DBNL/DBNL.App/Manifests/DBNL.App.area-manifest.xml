@@ -28,7 +28,13 @@
     <string>Views\Shared\LogOnUserControl.ascx</string>
     <string>Views\Shared\Site.Master</string>
     <string>Views\Web.config</string>
+    <string>bin\DBNL.App.Admin.dll</string>
+    <string>bin\DBNL.App.Admin.pdb</string>
+    <string>bin\DBNL.App.Config.dll</string>
+    <string>bin\DBNL.App.Config.pdb</string>
     <string>bin\DBNL.App.dll</string>
+    <string>bin\DBNL.App.Models.dll</string>
+    <string>bin\DBNL.App.Models.pdb</string>
     <string>bin\DBNL.App.pdb</string>
     <string>bin\System.Web.Mvc.dll</string>
     <string>Content\body.css</string>
@@ -176,9 +182,68 @@
     <string>Scripts\jquery.form-defaults.js</string>
     <string>Scripts\jquery.js</string>
     <string>scroll.html</string>
+    <string>Views\Admin\AddBanner.aspx</string>
+    <string>Views\Admin\AddContact.aspx</string>
+    <string>Views\Admin\AddContent.aspx</string>
+    <string>Views\Admin\AddContentCategory.aspx</string>
+    <string>Views\Admin\AddContentRelation.aspx</string>
+    <string>Views\Admin\AddLink.aspx</string>
+    <string>Views\Admin\AddNavigation.aspx</string>
+    <string>Views\Admin\AddPoll.aspx</string>
+    <string>Views\Admin\AddPollQuestion.aspx</string>
+    <string>Views\Admin\AddRole.aspx</string>
+    <string>Views\Admin\AddSupporter.aspx</string>
+    <string>Views\Admin\AddUser.aspx</string>
+    <string>Views\Admin\AddUserInRole.aspx</string>
+    <string>Views\Admin\DeleteBanner.aspx</string>
+    <string>Views\Admin\DeleteContact.aspx</string>
+    <string>Views\Admin\DeleteContent.aspx</string>
+    <string>Views\Admin\DeleteContentCategory.aspx</string>
+    <string>Views\Admin\DeleteContentRelation.aspx</string>
+    <string>Views\Admin\DeleteLink.aspx</string>
+    <string>Views\Admin\DeleteNavigation.aspx</string>
+    <string>Views\Admin\DeletePoll.aspx</string>
+    <string>Views\Admin\DeletePollQuestion.aspx</string>
+    <string>Views\Admin\DeleteRole.aspx</string>
+    <string>Views\Admin\DeleteSupporter.aspx</string>
+    <string>Views\Admin\DeleteUser.aspx</string>
+    <string>Views\Admin\DeleteUserInRole.aspx</string>
+    <string>Views\Admin\EditBanner.aspx</string>
+    <string>Views\Admin\EditContact.aspx</string>
+    <string>Views\Admin\EditContent.aspx</string>
+    <string>Views\Admin\EditContentCategory.aspx</string>
+    <string>Views\Admin\EditLink.aspx</string>
+    <string>Views\Admin\EditNavigation.aspx</string>
+    <string>Views\Admin\EditPoll.aspx</string>
+    <string>Views\Admin\EditPollQuestion.aspx</string>
+    <string>Views\Admin\EditRole.aspx</string>
+    <string>Views\Admin\EditSupporter.aspx</string>
+    <string>Views\Admin\EditUser.aspx</string>
+    <string>Views\Admin\Index.aspx</string>
+    <string>Views\Admin\ListBanners.aspx</string>
+    <string>Views\Admin\ListContacts.aspx</string>
+    <string>Views\Admin\ListContentCategories.aspx</string>
+    <string>Views\Admin\ListContentRelations.aspx</string>
+    <string>Views\Admin\ListContents.aspx</string>
+    <string>Views\Admin\ListLinks.aspx</string>
+    <string>Views\Admin\ListNavigations.aspx</string>
+    <string>Views\Admin\ListPollQuestions.aspx</string>
+    <string>Views\Admin\ListPolls.aspx</string>
+    <string>Views\Admin\ListRoles.aspx</string>
+    <string>Views\Admin\ListSupporters.aspx</string>
+    <string>Views\Admin\ListUserInRoles.aspx</string>
+    <string>Views\Admin\ListUsers.aspx</string>
+    <string>Views\Admin\ViewBannerDetails.aspx</string>
+    <string>Views\Admin\ViewContentCategoryDetails.aspx</string>
+    <string>Views\Admin\ViewContentDetails.aspx</string>
+    <string>Views\Admin\ViewNavigationDetails.aspx</string>
+    <string>Views\Admin\ViewPollDetails.aspx</string>
+    <string>Views\Admin\ViewPollQuestionDetails.aspx</string>
+    <string>Views\Admin\ViewRoleDetails.aspx</string>
+    <string>Views\Admin\ViewUserDetails.aspx</string>
     <string>Views\Shared\FO.Master</string>
   </ContentFiles>
   <Name>DBNL.App</Name>
-  <Path>C:\Projects\dubaonhanluc\DBNL\DBNL.App\DBNL.App\</Path>
+  <Path>D:\New Folder\DBNL\DBNL.App\DBNL.App\</Path>
   <Type>Parent</Type>
 </AreaInfo>
