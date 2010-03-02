@@ -76,6 +76,7 @@
     <Compile Include="Areas\Articles\ArticleRoutes.cs" />
     <Compile Include="Areas\Articles\Controllers\ArticlesController.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\AdminController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -119,7 +120,13 @@
     <Service Include="{3259AA49-8AA1-44D3-9025-A0B520596A8C}" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="bin\DBNL.App.Admin.dll" />
+    <Content Include="bin\DBNL.App.Admin.pdb" />
+    <Content Include="bin\DBNL.App.Config.dll" />
+    <Content Include="bin\DBNL.App.Config.pdb" />
     <Content Include="bin\DBNL.App.dll" />
+    <Content Include="bin\DBNL.App.Models.dll" />
+    <Content Include="bin\DBNL.App.Models.pdb" />
     <Content Include="bin\DBNL.App.pdb" />
     <Content Include="bin\System.Web.Mvc.dll" />
     <Content Include="Content\body.css" />
@@ -267,13 +274,66 @@
     <Content Include="Scripts\jquery.form-defaults.js" />
     <Content Include="Scripts\jquery.js" />
     <Content Include="scroll.html" />
+    <Content Include="Views\Admin\AddBanner.aspx" />
+    <Content Include="Views\Admin\AddContact.aspx" />
+    <Content Include="Views\Admin\AddContent.aspx" />
+    <Content Include="Views\Admin\AddContentCategory.aspx" />
+    <Content Include="Views\Admin\AddContentRelation.aspx" />
+    <Content Include="Views\Admin\AddLink.aspx" />
+    <Content Include="Views\Admin\AddNavigation.aspx" />
+    <Content Include="Views\Admin\AddPoll.aspx" />
+    <Content Include="Views\Admin\AddPollQuestion.aspx" />
+    <Content Include="Views\Admin\AddRole.aspx" />
+    <Content Include="Views\Admin\AddSupporter.aspx" />
+    <Content Include="Views\Admin\AddUser.aspx" />
+    <Content Include="Views\Admin\AddUserInRole.aspx" />
+    <Content Include="Views\Admin\DeleteBanner.aspx" />
+    <Content Include="Views\Admin\DeleteContact.aspx" />
+    <Content Include="Views\Admin\DeleteContent.aspx" />
+    <Content Include="Views\Admin\DeleteContentCategory.aspx" />
+    <Content Include="Views\Admin\DeleteContentRelation.aspx" />
+    <Content Include="Views\Admin\DeleteLink.aspx" />
+    <Content Include="Views\Admin\DeleteNavigation.aspx" />
+    <Content Include="Views\Admin\DeletePoll.aspx" />
+    <Content Include="Views\Admin\DeletePollQuestion.aspx" />
+    <Content Include="Views\Admin\DeleteRole.aspx" />
+    <Content Include="Views\Admin\DeleteSupporter.aspx" />
+    <Content Include="Views\Admin\DeleteUser.aspx" />
+    <Content Include="Views\Admin\DeleteUserInRole.aspx" />
+    <Content Include="Views\Admin\EditBanner.aspx" />
+    <Content Include="Views\Admin\EditContact.aspx" />
+    <Content Include="Views\Admin\EditContent.aspx" />
+    <Content Include="Views\Admin\EditContentCategory.aspx" />
+    <Content Include="Views\Admin\EditLink.aspx" />
+    <Content Include="Views\Admin\EditNavigation.aspx" />
+    <Content Include="Views\Admin\EditPoll.aspx" />
+    <Content Include="Views\Admin\EditPollQuestion.aspx" />
+    <Content Include="Views\Admin\EditRole.aspx" />
+    <Content Include="Views\Admin\EditSupporter.aspx" />
+    <Content Include="Views\Admin\EditUser.aspx" />
+    <Content Include="Views\Admin\Index.aspx" />
+    <Content Include="Views\Admin\ListBanners.aspx" />
+    <Content Include="Views\Admin\ListContacts.aspx" />
+    <Content Include="Views\Admin\ListContentCategories.aspx" />
+    <Content Include="Views\Admin\ListContentRelations.aspx" />
+    <Content Include="Views\Admin\ListContents.aspx" />
+    <Content Include="Views\Admin\ListLinks.aspx" />
+    <Content Include="Views\Admin\ListNavigations.aspx" />
+    <Content Include="Views\Admin\ListPollQuestions.aspx" />
+    <Content Include="Views\Admin\ListPolls.aspx" />
+    <Content Include="Views\Admin\ListRoles.aspx" />
+    <Content Include="Views\Admin\ListSupporters.aspx" />
+    <Content Include="Views\Admin\ListUserInRoles.aspx" />
+    <Content Include="Views\Admin\ListUsers.aspx" />
+    <Content Include="Views\Admin\ViewBannerDetails.aspx" />
+    <Content Include="Views\Admin\ViewContentCategoryDetails.aspx" />
+    <Content Include="Views\Admin\ViewContentDetails.aspx" />
+    <Content Include="Views\Admin\ViewNavigationDetails.aspx" />
+    <Content Include="Views\Admin\ViewPollDetails.aspx" />
+    <Content Include="Views\Admin\ViewPollQuestionDetails.aspx" />
+    <Content Include="Views\Admin\ViewRoleDetails.aspx" />
+    <Content Include="Views\Admin\ViewUserDetails.aspx" />
     <Content Include="Views\Shared\FO.Master" />
-  </ItemGroup>
-  <ItemGroup>
-    <Folder Include="App_Data\" />
-    <Folder Include="Areas\Polls\" />
-    <Folder Include="Configs\" />
-    <Folder Include="Models\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\DBNL.App.Admin\DBNL.App.Admin.csproj">
@@ -288,6 +348,13 @@
       <Project>{A8D2094A-076F-4FEF-A749-4C5E3259B282}</Project>
       <Name>DBNL.App.Models</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="App_Data\" />
+    <Folder Include="Areas\Polls\" />
+    <Folder Include="Configs\" />
+    <Folder Include="Models\" />
+    <Folder Include="Views\NewFolder1\" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v9.0\WebApplications\Microsoft.WebApplication.targets" />
@@ -323,9 +390,6 @@
           <IISUrl>
           </IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
-          <UseCustomServer>False</UseCustomServer>
-          <CustomServerUrl>
-          </CustomServerUrl>
           <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
         </WebProjectProperties>
       </FlavorProperties>
