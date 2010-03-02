@@ -2594,6 +2594,7 @@ namespace DBNL.App.Models
 		}
 		
 		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_RoleName", DbType="NVarChar(250) NOT NULL", CanBeNull=false)]
+
 		public string RoleName
 		{
 			get

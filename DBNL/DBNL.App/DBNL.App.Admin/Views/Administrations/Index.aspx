@@ -8,4 +8,9 @@
 
     <h2>Administration</h2>
 
+    <ul>
+        <li>
+            <% =Html.ActionLink("Role Managements", "Create","Roles", new { area = "DBNL.App.Admin" },null) %>
+        </li>
+    </ul>
 </asp:Content>

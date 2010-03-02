@@ -176,7 +176,6 @@
     <string>Scripts\jquery.form-defaults.js</string>
     <string>Scripts\jquery.js</string>
     <string>scroll.html</string>
-    <string>Views\Home\Test.aspx</string>
     <string>Views\Shared\FO.Master</string>
   </ContentFiles>
   <Name>DBNL.App</Name>
