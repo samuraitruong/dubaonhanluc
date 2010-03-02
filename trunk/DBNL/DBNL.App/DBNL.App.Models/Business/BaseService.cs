@@ -7,10 +7,10 @@ namespace DBNL.App.Models.Business
 {
     public class BaseService
     {
-        public static DBNLDataContextDataContext instance;
-        public static DBNLDataContextDataContext GetInstance()
+        public static DBNLDataContext instance;
+        public static DBNLDataContext GetInstance()
         {
-            if (instance == null) instance = new DBNLDataContextDataContext();
+            if (instance == null) instance = new DBNLDataContext();
             return instance;
         }
         public static void Commit(){

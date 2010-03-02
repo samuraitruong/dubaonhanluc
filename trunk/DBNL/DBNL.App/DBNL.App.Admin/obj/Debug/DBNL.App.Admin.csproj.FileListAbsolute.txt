@@ -5,3 +5,10 @@ C:\Projects\dubaonhanluc\DBNL\DBNL.App\DBNL.App.Admin\obj\Debug\DBNL.App.Admin.d
 C:\Projects\dubaonhanluc\DBNL\DBNL.App\DBNL.App.Admin\obj\Debug\DBNL.App.Admin.pdb
 C:\Projects\dubaonhanluc\DBNL\DBNL.App\DBNL.App.Admin\bin\DBNL.App.Models.dll
 C:\Projects\dubaonhanluc\DBNL\DBNL.App\DBNL.App.Admin\bin\DBNL.App.Models.pdb
+D:\New Folder\DBNL\DBNL.App\DBNL.App.Admin\bin\DBNL.App.Admin.dll
+D:\New Folder\DBNL\DBNL.App\DBNL.App.Admin\bin\DBNL.App.Admin.pdb
+D:\New Folder\DBNL\DBNL.App\DBNL.App.Admin\bin\DBNL.App.Models.dll
+D:\New Folder\DBNL\DBNL.App\DBNL.App.Admin\bin\DBNL.App.Models.pdb
+D:\New Folder\DBNL\DBNL.App\DBNL.App.Admin\obj\Debug\ResolveAssemblyReference.cache
+D:\New Folder\DBNL\DBNL.App\DBNL.App.Admin\obj\Debug\DBNL.App.Admin.dll
+D:\New Folder\DBNL\DBNL.App\DBNL.App.Admin\obj\Debug\DBNL.App.Admin.pdb
