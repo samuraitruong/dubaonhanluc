@@ -134,7 +134,7 @@ function ticknews() {
                             VIỆC</a></li>
                     </ul>
                 </div>
-                <% Html.RenderPartial("SupportersControl"); %>
+                <% Html.RenderPartial("SupportersControl", Model); %>
             </div>
         </div>
         <!--Header-->

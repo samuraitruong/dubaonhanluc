@@ -12,5 +12,9 @@ namespace DBNL.App.Models.Business
             Commit();
             return sp;
         }
+        public static IEnumerable<Supporter> GetItems()
+        {
+            return Supporters.AsEnumerable();
+        }
     }
 }

@@ -66,6 +66,7 @@
     <Compile Include="Statics\NavigationPositions.cs" />
     <Compile Include="Statics\CustomSelectList.cs" />
     <Compile Include="Statics\EntityStatuses.cs" />
+    <Compile Include="ViewData\FOMasterViewData.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
@@ -93,9 +94,7 @@
       <Name>DBNL.App.Config</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="ViewData\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

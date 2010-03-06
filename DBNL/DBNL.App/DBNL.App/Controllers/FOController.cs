@@ -3,27 +3,27 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.Mvc.Ajax;
 using DBNL.App.Models.ViewData;
 using DBNL.App.Models.Business;
 
 namespace DBNL.App.Controllers
 {
-    [HandleError]
-    public class HomeController : Controller
+    public class FOController : Controller
     {
-        public ActionResult Admin()
+        //
+        // GET: /FO/
+        public FOController()
         {
-            ViewData["Message"] = "Welcome to ASP.NET MVC!";
-            return View();
-        }
-
-        public ActionResult About()
-        {
-            return View();
+            ViewData["FOMasterViewData"] = new FOMasterViewData()
+            {
+                Supporters = SupporterService.GetItems()
+            };
         }
         public ActionResult Index()
         {
             return View();
         }
+
     }
 }
