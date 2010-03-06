@@ -112,26 +112,10 @@ function ticknews() {
                 <a href="#">
                     <img src="<%=Url.Content("~/images")%>/logo.jpg" alt="nguonnhanluc" /></a></div>
             <div id="text_banner">
-                <img src="<%=Url.Content("~/images")%>/text_banner.jpg" alt="nguonnhanluc" /></div>
-            <div id="mainnav" class="clearfix">
-                <ul id="nav">
-                    <li class="active"><a href='index.html#neo_content'>TRANG CHỦ</a></li>
-                    <li class=""><a href='##neo_content'>GIỚI THIỆU</a>
-                        <ul>
-                            <li><a href='intro-358-358-Gioi-thieu-ve-trung-tam.html&amp;idActive=267#neo_content'>
-                                Giới thiệu về trung tâm</a></li>
-                            <li><a href='intro-359-359-Co-cau-to-chuc-bo-may.html&amp;idActive=267#neo_content'>
-                                Cơ cấu tổ chức bộ máy</a></li>
-                        </ul>
-                    </li>
-                    <li class=""><a href='articles-268-268-Viec-Lam.html#neo_content'>Việc Làm</a></li>
-                    <li class=""><a href='articles-344-344-Khoa-hoc--Dao-tao.html#neo_content'>Khóa học
-                        - Đào tạo</a></li>
-                    <li class=""><a href='articles-345-345-Gop-y.html#neo_content'>Góp ý</a></li>
-                    <li class=" end"><a href='intro-254-254-LIEN-HE.html#neo_content'>LIÊN HỆ</a></li>
-                </ul>
-                <!--<div id="flag"><a href='#'><img src="<%=Url.Content("~/images")%>/vn.jpg" alt="nguonnhanluc" /></a><a href='#'><img src="<%=Url.Content("~/images")%>/en.jpg" alt="nguonnhanluc" /></a></div>-->
+                <img src="<%=Url.Content("~/images")%>/text_banner.jpg" alt="nguonnhanluc" />
             </div>
+            <% Html.RenderPartial("MainNavigationControl"); %>
+            
             <!--Main Nav-->
             <div id="bottom_header" class="clearfix">
                 <div class="text_news">
@@ -150,14 +134,7 @@ function ticknews() {
                             VIỆC</a></li>
                     </ul>
                 </div>
-                <div class="wrap_support clearfix">
-                    <div class="support">
-                        <a href="skype:mdnguyen86?chat">
-                            <img src="<%=Url.Content("~/images")%>/skype_on.jpg" alt="skype" /></a><a href="skype:mdnguyen86?chat">Skype</a></div>
-                    <div class="support">
-                        <a href="ymsgr:sendIM?cuonglongan">
-                            <img src="<%=Url.Content("~/images")%>/yahoo_on.jpg" alt="yahoo" /></a><a href="ymsgr:sendIM?cuonglongan">Yahoo</a></div>
-                </div>
+                <% Html.RenderPartial("SupportersControl"); %>
             </div>
         </div>
         <!--Header-->
@@ -184,34 +161,9 @@ function ticknews() {
         <a name="neo_content"></a>
         <!--Top Content-->
         <div id="wrap_dm" class="clearfix">
-            <div id="wrap_cat">
+        <div id="wrap_cat">
                 <div id="cat">
-                    <div class="top_cat">
-                        <h2>
-                            DANH MỤC</h2>
-                    </div>
-                    <div class="center_cat">
-                        <ul id="nav90">
-                            <li class=""><a href='articles-349-349-Tin-tuc-su-kien.html#neo_content'>1. Tin tức
-                                sự kiện</a></li>
-                            <li class=""><a href='articles-355-355-Thong-tin-so-lieu-nguon-nhan-luc.html#neo_content'>
-                                2. Thông tin số liệu nguồn nhân lực</a></li>
-                            <li class=""><a href='http://dubaonhanluchcmc.gov.vn/articles-347-347-Du-bao-nhu-cau-nhan-luc.html#neo_content'>
-                                3. Dự báo nhu cầu nhân lực</a></li>
-                            <li class=""><a href='articles-350-350-Thong-tin-thi-truong-lao-dong.html#neo_content'>
-                                4. Thông tin thị trường lao động</a></li>
-                            <li class=""><a href='http://dubaonhanluchcmc.gov.vn/articles-346-346-Nghien-cuu-khoa-hoc.html#neo_content'>
-                                5. Nghiên cứu khoa học</a></li>
-                            <li class=""><a href='http://dubaonhanluchcmc.gov.vn/articles-344-344-Khoa-hoc--Dao-tao.html#neo_content'>
-                                6. Thông tin đào tạo và khóa học</a></li>
-                            <li class=""><a href='articles-357-357-Tu-van-nhan-luc.html#neo_content'>7. Tư vấn nhân
-                                lực</a></li>
-                            <li class=""><a href='http://dubaonhanluchcmc.gov.vn/articles-268-268-Viec-Lam.html#neo_content'>
-                                8. Thông tin việc làm</a></li>
-                            <li class=" end"><a href='articles-354-354-Hoi-dap-chinh-sach-lao-dong.html#neo_content'>
-                                9. Hỏi đáp chính sách lao động</a></li>
-                        </ul>
-                    </div>
+                    <% Html.RenderPartial("LeftNavigationControl"); %>
                     <div class="bottom_cat">
                         <img src="<%=Url.Content("~/images")%>/bg_lsdm_bottom.jpg" alt="nguonnhanluc" width="291" height="14" /></div>
                     <asp:ContentPlaceHolder ID="UnderMenuContent" runat="server">
