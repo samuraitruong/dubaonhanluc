@@ -3,7 +3,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProductVersion>8.0.30703</ProductVersion>
+    <ProductVersion>9.0.21022</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>{A8D2094A-076F-4FEF-A749-4C5E3259B282}</ProjectGuid>
     <OutputType>Library</OutputType>
@@ -35,6 +35,7 @@
     <Reference Include="System.configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.Data.Linq" />
+    <Reference Include="System.Web" />
     <Reference Include="System.Web.Mvc, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\Components\Newest\System.Web.Mvc.dll</HintPath>
@@ -45,13 +46,23 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Business\BannerService.cs" />
     <Compile Include="Business\BaseService.cs" />
     <Compile Include="Business\CategoryService.cs" />
+    <Compile Include="Business\ContactService.cs" />
     <Compile Include="Business\ContentService.cs" />
+    <Compile Include="Business\LinkService.cs" />
     <Compile Include="Business\NavigationService.cs" />
+    <Compile Include="Business\PollQuestionService.cs" />
+    <Compile Include="Business\PollService.cs" />
     <Compile Include="Business\RoleService.cs" />
     <Compile Include="Business\SupporterService.cs" />
+
+    <Compile Include="Business\UserService.cs" />
+    <Compile Include="DBNLDataContext.designer.cs">
+
     <Compile Include="DBNL.designer.cs">
+
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>DBNL.dbml</DependentUpon>
