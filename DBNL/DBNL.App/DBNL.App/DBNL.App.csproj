@@ -641,7 +641,9 @@
     <Content Include="Views\Shared\LeftNavigationControl.ascx" />
     <Content Include="Views\Shared\MainNavigationControl.ascx" />
     <Content Include="Views\Shared\SupportersControl.ascx" />
-    <Content Include="Web.config" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </Content>

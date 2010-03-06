@@ -64,7 +64,7 @@ namespace DBNL.App.Admin.Controllers
 
                 if(navigation.ContentId.HasValue){
                    navigation.Controller = DBNL.App.Models.Statics.Controllers.Article.ToString() ;
-                   navigation.Action= DBNL.App.Models.Statics.Actions.View.ToString();
+                   navigation.Action= DBNL.App.Models.Statics.Actions.Category.ToString();
                    navigation.Area = "";
                     
                 }

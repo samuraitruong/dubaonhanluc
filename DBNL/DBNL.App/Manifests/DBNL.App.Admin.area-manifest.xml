@@ -2,16 +2,52 @@
 <AreaInfo xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
   <ContentFiles>
     <string>Views\Administrations\Index.aspx</string>
+    <string>Views\Banner\Create.aspx</string>
+    <string>Views\Banner\Delete.aspx</string>
+    <string>Views\Banner\Details.aspx</string>
+    <string>Views\Banner\Edit.aspx</string>
+    <string>Views\Banner\Index.aspx</string>
+    <string>Views\Banner\List.aspx</string>
     <string>Views\Categories\Create.aspx</string>
     <string>Views\Categories\List.aspx</string>
+    <string>Views\Contact\Create.aspx</string>
+    <string>Views\Contact\Delete.aspx</string>
+    <string>Views\Contact\Details.aspx</string>
+    <string>Views\Contact\Edit.aspx</string>
+    <string>Views\Contact\Index.aspx</string>
+    <string>Views\Contact\List.aspx</string>
+    <string>Views\Link\Create.aspx</string>
+    <string>Views\Link\Delete.aspx</string>
+    <string>Views\Link\Details.aspx</string>
+    <string>Views\Link\Edit.aspx</string>
+    <string>Views\Link\Index.aspx</string>
+    <string>Views\Link\List.aspx</string>
     <string>Views\Content\Create.aspx</string>
     <string>Views\Content\Index.aspx</string>
     <string>Views\Navigation\Create.aspx</string>
     <string>Views\Navigation\Index.aspx</string>
+    <string>Views\PollQuestion\Create.aspx</string>
+    <string>Views\PollQuestion\Delete.aspx</string>
+    <string>Views\PollQuestion\Details.aspx</string>
+    <string>Views\PollQuestion\Edit.aspx</string>
+    <string>Views\PollQuestion\Index.aspx</string>
+    <string>Views\PollQuestion\List.aspx</string>
+    <string>Views\Poll\Create.aspx</string>
+    <string>Views\Poll\Delete.aspx</string>
+    <string>Views\Poll\Details.aspx</string>
+    <string>Views\Poll\Edit.aspx</string>
+    <string>Views\Poll\Index.aspx</string>
+    <string>Views\Poll\List.aspx</string>
     <string>Views\Roles\Create.aspx</string>
     <string>Views\Roles\Index.aspx</string>
     <string>Views\Supporter\Create.aspx</string>
     <string>Views\Supporter\Index.aspx</string>
+    <string>Views\User\Create.aspx</string>
+    <string>Views\User\Delete.aspx</string>
+    <string>Views\User\Details.aspx</string>
+    <string>Views\User\Edit.aspx</string>
+    <string>Views\User\Index.aspx</string>
+    <string>Views\User\List.aspx</string>
     <string>Web.config</string>
     <string>Web.Debug.config</string>
     <string>Web.Release.config</string>

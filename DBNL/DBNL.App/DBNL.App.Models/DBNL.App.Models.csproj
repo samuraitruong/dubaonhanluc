@@ -59,7 +59,6 @@
     <Compile Include="Business\SupporterService.cs" />
 
     <Compile Include="Business\UserService.cs" />
-
     <Compile Include="DBNL.designer.cs">
 
       <AutoGen>True</AutoGen>
