@@ -30,21 +30,24 @@
                 <%= Html.DropDownList("Possition", Model.NavigationPositions)%>
                 <%= Html.ValidationMessage("Possition", "*") %>
             </p>
+             <p>
+                <label for="Component">Component:</label>
+                <%=Html.DropDownList("Component", Model.SiteModules)%>
+                <%= Html.ValidationMessage("Component", "*")%>
+            </p>
+            
             <p>
                 <label for="ContentId">ContentId:</label>
                 <%=Html.DropDownList("ContentId", Model.Categories)%>
                 <%= Html.ValidationMessage("ContentId", "*") %>
             </p>
-            <p>
-                <label for="Component">Component:</label>
-                <%= Html.TextBox("Component") %>
-                <%= Html.ValidationMessage("Component", "*") %>
-            </p>
+            
             <p>
                 <label for="ExternalUrl">ExternalUrl:</label>
-                <%= Html.TextBox("ExternalUrl") %>
-                <%= Html.ValidationMessage("ExternalUrl", "*") %>
+                <%=Html.TextBox("ExternalUrl")%>
+                
             </p>
+            
             <p>
                 <input type="submit" value="Create" />
             </p>

@@ -40,6 +40,19 @@ namespace DBNL.App.Models.Statics
            }
            return list.AsEnumerable();
        }
+
+       public static IEnumerable<SelectListItem> CreateModuleList()
+       {
+           List<SelectListItem> list = new List<SelectListItem>();
+           list.Add(new SelectListItem() { Text = "Chọn Module", Value = "" });
+           list.Add(new SelectListItem() { Text = "Tin tức", Value = SiteModules.Article.ToString() });
+           list.Add(new SelectListItem() { Text = "Liên kết website", Value = SiteModules.WebLink.ToString() });
+           list.Add(new SelectListItem() { Text = "Khảo sát", Value = SiteModules.Poll.ToString() });
+           list.Add(new SelectListItem() { Text = "Liên Hệ", Value = SiteModules.WebContact.ToString() });
+           list.Add(new SelectListItem() { Text = "Liên kết trang web", Value = SiteModules.Url.ToString() });
+           return list.AsEnumerable();
+       }
+
    }
     
 }

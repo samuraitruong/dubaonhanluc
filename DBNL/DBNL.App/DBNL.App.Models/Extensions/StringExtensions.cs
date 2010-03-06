@@ -12,7 +12,15 @@ namespace DBNL.App.Models.Extensions
         public static string ToUrlKey(this string key)
         {
             Regex regex = new Regex(DBNLConfigurationManager.WebUI.RemoveRule);
-            return regex.Replace(key, DBNLConfigurationManager.WebUI.ReplacementChar);
+            return regex.Replace(key.DoStripDiacritics(), DBNLConfigurationManager.WebUI.ReplacementChar);
         }
+        public static string DoStripDiacritics(this string accented)
+        {
+            Regex regex = new Regex(@"\p{IsCombiningDiacriticalMarks}+");
+
+            string strFormD = accented.Normalize(NormalizationForm.FormD);
+            return regex.Replace(strFormD, String.Empty).Replace('\u0111', 'd').Replace('\u0110', 'D');
+        }
+
     }
 }
