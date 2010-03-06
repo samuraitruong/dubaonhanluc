@@ -31,6 +31,12 @@
                      <li><%= Html.ActionLink("Home", "Index", "Home", new { area = "" }, null)%></li>
                      <li><%= Html.ActionLink("Administration", "Index", "Administrations", new { area = "DBNL.App.Admin" }, null)%></li>
                      <li><%= Html.ActionLink("Articles", "Index", "Articles", new { area = "articles" }, null)%></li>
+                     <li><%= Html.ActionLink("Banners", "Index", "Banner", new { area = "DBNL.App.Admin" }, null)%></li>
+                     <li><%= Html.ActionLink("Contacts", "Index", "Contact", new { area = "DBNL.App.Admin" }, null)%></li>
+                     <li><%= Html.ActionLink("Links", "Index", "Link", new { area = "DBNL.App.Admin" }, null)%></li>
+                     <li><%= Html.ActionLink("Polls", "Index", "Poll", new { area = "DBNL.App.Admin" }, null)%></li>
+                     <li><%= Html.ActionLink("Poll Questions", "Index", "PollQuestion", new { area = "DBNL.App.Admin" }, null)%></li>
+                     <li><%= Html.ActionLink("Users", "Index", "User", new { area = "DBNL.App.Admin" }, null)%></li>
                      <li><%= Html.ActionLink("Supporters", "Index", "Supporter", new { area = "DBNL.App.Admin" }, null)%></li>
                     <li><%= Html.ActionLink("About", "About", "Home", new { area = "" }, null)%></li>
                 </ul>
