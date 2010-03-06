@@ -1,5 +1,5 @@
-﻿<%@ Control Language="C#" Inherits="System.Web.Mvc.ViewUserControl<Navigation>" %>
-<div id="mainnav" class="clearfix">
+﻿<%@ Control Language="C#" Inherits="System.Web.Mvc.ViewUserControl<IEnumerable<Navigation>>" %>
+<%--<div id="mainnav" class="clearfix">
                 <ul id="nav">
                     <li class="active"><a href='index.html#neo_content'>TRANG CHỦ</a></li>
                     <li class=""><a href='##neo_content'>GIỚI THIỆU</a>
@@ -17,4 +17,23 @@
                     <li class=" end"><a href='intro-254-254-LIEN-HE.html#neo_content'>LIÊN HỆ</a></li>
                 </ul>
                 <!--<div id="flag"><a href='#'><img src="<%=Url.Content("~/images")%>/vn.jpg" alt="nguonnhanluc" /></a><a href='#'><img src="<%=Url.Content("~/images")%>/en.jpg" alt="nguonnhanluc" /></a></div>-->
-            </div>
+            </div>--%>
+            
+<div id="mainnav" class="clearfix">
+    <ul id="nav">
+        <% foreach (var item in Model) { %>
+        <%  %>
+        <li class=""><a href="<%=item.RelativeUrl %>"><%= Html.Encode(item.Name) %></a>
+            <% if(item.Navigations != null && item.Navigations.Count>0){ %>
+            <ul>
+                <%   
+               foreach (var subItem in item.Navigations) { %>
+                <li><%=Html.ActionLink(subItem.Name,subItem.Action, subItem.Controller, null,null) %></li>
+            <% } %>
+            </ul>
+            <%} %>
+        </li>
+    <% } %>
+    
+    </ul>
+</div>

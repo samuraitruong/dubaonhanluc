@@ -550,10 +550,12 @@
     <string>Scripts\ckeditor\_source\skins\v2\templates.css</string>
     <string>Scripts\ckeditor\_source\skins\v2\toolbar.css</string>
     <string>Scripts\ckeditor\_source\themes\default\theme.js</string>
+    <string>Views\Article\Category.aspx</string>
+    <string>Views\Article\View.aspx</string>
     <string>Views\Home\Index.aspx</string>
-    <string>Views\Home\LeftNavigationControl.ascx</string>
-    <string>Views\Home\MainNavigationControl.ascx</string>
-    <string>Views\Home\SupportersControl.ascx</string>
+    <string>Views\Shared\LeftNavigationControl.ascx</string>
+    <string>Views\Shared\MainNavigationControl.ascx</string>
+    <string>Views\Shared\SupportersControl.ascx</string>
     <string>Web.config</string>
     <string>Web.Debug.config</string>
     <string>Web.Release.config</string>

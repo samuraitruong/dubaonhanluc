@@ -6,6 +6,7 @@ using System.Web.Mvc;
 using System.Web.Mvc.Ajax;
 using DBNL.App.Models.ViewData;
 using DBNL.App.Models.Business;
+using DBNL.App.Models.Statics;
 
 namespace DBNL.App.Controllers
 {
@@ -17,13 +18,10 @@ namespace DBNL.App.Controllers
         {
             ViewData["FOMasterViewData"] = new FOMasterViewData()
             {
-                Supporters = SupporterService.GetItems()
+                Supporters = SupporterService.GetItems(),
+                MainNavigationItems = NavigationService.GetItems(NavigationPositions.Main)
             };
         }
-        public ActionResult Index()
-        {
-            return View();
-        }
-
+        
     }
 }

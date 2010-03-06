@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?><Database Name="hostpro_dubao" Class="DBNLDataContextDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+﻿<?xml version="1.0" encoding="utf-8"?><Database Name="hostpro_dubao" Class="DBNLDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
   <Connection Mode="AppSettings" ConnectionString="Data Source=ausp.edu.vn;Initial Catalog=hostpro_dubao;Persist Security Info=True;User ID=ausp_dubao" SettingsObjectName="DBNL.App.Models.Properties.Settings" SettingsPropertyName="hostpro_dubaoConnectionString" Provider="System.Data.SqlClient" />
   <Table Name="ausp_dubao.Banners" Member="Banners">
     <Type Name="Banner">
@@ -63,6 +63,8 @@
       <Column Name="IsFeatured" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
       <Column Name="Status" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
       <Column Name="Count" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="UniqueKey" Type="System.String" DbType="NVarChar(250) NOT NULL" CanBeNull="false" />
+      <Column Name="Description" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
       <Association Name="Content_ContentRelation" Member="ContentRelations" ThisKey="ContentId" OtherKey="ContentId" Type="ContentRelation" />
       <Association Name="Content_ContentRelation1" Member="ContentRelations1" ThisKey="ContentId" OtherKey="RelatedId" Type="ContentRelation" />
       <Association Name="ContentCategory_Content" Member="ContentCategory" ThisKey="CategoryId" OtherKey="ID" Type="ContentCategory" IsForeignKey="true" />
@@ -136,6 +138,9 @@
       <Column Name="ContentId" Type="System.Int32" DbType="Int" CanBeNull="true" />
       <Column Name="Component" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
       <Column Name="ExternalUrl" Type="System.String" DbType="VarChar(250)" CanBeNull="true" />
+      <Column Name="Action" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+      <Column Name="Controller" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+      <Column Name="Area" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
       <Association Name="Navigation_Navigation" Member="Navigations" ThisKey="Id" OtherKey="ParentId" Type="Navigation" />
       <Association Name="ContentCategory_Navigation" Member="ContentCategory" ThisKey="ContentId" OtherKey="ID" Type="ContentCategory" IsForeignKey="true" />
       <Association Name="Navigation_Navigation" Member="Navigation1" ThisKey="ParentId" OtherKey="Id" Type="Navigation" IsForeignKey="true" />

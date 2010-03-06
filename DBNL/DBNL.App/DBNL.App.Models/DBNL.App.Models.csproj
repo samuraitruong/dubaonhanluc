@@ -51,11 +51,12 @@
     <Compile Include="Business\NavigationService.cs" />
     <Compile Include="Business\RoleService.cs" />
     <Compile Include="Business\SupporterService.cs" />
-    <Compile Include="DBNLDataContext.designer.cs">
+    <Compile Include="DBNL.designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>DBNLDataContext.dbml</DependentUpon>
+      <DependentUpon>DBNL.dbml</DependentUpon>
     </Compile>
+    <Compile Include="Extensions\DateTimeExtensions.cs" />
     <Compile Include="Extensions\StringExtensions.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Properties\Settings.Designer.cs">
@@ -63,16 +64,18 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
       <DependentUpon>Settings.settings</DependentUpon>
     </Compile>
-    <Compile Include="Statics\NavigationPositions.cs" />
+    <Compile Include="Statics\StaticEnums.cs" />
     <Compile Include="Statics\CustomSelectList.cs" />
     <Compile Include="Statics\EntityStatuses.cs" />
+    <Compile Include="ViewData\CategoryViewData.cs" />
     <Compile Include="ViewData\FOMasterViewData.cs" />
+    <Compile Include="ViewData\NavigationDataView.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
-    <None Include="DBNLDataContext.dbml">
+    <None Include="DBNL.dbml">
       <Generator>MSLinqToSQLGenerator</Generator>
-      <LastGenOutput>DBNLDataContext.designer.cs</LastGenOutput>
+      <LastGenOutput>DBNL.designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
     </None>
     <None Include="Properties\Settings.settings">
@@ -84,8 +87,8 @@
     <Service Include="{3259AA49-8AA1-44D3-9025-A0B520596A8C}" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="DBNLDataContext.dbml.layout">
-      <DependentUpon>DBNLDataContext.dbml</DependentUpon>
+    <None Include="DBNL.dbml.layout">
+      <DependentUpon>DBNL.dbml</DependentUpon>
     </None>
   </ItemGroup>
   <ItemGroup>

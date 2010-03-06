@@ -4,6 +4,8 @@
     <string>Views\Administrations\Index.aspx</string>
     <string>Views\Categories\Create.aspx</string>
     <string>Views\Categories\List.aspx</string>
+    <string>Views\Content\Create.aspx</string>
+    <string>Views\Content\Index.aspx</string>
     <string>Views\Navigation\Create.aspx</string>
     <string>Views\Navigation\Index.aspx</string>
     <string>Views\Roles\Create.aspx</string>

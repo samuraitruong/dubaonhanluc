@@ -7,6 +7,7 @@ using System.Web.Mvc.Ajax;
 using DBNL.App.Models.Business;
 using DBNL.App.Models;
 using DBNL.App.Models.Statics;
+using DBNL.App.Models.ViewData;
 
 namespace DBNL.App.Admin.Controllers
 {
@@ -34,7 +35,12 @@ namespace DBNL.App.Admin.Controllers
 
         public ActionResult Create()
         {
-            ViewData["Categories"] = new SelectList(CategoryService.GetAllCategories(), "ID", "CategoryName");
+            //ViewData["Categories"] = new SelectList(CategoryService.GetAllCategories(), "ID", "CategoryName");
+            ViewData.Model = new NavigationDataView() { 
+                Categories = CustomSelectList.CreateListCategories(true),
+                NavigationPositions = CustomSelectList.CreateMenuPosition(),
+                RootNavigations = CustomSelectList.CreateListNavigations(true)
+            };
             return View();
         } 
 
@@ -51,16 +57,30 @@ namespace DBNL.App.Admin.Controllers
                 {
                     Name = collection["Name"],
                     Possition = collection["Possition"],
-                    ContentId = int.Parse(collection["ContentId"]),
+                    ContentId = string.IsNullOrEmpty(collection["ContentId"]) ? new Nullable<int>() : int.Parse(collection["ContentId"]),
+                    ParentId = string.IsNullOrEmpty(collection["ParentId"]) ? new Nullable<int>() : int.Parse(collection["ParentId"]),
                     Status= EntityStatuses.Actived.ToString()
                 };
+
+                if(navigation.ContentId.HasValue){
+                   navigation.Controller = DBNL.App.Models.Statics.Controllers.Article.ToString() ;
+                   navigation.Action= DBNL.App.Models.Statics.Actions.View.ToString();
+                   navigation.Area = "";
+                    
+                }
                 NavigationService.Create(navigation);
                 return RedirectToAction("Index");
             }
             catch
             {
                 throw;
-                ViewData["Categories"] = new SelectList(CategoryService.GetAllCategories(), "ID", "CategoryName");
+                ViewData.Model = new NavigationDataView()
+                {
+                    Categories = CustomSelectList.CreateListCategories(true),
+                    NavigationPositions = CustomSelectList.CreateMenuPosition(),
+                    RootNavigations = CustomSelectList.CreateListNavigations(true)
+                };
+
                 return View();
             }
         }
@@ -90,5 +110,7 @@ namespace DBNL.App.Admin.Controllers
                 return View();
             }
         }
+
+        public string Cotrollers { get; set; }
     }
 }

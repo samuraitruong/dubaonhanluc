@@ -25,5 +25,10 @@ namespace DBNL.App.Models.Business
             Commit();
             return category;
         }
+
+        public static ContentCategory GetById(int id)
+        {
+            return Categories.Where(p => p.ID == id).SingleOrDefault();
+        }
     }
 }
