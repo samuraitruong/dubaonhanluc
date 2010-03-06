@@ -70,6 +70,7 @@
   <ItemGroup>
     <Compile Include="Controllers\AdministrationsController.cs" />
     <Compile Include="Controllers\CategoriesController.cs" />
+    <Compile Include="Controllers\ContentController.cs" />
     <Compile Include="Controllers\NavigationController.cs" />
     <Compile Include="Controllers\RolesController.cs" />
     <Compile Include="Controllers\SupporterController.cs" />
@@ -80,6 +81,8 @@
     <Content Include="Views\Administrations\Index.aspx" />
     <Content Include="Views\Categories\Create.aspx" />
     <Content Include="Views\Categories\List.aspx" />
+    <Content Include="Views\Content\Create.aspx" />
+    <Content Include="Views\Content\Index.aspx" />
     <Content Include="Views\Navigation\Create.aspx" />
     <Content Include="Views\Navigation\Index.aspx" />
     <Content Include="Views\Roles\Create.aspx" />

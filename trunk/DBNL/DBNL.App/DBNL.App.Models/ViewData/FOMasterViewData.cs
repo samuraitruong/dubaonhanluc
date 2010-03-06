@@ -8,5 +8,6 @@ namespace DBNL.App.Models.ViewData
     public class FOMasterViewData
     {
         public IEnumerable<Supporter> Supporters { get; set; }
+        public IEnumerable<Navigation> MainNavigationItems { get; set; }
     }
 }

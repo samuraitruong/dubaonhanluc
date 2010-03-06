@@ -9,7 +9,7 @@ using DBNL.App.Models.Business;
 namespace DBNL.App.Controllers
 {
     [HandleError]
-    public class HomeController : Controller
+    public class HomeController : FOController
     {
         public ActionResult Admin()
         {

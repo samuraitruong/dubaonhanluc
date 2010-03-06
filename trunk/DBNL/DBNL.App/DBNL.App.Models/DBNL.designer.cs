@@ -1255,6 +1255,10 @@ namespace DBNL.App.Models
 		
 		private int _Count;
 		
+		private string _UniqueKey;
+		
+		private string _Description;
+		
 		private EntitySet<ContentRelation> _ContentRelations;
 		
 		private EntitySet<ContentRelation> _ContentRelations1;
@@ -1283,6 +1287,10 @@ namespace DBNL.App.Models
     partial void OnStatusChanged();
     partial void OnCountChanging(int value);
     partial void OnCountChanged();
+    partial void OnUniqueKeyChanging(string value);
+    partial void OnUniqueKeyChanged();
+    partial void OnDescriptionChanging(string value);
+    partial void OnDescriptionChanged();
     #endregion
 		
 		public Content()
@@ -1473,6 +1481,46 @@ namespace DBNL.App.Models
 					this._Count = value;
 					this.SendPropertyChanged("Count");
 					this.OnCountChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_UniqueKey", DbType="NVarChar(250) NOT NULL", CanBeNull=false)]
+		public string UniqueKey
+		{
+			get
+			{
+				return this._UniqueKey;
+			}
+			set
+			{
+				if ((this._UniqueKey != value))
+				{
+					this.OnUniqueKeyChanging(value);
+					this.SendPropertyChanging();
+					this._UniqueKey = value;
+					this.SendPropertyChanged("UniqueKey");
+					this.OnUniqueKeyChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Description", DbType="NVarChar(255)")]
+		public string Description
+		{
+			get
+			{
+				return this._Description;
+			}
+			set
+			{
+				if ((this._Description != value))
+				{
+					this.OnDescriptionChanging(value);
+					this.SendPropertyChanging();
+					this._Description = value;
+					this.SendPropertyChanged("Description");
+					this.OnDescriptionChanged();
 				}
 			}
 		}
@@ -2641,6 +2689,12 @@ namespace DBNL.App.Models
 		
 		private string _ExternalUrl;
 		
+		private string _Action;
+		
+		private string _Controller;
+		
+		private string _Area;
+		
 		private EntitySet<Navigation> _Navigations;
 		
 		private EntityRef<ContentCategory> _ContentCategory;
@@ -2673,6 +2727,12 @@ namespace DBNL.App.Models
     partial void OnComponentChanged();
     partial void OnExternalUrlChanging(string value);
     partial void OnExternalUrlChanged();
+    partial void OnActionChanging(string value);
+    partial void OnActionChanged();
+    partial void OnControllerChanging(string value);
+    partial void OnControllerChanged();
+    partial void OnAreaChanging(string value);
+    partial void OnAreaChanged();
     #endregion
 		
 		public Navigation()
@@ -2907,6 +2967,66 @@ namespace DBNL.App.Models
 					this._ExternalUrl = value;
 					this.SendPropertyChanged("ExternalUrl");
 					this.OnExternalUrlChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Action", DbType="NVarChar(100)")]
+		public string Action
+		{
+			get
+			{
+				return this._Action;
+			}
+			set
+			{
+				if ((this._Action != value))
+				{
+					this.OnActionChanging(value);
+					this.SendPropertyChanging();
+					this._Action = value;
+					this.SendPropertyChanged("Action");
+					this.OnActionChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Controller", DbType="NVarChar(100)")]
+		public string Controller
+		{
+			get
+			{
+				return this._Controller;
+			}
+			set
+			{
+				if ((this._Controller != value))
+				{
+					this.OnControllerChanging(value);
+					this.SendPropertyChanging();
+					this._Controller = value;
+					this.SendPropertyChanged("Controller");
+					this.OnControllerChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Area", DbType="NVarChar(100)")]
+		public string Area
+		{
+			get
+			{
+				return this._Area;
+			}
+			set
+			{
+				if ((this._Area != value))
+				{
+					this.OnAreaChanging(value);
+					this.SendPropertyChanging();
+					this._Area = value;
+					this.SendPropertyChanged("Area");
+					this.OnAreaChanged();
 				}
 			}
 		}

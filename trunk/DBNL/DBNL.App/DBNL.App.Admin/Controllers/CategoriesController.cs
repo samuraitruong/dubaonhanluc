@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.Mvc;
 using System.Web.Mvc.Ajax;
 using DBNL.App.Models.Business;
+using DBNL.App.Models.Statics;
 
 namespace DBNL.App.Admin.Controllers
 {
@@ -53,7 +54,7 @@ namespace DBNL.App.Admin.Controllers
         }
         public ActionResult Create()
         {
-            ViewData["Categories"] = new SelectList(CategoryService.GetAllCategories(), "ID", "CategoryName");
+            ViewData["Categories"] = CustomSelectList.CreateListCategories(true);
             return View();
         }
         //

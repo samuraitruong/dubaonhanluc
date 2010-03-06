@@ -22,7 +22,7 @@
             </p>
             <p>
                 <label for="ParentCategoryId">ParentCategoryId:</label>
-                <%= Html.DropDownList("ParentCategoryId", (SelectList) ViewData["Categories"])%>
+                <%= Html.DropDownList("ParentCategoryId",(IEnumerable<SelectListItem>) ViewData["Categories"])%>
                 <%= Html.ValidationMessage("ParentCategoryId", "*") %>
             </p>
             <p>

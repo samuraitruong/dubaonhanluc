@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Views/Shared/Site.Master" Inherits="System.Web.Mvc.ViewPage<DBNL.App.Models.Navigation>" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Views/Shared/Site.Master" Inherits="System.Web.Mvc.ViewPage<DBNL.App.Models.ViewData.NavigationDataView>" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="TitleContent" runat="server">
 	Create
@@ -22,17 +22,17 @@
             </p>
             <p>
                 <label for="ParentId">ParentId:</label>
-                <%= Html.TextBox("ParentId") %>
-                <%= Html.ValidationMessage("ParentId", "*") %>
+                <%= Html.DropDownList("ParentId", Model.RootNavigations)%>
+                <%= Html.ValidationMessage("ParentId", "*")%>
             </p>
             <p>
                 <label for="Possition">Possition:</label>
-                <%= Html.DropDownList("Possition", DBNL.App.Models.Statics.CustomSelectList.CreateMenuPosition())%>
+                <%= Html.DropDownList("Possition", Model.NavigationPositions)%>
                 <%= Html.ValidationMessage("Possition", "*") %>
             </p>
             <p>
                 <label for="ContentId">ContentId:</label>
-                <%=Html.DropDownList("ContentId", (SelectList)ViewData["Categories"])%>
+                <%=Html.DropDownList("ContentId", Model.Categories)%>
                 <%= Html.ValidationMessage("ContentId", "*") %>
             </p>
             <p>

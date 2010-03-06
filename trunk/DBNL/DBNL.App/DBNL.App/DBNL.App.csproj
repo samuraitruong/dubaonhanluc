@@ -77,6 +77,7 @@
     <Compile Include="Areas\Articles\Controllers\ArticlesController.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\AdminController.cs" />
+    <Compile Include="Controllers\ArticleController.cs" />
     <Compile Include="Controllers\FOController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Global.asax.cs">
@@ -634,10 +635,12 @@
     <Content Include="Scripts\ckeditor\_source\skins\v2\templates.css" />
     <Content Include="Scripts\ckeditor\_source\skins\v2\toolbar.css" />
     <Content Include="Scripts\ckeditor\_source\themes\default\theme.js" />
+    <Content Include="Views\Article\Category.aspx" />
+    <Content Include="Views\Article\View.aspx" />
     <Content Include="Views\Home\Index.aspx" />
-    <Content Include="Views\Home\LeftNavigationControl.ascx" />
-    <Content Include="Views\Home\MainNavigationControl.ascx" />
-    <Content Include="Views\Home\SupportersControl.ascx" />
+    <Content Include="Views\Shared\LeftNavigationControl.ascx" />
+    <Content Include="Views\Shared\MainNavigationControl.ascx" />
+    <Content Include="Views\Shared\SupportersControl.ascx" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>

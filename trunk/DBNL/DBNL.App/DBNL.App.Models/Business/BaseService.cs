@@ -20,6 +20,22 @@ namespace DBNL.App.Models.Business
                 return GetInstance().Navigations;
             }
         }
+        public static Table<ContentCategory> Categories
+        {
+            get
+            {
+                return GetInstance().ContentCategories;
+            }
+        }
+
+        public static Table<Content> Contents
+        {
+            get
+            {
+                return GetInstance().Contents;
+            }
+        }
+
         public static Table<Supporter> Supporters
         {
             get
