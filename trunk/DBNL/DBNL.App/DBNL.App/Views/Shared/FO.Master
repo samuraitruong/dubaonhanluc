@@ -103,6 +103,8 @@ function ticknews() {
 
 </head>
 <body>
+<% var Data = ((FOMasterViewData)ViewData["FOMasterViewData"]);%>
+
     <div id="wrapper">
     </div>
     <!--Wrapper-->
@@ -114,7 +116,7 @@ function ticknews() {
             <div id="text_banner">
                 <img src="<%=Url.Content("~/images")%>/text_banner.jpg" alt="nguonnhanluc" />
             </div>
-            <% Html.RenderPartial("MainNavigationControl", ((FOMasterViewData)ViewData["FOMasterViewData"]).MainNavigationItems); %>
+            <% Html.RenderPartial("MainNavigationControl", Data.MainNavigationItems); %>
             
             <!--Main Nav-->
             <div id="bottom_header" class="clearfix">
@@ -134,20 +136,13 @@ function ticknews() {
                             VIỆC</a></li>
                     </ul>
                 </div>
-                <% Html.RenderPartial("SupportersControl", ((FOMasterViewData)ViewData["FOMasterViewData"]).Supporters); %>
+                <% Html.RenderPartial("SupportersControl",Data.Supporters); %>
             </div>
         </div>
         <!--Header-->
         <div id="top_content">
             <div class="top clearfix">
-                <ul id="nav2">
-                    <li class=""><a href='articles-346-346-Nghien-cuu-khoa-hoc.html#neo_content'>Nghiên
-                        cứu khoa học</a></li>
-                    <li class=""><a href='articles-347-347-Du-bao-nhu-cau-nhan-luc.html#neo_content'>Dự
-                        báo nhu cầu nhân lực</a></li>
-                    <li class=" end"><a href='articles-350-350-Thong-tin-thi-truong-lao-dong.html#neo_content'>
-                        Thông tin thị trường lao động</a></li>
-                </ul>
+                <%Html.RenderPartial("TopNavigationControl", Data.TopNavigationItems ); %>
                 <div class="search">
                     <form method="get" id="searchform" action="/">
                     <input type="text" value="Tìm kiếm" class="box" />
@@ -163,7 +158,7 @@ function ticknews() {
         <div id="wrap_dm" class="clearfix">
         <div id="wrap_cat">
                 <div id="cat">
-                    <% Html.RenderPartial("LeftNavigationControl"); %>
+                    <% Html.RenderPartial("LeftNavigationControl", Data.LeftNavigationItems); %>
                     <div class="bottom_cat">
                         <img src="<%=Url.Content("~/images")%>/bg_lsdm_bottom.jpg" alt="nguonnhanluc" width="291" height="14" /></div>
                     <asp:ContentPlaceHolder ID="UnderMenuContent" runat="server">

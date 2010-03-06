@@ -59,15 +59,43 @@ namespace DBNL.App.Admin.Controllers
                     Possition = collection["Possition"],
                     ContentId = string.IsNullOrEmpty(collection["ContentId"]) ? new Nullable<int>() : int.Parse(collection["ContentId"]),
                     ParentId = string.IsNullOrEmpty(collection["ParentId"]) ? new Nullable<int>() : int.Parse(collection["ParentId"]),
-                    Status= EntityStatuses.Actived.ToString()
+                    Status= EntityStatuses.Actived.ToString(),
+                    Component = collection["Component"]
                 };
+                if(collection["Component"] == SiteModules.Article.ToString()) 
+                {
+                    if (navigation.ContentId.HasValue)
+                    {
+                        navigation.Controller = DBNL.App.Models.Statics.Controllers.Article.ToString();
+                        navigation.Action = DBNL.App.Models.Statics.Actions.Category.ToString();
+                        navigation.Area = "";
 
-                if(navigation.ContentId.HasValue){
-                   navigation.Controller = DBNL.App.Models.Statics.Controllers.Article.ToString() ;
-                   navigation.Action= DBNL.App.Models.Statics.Actions.Category.ToString();
-                   navigation.Area = "";
-                    
+                    }
                 }
+
+                if (collection["Component"] == SiteModules.WebLink.ToString())
+                {
+                        navigation.Controller = DBNL.App.Models.Statics.Controllers.WebLink.ToString();
+                        navigation.Action = DBNL.App.Models.Statics.Actions.Index.ToString();
+                        //navigation.Area = "";
+                }
+
+
+                if (collection["Component"] == SiteModules.WebContact.ToString())
+                {
+                    navigation.Controller = DBNL.App.Models.Statics.Controllers.WebContact.ToString();
+                    navigation.Action = DBNL.App.Models.Statics.Actions.Index.ToString();
+                    //navigation.Area = "";
+                }
+
+                if (collection["Component"] == SiteModules.Url.ToString())
+                {
+                    //navigation.Controller = DBNL.App.Models.Statics.Controllers.WebContact.ToString();
+                    //navigation.Action = DBNL.App.Models.Statics.Actions.Index.ToString();
+                    //navigation.Area = "";
+                    navigation.ExternalUrl = collection["ExternalUrl"];
+                }
+                
                 NavigationService.Create(navigation);
                 return RedirectToAction("Index");
             }

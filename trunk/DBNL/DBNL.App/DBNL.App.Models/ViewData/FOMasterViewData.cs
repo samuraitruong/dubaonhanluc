@@ -9,5 +9,7 @@ namespace DBNL.App.Models.ViewData
     {
         public IEnumerable<Supporter> Supporters { get; set; }
         public IEnumerable<Navigation> MainNavigationItems { get; set; }
+        public IEnumerable<Navigation> TopNavigationItems { get; set; }
+        public IEnumerable<Navigation> LeftNavigationItems { get; set; }
     }
 }

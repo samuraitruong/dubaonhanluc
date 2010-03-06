@@ -23,12 +23,22 @@
     <ul id="nav">
         <% foreach (var item in Model) { %>
         <%  %>
-        <li class=""><a href="<%=item.RelativeUrl %>"><%= Html.Encode(item.Name) %></a>
+        <li class=""><%=Html.ActionLink(item.Name, item.Action, item.Controller, new { id = item.Id }, null)%>
             <% if(item.Navigations != null && item.Navigations.Count>0){ %>
             <ul>
                 <%   
                foreach (var subItem in item.Navigations) { %>
-                <li><%=Html.ActionLink(subItem.Name, subItem.Action, subItem.Controller, new { id = subItem.Id }, null)%></li>
+                <li>
+                <% if (subItem.Component == DBNL.App.Models.Statics.SiteModules.Url.ToString())
+                   { %>
+                   <a href="<%=subItem.ExternalUrl %>"><%=subItem.Name%></a>
+                <%}
+                   else
+                   { %>
+                <%=Html.ActionLink(subItem.Name, subItem.Action, subItem.Controller, new { id = subItem.Id }, null)%>
+                <%} %>
+                
+                </li>
             <% } %>
             </ul>
             <%} %>

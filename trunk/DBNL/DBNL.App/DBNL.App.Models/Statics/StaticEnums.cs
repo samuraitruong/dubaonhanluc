@@ -18,16 +18,29 @@ namespace DBNL.App.Models.Statics
     }
     public enum Controllers
     {
-        Article
+        Article,
+        Link,
+        WebLink,
+        WebContact
     }
 
     public enum Actions
     {
         Category,
-        View
+        View,
+        Index
     }
     public enum Areas
     {
 
+    }
+    public enum SiteModules
+    {
+        Article,
+        WebLink,
+        WebContact,
+        Poll,
+        Contact,
+        Url
     }
 }

@@ -80,6 +80,8 @@
     <Compile Include="Controllers\ArticleController.cs" />
     <Compile Include="Controllers\FOController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\WebContactController.cs" />
+    <Compile Include="Controllers\WebLinkController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -637,10 +639,13 @@
     <Content Include="Scripts\ckeditor\_source\themes\default\theme.js" />
     <Content Include="Views\Article\Category.aspx" />
     <Content Include="Views\Article\View.aspx" />
+    <Content Include="Views\WebContact\Index.aspx" />
     <Content Include="Views\Home\Index.aspx" />
     <Content Include="Views\Shared\LeftNavigationControl.ascx" />
     <Content Include="Views\Shared\MainNavigationControl.ascx" />
     <Content Include="Views\Shared\SupportersControl.ascx" />
+    <Content Include="Views\Shared\TopNavigationControl.ascx" />
+    <Content Include="Views\WebLink\Index.aspx" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
