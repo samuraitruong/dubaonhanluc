@@ -51,9 +51,6 @@ namespace DBNL.App.Models
     partial void InsertLink(Link instance);
     partial void UpdateLink(Link instance);
     partial void DeleteLink(Link instance);
-    partial void InsertNavigation(Navigation instance);
-    partial void UpdateNavigation(Navigation instance);
-    partial void DeleteNavigation(Navigation instance);
     partial void InsertPollQuestion(PollQuestion instance);
     partial void UpdatePollQuestion(PollQuestion instance);
     partial void DeletePollQuestion(PollQuestion instance);
@@ -69,6 +66,9 @@ namespace DBNL.App.Models
     partial void InsertUserInRole(UserInRole instance);
     partial void UpdateUserInRole(UserInRole instance);
     partial void DeleteUserInRole(UserInRole instance);
+    partial void InsertNavigation(Navigation instance);
+    partial void UpdateNavigation(Navigation instance);
+    partial void DeleteNavigation(Navigation instance);
     #endregion
 		
 		public DBNLDataContext() : 
@@ -157,14 +157,6 @@ namespace DBNL.App.Models
 			}
 		}
 		
-		public System.Data.Linq.Table<Navigation> Navigations
-		{
-			get
-			{
-				return this.GetTable<Navigation>();
-			}
-		}
-		
 		public System.Data.Linq.Table<PollQuestion> PollQuestions
 		{
 			get
@@ -202,6 +194,14 @@ namespace DBNL.App.Models
 			get
 			{
 				return this.GetTable<UserInRole>();
+			}
+		}
+		
+		public System.Data.Linq.Table<Navigation> Navigations
+		{
+			get
+			{
+				return this.GetTable<Navigation>();
 			}
 		}
 	}
@@ -1740,418 +1740,6 @@ namespace DBNL.App.Models
 		}
 	}
 	
-	[global::System.Data.Linq.Mapping.TableAttribute(Name="ausp_dubao.Navigations")]
-	public partial class Navigation : INotifyPropertyChanging, INotifyPropertyChanged
-	{
-		
-		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
-		
-		private int _Id;
-		
-		private string _Name;
-		
-		private int _ParentId;
-		
-		private string _Possition;
-		
-		private string _Status;
-		
-		private string _RelativeUrl;
-		
-		private System.Nullable<int> _DisplayOrder;
-		
-		private string _Image;
-		
-		private int _ContentId;
-		
-		private string _Component;
-		
-		private string _ExternalUrl;
-		
-		private EntitySet<Navigation> _Navigations;
-		
-		private EntityRef<ContentCategory> _ContentCategory;
-		
-		private EntityRef<Navigation> _Navigation1;
-		
-    #region Extensibility Method Definitions
-    partial void OnLoaded();
-    partial void OnValidate(System.Data.Linq.ChangeAction action);
-    partial void OnCreated();
-    partial void OnIdChanging(int value);
-    partial void OnIdChanged();
-    partial void OnNameChanging(string value);
-    partial void OnNameChanged();
-    partial void OnParentIdChanging(int value);
-    partial void OnParentIdChanged();
-    partial void OnPossitionChanging(string value);
-    partial void OnPossitionChanged();
-    partial void OnStatusChanging(string value);
-    partial void OnStatusChanged();
-    partial void OnRelativeUrlChanging(string value);
-    partial void OnRelativeUrlChanged();
-    partial void OnDisplayOrderChanging(System.Nullable<int> value);
-    partial void OnDisplayOrderChanged();
-    partial void OnImageChanging(string value);
-    partial void OnImageChanged();
-    partial void OnContentIdChanging(int value);
-    partial void OnContentIdChanged();
-    partial void OnComponentChanging(string value);
-    partial void OnComponentChanged();
-    partial void OnExternalUrlChanging(string value);
-    partial void OnExternalUrlChanged();
-    #endregion
-		
-		public Navigation()
-		{
-			this._Navigations = new EntitySet<Navigation>(new Action<Navigation>(this.attach_Navigations), new Action<Navigation>(this.detach_Navigations));
-			this._ContentCategory = default(EntityRef<ContentCategory>);
-			this._Navigation1 = default(EntityRef<Navigation>);
-			OnCreated();
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Id", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
-		public int Id
-		{
-			get
-			{
-				return this._Id;
-			}
-			set
-			{
-				if ((this._Id != value))
-				{
-					this.OnIdChanging(value);
-					this.SendPropertyChanging();
-					this._Id = value;
-					this.SendPropertyChanged("Id");
-					this.OnIdChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Name", DbType="NVarChar(250)")]
-		public string Name
-		{
-			get
-			{
-				return this._Name;
-			}
-			set
-			{
-				if ((this._Name != value))
-				{
-					this.OnNameChanging(value);
-					this.SendPropertyChanging();
-					this._Name = value;
-					this.SendPropertyChanged("Name");
-					this.OnNameChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ParentId", DbType="Int NOT NULL")]
-		public int ParentId
-		{
-			get
-			{
-				return this._ParentId;
-			}
-			set
-			{
-				if ((this._ParentId != value))
-				{
-					if (this._Navigation1.HasLoadedOrAssignedValue)
-					{
-						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
-					}
-					this.OnParentIdChanging(value);
-					this.SendPropertyChanging();
-					this._ParentId = value;
-					this.SendPropertyChanged("ParentId");
-					this.OnParentIdChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Possition", DbType="NVarChar(50)")]
-		public string Possition
-		{
-			get
-			{
-				return this._Possition;
-			}
-			set
-			{
-				if ((this._Possition != value))
-				{
-					this.OnPossitionChanging(value);
-					this.SendPropertyChanging();
-					this._Possition = value;
-					this.SendPropertyChanged("Possition");
-					this.OnPossitionChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Status", DbType="NVarChar(50) NOT NULL", CanBeNull=false)]
-		public string Status
-		{
-			get
-			{
-				return this._Status;
-			}
-			set
-			{
-				if ((this._Status != value))
-				{
-					this.OnStatusChanging(value);
-					this.SendPropertyChanging();
-					this._Status = value;
-					this.SendPropertyChanged("Status");
-					this.OnStatusChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_RelativeUrl", DbType="NVarChar(50)")]
-		public string RelativeUrl
-		{
-			get
-			{
-				return this._RelativeUrl;
-			}
-			set
-			{
-				if ((this._RelativeUrl != value))
-				{
-					this.OnRelativeUrlChanging(value);
-					this.SendPropertyChanging();
-					this._RelativeUrl = value;
-					this.SendPropertyChanged("RelativeUrl");
-					this.OnRelativeUrlChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_DisplayOrder", DbType="Int")]
-		public System.Nullable<int> DisplayOrder
-		{
-			get
-			{
-				return this._DisplayOrder;
-			}
-			set
-			{
-				if ((this._DisplayOrder != value))
-				{
-					this.OnDisplayOrderChanging(value);
-					this.SendPropertyChanging();
-					this._DisplayOrder = value;
-					this.SendPropertyChanged("DisplayOrder");
-					this.OnDisplayOrderChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Image", DbType="NVarChar(150)")]
-		public string Image
-		{
-			get
-			{
-				return this._Image;
-			}
-			set
-			{
-				if ((this._Image != value))
-				{
-					this.OnImageChanging(value);
-					this.SendPropertyChanging();
-					this._Image = value;
-					this.SendPropertyChanged("Image");
-					this.OnImageChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ContentId", DbType="Int NOT NULL")]
-		public int ContentId
-		{
-			get
-			{
-				return this._ContentId;
-			}
-			set
-			{
-				if ((this._ContentId != value))
-				{
-					if (this._ContentCategory.HasLoadedOrAssignedValue)
-					{
-						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
-					}
-					this.OnContentIdChanging(value);
-					this.SendPropertyChanging();
-					this._ContentId = value;
-					this.SendPropertyChanged("ContentId");
-					this.OnContentIdChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Component", DbType="NVarChar(50)")]
-		public string Component
-		{
-			get
-			{
-				return this._Component;
-			}
-			set
-			{
-				if ((this._Component != value))
-				{
-					this.OnComponentChanging(value);
-					this.SendPropertyChanging();
-					this._Component = value;
-					this.SendPropertyChanged("Component");
-					this.OnComponentChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ExternalUrl", DbType="VarChar(250)")]
-		public string ExternalUrl
-		{
-			get
-			{
-				return this._ExternalUrl;
-			}
-			set
-			{
-				if ((this._ExternalUrl != value))
-				{
-					this.OnExternalUrlChanging(value);
-					this.SendPropertyChanging();
-					this._ExternalUrl = value;
-					this.SendPropertyChanged("ExternalUrl");
-					this.OnExternalUrlChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Navigation_Navigation", Storage="_Navigations", ThisKey="Id", OtherKey="ParentId")]
-		public EntitySet<Navigation> Navigations
-		{
-			get
-			{
-				return this._Navigations;
-			}
-			set
-			{
-				this._Navigations.Assign(value);
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="ContentCategory_Navigation", Storage="_ContentCategory", ThisKey="ContentId", OtherKey="ID", IsForeignKey=true)]
-		public ContentCategory ContentCategory
-		{
-			get
-			{
-				return this._ContentCategory.Entity;
-			}
-			set
-			{
-				ContentCategory previousValue = this._ContentCategory.Entity;
-				if (((previousValue != value) 
-							|| (this._ContentCategory.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._ContentCategory.Entity = null;
-						previousValue.Navigations.Remove(this);
-					}
-					this._ContentCategory.Entity = value;
-					if ((value != null))
-					{
-						value.Navigations.Add(this);
-						this._ContentId = value.ID;
-					}
-					else
-					{
-						this._ContentId = default(int);
-					}
-					this.SendPropertyChanged("ContentCategory");
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Navigation_Navigation", Storage="_Navigation1", ThisKey="ParentId", OtherKey="Id", IsForeignKey=true)]
-		public Navigation Navigation1
-		{
-			get
-			{
-				return this._Navigation1.Entity;
-			}
-			set
-			{
-				Navigation previousValue = this._Navigation1.Entity;
-				if (((previousValue != value) 
-							|| (this._Navigation1.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._Navigation1.Entity = null;
-						previousValue.Navigations.Remove(this);
-					}
-					this._Navigation1.Entity = value;
-					if ((value != null))
-					{
-						value.Navigations.Add(this);
-						this._ParentId = value.Id;
-					}
-					else
-					{
-						this._ParentId = default(int);
-					}
-					this.SendPropertyChanged("Navigation1");
-				}
-			}
-		}
-		
-		public event PropertyChangingEventHandler PropertyChanging;
-		
-		public event PropertyChangedEventHandler PropertyChanged;
-		
-		protected virtual void SendPropertyChanging()
-		{
-			if ((this.PropertyChanging != null))
-			{
-				this.PropertyChanging(this, emptyChangingEventArgs);
-			}
-		}
-		
-		protected virtual void SendPropertyChanged(String propertyName)
-		{
-			if ((this.PropertyChanged != null))
-			{
-				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-			}
-		}
-		
-		private void attach_Navigations(Navigation entity)
-		{
-			this.SendPropertyChanging();
-			entity.Navigation1 = this;
-		}
-		
-		private void detach_Navigations(Navigation entity)
-		{
-			this.SendPropertyChanging();
-			entity.Navigation1 = null;
-		}
-	}
-	
 	[global::System.Data.Linq.Mapping.TableAttribute(Name="ausp_dubao.PollQuestions")]
 	public partial class PollQuestion : INotifyPropertyChanging, INotifyPropertyChanged
 	{
@@ -2594,7 +2182,6 @@ namespace DBNL.App.Models
 		}
 		
 		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_RoleName", DbType="NVarChar(250) NOT NULL", CanBeNull=false)]
-
 		public string RoleName
 		{
 			get
@@ -3023,6 +2610,418 @@ namespace DBNL.App.Models
 			{
 				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
 			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="ausp_dubao.Navigations")]
+	public partial class Navigation : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _Id;
+		
+		private string _Name;
+		
+		private System.Nullable<int> _ParentId;
+		
+		private string _Possition;
+		
+		private string _Status;
+		
+		private string _RelativeUrl;
+		
+		private System.Nullable<int> _DisplayOrder;
+		
+		private string _Image;
+		
+		private System.Nullable<int> _ContentId;
+		
+		private string _Component;
+		
+		private string _ExternalUrl;
+		
+		private EntitySet<Navigation> _Navigations;
+		
+		private EntityRef<ContentCategory> _ContentCategory;
+		
+		private EntityRef<Navigation> _Navigation1;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnIdChanging(int value);
+    partial void OnIdChanged();
+    partial void OnNameChanging(string value);
+    partial void OnNameChanged();
+    partial void OnParentIdChanging(System.Nullable<int> value);
+    partial void OnParentIdChanged();
+    partial void OnPossitionChanging(string value);
+    partial void OnPossitionChanged();
+    partial void OnStatusChanging(string value);
+    partial void OnStatusChanged();
+    partial void OnRelativeUrlChanging(string value);
+    partial void OnRelativeUrlChanged();
+    partial void OnDisplayOrderChanging(System.Nullable<int> value);
+    partial void OnDisplayOrderChanged();
+    partial void OnImageChanging(string value);
+    partial void OnImageChanged();
+    partial void OnContentIdChanging(System.Nullable<int> value);
+    partial void OnContentIdChanged();
+    partial void OnComponentChanging(string value);
+    partial void OnComponentChanged();
+    partial void OnExternalUrlChanging(string value);
+    partial void OnExternalUrlChanged();
+    #endregion
+		
+		public Navigation()
+		{
+			this._Navigations = new EntitySet<Navigation>(new Action<Navigation>(this.attach_Navigations), new Action<Navigation>(this.detach_Navigations));
+			this._ContentCategory = default(EntityRef<ContentCategory>);
+			this._Navigation1 = default(EntityRef<Navigation>);
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Id", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public int Id
+		{
+			get
+			{
+				return this._Id;
+			}
+			set
+			{
+				if ((this._Id != value))
+				{
+					this.OnIdChanging(value);
+					this.SendPropertyChanging();
+					this._Id = value;
+					this.SendPropertyChanged("Id");
+					this.OnIdChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Name", DbType="NVarChar(250)")]
+		public string Name
+		{
+			get
+			{
+				return this._Name;
+			}
+			set
+			{
+				if ((this._Name != value))
+				{
+					this.OnNameChanging(value);
+					this.SendPropertyChanging();
+					this._Name = value;
+					this.SendPropertyChanged("Name");
+					this.OnNameChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ParentId", DbType="Int")]
+		public System.Nullable<int> ParentId
+		{
+			get
+			{
+				return this._ParentId;
+			}
+			set
+			{
+				if ((this._ParentId != value))
+				{
+					if (this._Navigation1.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnParentIdChanging(value);
+					this.SendPropertyChanging();
+					this._ParentId = value;
+					this.SendPropertyChanged("ParentId");
+					this.OnParentIdChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Possition", DbType="NVarChar(50)")]
+		public string Possition
+		{
+			get
+			{
+				return this._Possition;
+			}
+			set
+			{
+				if ((this._Possition != value))
+				{
+					this.OnPossitionChanging(value);
+					this.SendPropertyChanging();
+					this._Possition = value;
+					this.SendPropertyChanged("Possition");
+					this.OnPossitionChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Status", DbType="NVarChar(50) NOT NULL", CanBeNull=false)]
+		public string Status
+		{
+			get
+			{
+				return this._Status;
+			}
+			set
+			{
+				if ((this._Status != value))
+				{
+					this.OnStatusChanging(value);
+					this.SendPropertyChanging();
+					this._Status = value;
+					this.SendPropertyChanged("Status");
+					this.OnStatusChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_RelativeUrl", DbType="NVarChar(50)")]
+		public string RelativeUrl
+		{
+			get
+			{
+				return this._RelativeUrl;
+			}
+			set
+			{
+				if ((this._RelativeUrl != value))
+				{
+					this.OnRelativeUrlChanging(value);
+					this.SendPropertyChanging();
+					this._RelativeUrl = value;
+					this.SendPropertyChanged("RelativeUrl");
+					this.OnRelativeUrlChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_DisplayOrder", DbType="Int")]
+		public System.Nullable<int> DisplayOrder
+		{
+			get
+			{
+				return this._DisplayOrder;
+			}
+			set
+			{
+				if ((this._DisplayOrder != value))
+				{
+					this.OnDisplayOrderChanging(value);
+					this.SendPropertyChanging();
+					this._DisplayOrder = value;
+					this.SendPropertyChanged("DisplayOrder");
+					this.OnDisplayOrderChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Image", DbType="NVarChar(150)")]
+		public string Image
+		{
+			get
+			{
+				return this._Image;
+			}
+			set
+			{
+				if ((this._Image != value))
+				{
+					this.OnImageChanging(value);
+					this.SendPropertyChanging();
+					this._Image = value;
+					this.SendPropertyChanged("Image");
+					this.OnImageChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ContentId", DbType="Int")]
+		public System.Nullable<int> ContentId
+		{
+			get
+			{
+				return this._ContentId;
+			}
+			set
+			{
+				if ((this._ContentId != value))
+				{
+					if (this._ContentCategory.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnContentIdChanging(value);
+					this.SendPropertyChanging();
+					this._ContentId = value;
+					this.SendPropertyChanged("ContentId");
+					this.OnContentIdChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Component", DbType="NVarChar(50)")]
+		public string Component
+		{
+			get
+			{
+				return this._Component;
+			}
+			set
+			{
+				if ((this._Component != value))
+				{
+					this.OnComponentChanging(value);
+					this.SendPropertyChanging();
+					this._Component = value;
+					this.SendPropertyChanged("Component");
+					this.OnComponentChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ExternalUrl", DbType="VarChar(250)")]
+		public string ExternalUrl
+		{
+			get
+			{
+				return this._ExternalUrl;
+			}
+			set
+			{
+				if ((this._ExternalUrl != value))
+				{
+					this.OnExternalUrlChanging(value);
+					this.SendPropertyChanging();
+					this._ExternalUrl = value;
+					this.SendPropertyChanged("ExternalUrl");
+					this.OnExternalUrlChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Navigation_Navigation", Storage="_Navigations", ThisKey="Id", OtherKey="ParentId")]
+		public EntitySet<Navigation> Navigations
+		{
+			get
+			{
+				return this._Navigations;
+			}
+			set
+			{
+				this._Navigations.Assign(value);
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="ContentCategory_Navigation", Storage="_ContentCategory", ThisKey="ContentId", OtherKey="ID", IsForeignKey=true)]
+		public ContentCategory ContentCategory
+		{
+			get
+			{
+				return this._ContentCategory.Entity;
+			}
+			set
+			{
+				ContentCategory previousValue = this._ContentCategory.Entity;
+				if (((previousValue != value) 
+							|| (this._ContentCategory.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._ContentCategory.Entity = null;
+						previousValue.Navigations.Remove(this);
+					}
+					this._ContentCategory.Entity = value;
+					if ((value != null))
+					{
+						value.Navigations.Add(this);
+						this._ContentId = value.ID;
+					}
+					else
+					{
+						this._ContentId = default(Nullable<int>);
+					}
+					this.SendPropertyChanged("ContentCategory");
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Navigation_Navigation", Storage="_Navigation1", ThisKey="ParentId", OtherKey="Id", IsForeignKey=true)]
+		public Navigation Navigation1
+		{
+			get
+			{
+				return this._Navigation1.Entity;
+			}
+			set
+			{
+				Navigation previousValue = this._Navigation1.Entity;
+				if (((previousValue != value) 
+							|| (this._Navigation1.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._Navigation1.Entity = null;
+						previousValue.Navigations.Remove(this);
+					}
+					this._Navigation1.Entity = value;
+					if ((value != null))
+					{
+						value.Navigations.Add(this);
+						this._ParentId = value.Id;
+					}
+					else
+					{
+						this._ParentId = default(Nullable<int>);
+					}
+					this.SendPropertyChanged("Navigation1");
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+		
+		private void attach_Navigations(Navigation entity)
+		{
+			this.SendPropertyChanging();
+			entity.Navigation1 = this;
+		}
+		
+		private void detach_Navigations(Navigation entity)
+		{
+			this.SendPropertyChanging();
+			entity.Navigation1 = null;
 		}
 	}
 }

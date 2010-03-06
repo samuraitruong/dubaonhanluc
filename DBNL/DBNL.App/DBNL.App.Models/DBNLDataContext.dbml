@@ -77,24 +77,6 @@
       <Column Name="UpdatedDate" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
     </Type>
   </Table>
-  <Table Name="ausp_dubao.Navigations" Member="Navigations">
-    <Type Name="Navigation">
-      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
-      <Column Name="Name" Type="System.String" DbType="NVarChar(250)" CanBeNull="true" />
-      <Column Name="ParentId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Column Name="Possition" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
-      <Column Name="Status" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
-      <Column Name="RelativeUrl" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
-      <Column Name="DisplayOrder" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="Image" Type="System.String" DbType="NVarChar(150)" CanBeNull="true" />
-      <Column Name="ContentId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Column Name="Component" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
-      <Column Name="ExternalUrl" Type="System.String" DbType="VarChar(250)" CanBeNull="true" />
-      <Association Name="Navigation_Navigation" Member="Navigations" ThisKey="Id" OtherKey="ParentId" Type="Navigation" />
-      <Association Name="ContentCategory_Navigation" Member="ContentCategory" ThisKey="ContentId" OtherKey="ID" Type="ContentCategory" IsForeignKey="true" />
-      <Association Name="Navigation_Navigation" Member="Navigation1" ThisKey="ParentId" OtherKey="Id" Type="Navigation" IsForeignKey="true" />
-    </Type>
-  </Table>
   <Table Name="ausp_dubao.PollQuestions" Member="PollQuestions">
     <Type Name="PollQuestion">
       <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
@@ -139,6 +121,24 @@
       <Column Name="UserId" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
       <Association Name="Role_UserInRole" Member="Role" ThisKey="RoleId" OtherKey="Id" Type="Role" IsForeignKey="true" />
       <Association Name="User_UserInRole" Member="User" ThisKey="UserId" OtherKey="Id" Type="User" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="ausp_dubao.Navigations" Member="Navigations">
+    <Type Name="Navigation">
+      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Name" Type="System.String" DbType="NVarChar(250)" CanBeNull="true" />
+      <Column Name="ParentId" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Possition" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="Status" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="RelativeUrl" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="DisplayOrder" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Image" Type="System.String" DbType="NVarChar(150)" CanBeNull="true" />
+      <Column Name="ContentId" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Component" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="ExternalUrl" Type="System.String" DbType="VarChar(250)" CanBeNull="true" />
+      <Association Name="Navigation_Navigation" Member="Navigations" ThisKey="Id" OtherKey="ParentId" Type="Navigation" />
+      <Association Name="ContentCategory_Navigation" Member="ContentCategory" ThisKey="ContentId" OtherKey="ID" Type="ContentCategory" IsForeignKey="true" />
+      <Association Name="Navigation_Navigation" Member="Navigation1" ThisKey="ParentId" OtherKey="Id" Type="Navigation" IsForeignKey="true" />
     </Type>
   </Table>
 </Database>

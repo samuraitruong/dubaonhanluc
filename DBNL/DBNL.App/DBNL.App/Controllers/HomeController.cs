@@ -9,7 +9,7 @@ namespace DBNL.App.Controllers
     [HandleError]
     public class HomeController : Controller
     {
-        public ActionResult Index()
+        public ActionResult Admin()
         {
             ViewData["Message"] = "Welcome to ASP.NET MVC!";
             
@@ -20,7 +20,7 @@ namespace DBNL.App.Controllers
         {
             return View();
         }
-        public ActionResult Test()
+        public ActionResult Index()
         {
             return View();
         }

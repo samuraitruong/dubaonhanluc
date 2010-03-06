@@ -2,8 +2,14 @@
 <AreaInfo xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
   <ContentFiles>
     <string>Views\Administrations\Index.aspx</string>
+    <string>Views\Categories\Create.aspx</string>
+    <string>Views\Categories\List.aspx</string>
+    <string>Views\Navigation\Create.aspx</string>
+    <string>Views\Navigation\Index.aspx</string>
     <string>Views\Roles\Create.aspx</string>
     <string>Views\Roles\Index.aspx</string>
+    <string>Views\Supporter\Create.aspx</string>
+    <string>Views\Supporter\Index.aspx</string>
     <string>Web.config</string>
     <string>Web.Debug.config</string>
     <string>Web.Release.config</string>

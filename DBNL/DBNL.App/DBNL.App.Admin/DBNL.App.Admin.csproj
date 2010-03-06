@@ -69,14 +69,23 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Controllers\AdministrationsController.cs" />
+    <Compile Include="Controllers\CategoriesController.cs" />
+    <Compile Include="Controllers\NavigationController.cs" />
     <Compile Include="Controllers\RolesController.cs" />
+    <Compile Include="Controllers\SupporterController.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Routes.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\Administrations\Index.aspx" />
+    <Content Include="Views\Categories\Create.aspx" />
+    <Content Include="Views\Categories\List.aspx" />
+    <Content Include="Views\Navigation\Create.aspx" />
+    <Content Include="Views\Navigation\Index.aspx" />
     <Content Include="Views\Roles\Create.aspx" />
     <Content Include="Views\Roles\Index.aspx" />
+    <Content Include="Views\Supporter\Create.aspx" />
+    <Content Include="Views\Supporter\Index.aspx" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -140,4 +149,7 @@
       </FlavorProperties>
     </VisualStudio>
   </ProjectExtensions>
+  <PropertyGroup>
+    <PostBuildEvent>xcopy /f /y /E  "$(ProjectDir)Views" "$(SolutionDir)DBNL.App\Areas\DBNL.App.Admin\Views"</PostBuildEvent>
+  </PropertyGroup>
 </Project>
