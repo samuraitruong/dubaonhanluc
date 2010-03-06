@@ -15,6 +15,12 @@ namespace DBNL.App.Models.Business
         {
             return Navigations.Where(p=>p.Possition==pos.ToString()).AsEnumerable();
         }
+        public static IEnumerable<Navigation> GetItems(NavigationPositions pos, bool rootOnly)
+        {
+            if(rootOnly) 
+            return Navigations.Where(p => p.Possition == pos.ToString() && p.ParentId == null).AsEnumerable();
+            return GetItems(pos);
+        }
         public static Navigation Create(Navigation nv)
         {
             Navigations.InsertOnSubmit(nv);

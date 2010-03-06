@@ -28,12 +28,11 @@
             <ul>
                 <%   
                foreach (var subItem in item.Navigations) { %>
-                <li><%=Html.ActionLink(subItem.Name,subItem.Action, subItem.Controller, null,null) %></li>
+                <li><%=Html.ActionLink(subItem.Name, subItem.Action, subItem.Controller, new { id = subItem.Id }, null)%></li>
             <% } %>
             </ul>
             <%} %>
         </li>
     <% } %>
-    
     </ul>
 </div>

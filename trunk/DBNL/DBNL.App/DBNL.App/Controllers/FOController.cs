@@ -19,7 +19,7 @@ namespace DBNL.App.Controllers
             ViewData["FOMasterViewData"] = new FOMasterViewData()
             {
                 Supporters = SupporterService.GetItems(),
-                MainNavigationItems = NavigationService.GetItems(NavigationPositions.Main)
+                MainNavigationItems = NavigationService.GetItems(NavigationPositions.Main, true)
             };
         }
         
