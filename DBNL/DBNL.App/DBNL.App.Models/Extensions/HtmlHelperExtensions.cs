@@ -61,10 +61,11 @@ namespace DBNL.App.Models.Extensions
             sb.Append("<ul>");
             
             foreach (var item in banners) {
-                sb.AppendFormat("<li><a href='{0}' target='_blank'><img src='{1}' /></a></li>",
+                sb.AppendFormat("<li><a href='{0}' alt='{2}' target='_blank'><img src='{1}' alt='{2}' /></a></li>",
 
                     item.Url,
-                    string.Format("{0}/{1}", DBNLConfigurationManager.FileResponsity.BannerRelativeUrl, item.BannerImage)
+                    string.Format("{0}/{1}", DBNLConfigurationManager.FileResponsity.BannerRelativeUrl, item.BannerImage),
+                    item.Name
                     );
             }
             sb.Append("</ul>");
