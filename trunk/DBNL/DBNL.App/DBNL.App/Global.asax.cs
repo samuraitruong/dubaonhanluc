@@ -12,6 +12,7 @@ namespace DBNL.App
 
     public class MvcApplication : System.Web.HttpApplication
     {
+        
         public static void RegisterRoutes(RouteCollection routes)
         {
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
@@ -29,5 +30,13 @@ namespace DBNL.App
         {
             RegisterRoutes(RouteTable.Routes);
         }
+        void Session_Start(object sender, EventArgs e)
+        {
+            // Code that runs when a new session is started
+            string sessionId = Session.SessionID;
+        }
+
+
+
     }
 }

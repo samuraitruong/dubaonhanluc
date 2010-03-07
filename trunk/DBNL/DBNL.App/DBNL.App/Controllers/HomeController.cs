@@ -16,11 +16,9 @@ namespace DBNL.App.Controllers
         public ActionResult Admin()
         {
             ViewData["Message"] = "Welcome to ASP.NET MVC!";
+            
             return View();
         }
-        
-
-        
 
 
         public ActionResult About()
@@ -29,6 +27,7 @@ namespace DBNL.App.Controllers
         }
         public ActionResult Index()
         {
+            ViewData.Model = new HomePageViewData();
             return View();
         }
     }

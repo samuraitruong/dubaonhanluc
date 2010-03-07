@@ -20,6 +20,21 @@ namespace DBNL.App.Models.Business
                 return GetInstance().Navigations;
             }
         }
+        public static Table<Poll> Polls
+        {
+            get
+            {
+                return GetInstance().Polls;
+            }
+        }
+        public static Table<PollQuestion> PollQuestions
+        {
+            get
+            {
+                return GetInstance().PollQuestions;
+            }
+        }
+
         public static Table<ContentCategory> Categories
         {
             get

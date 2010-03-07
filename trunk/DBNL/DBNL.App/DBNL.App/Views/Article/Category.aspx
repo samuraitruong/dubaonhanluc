@@ -77,6 +77,6 @@
 <asp:Content ID="Content3" ContentPlaceHolderID="UnderMenuContent" runat="server">
 </asp:Content>
 
-<asp:Content ID="Content4" ContentPlaceHolderID="UnderMainContent" runat="server">
+<asp:Content ID="Content4" ContentPlaceHolderID="MidlePageMainContent" runat="server">
 </asp:Content>
 

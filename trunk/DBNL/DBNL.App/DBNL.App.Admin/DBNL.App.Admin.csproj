@@ -53,6 +53,9 @@
     <Reference Include="System.Data.DataSetExtensions">
       <RequiredTargetFramework>3.5</RequiredTargetFramework>
     </Reference>
+    <Reference Include="System.Web.DataVisualization">
+      <HintPath>..\..\Components\System.Web.DataVisualization.dll</HintPath>
+    </Reference>
     <Reference Include="System.Web.Mvc, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
     <Reference Include="System.Xml.Linq">
       <RequiredTargetFramework>3.5</RequiredTargetFramework>
@@ -73,12 +76,9 @@
     <Compile Include="Controllers\AdministrationsController.cs" />
     <Compile Include="Controllers\BannerController.cs" />
     <Compile Include="Controllers\CategoriesController.cs" />
-
     <Compile Include="Controllers\ContactController.cs" />
     <Compile Include="Controllers\LinkController.cs" />
-
     <Compile Include="Controllers\ContentController.cs" />
-
     <Compile Include="Controllers\NavigationController.cs" />
     <Compile Include="Controllers\PollController.cs" />
     <Compile Include="Controllers\PollQuestionController.cs" />
@@ -98,7 +98,6 @@
     <Content Include="Views\Banner\List.aspx" />
     <Content Include="Views\Categories\Create.aspx" />
     <Content Include="Views\Categories\List.aspx" />
-
     <Content Include="Views\Contact\Create.aspx" />
     <Content Include="Views\Contact\Delete.aspx" />
     <Content Include="Views\Contact\Details.aspx" />
@@ -111,10 +110,8 @@
     <Content Include="Views\Link\Edit.aspx" />
     <Content Include="Views\Link\Index.aspx" />
     <Content Include="Views\Link\List.aspx" />
-
     <Content Include="Views\Content\Create.aspx" />
     <Content Include="Views\Content\Index.aspx" />
-
     <Content Include="Views\Navigation\Create.aspx" />
     <Content Include="Views\Navigation\Index.aspx" />
     <Content Include="Views\PollQuestion\Create.aspx" />
@@ -194,6 +191,9 @@
           <IISUrl>
           </IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>False</UseCustomServer>
+          <CustomServerUrl>
+          </CustomServerUrl>
           <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
         </WebProjectProperties>
       </FlavorProperties>

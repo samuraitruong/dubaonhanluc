@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using DBNL.App.Models.Statics;
 
 namespace DBNL.App.Models.Business
 {
@@ -41,6 +42,11 @@ namespace DBNL.App.Models.Business
             poll.Status = status.Trim();
             Commit();
             return poll;
+        }
+
+        public static Poll GetActivePoll()
+        {
+            return Polls.Where(p => p.Status == EntityStatuses.Public.ToString()).FirstOrDefault();
         }
     }
 }
