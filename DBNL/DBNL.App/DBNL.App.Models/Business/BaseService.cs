@@ -20,6 +20,15 @@ namespace DBNL.App.Models.Business
                 return GetInstance().Navigations;
             }
         }
+
+        public static Table<Banner> Banners
+        {
+            get
+            {
+                return GetInstance().Banners;
+            }
+        }
+
         public static Table<Poll> Polls
         {
             get
