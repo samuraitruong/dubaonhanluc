@@ -43,4 +43,18 @@ namespace DBNL.App.Models.Statics
         Contact,
         Url
     }
+    public enum BannerPositions
+    { 
+        Top,
+        Left,
+        Right,
+        Bottom
+    }
+
+    public enum BannerStatus
+    { 
+        Actived,
+        Public,
+        Disactived
+    }
 }
