@@ -8,5 +8,7 @@
     <h2>About</h2>
     <p>
         Put content here.
+        
+        <% =DBNL.App.Config.DBNLConfigurationManager.FileResponsity.BannerRelativeUrl%>
     </p>
 </asp:Content>

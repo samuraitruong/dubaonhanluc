@@ -198,6 +198,7 @@ function ticknews() {
             </iframe>
         </div>
         <div id="wrap_ad" class="clearfix">
+            <%= Html.BannerList(Data.BottomBanners) %>
             <ul>
                 <li>
                     <img src="upload/<%=Url.Content("~/images")%>/artseed-1257658387.jpg" alt="logo" align="middle" /></li><li>

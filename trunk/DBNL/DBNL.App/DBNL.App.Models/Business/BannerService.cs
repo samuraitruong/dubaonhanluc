@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using DBNL.App.Models.Statics;
 
 namespace DBNL.App.Models.Business
 {
@@ -51,6 +52,11 @@ namespace DBNL.App.Models.Business
             banner.BannerPosition = bannerPosition;
             Commit();
             return banner;
+        }
+
+        public static IEnumerable<Banner> GetItems(BannerPositions bannerPositions)
+        {
+            return Banners.Where(p => p.BannerPosition == bannerPositions.ToString()).AsEnumerable();
         }
     }
 }

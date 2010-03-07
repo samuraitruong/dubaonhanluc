@@ -6,6 +6,7 @@ using System.Web.Mvc;
 using System.Web.UI.DataVisualization.Charting;
 using System.Web.UI;
 using DBNL.App.Models.ViewData;
+using DBNL.App.Config;
 
 namespace DBNL.App.Models.Extensions
 {
@@ -54,6 +55,23 @@ namespace DBNL.App.Models.Extensions
             }
             Chart(helper, data.ActivePoll.PollName, values, labels, width, height, SeriesChartType.Pie, page);
         }
+
+        public static string BannerList(this HtmlHelper helper , IEnumerable<Banner>  banners){
+            StringBuilder sb = new StringBuilder();
+            sb.Append("<ul>");
+            
+            foreach (var item in banners) {
+                sb.AppendFormat("<li><a href='{0}' target='_blank'><img src='{1}' /></a></li>",
+
+                    item.Url,
+                    string.Format("{0}/{1}", DBNLConfigurationManager.FileResponsity.BannerRelativeUrl, item.BannerImage)
+                    );
+            }
+            sb.Append("</ul>");
+
+            return sb.ToString();
+        }
+
     }
 }
  
