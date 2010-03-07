@@ -1,0 +1,15 @@
+C:\QuynhHai\jqMvcGrid\DynamicQuery\bin\Release\DynamicQuery.dll
+C:\QuynhHai\jqMvcGrid\DynamicQuery\bin\Release\DynamicQuery.pdb
+C:\QuynhHai\jqMvcGrid\DynamicQuery\obj\Release\ResolveAssemblyReference.cache
+C:\QuynhHai\jqMvcGrid\DynamicQuery\obj\Release\DynamicQuery.dll
+C:\QuynhHai\jqMvcGrid\DynamicQuery\obj\Release\DynamicQuery.pdb
+C:\Documents and Settings\DNN\Desktop\jqMvcGrid\DynamicQuery\bin\Release\DynamicQuery.dll
+C:\Documents and Settings\DNN\Desktop\jqMvcGrid\DynamicQuery\bin\Release\DynamicQuery.pdb
+C:\Documents and Settings\DNN\Desktop\jqMvcGrid\DynamicQuery\obj\Release\ResolveAssemblyReference.cache
+C:\Documents and Settings\DNN\Desktop\jqMvcGrid\DynamicQuery\obj\Release\DynamicQuery.dll
+C:\Documents and Settings\DNN\Desktop\jqMvcGrid\DynamicQuery\obj\Release\DynamicQuery.pdb
+C:\Documents and Settings\Administrator\Desktop\jqMvcGrid\DynamicQuery\bin\Release\DynamicQuery.dll
+C:\Documents and Settings\Administrator\Desktop\jqMvcGrid\DynamicQuery\bin\Release\DynamicQuery.pdb
+C:\Documents and Settings\Administrator\Desktop\jqMvcGrid\DynamicQuery\obj\Release\ResolveAssemblyReference.cache
+C:\Documents and Settings\Administrator\Desktop\jqMvcGrid\DynamicQuery\obj\Release\DynamicQuery.dll
+C:\Documents and Settings\Administrator\Desktop\jqMvcGrid\DynamicQuery\obj\Release\DynamicQuery.pdb
