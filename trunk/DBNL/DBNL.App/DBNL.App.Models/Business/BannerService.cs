@@ -17,13 +17,13 @@ namespace DBNL.App.Models.Business
             return GetInstance().Banners.Where(p => p.Id == id).SingleOrDefault();
         }
 
-        public static Banner Add(string name, string url, string bannerImage, string status, string bannerPosition)
+        public static Banner Add(string name, string url, string bannerImage, string bannerPosition)
         {
             Banner banner = new Banner();
             banner.Name = name.Trim();
             banner.Url = url.Trim();
             banner.BannerImage = bannerImage.Trim();
-            banner.Status = status.Trim();
+            banner.Status = "Actived";
             banner.CreatedDate = DateTime.Today;
             banner.UpdatedDate = DateTime.Today;
             banner.BannerPosition = bannerPosition;

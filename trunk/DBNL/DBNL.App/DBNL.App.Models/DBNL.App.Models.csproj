@@ -33,8 +33,12 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.configuration" />
-    <Reference Include="System.Core" />
-    <Reference Include="System.Data.Linq" />
+    <Reference Include="System.Core">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Data.Linq">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
     <Reference Include="System.Web" />
     <Reference Include="System.Web.DataVisualization">
       <HintPath>..\..\Components\System.Web.DataVisualization.dll</HintPath>
@@ -80,6 +84,7 @@
     <Compile Include="Statics\StaticEnums.cs" />
     <Compile Include="Statics\CustomSelectList.cs" />
     <Compile Include="Statics\EntityStatuses.cs" />
+    <Compile Include="ViewData\BannerViewData.cs" />
     <Compile Include="ViewData\CategoryViewData.cs" />
     <Compile Include="ViewData\FOMasterViewData.cs" />
     <Compile Include="ViewData\HomePageViewData.cs" />

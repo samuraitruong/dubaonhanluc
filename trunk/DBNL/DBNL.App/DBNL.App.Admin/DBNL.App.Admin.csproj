@@ -146,6 +146,10 @@
     <Content Include="Views\Web.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\DBNL.App.Config\DBNL.App.Config.csproj">
+      <Project>{54D04437-083F-472C-844C-8A0F2F1C2318}</Project>
+      <Name>DBNL.App.Config</Name>
+    </ProjectReference>
     <ProjectReference Include="..\DBNL.App.Models\DBNL.App.Models.csproj">
       <Project>{A8D2094A-076F-4FEF-A749-4C5E3259B282}</Project>
       <Name>DBNL.App.Models</Name>
@@ -191,9 +195,6 @@
           <IISUrl>
           </IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
-          <UseCustomServer>False</UseCustomServer>
-          <CustomServerUrl>
-          </CustomServerUrl>
           <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
         </WebProjectProperties>
       </FlavorProperties>

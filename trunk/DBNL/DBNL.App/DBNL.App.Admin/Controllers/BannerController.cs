@@ -1,9 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.IO;
 using System.Web;
 using System.Web.Mvc;
 using DBNL.App.Models.Business;
+using DBNL.App.Models.ViewData;
+using DBNL.App.Models.Statics;
+using DBNL.App.Models;
+using DBNL.App.Config;
 
 namespace DBNL.App.Admin.Controllers
 {
@@ -37,6 +42,11 @@ namespace DBNL.App.Admin.Controllers
 
         public ActionResult Create()
         {
+            ViewData.Model = new BannerViewData() 
+            {
+                banner = new Banner(),
+                BannerPositions = CustomSelectList.CreateBannerPosition()
+            };
             return View();
         } 
 
@@ -49,7 +59,15 @@ namespace DBNL.App.Admin.Controllers
             try
             {
                 // TODO: Add insert logic here
-                BannerService.Add(collection["Name"], collection["Url"], collection["BannerImage"], collection["Status"], collection["BannerPosition"]);
+                ViewData.Model = new BannerViewData()
+                {
+                    banner = new Banner(),
+                    BannerPositions = CustomSelectList.CreateBannerPosition()
+                };
+                string fileName = "No files";
+                fileName = Request.Files[0].FileName;
+                Request.Files[0].SaveAs(Path.Combine( DBNLConfigurationManager.FileResponsity.BannerFolder, fileName));
+                BannerService.Add(collection["banner.Name"], collection["banner.Url"], fileName, collection["BannerPosition"]);
                 return RedirectToAction("List");
             }
             catch
@@ -90,7 +108,12 @@ namespace DBNL.App.Admin.Controllers
  
         public ActionResult Edit(int id)
         {
-            ViewData.Model = BannerService.GetItem(id);
+            ViewData.Model = new BannerViewData()
+            {
+                banner = BannerService.GetItem(id),
+                BannerPositions = CustomSelectList.CreateBannerPosition(),
+                BannerStatus = CustomSelectList.CreateBannerStatus()
+            };
             return View();
         }
 
@@ -103,7 +126,19 @@ namespace DBNL.App.Admin.Controllers
             try
             {
                 // TODO: Add update logic here
-                BannerService.Edit(id, collection["Name"], collection["Url"], collection["BannerImage"], collection["Status"], collection["BannerPosition"]);
+                ViewData.Model = new BannerViewData()
+                {
+                    banner = BannerService.GetItem(id),
+                    BannerPositions = CustomSelectList.CreateBannerPosition(),
+                    BannerStatus = CustomSelectList.CreateBannerStatus()
+                };
+                string fileName = BannerService.GetItem(id).BannerImage;
+                if (Request.Files.Count > 0)
+                {
+                    fileName = Request.Files[0].FileName;
+                    Request.Files[0].SaveAs(Path.Combine(DBNLConfigurationManager.FileResponsity.BannerFolder, fileName));
+                }
+                BannerService.Edit(id, collection["banner.Name"], collection["banner.Url"], fileName, collection["BannerStatus"], collection["BannerPosition"]);
                 return RedirectToAction("List");
             }
             catch

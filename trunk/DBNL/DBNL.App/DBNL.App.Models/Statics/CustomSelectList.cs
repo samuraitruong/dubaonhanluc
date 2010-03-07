@@ -17,6 +17,26 @@ namespace DBNL.App.Models.Statics
            list.Add(new SelectListItem(){Text= "Bên Trái",Value = NavigationPositions.Left.ToString()});
            return list.AsEnumerable();
        }
+
+       public static IEnumerable<SelectListItem> CreateBannerPosition()
+       {
+           List<SelectListItem> posList = new List<SelectListItem>();
+           posList.Add(new SelectListItem() { Text = "Bên Trên", Value = BannerPositions.Top.ToString() });
+           posList.Add(new SelectListItem() { Text = "Bên Trái", Value = BannerPositions.Left.ToString() });
+           posList.Add(new SelectListItem() { Text = "Bên Phải", Value = BannerPositions.Right.ToString() });
+           posList.Add(new SelectListItem() { Text = "Bên Dưới", Value = BannerPositions.Bottom.ToString() });
+           return posList.AsEnumerable();
+       }
+
+       public static IEnumerable<SelectListItem> CreateBannerStatus()
+       {
+           List<SelectListItem> statList = new List<SelectListItem>();
+           statList.Add(new SelectListItem() { Text = "Actived", Value = BannerStatus.Actived.ToString() });
+           statList.Add(new SelectListItem() { Text = "Public", Value = BannerStatus.Public.ToString() });
+           statList.Add(new SelectListItem() { Text = "Disactived", Value = BannerStatus.Disactived.ToString() });
+           return statList;
+       }
+
        public static IEnumerable<SelectListItem> CreateListCategories(bool insertEmptyItem)
        {
            List<SelectListItem> list = new List<SelectListItem>();
@@ -26,7 +46,6 @@ namespace DBNL.App.Models.Statics
            
            return list.AsEnumerable();
        }
-
 
        public static IEnumerable<SelectListItem> CreateListNavigations(bool insertEmptyItem)
        {
