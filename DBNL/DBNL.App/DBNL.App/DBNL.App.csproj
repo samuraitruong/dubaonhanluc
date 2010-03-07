@@ -99,6 +99,7 @@
     <Content Include="Areas\DBNL.App.Admin\Views\Roles\Create.aspx" />
     <Content Include="Areas\DBNL.App.Admin\Views\Roles\Index.aspx" />
     <Content Include="Global.asax" />
+    <Content Include="Resources\Banners\link.txt" />
     <Content Include="Scripts\ckeditor\adapters\jquery.js" />
     <Content Include="Scripts\ckeditor\CHANGES.html" />
     <Content Include="Scripts\ckeditor\ckeditor.js" />
