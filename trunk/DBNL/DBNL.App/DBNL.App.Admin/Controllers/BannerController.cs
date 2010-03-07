@@ -133,7 +133,7 @@ namespace DBNL.App.Admin.Controllers
                     BannerStatus = CustomSelectList.CreateBannerStatus()
                 };
                 string fileName = BannerService.GetItem(id).BannerImage;
-                if (Request.Files.Count > 0)
+                if (String.IsNullOrEmpty(Request.Files["banimg"].FileName) == false)
                 {
                     fileName = Request.Files[0].FileName;
                     Request.Files[0].SaveAs(Path.Combine(DBNLConfigurationManager.FileResponsity.BannerFolder, fileName));

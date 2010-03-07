@@ -53,8 +53,8 @@ namespace DBNL.App.Models.Statics
 
     public enum BannerStatus
     { 
-        Actived,
+        Active,
         Public,
-        Disactived
+        Inactive
     }
 }
