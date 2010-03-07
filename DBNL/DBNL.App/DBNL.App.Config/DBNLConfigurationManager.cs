@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Configuration;
+using DBNL.App.Config.Elements;
 
 namespace DBNL.App.Config
 {
@@ -16,6 +17,13 @@ namespace DBNL.App.Config
              instance = (DBNLConfigurationSection)ConfigurationManager.GetSection("DBNL.App.Config");
             }
             return instance;
+        }
+        public static FileResponsityElement FileResponsity
+        {
+            get
+            {
+                return GetInsance().FileResponsityElement;
+            }
         }
         public static WebUIElement WebUI{
             get{

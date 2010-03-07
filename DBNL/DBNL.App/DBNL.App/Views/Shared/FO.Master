@@ -173,9 +173,23 @@ function ticknews() {
             <!--hot news-->
         </div>
         <!--Wrap dm-->
-        <asp:ContentPlaceHolder ID="UnderMainContent" runat="server">
+        <asp:ContentPlaceHolder ID="MidlePageMainContent" runat="server">
         </asp:ContentPlaceHolder>
         <!--Wrap newsjob-->
+        <div class="clearfix" id="content">
+        	<div id="left_side">
+                <asp:ContentPlaceHolder ID="LeftBottomNavigationContent" runat="server">
+                 </asp:ContentPlaceHolder>
+        		</div>
+        		<!--module-->
+        		
+        	<!--left side-->
+        	<div id="right_side">
+        		<asp:ContentPlaceHolder ID="BottomMainContent" runat="server">
+                 </asp:ContentPlaceHolder>
+        	</div>
+        	<!--right side-->
+</div>
         <!-- content-->
         <div id="partner">
             <h2>
