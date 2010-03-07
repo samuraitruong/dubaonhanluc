@@ -1,5 +1,5 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Views/Shared/Site.Master" Inherits="System.Web.Mvc.ViewPage<DBNL.App.Models.ViewData.BannerViewData>" %>
-
+<%@ Import Namespace="DBNL.App.Config"  %>
 <asp:Content ID="Content1" ContentPlaceHolderID="TitleContent" runat="server">
 	Edit
 </asp:Content>
@@ -34,7 +34,7 @@
                 <%= Html.Label("Banner Image:") %>
             </div>
             <div>
-                <img id="banimg" alt="<%= Model.banner.BannerImage %>" src="<%= Model.banner.BannerImage %>" />
+                <img id="ban_img" class="ban_pre_img" alt="<%= Model.banner.BannerImage %>" src="<%= DBNLConfigurationManager.FileResponsity.BannerRelativeUrl+"/" + Model.banner.BannerImage %>" />
             </div>
             
             <div class="editor-field">
