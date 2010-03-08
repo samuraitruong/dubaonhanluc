@@ -18,6 +18,7 @@
         <div id="pager" style="text-align: center;">
         
     </div>
+    </div>
 </asp:Content>
 <asp:Content runat="server" ContentPlaceHolderID="ScriptContent">
     <script language="javascript" type="text/javascript" src="<%= Url.Content("~/Scripts/GridData.js") %>"></script>
@@ -52,7 +53,7 @@ GridDemo.Home.GridData = {
             rownumbers: true,
             caption: 'Grid Data Example'
         })
-        .navGrid(pager, { edit: false, add: false, del: false, search: false });
+        .navGrid('#pager', { edit: true, add: true, del: false, search: true, view: true });
     }
 };
 </script>

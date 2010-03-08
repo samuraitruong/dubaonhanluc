@@ -1,0 +1,202 @@
+/* @override http://localhost:8888/iblog/wp-content/themes/sidebarTheme/style.css */
+
+/*  
+Theme Name: sidebarTheme
+Theme URI: http://nettuts.com/
+Description: A fantastic apple-like sidebar using jQuery UI
+Version: 1.0
+Author: Harley Alexander
+Author URI: http://www.baffleinc.com/
+
+*/
+
+/*BASIC SETUP*/
+
+*{
+	margin: 0;
+	padding: 0;
+}
+
+body{
+	font: 1em/18px "Lucida Grande", Lucida, Verdana, sans-serif;
+	padding: 1em 0;
+	position: relative;
+}
+
+html>body{
+	font-size: 75%;
+}
+
+#wrapper{
+	width: 560px;
+	margin: 0 auto;
+}
+
+#sidebar{
+	float: left;
+	width: 180px;
+	margin-right: 4px;
+	position: relative;
+}
+
+#content{
+	float: right;
+	width: 340px;
+	clear: right;
+	padding-left:15px;
+	padding-bottom: 50px;
+	position: relative;
+}
+
+/*EL HEADER AND MAIN POST CONTENT*/
+
+h1{
+	float: right;
+	xbackground: url(images/h1.png) no-repeat;
+	height: 40px;
+	width: 340px;
+	padding-left: 15px;
+	line-height: 35px;
+	font-size: 1.3em;
+	text-shadow: #fff 1px 1px 2px;
+}
+
+#topStories{
+	background: url(images/topStoriesBg.png) no-repeat center;
+	height: 30px;
+	width: 335px;
+	line-height: 30px;
+	margin-top: 1em;
+	margin-left: -15px;
+	padding: 0 5px 0 15px;
+	font-size: 11px;
+	text-align: right;
+}
+
+#topStories #sidebarToggleButton{
+	display: block;
+	width: 15px;
+	height: 15px;
+	float: left;
+	margin-left: -29px;
+	margin-top: 7px;
+	position: relative;
+	z-index: 9999;
+}
+
+#topStories strong{
+	float: left;
+}
+
+#topStories img{
+	margin-bottom: -3px;
+}
+
+#content{
+	background: #fff;
+}
+
+.postDate{
+	display: block;
+	font-size: 11px;
+	color: #ccc;
+	border-bottom: 1px solid #ccc;
+	margin-top: 1em;
+}
+
+h3{
+	font-size: 1em;
+	line-height: 18px;
+	padding: 0.3em 0 0;
+}
+
+h3 a{
+	color: black;
+}
+
+.entry p{
+	color: #585858;
+}
+
+a{
+	color: #08c;
+	border: 0;
+}
+
+a:link, a:visited, a:active{
+	text-decoration: none;
+}
+
+a:hover{
+	text-decoration: underline;
+}
+
+img{
+	border: 0;
+}
+
+.entry a img{
+	float: left;
+	padding: 0 15px 0 0;
+	border: 0;
+}
+
+/* SIDEBAR SANS JS*/
+
+#sidebar{
+	margin-top: 0px;
+}
+
+#sidebar ul{
+	list-style: none;
+}
+
+#sidebar>ul{
+	border: 1px solid #eee;
+}
+
+#sidebar ul li h2{
+	background: url(images/inactiveBg.png);
+	height: 24px;
+	padding-left: 22px;
+	line-height: 24px;
+	font-size: 1em;
+	font-weight: normal;
+	color: #3e3e3e;
+}
+
+#sidebar ul li ul li{
+	font-size: 11px;
+	padding: 3px 0;
+	line-height: 20px;
+	padding-left: 10px;
+	float:left;
+}
+
+#sidebar ul li ul li a{
+	color: black;
+	font-weight: bold;
+}
+
+/*jQUERY CSS*/
+
+#sidebar>ul{
+	border-radius: 5px;
+	-moz-border-radius: 5px;
+	-webkit-border-radius: 5px;
+	-opera-border-radius: 5px;
+}
+
+span.sidebarOpen{
+	background: url(images/sidebarOpen.png) no-repeat center;
+}
+
+span.sidebarClose{
+	background: url(images/sidebarClose.png) no-repeat center;
+}
+
+h2.selected{
+	background: url(images/activeBg.png) repeat-x !IMPORTANT;
+	color: white !IMPORTANT;
+
+}

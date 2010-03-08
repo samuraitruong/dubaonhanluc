@@ -41,11 +41,15 @@
         </div>
 
         <div id="main">
-            <asp:ContentPlaceHolder ID="MainContent" runat="server" />
-
-            <div id="footer">
+            
+            <% Html.RenderPartial("SideBar"); %>
+            
+            <div class="Content" style="float:left; width:840px">
+                <asp:ContentPlaceHolder ID="MainContent" runat="server" />
             </div>
         </div>
+        <div id="footer">
+            </div>
     </div>
     <asp:ContentPlaceHolder ID="ScriptContent" runat="server" />
 </body>
