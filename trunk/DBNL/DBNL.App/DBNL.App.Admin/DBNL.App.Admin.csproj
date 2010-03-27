@@ -154,6 +154,10 @@
       <Project>{A8D2094A-076F-4FEF-A749-4C5E3259B282}</Project>
       <Name>DBNL.App.Models</Name>
     </ProjectReference>
+    <ProjectReference Include="..\DynamicQuery\DynamicQuery.csproj">
+      <Project>{3B623031-E5FE-4AC5-BDB9-89A6DE24238F}</Project>
+      <Name>DynamicQuery</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

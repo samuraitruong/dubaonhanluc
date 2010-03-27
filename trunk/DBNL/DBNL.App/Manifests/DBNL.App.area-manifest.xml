@@ -7,7 +7,16 @@
     <string>Areas\DBNL.App.Admin\Views\Categories\Create.aspx</string>
     <string>Areas\DBNL.App.Admin\Views\Roles\Create.aspx</string>
     <string>Areas\DBNL.App.Admin\Views\Roles\Index.aspx</string>
+    <string>Content\calendar.css</string>
+    <string>Content\editor.css</string>
+    <string>Content\fancybox.css</string>
+    <string>Content\form.css</string>
     <string>Content\GridData.js</string>
+    <string>Content\ie-styles.css</string>
+    <string>Content\ie6-styles.css</string>
+    <string>Content\ie6.css</string>
+    <string>Content\ie7-styles.css</string>
+    <string>Content\ie7.css</string>
     <string>Content\jqGrid3.6.4\css\basic\grid.css</string>
     <string>Content\jqGrid3.6.4\css\basic\images\cd_run.gif</string>
     <string>Content\jqGrid3.6.4\css\basic\images\dirty.gif</string>
@@ -261,6 +270,90 @@
     <string>Content\jqGrid3.6.4\src\jquery.searchFilter.js</string>
     <string>Content\jqGrid3.6.4\src\JsonXml.js</string>
     <string>Content\jqGrid3.6.4\src\ui.multiselect.js</string>
+    <string>Content\login.css</string>
+    <string>Content\message.css</string>
+    <string>Content\Sidebar\images\activeBg.png</string>
+    <string>Content\Sidebar\images\h1.png</string>
+    <string>Content\Sidebar\images\inactiveBg.png</string>
+    <string>Content\Sidebar\images\rssIcon.gif</string>
+    <string>Content\Sidebar\images\sidebarClose.png</string>
+    <string>Content\Sidebar\images\sidebarOpen.png</string>
+    <string>Content\Sidebar\images\topStoriesBg.png</string>
+    <string>Content\Sidebar\jquery-1.2.6.min.js</string>
+    <string>Content\Sidebar\jquery-accordion-1.5.2.min.js</string>
+    <string>Content\Sidebar\sidebar.js</string>
+    <string>Content\Sidebar\style.css</string>
+    <string>Content\jqueryUI1.8a\css\cupertino\images\ui-bg_diagonals-thick_90_eeeeee_40x40.png</string>
+    <string>Content\jqueryUI1.8a\css\cupertino\images\ui-bg_flat_15_cd0a0a_40x100.png</string>
+    <string>Content\jqueryUI1.8a\css\cupertino\images\ui-bg_glass_100_e4f1fb_1x400.png</string>
+    <string>Content\jqueryUI1.8a\css\cupertino\images\ui-bg_glass_50_3baae3_1x400.png</string>
+    <string>Content\jqueryUI1.8a\css\cupertino\images\ui-bg_glass_80_d7ebf9_1x400.png</string>
+    <string>Content\jqueryUI1.8a\css\cupertino\images\ui-bg_highlight-hard_100_f2f5f7_1x100.png</string>
+    <string>Content\jqueryUI1.8a\css\cupertino\images\ui-bg_highlight-hard_70_000000_1x100.png</string>
+    <string>Content\jqueryUI1.8a\css\cupertino\images\ui-bg_highlight-soft_100_deedf7_1x100.png</string>
+    <string>Content\jqueryUI1.8a\css\cupertino\images\ui-bg_highlight-soft_25_ffef8f_1x100.png</string>
+    <string>Content\jqueryUI1.8a\css\cupertino\images\ui-icons_2694e8_256x240.png</string>
+    <string>Content\jqueryUI1.8a\css\cupertino\images\ui-icons_2e83ff_256x240.png</string>
+    <string>Content\jqueryUI1.8a\css\cupertino\images\ui-icons_3d80b3_256x240.png</string>
+    <string>Content\jqueryUI1.8a\css\cupertino\images\ui-icons_72a7cf_256x240.png</string>
+    <string>Content\jqueryUI1.8a\css\cupertino\images\ui-icons_ffffff_256x240.png</string>
+    <string>Content\jqueryUI1.8a\css\cupertino\jquery-ui-1.8rc3.custom.css</string>
+    <string>Content\jqueryUI1.8a\css\cupertino\jquery.ui.accordion.css</string>
+    <string>Content\jqueryUI1.8a\css\cupertino\jquery.ui.all.css</string>
+    <string>Content\jqueryUI1.8a\css\cupertino\jquery.ui.autocomplete.css</string>
+    <string>Content\jqueryUI1.8a\css\cupertino\jquery.ui.base.css</string>
+    <string>Content\jqueryUI1.8a\css\cupertino\jquery.ui.button.css</string>
+    <string>Content\jqueryUI1.8a\css\cupertino\jquery.ui.core.css</string>
+    <string>Content\jqueryUI1.8a\css\cupertino\jquery.ui.datepicker.css</string>
+    <string>Content\jqueryUI1.8a\css\cupertino\jquery.ui.dialog.css</string>
+    <string>Content\jqueryUI1.8a\css\cupertino\jquery.ui.progressbar.css</string>
+    <string>Content\jqueryUI1.8a\css\cupertino\jquery.ui.resizable.css</string>
+    <string>Content\jqueryUI1.8a\css\cupertino\jquery.ui.slider.css</string>
+    <string>Content\jqueryUI1.8a\css\cupertino\jquery.ui.tabs.css</string>
+    <string>Content\jqueryUI1.8a\css\cupertino\jquery.ui.theme.css</string>
+    <string>Content\jqueryUI1.8a\css\redmond\jquery.ui.accordion.css</string>
+    <string>Content\jqueryUI1.8a\css\redmond\jquery.ui.all.css</string>
+    <string>Content\jqueryUI1.8a\css\redmond\jquery.ui.autocomplete.css</string>
+    <string>Content\jqueryUI1.8a\css\redmond\jquery.ui.base.css</string>
+    <string>Content\jqueryUI1.8a\css\redmond\jquery.ui.button.css</string>
+    <string>Content\jqueryUI1.8a\css\redmond\jquery.ui.core.css</string>
+    <string>Content\jqueryUI1.8a\css\redmond\jquery.ui.datepicker.css</string>
+    <string>Content\jqueryUI1.8a\css\redmond\jquery.ui.dialog.css</string>
+    <string>Content\jqueryUI1.8a\css\redmond\jquery.ui.progressbar.css</string>
+    <string>Content\jqueryUI1.8a\css\redmond\jquery.ui.resizable.css</string>
+    <string>Content\jqueryUI1.8a\css\redmond\jquery.ui.slider.css</string>
+    <string>Content\jqueryUI1.8a\css\redmond\jquery.ui.tabs.css</string>
+    <string>Content\jqueryUI1.8a\css\redmond\jquery.ui.theme.css</string>
+    <string>Content\jqueryUI1.8a\css\start\images\ui-bg_flat_55_999999_40x100.png</string>
+    <string>Content\jqueryUI1.8a\css\start\images\ui-bg_flat_75_aaaaaa_40x100.png</string>
+    <string>Content\jqueryUI1.8a\css\start\images\ui-bg_glass_45_0078ae_1x400.png</string>
+    <string>Content\jqueryUI1.8a\css\start\images\ui-bg_glass_55_f8da4e_1x400.png</string>
+    <string>Content\jqueryUI1.8a\css\start\images\ui-bg_glass_75_79c9ec_1x400.png</string>
+    <string>Content\jqueryUI1.8a\css\start\images\ui-bg_gloss-wave_45_e14f1c_500x100.png</string>
+    <string>Content\jqueryUI1.8a\css\start\images\ui-bg_gloss-wave_50_6eac2c_500x100.png</string>
+    <string>Content\jqueryUI1.8a\css\start\images\ui-bg_gloss-wave_75_2191c0_500x100.png</string>
+    <string>Content\jqueryUI1.8a\css\start\images\ui-bg_inset-hard_100_fcfdfd_1x100.png</string>
+    <string>Content\jqueryUI1.8a\css\start\images\ui-icons_0078ae_256x240.png</string>
+    <string>Content\jqueryUI1.8a\css\start\images\ui-icons_056b93_256x240.png</string>
+    <string>Content\jqueryUI1.8a\css\start\images\ui-icons_d8e7f3_256x240.png</string>
+    <string>Content\jqueryUI1.8a\css\start\images\ui-icons_e0fdff_256x240.png</string>
+    <string>Content\jqueryUI1.8a\css\start\images\ui-icons_f5e175_256x240.png</string>
+    <string>Content\jqueryUI1.8a\css\start\images\ui-icons_f7a50d_256x240.png</string>
+    <string>Content\jqueryUI1.8a\css\start\images\ui-icons_fcd113_256x240.png</string>
+    <string>Content\jqueryUI1.8a\css\start\jquery-ui-1.8.css</string>
+    <string>Content\jqueryUI1.8a\css\start\jquery.ui.accordion.css</string>
+    <string>Content\jqueryUI1.8a\css\start\jquery.ui.all.css</string>
+    <string>Content\jqueryUI1.8a\css\start\jquery.ui.autocomplete.css</string>
+    <string>Content\jqueryUI1.8a\css\start\jquery.ui.base.css</string>
+    <string>Content\jqueryUI1.8a\css\start\jquery.ui.button.css</string>
+    <string>Content\jqueryUI1.8a\css\start\jquery.ui.core.css</string>
+    <string>Content\jqueryUI1.8a\css\start\jquery.ui.datepicker.css</string>
+    <string>Content\jqueryUI1.8a\css\start\jquery.ui.dialog.css</string>
+    <string>Content\jqueryUI1.8a\css\start\jquery.ui.progressbar.css</string>
+    <string>Content\jqueryUI1.8a\css\start\jquery.ui.resizable.css</string>
+    <string>Content\jqueryUI1.8a\css\start\jquery.ui.slider.css</string>
+    <string>Content\jqueryUI1.8a\css\start\jquery.ui.tabs.css</string>
+    <string>Content\jqueryUI1.8a\css\start\jquery.ui.theme.css</string>
     <string>Content\jqueryUI1.8a\css\ui-lightness\images\ui-bg_diagonals-thick_18_b81900_40x40.png</string>
     <string>Content\jqueryUI1.8a\css\ui-lightness\images\ui-bg_diagonals-thick_20_666666_40x40.png</string>
     <string>Content\jqueryUI1.8a\css\ui-lightness\images\ui-bg_flat_10_000000_40x100.png</string>
@@ -705,7 +798,69 @@
     <string>Content\jqueryUI1.8a\index.html</string>
     <string>Content\jqueryUI1.8a\js\jquery-1.4.2.min.js</string>
     <string>Content\jqueryUI1.8a\js\jquery-ui-1.8.min.js</string>
+    <string>Content\styles_v1.css</string>
+    <string>Content\wysiwyg.css</string>
     <string>Global.asax</string>
+    <string>images\bg-body.gif</string>
+    <string>images\bg-box-1-body.gif</string>
+    <string>images\bg-box-1-footer.jpg</string>
+    <string>images\bg-box-1-header.gif</string>
+    <string>images\bg-footer.jpg</string>
+    <string>images\bg-main-tab-menu-sel.gif</string>
+    <string>images\bg-main-tab-menu.gif</string>
+    <string>images\bg-page-wrapper-1.jpg</string>
+    <string>images\bg-page-wrapper-2.jpg</string>
+    <string>images\bg-search.gif</string>
+    <string>images\bg-textfield.png</string>
+    <string>images\blue-button.jpg</string>
+    <string>images\calendar\calendar-next.gif</string>
+    <string>images\calendar\calendar-prev.gif</string>
+    <string>images\close.gif</string>
+    <string>images\edit.gif</string>
+    <string>images\fancybox\fancy_closebox.png</string>
+    <string>images\fancybox\fancy_left.png</string>
+    <string>images\fancybox\fancy_progress.png</string>
+    <string>images\fancybox\fancy_right.png</string>
+    <string>images\fancybox\fancy_shadow_e.png</string>
+    <string>images\fancybox\fancy_shadow_n.png</string>
+    <string>images\fancybox\fancy_shadow_ne.png</string>
+    <string>images\fancybox\fancy_shadow_nw.png</string>
+    <string>images\fancybox\fancy_shadow_s.png</string>
+    <string>images\fancybox\fancy_shadow_se.png</string>
+    <string>images\fancybox\fancy_shadow_sw.png</string>
+    <string>images\fancybox\fancy_shadow_w.png</string>
+    <string>images\fancybox\fancy_title_left.png</string>
+    <string>images\fancybox\fancy_title_main.png</string>
+    <string>images\fancybox\fancy_title_right.png</string>
+    <string>images\footer-arrow.gif</string>
+    <string>images\icon-edit-big.gif</string>
+    <string>images\icon-search-big.gif</string>
+    <string>images\icon-tick-big.gif</string>
+    <string>images\info-menu-bullet.gif</string>
+    <string>images\inside-tabs-menu-arrow.gif</string>
+    <string>images\jquery.wysiwyg.gif</string>
+    <string>images\latest-tasks-caption.png</string>
+    <string>images\logo-login.jpg</string>
+    <string>images\menuitem-close.jpg</string>
+    <string>images\menuitem-open.jpg</string>
+    <string>images\message\icon-attention.gif</string>
+    <string>images\message\icon-error.gif</string>
+    <string>images\message\icon-ok.gif</string>
+    <string>images\message\icon-warning.gif</string>
+    <string>images\open-popup.jpg</string>
+    <string>images\search-button.png</string>
+    <string>images\search-field.png</string>
+    <string>images\sign-in.gif</string>
+    <string>images\star.jpg</string>
+    <string>images\submit.gif</string>
+    <string>images\success.gif</string>
+    <string>images\table-edit.jpg</string>
+    <string>images\table\sample-1.jpg</string>
+    <string>images\table\sample-2.jpg</string>
+    <string>images\table\sample-3.jpg</string>
+    <string>images\table\sample-4.jpg</string>
+    <string>images\table\sample-5.jpg</string>
+    <string>images\tick.gif</string>
     <string>Resources\Banners\link.txt</string>
     <string>Scripts\ckeditor\adapters\jquery.js</string>
     <string>Scripts\ckeditor\CHANGES.html</string>
@@ -1249,13 +1404,35 @@
     <string>Scripts\ckeditor\_source\skins\v2\templates.css</string>
     <string>Scripts\ckeditor\_source\skins\v2\toolbar.css</string>
     <string>Scripts\ckeditor\_source\themes\default\theme.js</string>
+    <string>Scripts\jquery.fancybox.js</string>
+    <string>Scripts\jquery.wysiwyg.js</string>
+    <string>Scripts\onload-index.js</string>
+    <string>Scripts\onload-login.js</string>
     <string>Scripts\postify.js</string>
+    <string>Content\jqueryUI1.8a\css\redmond\images\ui-bg_flat_0_aaaaaa_40x100.png</string>
+    <string>Content\jqueryUI1.8a\css\redmond\images\ui-bg_flat_55_fbec88_40x100.png</string>
+    <string>Content\jqueryUI1.8a\css\redmond\images\ui-bg_glass_75_d0e5f5_1x400.png</string>
+    <string>Content\jqueryUI1.8a\css\redmond\images\ui-bg_glass_85_dfeffc_1x400.png</string>
+    <string>Content\jqueryUI1.8a\css\redmond\images\ui-bg_glass_95_fef1ec_1x400.png</string>
+    <string>Content\jqueryUI1.8a\css\redmond\images\ui-bg_gloss-wave_55_5c9ccc_500x100.png</string>
+    <string>Content\jqueryUI1.8a\css\redmond\images\ui-bg_inset-hard_100_f5f8f9_1x100.png</string>
+    <string>Content\jqueryUI1.8a\css\redmond\images\ui-bg_inset-hard_100_fcfdfd_1x100.png</string>
+    <string>Content\jqueryUI1.8a\css\redmond\images\ui-icons_217bc0_256x240.png</string>
+    <string>Content\jqueryUI1.8a\css\redmond\images\ui-icons_2e83ff_256x240.png</string>
+    <string>Content\jqueryUI1.8a\css\redmond\images\ui-icons_469bdd_256x240.png</string>
+    <string>Content\jqueryUI1.8a\css\redmond\images\ui-icons_6da8d5_256x240.png</string>
+    <string>Content\jqueryUI1.8a\css\redmond\images\ui-icons_cd0a0a_256x240.png</string>
+    <string>Content\jqueryUI1.8a\css\redmond\images\ui-icons_d8e7f3_256x240.png</string>
+    <string>Content\jqueryUI1.8a\css\redmond\images\ui-icons_f9bd01_256x240.png</string>
+    <string>Content\jqueryUI1.8a\css\redmond\jquery-ui-1.8.css</string>
     <string>Scripts\Site.Master.js</string>
     <string>Views\Article\Category.aspx</string>
     <string>Views\Article\View.aspx</string>
     <string>Views\Home\NewestJobControl.ascx</string>
     <string>Views\Home\PublicPollControl.ascx</string>
+    <string>Views\Shared\Sample.aspx</string>
     <string>Views\Shared\ScriptsControl.ascx</string>
+    <string>Views\Shared\Sidebar.ascx</string>
     <string>Views\WebContact\Index.aspx</string>
     <string>Views\Home\Index.aspx</string>
     <string>Views\Shared\LeftNavigationControl.ascx</string>
@@ -1505,6 +1682,7 @@
     <string>Areas\DBNL.App.Admin\Views\Web.config</string>
     <string>Configs\App.config</string>
     <string>Content\jqueryUI1.8a\development-bundle\external\cookie\jquery.cookie.zip</string>
+    <string>Views\Shared\BO.Master</string>
   </ContentFiles>
   <Name>DBNL.App</Name>
   <Path>C:\Projects\dubaonhanluc\DBNL\DBNL.App\DBNL.App\</Path>

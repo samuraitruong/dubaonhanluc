@@ -321,3 +321,18 @@ div#title
     font-weight: bold;
     color: #ff0000;
 }
+
+#sidebar
+{
+    float:left;
+    width: 180px;
+    padding:0px 0px 0px 5px;
+}
+
+#content 
+{
+    width: 840px;
+    float:left;
+    padding-left: 50px;
+    border-left: dotted #33333 1px;
+}

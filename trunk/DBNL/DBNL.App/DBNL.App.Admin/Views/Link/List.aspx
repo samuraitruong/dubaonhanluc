@@ -8,58 +8,56 @@
 
     <h2>List</h2>
 
-    <table>
-        <tr>
-            <th></th>
-            <th>
-                Id
-            </th>
-            <th>
-                Title
-            </th>
-            <th>
-                Url
-            </th>
-            <th>
-                CreatedDate
-            </th>
-            <th>
-                UpdatedDate
-            </th>
-        </tr>
-
-    <% foreach (var item in Model) { %>
-    
-        <tr>
-            <td>
-                <%= Html.ActionLink("Edit", "Edit", new { id=item.Id }) %> |
-                <%= Html.ActionLink("Details", "Details", new { id=item.Id })%> |
-                <%= Html.ActionLink("Delete", "Delete", new { id=item.Id })%>
-            </td>
-            <td>
-                <%= Html.Encode(item.Id) %>
-            </td>
-            <td>
-                <%= Html.Encode(item.Title) %>
-            </td>
-            <td>
-                <%= Html.Encode(item.Url) %>
-            </td>
-            <td>
-                <%= Html.Encode(String.Format("{0:g}", item.CreatedDate)) %>
-            </td>
-            <td>
-                <%= Html.Encode(String.Format("{0:g}", item.UpdatedDate)) %>
-            </td>
-        </tr>
-    
-    <% } %>
-
-    </table>
-
-    <p>
-        <%= Html.ActionLink("Create New", "Create") %>
-    </p>
-
+     <div>
+        <table id="grid" cellpadding="0" cellspacing="0">
+        </table>
+        <div id="pager" style="text-align: center;">
+        
+    </div>
+    </div>
 </asp:Content>
 
+<asp:Content ID="Content3" runat="server" ContentPlaceHolderID="ScriptContent">
+    <script language="javascript" type="text/javascript" src="<%= Url.Content("~/Scripts/GridData.js") %>"></script>
+    <script type="text/javascript">
+$(document).ready(function () {
+
+            DBNL.Admin.Links.setupGrid($("#grid"), $("#pager"));
+        });
+
+        DBNL.Admin.Links= {
+            setupGrid: function (grid, pager) {
+                var lastsel;
+                grid.jqGrid({
+                    url: "<%=Url.Action("List", "Link" )%>",
+                    editurl : "<%=Url.Action("EditRow", "Link" )%>",
+                    ajaxGridOptions: {
+                        type: "POST"
+                    },
+                    datatype: "json",
+                    colNames: [ 'EntityId','Title', 'Url'],
+                    colModel: [
+                    {
+                        name: 'EntityId', index: 'EntityId', width: 40, align: 'left',editable: true, editoptions: {readonly:'readonly'},editrules: { edithidden: true }, hidden: true },
+
+                        { name: 'Title', index: 'Title', sortable: true, editable: true, edittype: 'text', editoptions: { size: 20, maxlength:100} , hidden: false },
+                        { name: 'Url', index: 'Url', width: 150, align: 'center', formatter: 'showlink', formatoptions: { prefix: "$" }, sortable: true, editable: true, edittype: 'text', editoptions: { size: 20, maxlength:100}, hidden: false },
+                      ],
+                    rowNum: 10,
+                    rowList: [10, 20, 30],
+                    pager: pager,
+                    sortname: 'Title',
+                    sortorder: "asc",
+                    viewrecords: true,
+                    width: '100%',
+                    height: '100%',
+                    autowidth: true,
+                    rownumbers: true,
+                    caption: 'Link list'
+                    
+                })
+        .navGrid('#pager', { edit: true, add: true, del: false, search: true, view: true });
+            }
+        };
+</script>
+</asp:Content>

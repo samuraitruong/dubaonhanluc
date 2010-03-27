@@ -2,7 +2,7 @@
 <script src="<%= Url.Content("~/Content/jqueryUI1.8a/js/jquery-1.4.2.min.js") %>" type="text/javascript" ></script>
 <%--<link href="<%= Url.Content("~/Content/jqueryUI1.8a/css/ui-lightness/jquery-ui-1.8.css") %>" rel="stylesheet" type="text/css" />--%>
 <link href="<%= Url.Content("~/Content/jqueryUI1.8a/css/redmond/jquery-ui-1.8.css") %>" rel="stylesheet" type="text/css" />
-<link href="<%= Url.Content("~/Content/Sidebar/style.css") %>" rel="stylesheet" type="text/css" />
+<%--<link href="<%= Url.Content("~/Content/Sidebar/style_v1.css") %>" rel="stylesheet" type="text/css" />--%>
 <link href="<%= Url.Content("~/Content/jqGrid3.6.4/css/ui.jqgrid.css") %>" rel="stylesheet" type="text/css" />
 <link href="<%= Url.Content("~/Content/Site.css") %>" rel="stylesheet" type="text/css" />
 <script src="<%= Url.Content("~/Scripts/ckeditor/ckeditor.js") %>" type="text/javascript" ></script>
