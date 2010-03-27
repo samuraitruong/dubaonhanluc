@@ -4,7 +4,10 @@
 
 var DBNL = {
     Admin: {
-        Links: {}
+        Links: {},
+        Banner: {},
+        Contact: {},
+        Poll: {}
     },
     SiteMaster: {
         setDefaults: function() {

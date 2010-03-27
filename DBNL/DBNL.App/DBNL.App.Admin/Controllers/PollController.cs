@@ -4,6 +4,8 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using DBNL.App.Models.Business;
+using System.Linq.Dynamic;
+using DBNL.App.Models.Helpers;
 
 namespace DBNL.App.Admin.Controllers
 {
@@ -110,6 +112,53 @@ namespace DBNL.App.Admin.Controllers
             {
                 return View();
             }
+        }
+
+        protected string getFormValue(string key)
+        {
+            try
+            {
+                return Request.Form[key];
+            }
+            catch
+            {
+                return "";
+            }
+        }
+
+        [HttpPost]
+        public ActionResult List(int page, int rows, string sidx, string sord)
+        {
+            var poll = PollService.List();
+            bool searchOn = bool.Parse(Request.Form["_search"]);
+            string searchExp = "";
+            if (searchOn)
+            {
+                searchExp = string.Format("{0}.ToString().Contains(@0)", getFormValue("searchField"));
+                poll = poll.Where(searchExp, new string[] { getFormValue("searchString") });
+            }
+            var model = from entity in poll.OrderBy(sidx + " " + sord)
+                        select new
+                        {
+                            EntityId = entity.Id,
+                            Name = entity.PollName,
+                            Status = entity.Status
+                        };
+            return Json(model.ToJqGridData(page, rows, null, "", new[] { "Name", "Status" }), JsonRequestBehavior.AllowGet);
+        }
+
+        [HttpPost]
+        public ActionResult EditRow(int? id, int? EntityId, string name, string status)
+        {
+            if (EntityId.HasValue)
+            {
+                PollService.Edit(EntityId.Value, name, status);
+            }
+            else
+            {
+                PollService.Add(name, status);
+            }
+            return Content("true");
         }
     }
 }

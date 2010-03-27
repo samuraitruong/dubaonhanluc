@@ -13,6 +13,11 @@ namespace DBNL.App.Models.Business
             return GetInstance().Polls.AsEnumerable();
         }
 
+        public static IQueryable<Poll> List()
+        {
+            return GetInstance().Polls.AsQueryable();
+        }
+
         public static Poll GetItem(int id)
         {
             return GetInstance().Polls.Where(p => p.Id == id).SingleOrDefault();

@@ -9,6 +9,8 @@ using DBNL.App.Models.ViewData;
 using DBNL.App.Models.Statics;
 using DBNL.App.Models;
 using DBNL.App.Config;
+using System.Linq.Dynamic;
+using DBNL.App.Models.Helpers;
 
 namespace DBNL.App.Admin.Controllers
 {
@@ -145,6 +147,56 @@ namespace DBNL.App.Admin.Controllers
             {
                 return View();
             }
+        }
+
+        protected string getFormValue(string key)
+        {
+            try
+            {
+                return Request.Form[key];
+            }
+            catch
+            {
+                return "";
+            }
+        }
+
+        [HttpPost]
+        public ActionResult List(int page, int rows, string sidx, string sord)
+        {
+            var bann = BannerService.List();
+            bool searchOn = bool.Parse(Request.Form["_search"]);
+            string searchExp = "";
+            if (searchOn)
+            {
+                searchExp = string.Format("{0}.ToString().Contains(@0)", getFormValue("searchField"));
+                bann = bann.Where(searchExp, new string[] { getFormValue("searchString") });
+            }
+            var model = from entity in bann.OrderBy(sidx + " " + sord)
+                        select new
+                        {
+                            EntityId = entity.Id,
+                            Name = entity.Name,
+                            Url = entity.Url,
+                            Image = string.Format("<img alt='Banner image' src='" + entity.BannerImage + "' style='width:100px;height:100px;' />"),
+                            Status = entity.Status,
+                            Position = entity.BannerPosition
+                        };
+            return Json(model.ToJqGridData(page, rows, null, "", new[] { "Name", "Url", "Image", "Status", "Position" }), JsonRequestBehavior.AllowGet);
+        }
+
+        [HttpPost]
+        public ActionResult EditRow(int? id, int? EntityId, string name, string Url, string image, string status, string position)
+        {
+            if (EntityId.HasValue)
+            {
+                BannerService.Edit(EntityId.Value, name, Url, image, status, position);
+            }
+            else
+            {
+                BannerService.Add(name, Url, image, position);
+            }
+            return Content("true");
         }
     }
 }

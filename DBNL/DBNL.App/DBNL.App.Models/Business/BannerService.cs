@@ -13,6 +13,11 @@ namespace DBNL.App.Models.Business
             return GetInstance().Banners.AsEnumerable();
         }
 
+        public static IQueryable<Banner> List()
+        {
+            return GetInstance().Banners.AsQueryable();
+        }
+
         public static Banner GetItem(int id)
         {
             return GetInstance().Banners.Where(p => p.Id == id).SingleOrDefault();
@@ -35,7 +40,7 @@ namespace DBNL.App.Models.Business
 
         public static void Delete(int id)
         {
-            Banner banner = GetInstance().Banners.Where(p => p.Id == id).SingleOrDefault();
+            Banner banner = GetItem(id);
             GetInstance().Banners.DeleteOnSubmit(banner);
             Commit();
         }

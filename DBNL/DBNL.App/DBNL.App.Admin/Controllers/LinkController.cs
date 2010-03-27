@@ -109,7 +109,8 @@ namespace DBNL.App.Admin.Controllers
 
             return Json(model.ToJqGridData(page, rows, null, "", new[] { "Title", "Url" }), JsonRequestBehavior.AllowGet);
         }
-protected string getFormValue(string key)
+
+        protected string getFormValue(string key)
         {
             try
             {
@@ -119,7 +120,7 @@ protected string getFormValue(string key)
             {
                 return "";
             }
-}        //
+        }        //
         // GET: /Link/Delete/5
  
         public ActionResult Delete(int id)
