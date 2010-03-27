@@ -158,15 +158,15 @@ namespace DBNL.App.Admin.Controllers
         }
 
         [HttpPost]
-        public ActionResult EditRow(int? id, int? EntityId, string name, string status)
+        public ActionResult EditRow(int? id, string PollName, string Status)
         {
-            if (EntityId.HasValue)
+            if (id.HasValue)
             {
-                PollService.Edit(EntityId.Value, name, status);
+                PollService.Edit(id.Value, PollName, Status);
             }
             else
             {
-                PollService.Add(name, status);
+                PollService.Add(PollName, Status);
             }
             return Content("true");
         }

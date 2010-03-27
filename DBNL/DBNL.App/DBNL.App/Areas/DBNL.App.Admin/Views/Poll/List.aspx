@@ -38,9 +38,9 @@ $(document).ready(function () {
                     colNames: [ 'EntityId','PollName', 'Status'],
                     colModel: [
                     {
-                        name: 'EntityId', index: 'EntityId', width: 40, align: 'left', editable: true, editoptions: {readonly:'readonly'},editrules: { edithidden: true }, hidden: true },
+                        name: 'EntityId', index: 'EntityId', width: 40, align: 'left', editable: false, key: true, editoptions: {readonly:'readonly'},editrules: { edithidden: true }, hidden: true },
 
-                        { name: 'PollName', index: 'PollName', width: 250,sortable: true, editable: true, edittype: 'text', editoptions: { size: 20, maxlength:100} , hidden: false },
+                        { name: 'PollName', index: 'PollName', width: 250, sortable: true, editable: true, edittype: 'text', editoptions: { size: 20, maxlength:100} , hidden: false },
                         { name: 'Status', index: 'Status', width: 35, align: 'center', sortable: true, editable: true, edittype: 'select', style: 'select', editoptions: { dataUrl: "<%=Url.Action("GetSelectStatus", "Poll" )%>"}, hidden: false },
                       ],
                     rowNum: 10,
