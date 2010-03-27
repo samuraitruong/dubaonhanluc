@@ -17,6 +17,11 @@ namespace DBNL.App.Models.Business
             return GetInstance().Contacts.Where(p => p.Id == id).SingleOrDefault();
         }
 
+        public static IQueryable<Contact> List()
+        {
+            return GetInstance().Contacts.AsQueryable();
+        }
+
         public static Contact Add(string name, string email, string status)
         {
             Contact contact = new Contact();
@@ -30,7 +35,7 @@ namespace DBNL.App.Models.Business
 
         public static Contact Edit(int id, string name, string email, string status)
         {
-            Contact contact = GetInstance().Contacts.Where(p => p.Id == id).SingleOrDefault();
+            Contact contact = GetItem(id);
             contact.Name = name.Trim();
             contact.Email = email.Trim();
             contact.Status = status.Trim();
@@ -40,7 +45,7 @@ namespace DBNL.App.Models.Business
 
         public static void Delete(int id)
         {
-            Contact contact = GetInstance().Contacts.Where(p => p.Id == id).SingleOrDefault();
+            Contact contact = GetItem(id);
             GetInstance().Contacts.DeleteOnSubmit(contact);
             Commit();
         }
