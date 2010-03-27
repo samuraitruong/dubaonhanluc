@@ -25,11 +25,13 @@ var DBNL = {
                     id: "Id"
                 },
                 loadui: "block",
-                mtype: 'GET',
+                mtype: 'POST',
                 multiboxonly: true,
                 rowNum: 20,
                 rowList: [10, 20, 50],
-                viewrecords: true
+                viewrecords: true,
+                pgtext: "Pagex {0} of {1}"
+
             });
         }
     }

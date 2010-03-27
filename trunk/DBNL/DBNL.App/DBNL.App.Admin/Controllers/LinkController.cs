@@ -65,18 +65,19 @@ namespace DBNL.App.Admin.Controllers
 
         }
         [HttpPost]
-        public ActionResult EditRow(int? id, int? EntityId, string Title, string Url)
+        public ActionResult EditRow(int? id,  string Title, string Url)
         {
 
-            if (EntityId.HasValue)
+            if (id.HasValue)
             {
-                LinkService.Update(EntityId.Value, Title, Url);
+                LinkService.Update(id.Value, Title, Url);
             }
             else
             {
                 LinkService.Add(Title, Url);
             }
             return Content("true");
+            \   
            
         }
 

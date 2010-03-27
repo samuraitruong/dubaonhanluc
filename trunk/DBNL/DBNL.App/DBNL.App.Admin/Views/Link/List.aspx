@@ -38,10 +38,10 @@ $(document).ready(function () {
                     colNames: [ 'EntityId','Title', 'Url'],
                     colModel: [
                     {
-                        name: 'EntityId', index: 'EntityId', width: 40, align: 'left',editable: true, editoptions: {readonly:'readonly'},editrules: { edithidden: true }, hidden: true },
+                        name: 'EntityId',key:true, index: 'EntityId', width: 40, align: 'left',editable: false, editoptions: {readonly:'readonly'},editrules: { edithidden: true }, hidden: true },
 
                         { name: 'Title', index: 'Title', sortable: true, editable: true, edittype: 'text', editoptions: { size: 20, maxlength:100} , hidden: false },
-                        { name: 'Url', index: 'Url', width: 150, align: 'center', formatter: 'showlink', formatoptions: { prefix: "$" }, sortable: true, editable: true, edittype: 'text', editoptions: { size: 20, maxlength:100}, hidden: false },
+                        { name: 'Url', index: 'Url', width: 150, align: 'left', formatter: 'showlink', formatoptions: { prefix: "$" }, sortable: true, editable: true, edittype: 'text', editoptions: { size: 20, maxlength:100}, hidden: false },
                       ],
                     rowNum: 10,
                     rowList: [10, 20, 30],
@@ -53,10 +53,18 @@ $(document).ready(function () {
                     height: '100%',
                     autowidth: true,
                     rownumbers: true,
-                    caption: 'Link list'
-                    
+                    caption: 'Link list',
+//                    search : {
+//                                 caption: "Search...",
+//                                 Find: "Find",
+//                                 Reset: "Reset",
+//                                 odata : ['equal', 'not equal', 'less', 'less or equal','greater','greater or equal', 'begins with','does not begin with','is in','is not in','ends with','does not end with','contains','does not contain'],
+//                                 groupOps: [ { op: "AND", text: "all" }, { op: "OR", text: "any" } ],
+//                                 matchText: " match",
+//                                 rulesText: " rules"
+//                               }
                 })
-        .navGrid('#pager', { edit: true, add: true, del: false, search: true, view: true });
+        .navGrid('#pager', { edit: true, add: true, del: true, search: true, view: true }, {}, {}, {url: "Delete"});
             }
         };
 </script>
