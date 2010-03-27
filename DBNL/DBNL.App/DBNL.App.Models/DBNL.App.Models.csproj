@@ -76,6 +76,7 @@
     <Compile Include="Extensions\HtmlHelperExtensions.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Extensions\ListExtensions.cs" />
     <Compile Include="Extensions\StringExtensions.cs" />
     <Compile Include="Helpers\IPagedList.cs" />
     <Compile Include="Helpers\JqGridData.cs" />
