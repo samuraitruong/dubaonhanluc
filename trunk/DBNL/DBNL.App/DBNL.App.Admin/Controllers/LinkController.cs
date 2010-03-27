@@ -77,8 +77,6 @@ namespace DBNL.App.Admin.Controllers
                 LinkService.Add(Title, Url);
             }
             return Content("true");
-            \   
-           
         }
 
 
