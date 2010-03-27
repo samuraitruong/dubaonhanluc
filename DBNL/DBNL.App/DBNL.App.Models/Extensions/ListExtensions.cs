@@ -6,7 +6,7 @@ using System.Web.Mvc;
 
 namespace DBNL.App.Models.Extensions
 {
-    static class ListExtensions
+    public static class ListExtensions
     {
         public static string ToHtml(this IEnumerable<SelectListItem> list){
 

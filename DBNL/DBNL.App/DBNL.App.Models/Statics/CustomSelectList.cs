@@ -37,6 +37,14 @@ namespace DBNL.App.Models.Statics
            return statList;
        }
 
+       public static IEnumerable<SelectListItem> CreatePollStatus()
+       {
+           List<SelectListItem> statList = new List<SelectListItem>();
+           statList.Add(new SelectListItem() { Text = "Công khai", Value = EntityStatuses.Public.ToString() });
+           statList.Add(new SelectListItem() { Text = "Không công khai", Value = EntityStatuses.Unpublic.ToString() });
+           return statList;
+       }
+
        public static IEnumerable<SelectListItem> CreateListCategories(bool insertEmptyItem)
        {
            List<SelectListItem> list = new List<SelectListItem>();

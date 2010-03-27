@@ -8,6 +8,8 @@ namespace DBNL.App.Models.Statics
     public enum EntityStatuses
     {
         Actived,
-        Public
+        Public,
+        Unpublic,
+        Inactive
     }
 }

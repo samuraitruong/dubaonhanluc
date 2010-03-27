@@ -6,6 +6,9 @@ using System.Web.Mvc;
 using DBNL.App.Models.Business;
 using System.Linq.Dynamic;
 using DBNL.App.Models.Helpers;
+using DBNL.App.Models.Statics;
+using DBNL.App.Models.Extensions;
+
 
 namespace DBNL.App.Admin.Controllers
 {
@@ -114,6 +117,13 @@ namespace DBNL.App.Admin.Controllers
             }
         }
 
+        
+        public ActionResult GetSelectStatus()
+        {
+            IEnumerable<SelectListItem> list = CustomSelectList.CreatePollStatus();
+            return Content(list.ToHtml());
+        }
+
         protected string getFormValue(string key)
         {
             try
@@ -141,10 +151,10 @@ namespace DBNL.App.Admin.Controllers
                         select new
                         {
                             EntityId = entity.Id,
-                            Name = entity.PollName,
+                            PollName = entity.PollName,
                             Status = entity.Status
                         };
-            return Json(model.ToJqGridData(page, rows, null, "", new[] { "Name", "Status" }), JsonRequestBehavior.AllowGet);
+            return Json(model.ToJqGridData(page, rows, null, "", new[] { "PollName", "Status" }), JsonRequestBehavior.AllowGet);
         }
 
         [HttpPost]
