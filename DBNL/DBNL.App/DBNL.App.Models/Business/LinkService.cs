@@ -11,7 +11,10 @@ namespace DBNL.App.Models.Business
         {
             return GetInstance().Links.AsEnumerable();
         }
-
+        public static IQueryable<Link> List()
+        {
+            return GetInstance().Links.AsQueryable();
+        }
         public static Link GetItem(int id)
         {
             return GetInstance().Links.Where(p => p.Id == id).SingleOrDefault();
@@ -44,6 +47,16 @@ namespace DBNL.App.Models.Business
             Link link = GetInstance().Links.Where(p => p.Id == id).SingleOrDefault();
             GetInstance().Links.DeleteOnSubmit(link);
             Commit();
+        }
+
+        public static Link Update(int EntityId, string Title, string Url)
+        {
+            Link entity = GetItem(EntityId);
+            entity.Url = Url;
+            entity.Title = Title;
+            entity.UpdatedDate = DateTime.Now;
+            Commit();
+            return entity;
         }
     }
 }

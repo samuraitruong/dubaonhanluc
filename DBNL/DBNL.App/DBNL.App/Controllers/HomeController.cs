@@ -26,6 +26,10 @@ namespace DBNL.App.Controllers
         {
             return View();
         }
+        public ActionResult Sample()
+        {
+            return View();
+        }
         public ActionResult Index()
         {
             ViewData.Model = new HomePageViewData();

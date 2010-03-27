@@ -2,9 +2,12 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using System.Linq.Dynamic;
 using System.Web.Mvc;
-using DBNL.App.Models;
+using DBNL.App.Models.ViewData;
 using DBNL.App.Models.Business;
+using DBNL.App.Models.Helpers;
+using DBNL.App.Models;
 
 namespace DBNL.App.Admin.Controllers
 {
@@ -59,9 +62,64 @@ namespace DBNL.App.Admin.Controllers
         {
             ViewData.Model = LinkService.GetAllItems();
             return View();
+
+        }
+        [HttpPost]
+        public ActionResult EditRow(int? id, int? EntityId, string Title, string Url)
+        {
+
+            if (EntityId.HasValue)
+            {
+                LinkService.Update(EntityId.Value, Title, Url);
+            }
+            else
+            {
+                LinkService.Add(Title, Url);
+            }
+            return Content("true");
+           
         }
 
-        //
+
+        [HttpPost]
+        public ActionResult List(int page, int rows, string sidx, string sord)
+        {
+
+            var links = LinkService.List();
+            
+            bool searchOn = bool.Parse(Request.Form["_search"]);
+            string searchExp = "";
+            if (searchOn)
+            {
+                searchExp = string.Format("{0}.ToString().Contains(@0)", getFormValue("searchField"));
+                links = links.Where(searchExp, new string[] { getFormValue("searchString") });
+            }
+            
+
+            var model = from entity in links.OrderBy(sidx + " " + sord)
+                        select new
+                        {
+                            EntityId = entity.Id,
+                            Title = entity.Title,
+                            Url = entity.Url,
+                        };
+
+
+                
+
+            return Json(model.ToJqGridData(page, rows, null, "", new[] { "Title", "Url" }), JsonRequestBehavior.AllowGet);
+        }
+protected string getFormValue(string key)
+        {
+            try
+            {
+                return Request.Form[key];
+            }
+            catch
+            {
+                return "";
+            }
+}        //
         // GET: /Link/Delete/5
  
         public ActionResult Delete(int id)

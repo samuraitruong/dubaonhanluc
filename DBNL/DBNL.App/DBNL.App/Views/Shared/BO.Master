@@ -1,0 +1,154 @@
+﻿<%@ Master Language="C#" Inherits="System.Web.Mvc.ViewMasterPage" %>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="author" content="" />
+    <title><asp:ContentPlaceHolder ID="TitleContent" runat="server" /></title>
+    <%Html.RenderPartial("ScriptsControl"); %>
+    <asp:ContentPlaceHolder ID="headerPlaceHolder" runat="server"></asp:ContentPlaceHolder>
+    <link rel="stylesheet" href="/Content/general_v1.css" type="text/css" media="screen" />
+    <link rel="stylesheet" href="/Content/styles_v1.css" type="text/css" media="screen" />
+    <link rel="stylesheet" href="/Content/calendar.css" type="text/css" media="screen" />
+    <link rel="stylesheet" href="/Content/fancybox.css" type="text/css"  media="screen" />
+    <link rel="stylesheet" href="/Content/message.css" type="text/css" media="screen" />
+    <link rel="stylesheet" href="/Content/form.css" type="text/css" media="screen" />
+    <link rel="stylesheet" href="/Content/wysiwyg.css" type="text/css" media="screen" />
+  
+    <!--[if IE ]><link rel="stylesheet" href="/Content/ie.css" type="text/css" media="screen" /><![endif]-->
+    <!--[if IE 6]><link rel="stylesheet" href="/Content/ie6.css" type="text/css" media="screen" /><![endif]-->
+    <!--[if IE 7]><link rel="stylesheet" href="/Content/ie7.css" type="text/css" media="screen" /><![endif]-->
+
+    <script type="text/javascript" src="/Scripts/jquery.fancybox.js"></script>
+    <script type="text/javascript" src="/Scripts/jquery.wysiwyg.js"></script>
+    <script type="text/javascript" src="/Scripts/onload-index.js"></script>
+  </head>
+
+  <body class="common">
+    <div id="page-wrapper-1">
+
+      <div id="header-wrapper-1">
+      
+        <h1 id="logo">
+          <!-- ****************** LOGO ****************** -->
+          <a href="default.htm"><img src="img/logo.jpg" alt="Projectic Logo" /></a>
+        </h1>
+
+        <div id="star"></div>
+        
+        
+        <!-- ****************** MENUS ****************** -->
+        <ul id="top-menu">
+          <li><a href="index.htm" title="">About</a></li>
+          <li><a href="default.htm" title="">Terms And Conditions</a></li>
+          <li><a href="default.htm" title="">Advanced Search</a></li>
+          <li><a href="default.htm" title="">Contact</a></li>
+        </ul> <!--top-menu-->
+
+        <ul id="main-menu">
+          <li><a class="active" href="index.htm" title="">Home page</a></li>
+          <li><a href="default.htm" title="">Notes</a></li>
+          <li><a href="default.htm" title="">Messages</a></li>
+          <li><a href="default.htm" title="">Forms</a></li>
+          <li><a href="default.htm" title="">Tables</a></li>
+        </ul> <!--main-menu-->
+
+        <!-- ****************** SEARCH BOX ****************** -->
+        <form id="search-box" method="post" action="">
+          <fieldset>
+            <input type="text" id="search-field" name="searchfield" value="" />
+            <input type="submit" name="search" id="search" value="Search"/>
+            <a href="default.htm" title="" id="advanced-search">Advanced search</a>
+          </fieldset>
+        </form>
+
+      </div> <!--header-wrapper-1 -->
+
+
+      <!-- ****************** LEFT SIDEBAR ****************** -->
+      <div id="left-wrapper-1">
+          <h2 class="box-1-title">User details</h2>
+          <div class="box-1">
+            <p>Welcome, <strong>John Doe</strong>!</p>
+            
+            <ul id="user-menu">
+              <li><a href="default.htm" title="">Your tasks</a> |&nbsp;</li>
+              <li><a href="default.htm" title="">Edit your details</a> |&nbsp;</li>
+              <li><a href="login.htm" title="">Logout</a></li>
+            </ul>
+            <div class="clear"></div>
+          </div> <!--box-1-->
+          <div class="shadow"></div>
+
+          <!-- ****************** SIDEMENU ****************** -->
+          <h2 class="box-1-title">Side menu</h2>
+          <div class="box-1">
+            <ul id="side-menu">
+          		<li class="submenu-item">
+          			<a class="submenu-link" href="#">Sidemenu Link 1</a>
+          			<ul id="sub-1">
+          				<li><a href="#">Add New Article</a></li>
+          				<li><a href="#">Edit Article</a></li>
+          				<li><a href="#">Remove Article</a></li>
+          				<li><a href="#">Search</a></li>
+          			</ul>
+          		</li>
+      
+          		<li class="submenu-item">
+          			<a class="submenu-link" href="#">Sidemenu Link 2</a>
+          			<ul id="sub-2">
+          				<li><a href="#">View Posts</a></li>
+          				<li><a href="#">Publish Posts</a></li>
+          				<li><a href="#">Filter Posts</a></li>
+          				<li><a href="#">Search</a></li>
+          			</ul>
+          		</li>
+
+          		<li class="submenu-item">
+                <a class="submenu-link no-submenu" href="login.htm">Back to Login Page</a>
+          		</li>
+            </ul>
+            <div class="clear"></div>
+          </div> <!--box-1-->
+          <div class="shadow"></div>
+
+
+          <!-- ****************** jQuery CALENDAR ****************** -->
+          <h2 class="box-1-title">Calendar</h2>
+          <div class="box-1">
+            <div id="calendar"></div>
+          </div> <!--box-1-->
+          <div class="shadow"></div>
+      </div> <!--left-wrapper-->
+
+
+      <div id="content-wrapper-1">
+        <div id="squeeze">
+          <div id="content">
+          <asp:ContentPlaceHolder ID="MainContent" runat="server" />
+          
+
+          </div> <!--content-wrapper-->
+  
+          <div class="clear"></div>
+
+        </div>
+      </div> <!--content-wrapper-->
+
+      <div class="clear"></div>
+    </div> <!--page-wrapper-1 -->
+
+
+    <!-- ****************** FOOTER ****************** -->
+    <div id="footer-wrapper-1">
+      <div id="footer-arrow">
+        <p><strong>Thank you for checking this theme out!</strong></p>
+        <p>
+          <a href="../themeforest.net/user/Darinka">Author on ThemeForest</a> |
+          <a href="../designagent.sk/en">DesignAgent</a>
+        </p>
+      </div>
+    </div> <!--footer-wrapper-1 -->
+
+  </body>
+</html>

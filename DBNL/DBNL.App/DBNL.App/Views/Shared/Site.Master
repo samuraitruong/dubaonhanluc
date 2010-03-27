@@ -44,7 +44,7 @@
             
             <% Html.RenderPartial("SideBar"); %>
             
-            <div class="Content" style="float:left; width:840px">
+            <div class="Content" id="content">
                 <asp:ContentPlaceHolder ID="MainContent" runat="server" />
             </div>
         </div>
