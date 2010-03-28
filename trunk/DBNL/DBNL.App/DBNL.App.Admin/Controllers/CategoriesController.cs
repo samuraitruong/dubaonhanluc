@@ -3,9 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
-using System.Web.Mvc.Ajax;
 using DBNL.App.Models.Business;
+using System.Linq.Dynamic;
+using DBNL.App.Models.Helpers;
 using DBNL.App.Models.Statics;
+using DBNL.App.Models.Extensions;
 
 namespace DBNL.App.Admin.Controllers
 {
@@ -16,7 +18,7 @@ namespace DBNL.App.Admin.Controllers
 
         public ActionResult Index()
         {
-            return View();
+            return RedirectToAction("List");
         }
 
         //
@@ -34,6 +36,22 @@ namespace DBNL.App.Admin.Controllers
             ViewData.Model = CategoryService.GetAllCategories();
             return View();
         }
+        [HttpPost]
+        public ActionResult List(int page, int rows, string sidx, string sord, int? ParentId)
+        {
+            var categories = CategoryService.List(ParentId);
+            bool searchOn = bool.Parse(Request.Form["_search"]);
+            string searchExp = "";
+            
+            var model = from entity in categories.OrderBy(sidx + " " + sord)
+                        select new
+                        {
+                            Id = entity.ID,
+                            Name = entity.CategoryName
+                        };
+            return Json(model.ToJqGridData(page, rows, null, "", new[] { "Name"}), JsonRequestBehavior.AllowGet);
+        }
+
         [HttpPost]
         public ActionResult Create(FormCollection collection)
         {

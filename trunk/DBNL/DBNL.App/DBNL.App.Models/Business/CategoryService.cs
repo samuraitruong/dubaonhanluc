@@ -30,5 +30,13 @@ namespace DBNL.App.Models.Business
         {
             return Categories.Where(p => p.ID == id).SingleOrDefault();
         }
+
+        public static IQueryable<ContentCategory> List(int? ParentId)
+        {
+            if(!ParentId.HasValue){
+                return Categories.Where( p=>p.ParentCategoryId == null).AsQueryable();
+            }
+            return Categories.Where(p => p.ParentCategoryId.Value == ParentId.Value).AsQueryable();
+        }
     }
 }
