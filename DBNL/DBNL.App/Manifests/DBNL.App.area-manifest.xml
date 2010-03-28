@@ -1680,6 +1680,9 @@
     <string>Views\Admin\ViewUserDetails.aspx</string>
     <string>Views\Shared\FO.Master</string>
     <string>Areas\DBNL.App.Admin\Views\Web.config</string>
+    <string>bin\DynamicQuery.dll</string>
+    <string>bin\DynamicQuery.pdb</string>
+    <string>bin\System.Web.DataVisualization.dll</string>
     <string>Configs\App.config</string>
     <string>Content\jqueryUI1.8a\development-bundle\external\cookie\jquery.cookie.zip</string>
     <string>Views\Shared\BO.Master</string>

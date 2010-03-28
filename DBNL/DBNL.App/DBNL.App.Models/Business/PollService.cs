@@ -53,5 +53,17 @@ namespace DBNL.App.Models.Business
         {
             return Polls.Where(p => p.Status == EntityStatuses.Public.ToString()).FirstOrDefault();
         }
+
+        public static void Public(int id)
+        {
+            foreach (var item in Polls)
+            {
+                item.Status = EntityStatuses.Unpublic.ToString();
+            }
+            Commit();
+            Poll poll = GetItem(id);
+            poll.Status = EntityStatuses.Public.ToString();
+            Commit();
+        }
     }
 }
