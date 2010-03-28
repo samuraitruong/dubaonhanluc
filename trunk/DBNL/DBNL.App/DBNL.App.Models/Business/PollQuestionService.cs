@@ -46,6 +46,10 @@ namespace DBNL.App.Models.Business
             GetInstance().PollQuestions.DeleteOnSubmit(pollQuestion);
             Commit();
         }
+        public static IQueryable<PollQuestion> List(int id)
+        {
+            return GetInstance().PollQuestions.Where(p => p.PollId == id).AsQueryable();
+        }
 
         public static PollQuestion Edit(int id, string question, int pollId, string status, int responses)
         {

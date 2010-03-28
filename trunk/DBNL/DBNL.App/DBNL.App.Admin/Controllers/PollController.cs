@@ -21,7 +21,12 @@ namespace DBNL.App.Admin.Controllers
         {
             return RedirectToAction("List");
         }
-
+        [HttpPost]
+        public ActionResult Public(int id)
+        {
+            PollService.Public(id);
+            return Json(true);
+        }
         public ActionResult List()
         {
             ViewData.Model = PollService.GetAllItems();

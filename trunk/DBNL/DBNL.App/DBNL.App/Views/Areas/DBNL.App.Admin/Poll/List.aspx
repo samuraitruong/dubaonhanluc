@@ -53,11 +53,86 @@ $(document).ready(function () {
                     height: '100%',
                     autowidth: true,
                     rownumbers: true,
-                    caption: 'Poll list'
+                    caption: 'Poll list',
                     
-                })
-        .navGrid('#pager', { edit: true, add: true, del: false, search: true, view: true });
-            }
-        };
+                    subGrid: true,
+                    subGridRowExpanded: function(subgrid_id, row_id) { 
+                    // we pass two parameters // subgrid_id is a id of the div tag created whitin a table data 
+                    // the id of this elemenet is a combination of the "sg_" + id of the row // the row_id is the id of the row 
+                    // If we wan to pass additinal parameters to the url we can use 
+                    // a method getRowData(row_id) - which returns associative array in type name-value 
+                    // here we can easy construct the flowing 
+                    var subgrid_table_id, pager_id; 
+                    subgrid_table_id = subgrid_id+"_t"; 
+                    pager_id = "p_"+subgrid_table_id; 
+                    var eid = $("#grid").getRowData(row_id)["EntityId"];
+                    $("#"+subgrid_id).html("<table id='"+subgrid_table_id+"' class='scroll'></table><div id='"+pager_id+"' class='scroll'></div>"); 
+                    jQuery("#"+subgrid_table_id).jqGrid({ 
+                    
+                            url:"<%=Url.Action("GetQuestions", "PollQuestion" )%>/", 
+                            datatype: "json", 
+                            ajaxGridOptions: {
+                            type: "POST"
+                        },
+                            colNames: ['Id','Question','Responses'], 
+                            colModel: [ 
+                                        {name:"Id",index:"Id",width:100, sortable: false, editable: true, editoptions: {readonly:'readonly'},editrules: { edithidden: true }, key:true, hidden:true},
+                                        {name:"Question",index:"Question",width:625, sortable: true, editable: true}, 
+                                        {name:"Responses",index:"Responses",width:150, align: 'center'},
+                                        
+                                      ],
+                             rowNum:20, 
+                             rowList: [10, 20, 30],
+                             pager: pager_id, 
+                             sortname: 'Question', 
+                             sortorder: "asc", 
+                             height: '100%' ,
+                             width:'100%',
+                             viewrecords: true,
+                             autowidth: true,
+                            rownumbers: true,
+                            caption: 'Danh sách câu hỏi trong mục này',
+                             userdata: {PollId:$("#grid").getRowData(row_id)["id"]},
+                             postData: {PollId:eid}
+                             
+                    }); 
+                    jQuery("#"+subgrid_table_id).jqGrid('navGrid',"#"+pager_id,{edit:true,add:true,del:true,search: true, view: true})
+
+               },
+                subGridRowColapsed: function(subgrid_id, row_id) {
+                     var subgrid_table_id; //
+                     subgrid_table_id = subgrid_id+"_t"; //
+                     jQuery("#"+subgrid_table_id).remove(); 
+                 } 
+                }).navGrid('#pager', { edit: true, add: true, del: false, search: true, view: true }).navButtonAdd('#pager',{
+                           caption:"Public", 
+                           buttonicon:"ui-icon-add", 
+                           onClickButton: function(){ 
+                             
+                                 var id = jQuery("#grid").jqGrid('getGridParam','selrow'); 
+                                 
+                                 if (id) { 
+                                         var ret = jQuery("#grid").getRowData(id); 
+                                         alert("id="+ret['EntityId']+" invdate="+ret['PollName'] + "..."); 
+                                         
+                                         $.ajax({
+                                                  type: 'POST',
+                                                  url: "<%=Url.Action("Public", "Poll" )%>",
+                                                  data: {Id : ret["EntityId"]},
+                                                  success: function() {
+                                                    $("#grid").trigger("reloadGrid")
+                                                  },
+                                                  dataType: 'json'
+                                                });
+
+                                 } else { 
+                                 alert("Please select row");
+                                 } 
+                             } ,
+                            
+                           position:"last"
+            });
+            }}
+        
 </script>
 </asp:Content>

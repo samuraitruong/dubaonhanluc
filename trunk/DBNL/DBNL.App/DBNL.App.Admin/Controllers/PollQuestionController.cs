@@ -4,6 +4,10 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using DBNL.App.Models.Business;
+using System.Linq.Dynamic;
+using DBNL.App.Models.Helpers;
+using DBNL.App.Models.Statics;
+using DBNL.App.Models.Extensions;
 
 namespace DBNL.App.Admin.Controllers
 {
@@ -23,6 +27,22 @@ namespace DBNL.App.Admin.Controllers
             return View();
         }
 
+
+        public ActionResult GetQuestions(int page, int rows, string sidx, string sord, int? PollId)
+        {
+
+            var polls = PollQuestionService.List(PollId.Value);
+            
+            var model = from entity in polls.OrderBy(sidx + " " + sord)
+                        select new
+                        {
+                            Id = entity.Id,
+                            Question = entity.Question,
+                            Responses = entity.Responses
+                        };
+            return Json(model.ToJqGridData(page, rows, null, "", new[] { "Question", "Responses" }), JsonRequestBehavior.AllowGet);
+
+        }
         //
         // GET: /PollQuestion/Details/5
 
