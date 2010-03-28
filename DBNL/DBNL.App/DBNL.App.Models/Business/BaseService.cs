@@ -51,7 +51,7 @@ namespace DBNL.App.Models.Business
                 return GetInstance().ContentCategories;
             }
         }
-
+       
         public static Table<Content> Contents
         {
             get

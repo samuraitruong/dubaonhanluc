@@ -29,5 +29,10 @@ namespace DBNL.App.Models.Business
         {
             return Contents.Where(p => p.CategoryId == id).OrderBy(o => o.IsFeatured).AsEnumerable();
         }
+
+        public static IQueryable<Content> List(int CategoryId)
+        {
+            return Contents.Where(p => p.CategoryId == CategoryId).AsQueryable();
+        }
     }
 }

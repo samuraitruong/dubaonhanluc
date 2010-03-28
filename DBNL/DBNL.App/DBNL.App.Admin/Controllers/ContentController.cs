@@ -3,9 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
-using System.Web.Mvc.Ajax;
-using DBNL.App.Models.Statics;
 using DBNL.App.Models.Business;
+using System.Linq.Dynamic;
+using DBNL.App.Models.Helpers;
+using DBNL.App.Models.Statics;
 using DBNL.App.Models.Extensions;
 
 namespace DBNL.App.Admin.Controllers
@@ -15,6 +16,36 @@ namespace DBNL.App.Admin.Controllers
         //
         // GET: /Content/
 
+        [HttpPost]
+        public ActionResult List(int page, int rows, string sidx, string sord, int CategoryId)
+        {
+            var contents = ContentService.List(CategoryId);
+            bool searchOn = bool.Parse(Request.Form["_search"]);
+            string searchExp = "";
+            if (searchOn)
+            {
+                searchExp = string.Format("{0}.ToString().Contains(@0)", getFormValue("searchField"));
+                contents = contents.Where(searchExp, new string[] { getFormValue("searchString") });
+            }
+            var model = from entity in contents.OrderBy(sidx + " " + sord)
+                        select new
+                        {
+                            Id = entity.ContentId,
+                            Title = entity.Title
+                        };
+            return Json(model.ToJqGridData(page, rows, null, "", new[] { "Title" }), JsonRequestBehavior.AllowGet);
+        }
+        protected string getFormValue(string key)
+        {
+            try
+            {
+                return Request.Form[key];
+            }
+            catch
+            {
+                return "";
+            }
+        }
         public ActionResult Index()
         {
             ViewData.Model = ContentService.GetItems();

@@ -7,10 +7,12 @@ var DBNL = {
         Links: {},
         Banner: {},
         Contact: {},
-        Poll: {}
+        Poll: {},
+        Categories: { Articles: {} },
+        Articles: {}
     },
     SiteMaster: {
-        setDefaults: function() {
+        setDefaults: function () {
             $.jgrid.defaults = $.extend($.jgrid.defaults, {
                 datatype: 'json',
                 height: 'auto',

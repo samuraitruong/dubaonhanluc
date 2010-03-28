@@ -104,7 +104,7 @@ $(document).ready(function () {
                      subgrid_table_id = subgrid_id+"_t"; //
                      jQuery("#"+subgrid_table_id).remove(); 
                  } 
-                }).navGrid('#pager', { edit: true, add: true, del: false, search: true, view: true }).navButtonAdd('#pager',{
+                }).navGrid('#pager', { edit: true, add: true, del: true, search: true, view: true }).navButtonAdd('#pager',{
                            caption:"Public", 
                            buttonicon:"ui-icon-add", 
                            onClickButton: function(){ 
@@ -113,8 +113,6 @@ $(document).ready(function () {
                                  
                                  if (id) { 
                                          var ret = jQuery("#grid").getRowData(id); 
-                                         alert("id="+ret['EntityId']+" invdate="+ret['PollName'] + "..."); 
-                                         
                                          $.ajax({
                                                   type: 'POST',
                                                   url: "<%=Url.Action("Public", "Poll" )%>",
@@ -136,3 +134,5 @@ $(document).ready(function () {
         
 </script>
 </asp:Content>
+
+                  
