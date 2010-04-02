@@ -57,4 +57,10 @@ namespace DBNL.App.Models.Statics
         Public,
         Inactive
     }
+
+    public enum UserStatus
+    { 
+        Active,
+        Inactive
+    }
 }

@@ -14,6 +14,11 @@ namespace DBNL.App.Models.Business
             return GetInstance().Users.AsEnumerable();
         }
 
+        public static IQueryable<User> List()
+        {
+            return GetInstance().Users.AsQueryable();
+        }
+
         public static User GetItem(int id)
         {
             return GetInstance().Users.Where(p => p.Id == id).SingleOrDefault();

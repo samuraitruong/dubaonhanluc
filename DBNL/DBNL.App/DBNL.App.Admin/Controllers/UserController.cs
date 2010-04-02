@@ -112,5 +112,53 @@ namespace DBNL.App.Admin.Controllers
                 return View();
             }
         }
+
+        protected string getFormValue(string key)
+        {
+            try
+            {
+                return Request.Form[key];
+            }
+            catch
+            {
+                return "";
+            }
+        }
+        /*
+        [HttpPost]
+        public ActionResult List(int page, int rows, string sidx, string sord)
+        {
+            var user = UserService.List();
+            bool searchOn = bool.Parse(Request.Form["_search"]);
+            string searchExp = "";
+            if (searchOn)
+            {
+                searchExp = string.Format("{0}.ToString().Contains(@0)", getFormValue("searchField"));
+                user = user.Where(searchExp, new string[] { getFormValue("searchString") });
+            }
+            var model = from entity in user.OrderBy(sidx + " " + sord)
+                        select new
+                        {
+                            EntityId = entity.Id,
+                            Username = entity.Username,
+                            Name = entity.Name,
+                            Status = entity.Status
+                        };
+            return Json(model.ToJqGridData(page, rows, null, "", new[] { "Username", "Name", "Status" }), JsonRequestBehavior.AllowGet);
+        }
+
+        [HttpPost]
+        public ActionResult EditRow(int? id, string Username, string Name, string Status)
+        {
+            if (id.HasValue)
+            {
+                //UserService.Edit(id.Value, 
+            }
+            else
+            {
+                PollService.Add(PollName, Status);
+            }
+            return Content("true");
+        }*/
     }
 }
