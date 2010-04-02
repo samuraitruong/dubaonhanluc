@@ -22,7 +22,7 @@ namespace DBNL.App.Models.Business
         public static User Add(string username, string name, string password, string status)
         {
             User user = new User();
-            user.username = username.Trim();
+            user.Username = username.Trim();
             user.Name = name.Trim();
             user.Password = FormsAuthentication.HashPasswordForStoringInConfigFile(password, "SHA1");
             user.Status = status.Trim();
@@ -36,7 +36,7 @@ namespace DBNL.App.Models.Business
         public static User Edit(int id, string username, string name, string password, string status)
         {
             User user = GetInstance().Users.Where(p => p.Id == id).SingleOrDefault();
-            user.username = username.Trim();
+            user.Username = username.Trim();
             user.Name = name.Trim();
             user.Password = FormsAuthentication.HashPasswordForStoringInConfigFile(password, "SHA1");
             user.Status = status.Trim();

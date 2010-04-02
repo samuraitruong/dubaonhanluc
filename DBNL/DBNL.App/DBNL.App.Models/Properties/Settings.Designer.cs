@@ -33,5 +33,16 @@ namespace DBNL.App.Models.Properties {
                 return ((string)(this["hostpro_dubaoConnectionString"]));
             }
         }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
+        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=eduvision.com.vn;Persist Security Info=True;User ID=artseed;Password=" +
+            "L@tuine299")]
+        public string DataSourceConnectionString {
+            get {
+                return ((string)(this["DataSourceConnectionString"]));
+            }
+        }
     }
 }
