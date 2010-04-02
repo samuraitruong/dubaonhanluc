@@ -27,5 +27,17 @@ namespace DBNL.App.Models.Business
             Commit();
             return nv;
         }
+
+        public static IQueryable<Navigation> List(int? ParentId, string Position)
+        {
+            var query = string.IsNullOrEmpty(Position) ? Navigations : Navigations.Where(p => p.Possition == Position);
+
+            if (!ParentId.HasValue)
+            {
+                return query.Where(p => p.ParentId == null).AsQueryable();
+            }
+            return Navigations.Where(p => p.ParentId.Value == ParentId.Value ).AsQueryable();
+
+        }
     }
 }
