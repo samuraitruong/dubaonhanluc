@@ -1,59 +1,34 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-<Database Name="hostpro_dubao" Class="DBNLDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
-  <Connection Mode="AppSettings" ConnectionString="Data Source=ausp.edu.vn;Initial Catalog=hostpro_dubao;Persist Security Info=True;User ID=ausp_dubao" SettingsObjectName="DBNL.App.Models.Properties.Settings" SettingsPropertyName="hostpro_dubaoConnectionString" Provider="System.Data.SqlClient" />
-  <Table Name="ausp_dubao.Banners" Member="Banners">
+﻿<?xml version="1.0" encoding="utf-8"?><Database Name="DataSource" Class="DBNLDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+  <Connection Mode="AppSettings" ConnectionString="Data Source=eduvision.com.vn;Persist Security Info=True;User ID=artseed" SettingsObjectName="DBNL.App.Models.Properties.Settings" SettingsPropertyName="DataSourceConnectionString" Provider="System.Data.SqlClient" />
+  <Table Name="artseed.Banner" Member="Banners">
     <Type Name="Banner">
-      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
       <Column Name="Name" Type="System.String" DbType="NVarChar(150) NOT NULL" CanBeNull="false" />
       <Column Name="Url" Type="System.String" DbType="NVarChar(150) NOT NULL" CanBeNull="false" />
       <Column Name="BannerImage" Type="System.String" DbType="NVarChar(150) NOT NULL" CanBeNull="false" />
-      <Column Name="Status" Type="System.String" DbType="NChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="Status" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
       <Column Name="CreatedDate" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
       <Column Name="UpdatedDate" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
       <Column Name="BannerPosition" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
     </Type>
   </Table>
-  <Table Name="ausp_dubao.Users" Member="Users">
-    <Type Name="User">
-      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
-      <Column Name="username" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
-      <Column Name="Name" Type="System.String" DbType="NChar(10) NOT NULL" CanBeNull="false" />
-      <Column Name="Password" Type="System.String" DbType="NVarChar(32) NOT NULL" CanBeNull="false" />
-      <Column Name="Status" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
-      <Column Name="CreatedDate" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
-      <Column Name="UpdatedDate" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
-      <Association Name="User_UserInRole" Member="UserInRoles" OtherKey="UserId" Type="UserInRole" />
+  <Table Name="artseed.UserInRole" Member="UserInRoles">
+    <Type Name="UserInRole">
+      <Column Name="RoleId" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="UserId" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Association Name="Role_UserInRole" Member="Role" ThisKey="RoleId" OtherKey="Id" Type="Role" IsForeignKey="true" />
+      <Association Name="User_UserInRole" Member="User" ThisKey="UserId" OtherKey="Id" Type="User" IsForeignKey="true" />
     </Type>
   </Table>
-  <Table Name="ausp_dubao.Contacts" Member="Contacts">
+  <Table Name="artseed.Contact" Member="Contacts">
     <Type Name="Contact">
       <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
-      <Column Name="Name" Type="System.String" DbType="NVarChar(250) NOT NULL" CanBeNull="false" />
+      <Column Name="Name" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
       <Column Name="Email" Type="System.String" DbType="NVarChar(150) NOT NULL" CanBeNull="false" />
       <Column Name="Status" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
     </Type>
   </Table>
-  <Table Name="ausp_dubao.ContentCategories" Member="ContentCategories">
-    <Type Name="ContentCategory">
-      <Column Name="ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
-      <Column Name="CategoryName" Type="System.String" DbType="NVarChar(150) NOT NULL" CanBeNull="false" />
-      <Column Name="[Key]" Member="Key" Type="System.String" DbType="NVarChar(150) NOT NULL" CanBeNull="false" />
-      <Column Name="ParentCategoryId" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Association Name="ContentCategory_ContentCategory" Member="ContentCategories" OtherKey="ParentCategoryId" Type="ContentCategory" />
-      <Association Name="ContentCategory_Content" Member="Contents" OtherKey="CategoryId" Type="Content" />
-      <Association Name="ContentCategory_Navigation" Member="Navigations" OtherKey="ContentId" Type="Navigation" />
-      <Association Name="ContentCategory_ContentCategory" Member="ContentCategory1" ThisKey="ParentCategoryId" Type="ContentCategory" IsForeignKey="true" />
-    </Type>
-  </Table>
-  <Table Name="ausp_dubao.ContentRelations" Member="ContentRelations">
-    <Type Name="ContentRelation">
-      <Column Name="ContentId" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
-      <Column Name="RelatedId" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
-      <Association Name="Content_ContentRelation" Member="Content" ThisKey="ContentId" Type="Content" IsForeignKey="true" />
-      <Association Name="Content_ContentRelation1" Member="Content1" ThisKey="RelatedId" Type="Content" IsForeignKey="true" />
-    </Type>
-  </Table>
-  <Table Name="ausp_dubao.Contents" Member="Contents">
+  <Table Name="artseed.Content" Member="Contents">
     <Type Name="Content">
       <Column Name="ContentId" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
       <Column Name="Title" Type="System.String" DbType="NVarChar(250) NOT NULL" CanBeNull="false" />
@@ -66,12 +41,30 @@
       <Column Name="Count" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
       <Column Name="UniqueKey" Type="System.String" DbType="NVarChar(250) NOT NULL" CanBeNull="false" />
       <Column Name="Description" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
-      <Association Name="Content_ContentRelation" Member="ContentRelations" OtherKey="ContentId" Type="ContentRelation" />
-      <Association Name="Content_ContentRelation1" Member="ContentRelations1" OtherKey="RelatedId" Type="ContentRelation" />
-      <Association Name="ContentCategory_Content" Member="ContentCategory" ThisKey="CategoryId" Type="ContentCategory" IsForeignKey="true" />
+      <Association Name="Content_ContentRelation" Member="ContentRelations" ThisKey="ContentId" OtherKey="ContentId" Type="ContentRelation" />
+      <Association Name="Content_ContentRelation1" Member="ContentRelations1" ThisKey="ContentId" OtherKey="RelatedId" Type="ContentRelation" />
+      <Association Name="ContentCategory_Content" Member="ContentCategory" ThisKey="CategoryId" OtherKey="ID" Type="ContentCategory" IsForeignKey="true" />
     </Type>
   </Table>
-  <Table Name="ausp_dubao.Links" Member="Links">
+  <Table Name="artseed.ContentCategory" Member="ContentCategories">
+    <Type Name="ContentCategory">
+      <Column Name="ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="CategoryName" Type="System.String" DbType="NVarChar(150) NOT NULL" CanBeNull="false" />
+      <Column Name="[Key]" Member="Key" Type="System.String" DbType="NVarChar(150) NOT NULL" CanBeNull="false" />
+      <Column Name="ParentCategoryId" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Association Name="ContentCategory_Content" Member="Contents" ThisKey="ID" OtherKey="CategoryId" Type="Content" />
+      <Association Name="ContentCategory_Navigation" Member="Navigations" ThisKey="ID" OtherKey="ContentId" Type="Navigation" />
+    </Type>
+  </Table>
+  <Table Name="artseed.ContentRelation" Member="ContentRelations">
+    <Type Name="ContentRelation">
+      <Column Name="ContentId" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="RelatedId" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Association Name="Content_ContentRelation" Member="Content" ThisKey="ContentId" OtherKey="ContentId" Type="Content" IsForeignKey="true" />
+      <Association Name="Content_ContentRelation1" Member="Content1" ThisKey="RelatedId" OtherKey="ContentId" Type="Content" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="artseed.Link" Member="Links">
     <Type Name="Link">
       <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
       <Column Name="Title" Type="System.String" DbType="NVarChar(250) NOT NULL" CanBeNull="false" />
@@ -80,58 +73,12 @@
       <Column Name="UpdatedDate" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
     </Type>
   </Table>
-  <Table Name="ausp_dubao.PollQuestions" Member="PollQuestions">
-    <Type Name="PollQuestion">
-      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
-      <Column Name="Question" Type="System.String" DbType="NVarChar(250) NOT NULL" CanBeNull="false" />
-      <Column Name="PollId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Column Name="Status" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
-      <Column Name="CreatedDate" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
-      <Column Name="UpdatedDate" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
-      <Column Name="Responses" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Association Name="Poll_PollQuestion" Member="Poll" ThisKey="PollId" Type="Poll" IsForeignKey="true" />
-    </Type>
-  </Table>
-  <Table Name="ausp_dubao.Polls" Member="Polls">
-    <Type Name="Poll">
-      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
-      <Column Name="PollName" Type="System.String" DbType="NVarChar(250) NOT NULL" CanBeNull="false" />
-      <Column Name="Status" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
-      <Association Name="Poll_PollQuestion" Member="PollQuestions" OtherKey="PollId" Type="PollQuestion" />
-    </Type>
-  </Table>
-  <Table Name="ausp_dubao.Roles" Member="Roles">
-    <Type Name="Role">
-      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
-      <Column Name="RoleName" Type="System.String" DbType="NVarChar(250) NOT NULL" CanBeNull="false" />
-      <Column Name="ContentPermission" Type="System.String" DbType="NVarChar(250)" CanBeNull="true" />
-      <Column Name="ComponentPermission" Type="System.String" DbType="NVarChar(250)" CanBeNull="true" />
-      <Association Name="Role_UserInRole" Member="UserInRoles" OtherKey="RoleId" Type="UserInRole" />
-    </Type>
-  </Table>
-  <Table Name="ausp_dubao.Supporters" Member="Supporters">
-    <Type Name="Supporter">
-      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
-      <Column Name="Name" Type="System.String" DbType="NVarChar(150) NOT NULL" CanBeNull="false" />
-      <Column Name="Type" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
-      <Column Name="Nickname" Type="System.String" DbType="NVarChar(100) NOT NULL" CanBeNull="false" />
-      <Column Name="Status" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
-    </Type>
-  </Table>
-  <Table Name="ausp_dubao.UserInRoles" Member="UserInRoles">
-    <Type Name="UserInRole">
-      <Column Name="RoleId" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
-      <Column Name="UserId" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
-      <Association Name="Role_UserInRole" Member="Role" ThisKey="RoleId" Type="Role" IsForeignKey="true" />
-      <Association Name="User_UserInRole" Member="User" ThisKey="UserId" Type="User" IsForeignKey="true" />
-    </Type>
-  </Table>
-  <Table Name="ausp_dubao.Navigations" Member="Navigations">
+  <Table Name="artseed.Navigation" Member="Navigations">
     <Type Name="Navigation">
-      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
       <Column Name="Name" Type="System.String" DbType="NVarChar(250)" CanBeNull="true" />
       <Column Name="ParentId" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="Possition" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="Position" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
       <Column Name="Status" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
       <Column Name="RelativeUrl" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
       <Column Name="DisplayOrder" Type="System.Int32" DbType="Int" CanBeNull="true" />
@@ -142,9 +89,59 @@
       <Column Name="Action" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
       <Column Name="Controller" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
       <Column Name="Area" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
-      <Association Name="Navigation_Navigation" Member="Navigations" OtherKey="ParentId" Type="Navigation" />
-      <Association Name="ContentCategory_Navigation" Member="ContentCategory" ThisKey="ContentId" Type="ContentCategory" IsForeignKey="true" />
-      <Association Name="Navigation_Navigation" Member="Navigation1" ThisKey="ParentId" Type="Navigation" IsForeignKey="true" />
+      <Association Name="Navigation_Navigation" Member="Navigations" ThisKey="Id" OtherKey="ParentId" Type="Navigation" />
+      <Association Name="ContentCategory_Navigation" Member="ContentCategory" ThisKey="ContentId" OtherKey="ID" Type="ContentCategory" IsForeignKey="true" />
+      <Association Name="Navigation_Navigation" Member="Navigation1" ThisKey="ParentId" OtherKey="Id" Type="Navigation" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="artseed.Poll" Member="Polls">
+    <Type Name="Poll">
+      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="PollName" Type="System.String" DbType="NVarChar(250) NOT NULL" CanBeNull="false" />
+      <Column Name="Status" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Association Name="Poll_PollQuestion" Member="PollQuestions" ThisKey="Id" OtherKey="PollId" Type="PollQuestion" />
+    </Type>
+  </Table>
+  <Table Name="artseed.PollQuestion" Member="PollQuestions">
+    <Type Name="PollQuestion">
+      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Question" Type="System.String" DbType="NVarChar(250) NOT NULL" CanBeNull="false" />
+      <Column Name="PollId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Status" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="CreatedDate" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="UpdatedDate" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="Responses" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Association Name="Poll_PollQuestion" Member="Poll" ThisKey="PollId" OtherKey="Id" Type="Poll" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="artseed.Role" Member="Roles">
+    <Type Name="Role">
+      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="RoleName" Type="System.String" DbType="NVarChar(250) NOT NULL" CanBeNull="false" />
+      <Column Name="ContentPermission" Type="System.String" DbType="NVarChar(250)" CanBeNull="true" />
+      <Column Name="ComponentPermission" Type="System.String" DbType="NVarChar(250)" CanBeNull="true" />
+      <Association Name="Role_UserInRole" Member="UserInRoles" ThisKey="Id" OtherKey="RoleId" Type="UserInRole" />
+    </Type>
+  </Table>
+  <Table Name="artseed.Supporter" Member="Supporters">
+    <Type Name="Supporter">
+      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Name" Type="System.String" DbType="NVarChar(150) NOT NULL" CanBeNull="false" />
+      <Column Name="Type" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="NickName" Type="System.String" DbType="NVarChar(100) NOT NULL" CanBeNull="false" />
+      <Column Name="Status" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+    </Type>
+  </Table>
+  <Table Name="artseed.[User]" Member="Users">
+    <Type Name="User">
+      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Username" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="Name" Type="System.String" DbType="NChar(10) NOT NULL" CanBeNull="false" />
+      <Column Name="Password" Type="System.String" DbType="NVarChar(32) NOT NULL" CanBeNull="false" />
+      <Column Name="Status" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="CreatedDate" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="UpdatedDate" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Association Name="User_UserInRole" Member="UserInRoles" ThisKey="Id" OtherKey="UserId" Type="UserInRole" />
     </Type>
   </Table>
 </Database>

@@ -44,7 +44,7 @@ namespace DBNL.App.Admin.Controllers
             try
             {
                 // TODO: Add insert logic here
-                UserService.Add(user.username, user.Name, user.Password, user.Status);
+                UserService.Add(user.Username, user.Name, user.Password, user.Status);
                 return RedirectToAction("List");
             }
             catch

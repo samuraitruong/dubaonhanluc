@@ -241,7 +241,7 @@ namespace DBNL.App.Controllers
             DBNLDataContext db = new DBNLDataContext();
             Supporter sp = db.Supporters.Where(p => p.Id == id).SingleOrDefault();
             sp.Name = supporter.Name;
-            sp.Nickname = supporter.Nickname;
+            sp.NickName = supporter.NickName;
             sp.Status = supporter.Status;
             sp.Type = supporter.Type;
             db.SubmitChanges();
@@ -362,7 +362,7 @@ namespace DBNL.App.Controllers
             updNavigation.Image = nav.Image;
             updNavigation.Name = nav.Name;
             updNavigation.ParentId = nav.ParentId;
-            updNavigation.Possition = nav.Possition;
+            updNavigation.Position = nav.Position;
             updNavigation.RelativeUrl = nav.RelativeUrl;
             updNavigation.Status = nav.Status;
             updNavigation.Navigations = nav.Navigations;
@@ -754,7 +754,7 @@ namespace DBNL.App.Controllers
             updUser.Password = user.Password;
             updUser.Status = user.Status;
             updUser.UpdatedDate = user.UpdatedDate;
-            updUser.username = user.username;
+            updUser.Username = user.Username;
             db.SubmitChanges();
             return RedirectToAction("ListUsers");
         }

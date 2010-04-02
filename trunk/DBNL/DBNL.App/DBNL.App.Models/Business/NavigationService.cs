@@ -13,12 +13,12 @@ namespace DBNL.App.Models.Business
         }
         public static IEnumerable<Navigation> GetItems(NavigationPositions pos)
         {
-            return Navigations.Where(p=>p.Possition==pos.ToString()).AsEnumerable();
+            return Navigations.Where(p=>p.Position==pos.ToString()).AsEnumerable();
         }
         public static IEnumerable<Navigation> GetItems(NavigationPositions pos, bool rootOnly)
         {
             if(rootOnly) 
-            return Navigations.Where(p => p.Possition == pos.ToString() && p.ParentId == null).AsEnumerable();
+            return Navigations.Where(p => p.Position == pos.ToString() && p.ParentId == null).AsEnumerable();
             return GetItems(pos);
         }
         public static Navigation Create(Navigation nv)
@@ -30,7 +30,7 @@ namespace DBNL.App.Models.Business
 
         public static IQueryable<Navigation> List(int? ParentId, string Position)
         {
-            var query = string.IsNullOrEmpty(Position) ? Navigations : Navigations.Where(p => p.Possition == Position);
+            var query = string.IsNullOrEmpty(Position) ? Navigations : Navigations.Where(p => p.Position == Position);
 
             if (!ParentId.HasValue)
             {

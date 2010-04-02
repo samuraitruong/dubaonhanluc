@@ -75,7 +75,7 @@ namespace DBNL.App.Admin.Controllers
                 Navigation navigation = new Navigation()
                 {
                     Name = collection["Name"],
-                    Possition = collection["Possition"],
+                    Position = collection["Possition"],
                     ContentId = string.IsNullOrEmpty(collection["ContentId"]) ? new Nullable<int>() : int.Parse(collection["ContentId"]),
                     ParentId = string.IsNullOrEmpty(collection["ParentId"]) ? new Nullable<int>() : int.Parse(collection["ParentId"]),
                     Status= EntityStatuses.Actived.ToString(),
