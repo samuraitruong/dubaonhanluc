@@ -77,7 +77,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Business\ArticleService.cs" />
     <Compile Include="Business\BannerService.cs" />
     <Compile Include="Business\BaseService.cs" />
     <Compile Include="Business\CategoryService.cs" />

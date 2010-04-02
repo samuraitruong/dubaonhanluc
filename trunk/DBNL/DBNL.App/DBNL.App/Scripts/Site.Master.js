@@ -9,7 +9,8 @@ var DBNL = {
         Contact: {},
         Poll: {},
         Categories: { Articles: {} },
-        Articles: {}
+        Articles: {},
+        Navigations :{}
     },
     SiteMaster: {
         setDefaults: function () {
