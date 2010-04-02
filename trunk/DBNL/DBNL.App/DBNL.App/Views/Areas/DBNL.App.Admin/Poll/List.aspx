@@ -76,9 +76,9 @@ $(document).ready(function () {
                         },
                             colNames: ['Id','Question','Responses'], 
                             colModel: [ 
-                                        {name:"Id",index:"Id",width:100, sortable: false, editable: true, editoptions: {readonly:'readonly'},editrules: { edithidden: true }, key:true, hidden:true},
-                                        {name:"Question",index:"Question",width:625, sortable: true, editable: true}, 
-                                        {name:"Responses",index:"Responses",width:150, align: 'center'},
+                                        {name:"Id", index:"Id", width:100, sortable: false, editable: true, editoptions: {readonly:'readonly'}, editrules: { edithidden: true }, key:true, hidden:true},
+                                        {name:"Question", index:"Question", width:625, sortable: true, editable: true}, 
+                                        {name:"Responses", index:"Responses", width:150, align: 'center'},
                                         
                                       ],
                              rowNum:20, 

@@ -30,8 +30,8 @@ namespace DBNL.App.Models.Business
             banner.Url = url.Trim();
             banner.BannerImage = bannerImage.Trim();
             banner.Status = "Actived";
-            banner.CreatedDate = DateTime.Today;
-            banner.UpdatedDate = DateTime.Today;
+            banner.CreatedDate = DateTime.Now;
+            banner.UpdatedDate = DateTime.Now;
             banner.BannerPosition = bannerPosition;
             GetInstance().Banners.InsertOnSubmit(banner);
             Commit();
@@ -52,8 +52,7 @@ namespace DBNL.App.Models.Business
             banner.Url = url.Trim();
             banner.BannerImage = bannerImage.Trim();
             banner.Status = status.Trim();
-            banner.CreatedDate = DateTime.Today;
-            banner.UpdatedDate = DateTime.Today;
+            banner.UpdatedDate = DateTime.Now;
             banner.BannerPosition = bannerPosition;
             Commit();
             return banner;

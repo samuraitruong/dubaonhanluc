@@ -11,6 +11,7 @@ using DBNL.App.Models;
 using DBNL.App.Config;
 using System.Linq.Dynamic;
 using DBNL.App.Models.Helpers;
+using DBNL.App.Models.Extensions;
 
 namespace DBNL.App.Admin.Controllers
 {
@@ -149,6 +150,18 @@ namespace DBNL.App.Admin.Controllers
             }
         }
 
+        public ActionResult GetSelectStatus()
+        {
+            IEnumerable<SelectListItem> list = CustomSelectList.CreateBannerStatus();
+            return Content(list.ToHtml());
+        }
+
+        public ActionResult GetSelectPosition()
+        {
+            IEnumerable<SelectListItem> list = CustomSelectList.CreateBannerPosition();
+            return Content(list.ToHtml());
+        }
+
         protected string getFormValue(string key)
         {
             try
@@ -178,7 +191,8 @@ namespace DBNL.App.Admin.Controllers
                             EntityId = entity.Id,
                             Name = entity.Name,
                             Url = entity.Url,
-                            Image = string.Format("<img alt='Banner image' src='" + entity.BannerImage + "' style='width:100px;height:100px;' />"),
+                            //Image = string.Format("<img alt='Banner image' src='" + entity.BannerImage + "' style='width:100px;height:100px;' />"),
+                            Image = entity.BannerImage,
                             Status = entity.Status,
                             Position = entity.BannerPosition
                         };
@@ -186,11 +200,11 @@ namespace DBNL.App.Admin.Controllers
         }
 
         [HttpPost]
-        public ActionResult EditRow(int? id, int? EntityId, string name, string Url, string image, string status, string position)
+        public ActionResult EditRow(int? id, string name, string Url, string image, string status, string position)
         {
-            if (EntityId.HasValue)
+            if (id.HasValue)
             {
-                BannerService.Edit(EntityId.Value, name, Url, image, status, position);
+                BannerService.Edit(id.Value, name, Url, image, status, position);
             }
             else
             {

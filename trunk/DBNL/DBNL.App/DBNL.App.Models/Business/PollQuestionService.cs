@@ -32,8 +32,8 @@ namespace DBNL.App.Models.Business
             pollQuestion.Question = question.Trim();
             pollQuestion.PollId = pollId;
             pollQuestion.Status = status.Trim();
-            pollQuestion.CreatedDate = DateTime.Today;
-            pollQuestion.UpdatedDate = DateTime.Today;
+            pollQuestion.CreatedDate = DateTime.Now;
+            pollQuestion.UpdatedDate = DateTime.Now;
             pollQuestion.Responses = responses;
             GetInstance().PollQuestions.InsertOnSubmit(pollQuestion);
             Commit();
@@ -46,6 +46,7 @@ namespace DBNL.App.Models.Business
             GetInstance().PollQuestions.DeleteOnSubmit(pollQuestion);
             Commit();
         }
+
         public static IQueryable<PollQuestion> List(int id)
         {
             return GetInstance().PollQuestions.Where(p => p.PollId == id).AsQueryable();
@@ -57,7 +58,7 @@ namespace DBNL.App.Models.Business
             pollQuestion.Question = question.Trim();
             pollQuestion.PollId = pollId;
             pollQuestion.Status = status.Trim();
-            pollQuestion.UpdatedDate = DateTime.Today;
+            pollQuestion.UpdatedDate = DateTime.Now;
             pollQuestion.Responses = responses;
             Commit();
             return pollQuestion;

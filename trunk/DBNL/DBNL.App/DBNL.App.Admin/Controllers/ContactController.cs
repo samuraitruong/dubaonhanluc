@@ -3,10 +3,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
-using DBNL.App.Models.Business;
-using DBNL.App.Models;
 using System.Linq.Dynamic;
+using DBNL.App.Models;
 using DBNL.App.Models.Helpers;
+using DBNL.App.Models.Extensions;
+using DBNL.App.Models.Business;
+using DBNL.App.Models.ViewData;
+using DBNL.App.Models.Statics;
 
 namespace DBNL.App.Admin.Controllers
 {
@@ -150,17 +153,23 @@ namespace DBNL.App.Admin.Controllers
         }
 
         [HttpPost]
-        public ActionResult EditRow(int? id, int? EntityId, string name, string email, string status)
+        public ActionResult EditRow(int? id, string name, string email, string status)
         {
-            if (EntityId.HasValue)
+            if (id.HasValue)
             {
-                ContactService.Edit(EntityId.Value, name, email, status);
+                ContactService.Edit(id.Value, name, email, status);
             }
             else
             {
                 ContactService.Add(name, email, status);
             }
             return Content("true");
+        }
+
+        public ActionResult GetSelectStatus()
+        {
+            IEnumerable<SelectListItem> list = CustomSelectList.CreateContactStatus();
+            return Content(list.ToHtml());
         }
     }
 }

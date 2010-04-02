@@ -3,8 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
-using DBNL.App.Models.Business;
 using System.Linq.Dynamic;
+using DBNL.App.Models.Business;
 using DBNL.App.Models.Helpers;
 using DBNL.App.Models.Statics;
 using DBNL.App.Models.Extensions;
@@ -122,7 +122,6 @@ namespace DBNL.App.Admin.Controllers
             }
         }
 
-        
         public ActionResult GetSelectStatus()
         {
             IEnumerable<SelectListItem> list = CustomSelectList.CreatePollStatus();
