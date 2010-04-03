@@ -70,15 +70,22 @@ $(document).ready(function () {
                     jQuery("#"+subgrid_table_id).jqGrid({ 
                     
                             url:"<%=Url.Action("GetQuestions", "PollQuestion" )%>/", 
+                            editurl : "<%=Url.Action("EditRow", "PollQuestion" )%>"
                             datatype: "json", 
                             ajaxGridOptions: {
                             type: "POST"
                         },
                             colNames: ['Id','Question','Responses'], 
                             colModel: [ 
+<<<<<<< .mine
+                                        {name:"Id",index:"Id",width:100, sortable: false, editable: false, editoptions: {readonly:'readonly'},editrules: { edithidden: true }, key:true, hidden:true},
+                                        {name:"Question",index:"Question",width:625, sortable: true, editable: true}, 
+                                        {name:"Responses",index:"Responses",width:150, align: 'center'},
+=======
                                         {name:"Id", index:"Id", width:100, sortable: false, editable: true, editoptions: {readonly:'readonly'}, editrules: { edithidden: true }, key:true, hidden:true},
                                         {name:"Question", index:"Question", width:625, sortable: true, editable: true}, 
                                         {name:"Responses", index:"Responses", width:150, align: 'center'},
+>>>>>>> .r66
                                         
                                       ],
                              rowNum:20, 

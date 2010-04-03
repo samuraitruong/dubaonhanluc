@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using DBNL.App.Config;
 
 namespace DBNL.App.Models.Business
 {
@@ -33,6 +34,24 @@ namespace DBNL.App.Models.Business
         public static IQueryable<Content> List(int CategoryId)
         {
             return Contents.Where(p => p.CategoryId == CategoryId).AsQueryable();
+        }
+
+        public static IEnumerable<Content> GetFeaturedArtileByCategoryId(int id)
+        {
+            return Contents.Where(p => p.CategoryId == id && p.IsFeatured == true).
+                OrderByDescending(o => o.UpdatedDate).
+                Skip(0).
+                Take(DBNLConfigurationManager.WebUI.FeaturedContentCount).
+                AsEnumerable();
+        }
+
+        public static IEnumerable<Content> GetOlderNews(Content content)
+        {
+            return Contents.Where(p => p.CategoryId == content.CategoryId  && p.UpdatedDate < content.UpdatedDate).
+                OrderByDescending(o => o.UpdatedDate).
+                Skip(0).
+                Take(DBNLConfigurationManager.WebUI.OtherNewsCount).
+                AsEnumerable();
         }
     }
 }

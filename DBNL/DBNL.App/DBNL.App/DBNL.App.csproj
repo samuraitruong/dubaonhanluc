@@ -1522,6 +1522,9 @@
     <Content Include="Views\Article\View.aspx" />
     <Content Include="Views\Home\NewestJobControl.ascx" />
     <Content Include="Views\Home\PublicPollControl.ascx" />
+    <Content Include="Views\Shared\FeatureCategoryView.ascx" />
+    <Content Include="Views\Shared\ListFeatureNews.ascx" />
+    <Content Include="Views\Shared\OtherNewsView.ascx" />
     <Content Include="Views\Shared\Sample.aspx" />
     <Content Include="Views\Shared\ScriptsControl.ascx" />
     <Content Include="Views\Shared\Sidebar.ascx" />
@@ -1815,10 +1818,12 @@
     <None Include="images\Descr.WD3" />
     <None Include="images\fancybox\Descr.WD3" />
     <None Include="images\fancybox\Thumbs.db" />
+    <None Include="images\logo.rar" />
     <None Include="images\message\Descr.WD3" />
     <None Include="images\message\Thumbs.db" />
     <None Include="images\table\Descr.WD3" />
     <None Include="images\table\Thumbs.db" />
+    <None Include="images\Thumbs.db" />
     <None Include="Scripts\ckeditor\.htaccess" />
     <None Include="Scripts\ckeditor\ckeditor.pack" />
     <None Include="Scripts\ckeditor\ckeditor.php" />
@@ -1871,6 +1876,9 @@
           <IISUrl>
           </IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>False</UseCustomServer>
+          <CustomServerUrl>
+          </CustomServerUrl>
           <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
         </WebProjectProperties>
       </FlavorProperties>

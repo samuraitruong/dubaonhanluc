@@ -9,5 +9,6 @@ namespace DBNL.App.Models.ViewData
     {
         public ContentCategory Category { get; set; }
         public IEnumerable<Content> Articles { get; set; }
+        public IEnumerable<Content> FeaturedArticles { get; set; }
     }
 }

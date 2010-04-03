@@ -75,6 +75,7 @@
 </asp:Content>
 
 <asp:Content ID="Content3" ContentPlaceHolderID="UnderMenuContent" runat="server">
+<% Html.RenderPartial("ListFeatureNews", Model.FeaturedArticles); %>
 </asp:Content>
 
 <asp:Content ID="Content4" ContentPlaceHolderID="MidlePageMainContent" runat="server">

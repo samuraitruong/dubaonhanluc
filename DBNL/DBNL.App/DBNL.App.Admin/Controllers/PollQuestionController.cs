@@ -15,6 +15,19 @@ namespace DBNL.App.Admin.Controllers
     {
         //
         // GET: /PollQuestion/
+        [HttpPost]
+        public ActionResult EditRow(int? id, string Question, int PollId, string Status)
+        {
+            if (id.HasValue)
+            {
+                PollQuestionService.Edit(id.Value, Question, PollId, Status);
+            }
+            else
+            {
+                //PollService.Add(PollName, Status);
+            }
+            return Content("true");
+        }
 
         public ActionResult Index()
         {

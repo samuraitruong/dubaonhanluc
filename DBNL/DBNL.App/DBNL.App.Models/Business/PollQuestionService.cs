@@ -69,5 +69,16 @@ namespace DBNL.App.Models.Business
             if (ActivePoll == null) return null;
             return ActivePoll.PollQuestions.Where(p => p.Status == DBNL.App.Models.Statics.EntityStatuses.Actived.ToString()).AsEnumerable();
         }
+
+        public static PollQuestion Edit(int id, string Question, int PollId, string Status)
+        {
+            PollQuestion pollQuestion = GetItem(id);
+            pollQuestion.Question = Question.Trim();
+            pollQuestion.PollId = PollId;
+            pollQuestion.Status = Status.Trim();
+            pollQuestion.UpdatedDate = DateTime.Today;
+            Commit();
+            return pollQuestion;
+        }
     }
 }
