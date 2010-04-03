@@ -3,10 +3,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
-using DBNL.App.Models.Business;
 using System.Linq.Dynamic;
-using DBNL.App.Models.Helpers;
+using DBNL.App.Models;
+using DBNL.App.Config;
+using DBNL.App.Models.Business;
+using DBNL.App.Models.ViewData;
 using DBNL.App.Models.Statics;
+using DBNL.App.Models.Helpers;
 using DBNL.App.Models.Extensions;
 
 namespace DBNL.App.Admin.Controllers
@@ -36,6 +39,7 @@ namespace DBNL.App.Admin.Controllers
             ViewData.Model = CategoryService.GetAllCategories();
             return View();
         }
+
         [HttpPost]
         public ActionResult List(int page, int rows, string sidx, string sord, int? ParentId)
         {
@@ -47,9 +51,12 @@ namespace DBNL.App.Admin.Controllers
                         select new
                         {
                             Id = entity.ID,
-                            Name = entity.CategoryName
+                            Name = entity.CategoryName,
+                            ParentCateId = entity.ParentCategoryId,
+                            IsFeatured = entity.IsFeatured,
+                            ShowOnHP = entity.ShowOnHP
                         };
-            return Json(model.ToJqGridData(page, rows, null, "", new[] { "Name"}), JsonRequestBehavior.AllowGet);
+            return Json(model.ToJqGridData(page, rows, null, "", new[] { "Name", "ParentCateId", "IsFeatured", "ShowOnHP" }), JsonRequestBehavior.AllowGet);
         }
 
         [HttpPost]
@@ -103,5 +110,51 @@ namespace DBNL.App.Admin.Controllers
                 return View();
             }
         }
+
+        [HttpPost]
+        public ActionResult EditRow(FormCollection collection)
+        {
+            int? pCate = null;
+            if (String.IsNullOrEmpty(collection["ParentCateId"]) == false)
+            {
+                pCate = Convert.ToInt32(collection["ParentCateId"]);
+            }
+            if (IsNumeric(collection["Id"]))
+            {
+                CategoryService.Edit(Convert.ToInt32(collection["Id"]), collection["Name"], pCate, Convert.ToBoolean(collection["IsFeatured"]), Convert.ToBoolean(collection["ShowOnHP"]));
+            }
+            else
+            {
+                CategoryService.AddCategory(collection["Name"], pCate);
+            }
+            return Content("true");
+        }
+
+        public ActionResult GetSelectParentId()
+        {
+            IEnumerable<SelectListItem> list = CustomSelectList.CreateListCategories(true);
+            return Content(list.ToHtml());
+        }
+
+        public static bool IsNumeric (Object Expression)
+        {
+            if(Expression == null || Expression is DateTime)
+                return false;
+
+            if(Expression is Int16 || Expression is Int32 || Expression is Int64 || Expression is Decimal || Expression is Single || Expression is Double || Expression is Boolean)
+                return true;
+          
+            try
+            {
+                if (Expression is string)
+                    Double.Parse(Expression.ToString());
+                else
+                {
+                    Double.Parse(Expression.ToString());
+                    return true;
+                }
+             } catch {}
+                return false;
+         }
     }
 }

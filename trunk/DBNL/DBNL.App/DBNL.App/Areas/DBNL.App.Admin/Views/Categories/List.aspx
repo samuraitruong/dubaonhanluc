@@ -40,17 +40,20 @@ $(document).ready(function () {
                 var lastsel;
                 grid.jqGrid({
                     url: "<%=Url.Action("List", "Categories" )%>",
-                    editurl : "<%=Url.Action("EditRow", "Poll" )%>",
+                    editurl : "<%=Url.Action("EditRow", "Categories" )%>",
                     ajaxGridOptions: {
                         type: "POST"
                     },
                     datatype: "json",
-                    colNames: [ 'Id','Name'],
+                    colNames: [ 'Id','Tên', 'Chủ đề cha', 'Chủ đề nổi bật', 'Hiển thị trên Trang chủ'],
                     colModel: [
                     {
-                        name: 'Id', index: 'ID', width: 40, align: 'left', editable: false, key: true, editoptions: {readonly:'readonly'},editrules: { edithidden: true }, hidden: true },
+                        name: 'Id', index: 'Id', width: 40, align: 'left', editable: false, key: true, editoptions: {readonly:'readonly'},editrules: { edithidden: true }, hidden: true },
 
-                        { name: 'Name', index: 'CategoryName', width: 250, sortable: true, editable: true, edittype: 'text', editoptions: { size: 20, maxlength:100} , hidden: false }
+                        { name: 'Name', index: 'CategoryName', width: 250, sortable: true, editable: true, edittype: 'text', editoptions: { size: 20, maxlength:100} , hidden: false },
+                        { name: 'ParentCateId', index: 'ParentCateId', align:'center', sortable: true, editable: true, edittype: 'select', style: 'select', editoptions: { dataUrl: "<%=Url.Action("GetSelectParentId", "Categories")%>" }, hidden: false},
+                        { name: 'IsFeatured', index: 'IsFeatured', align:'center', width: 80, sortable: true, editable: true, edittype: 'checkbox', editoptions: { value:"True:False" } , hidden: false },
+                        { name: 'ShowOnHP', index: 'ShowOnHP', align:'center', sortable:true, editable: true, edittype: 'checkbox', editoptions: { value:"True:False"} , hidden: false }
                       ],
                     rowNum: 10,
                     rowList: [10, 20, 30],
@@ -62,7 +65,7 @@ $(document).ready(function () {
                     height: '100%',
                     autowidth: true,
                     rownumbers: true,
-                    caption: 'Categories List',
+                    caption: 'Các chủ đề',
                     
                     subGrid: true,
                     subGridRowExpanded: function(subgrid_id, row_id) { 
@@ -149,7 +152,7 @@ $(document).ready(function () {
                                                 });
 
                                  } else { 
-                                 alert("Please select row");
+                                 alert("Chưa chọn dòng nào");
                                  } 
                              } ,
                            position:"last"
@@ -166,7 +169,7 @@ $(document).ready(function () {
                         type: "POST"
                     },
                     datatype: "json",
-                    colNames: [ 'Id','Title'],
+                    colNames: [ 'Id','Tiêu đề'],
                     colModel: [
                     {
                         name: 'Id', index: 'ContentId', width: 40, align: 'left', editable: false, key: true, editoptions: {readonly:'readonly'},editrules: { edithidden: true }, hidden: true },
@@ -205,7 +208,7 @@ $(document).ready(function () {
                                                 });
 
                                  } else { 
-                                 alert("Please select row");
+                                 alert("Chưa chọn dòng nào");
                                  } 
                              } ,
                            position:"last"
