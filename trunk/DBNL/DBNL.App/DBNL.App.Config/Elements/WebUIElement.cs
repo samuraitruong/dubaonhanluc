@@ -30,5 +30,28 @@ namespace DBNL.App.Config
        {
            get { return (string)this["test"]; }
        }
+
+       [ConfigurationProperty("featuredCount")]
+       public int FeaturedContentCount
+       {
+           get { return (int)this["featuredCount"]; }
+       }
+
+       [ConfigurationProperty("othernewsCount")]
+       public int OtherNewsCount
+       {
+           get { return (int)this["othernewsCount"]; }
+       }
+       [ConfigurationProperty("hotestNewsCount")]
+       public int HotestNewsCount
+       {
+           get { return (int)this["hotestNewsCount"]; }
+       }
+       [ConfigurationProperty("otherFeaturesNews")]
+       public int OtherFeaturesNews
+       {
+           get { return (int)this["otherFeaturesNews"]; }
+       }
+       
     }
 }

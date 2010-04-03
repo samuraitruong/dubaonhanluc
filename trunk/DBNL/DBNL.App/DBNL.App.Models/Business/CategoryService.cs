@@ -8,6 +8,10 @@ namespace DBNL.App.Models.Business
 {
     public class CategoryService: BaseService
     {
+        public static ContentCategory GetFeatureCategory() {
+
+            return Categories.Where(p => p.IsFeatured == true).FirstOrDefault();
+        }
         public static IEnumerable<ContentCategory> GetAllCategories()
         {
             return GetInstance().ContentCategories.AsEnumerable();

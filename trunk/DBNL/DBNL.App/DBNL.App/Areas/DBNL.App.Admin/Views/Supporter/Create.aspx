@@ -31,11 +31,11 @@
             </div>
             
             <div class="editor-label">
-                <%= Html.LabelFor(model => model.Nickname) %>
+                <%= Html.LabelFor(model => model.NickName) %>
             </div>
             <div class="editor-field">
-                <%= Html.TextBoxFor(model => model.Nickname) %>
-                <%= Html.ValidationMessageFor(model => model.Nickname) %>
+                <%= Html.TextBoxFor(model => model.NickName) %>
+                <%= Html.ValidationMessageFor(model => model.NickName) %>
             </div>
             <p>
                 <input type="submit" value="Create" />

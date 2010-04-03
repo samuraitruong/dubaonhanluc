@@ -21,7 +21,8 @@ namespace DBNL.App.Controllers
         {
             ViewData.Model = new CategoryViewData() {
                 Category = CategoryService.GetById(id),
-                Articles = ContentService.GetContentByCategoryId(id)
+                Articles = ContentService.GetContentByCategoryId(id),
+                FeaturedArticles = ContentService.GetFeaturedArtileByCategoryId(id),
             
             };
             return View();
@@ -42,7 +43,12 @@ namespace DBNL.App.Controllers
 
         public ActionResult View(int id)
         {
-            ViewData.Model = ContentService.GetContentById(id);
+            DBNL.App.Models.Content content = ContentService.GetContentById(id);
+
+            ViewData.Model = new ViewContentDataView() { Content = content,
+            FeaturedContents = ContentService.GetFeaturedArtileByCategoryId(content.CategoryId),
+            OtherNewses = ContentService.GetOlderNews(content)
+            };
             return View();
         }
 

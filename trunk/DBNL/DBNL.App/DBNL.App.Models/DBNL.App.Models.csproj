@@ -119,6 +119,7 @@
     <Compile Include="ViewData\FOMasterViewData.cs" />
     <Compile Include="ViewData\HomePageViewData.cs" />
     <Compile Include="ViewData\NavigationDataView.cs" />
+    <Compile Include="ViewData\ViewContentDataView.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
