@@ -40,6 +40,19 @@ namespace DBNL.App.Models.Business
             return pollQuestion;
         }
 
+        public static PollQuestion Add(string question, int pollId, string status)
+        {
+            PollQuestion pollQuestion = new PollQuestion();
+            pollQuestion.Question = question.Trim();
+            pollQuestion.PollId = pollId;
+            pollQuestion.Status = status.Trim();
+            pollQuestion.CreatedDate = DateTime.Now;
+            pollQuestion.UpdatedDate = DateTime.Now;
+            GetInstance().PollQuestions.InsertOnSubmit(pollQuestion);
+            Commit();
+            return pollQuestion;
+        }
+
         public static void Delete(int id)
         {
             PollQuestion pollQuestion = GetItem(id);
@@ -70,6 +83,17 @@ namespace DBNL.App.Models.Business
             return ActivePoll.PollQuestions.Where(p => p.Status == DBNL.App.Models.Statics.EntityStatuses.Actived.ToString()).AsEnumerable();
         }
 
+        public static PollQuestion Edit(int id, string Question, string Status)
+        {
+            PollQuestion pollQuestion = GetItem(id);
+            pollQuestion.Question = Question.Trim();
+            if (!string.IsNullOrEmpty(Status))
+                pollQuestion.Status = Status;
+            pollQuestion.UpdatedDate = DateTime.Today;
+            Commit();
+            return pollQuestion;
+        }
+
         public static PollQuestion Edit(int id, string Question, int PollId, string Status)
         {
             PollQuestion pollQuestion = GetItem(id);
@@ -79,6 +103,21 @@ namespace DBNL.App.Models.Business
             pollQuestion.UpdatedDate = DateTime.Today;
             Commit();
             return pollQuestion;
+        }
+
+        public static void Edit(string Question, int PollId, string Status)
+        {
+            PollQuestion q = new PollQuestion() { 
+            PollId = PollId,
+            Question = Question,
+            Status = Status,
+            CreatedDate =DateTime.Now,
+            UpdatedDate = DateTime.Now
+            };
+
+            PollQuestions.InsertOnSubmit(q);
+            Commit();
+
         }
     }
 }

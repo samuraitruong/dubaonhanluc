@@ -42,5 +42,21 @@ namespace DBNL.App.Models.Business
             }
             return Categories.Where(p => p.ParentCategoryId.Value == ParentId.Value).AsQueryable();
         }
+
+        public static ContentCategory GetRandomCategory()
+        {
+            int Count = Categories.Count();
+
+            Random r = new Random();
+            int idnex = r.Next(Count);
+
+            return Categories.Skip(idnex).Take(1).FirstOrDefault();
+
+        }
+
+        internal static IEnumerable<ContentCategory> GetCategoriesShowOnHP()
+        {
+            return Categories.Where(p => p.ShowOnHP == true).AsEnumerable();
+        }
     }
 }

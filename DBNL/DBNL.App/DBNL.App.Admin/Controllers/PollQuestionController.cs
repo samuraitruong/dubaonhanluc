@@ -16,15 +16,15 @@ namespace DBNL.App.Admin.Controllers
         //
         // GET: /PollQuestion/
         [HttpPost]
-        public ActionResult EditRow(int? id, string Question, int PollId, string Status)
+        public ActionResult EditRow(int? id, string Question, int? PollId, string Status)
         {
             if (id.HasValue)
             {
-                PollQuestionService.Edit(id.Value, Question, PollId, Status);
+                PollQuestionService.Edit(id.Value, Question, Status);
             }
             else
             {
-                //PollService.Add(PollName, Status);
+                PollQuestionService.Add( Question, PollId.Value, EntityStatuses.Actived.ToString()                   );
             }
             return Content("true");
         }
@@ -51,7 +51,8 @@ namespace DBNL.App.Admin.Controllers
                         {
                             Id = entity.Id,
                             Question = entity.Question,
-                            Responses = entity.Responses
+                            Responses = entity.Responses,
+                            PollId = entity.PollId
                         };
             return Json(model.ToJqGridData(page, rows, null, "", new[] { "Question", "Responses" }), JsonRequestBehavior.AllowGet);
 

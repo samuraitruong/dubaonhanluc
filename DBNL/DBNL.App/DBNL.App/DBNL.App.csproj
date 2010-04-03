@@ -1522,6 +1522,7 @@
     <Content Include="Views\Article\View.aspx" />
     <Content Include="Views\Home\NewestJobControl.ascx" />
     <Content Include="Views\Home\PublicPollControl.ascx" />
+    <Content Include="Views\Shared\CategoriesOnHPView.ascx" />
     <Content Include="Views\Shared\FeatureCategoryView.ascx" />
     <Content Include="Views\Shared\ListFeatureNews.ascx" />
     <Content Include="Views\Shared\OtherNewsView.ascx" />
@@ -1805,7 +1806,9 @@
     <Content Include="bin\DynamicQuery.dll" />
     <Content Include="bin\DynamicQuery.pdb" />
     <Content Include="bin\System.Web.DataVisualization.dll" />
-    <Content Include="Configs\App.config" />
+    <Content Include="Configs\App.config">
+      <SubType>Designer</SubType>
+    </Content>
     <None Include="Content\Sidebar\functions.php" />
     <None Include="Content\Sidebar\index.php" />
     <None Include="Content\jqueryUI1.8a\development-bundle\demos\autocomplete\search.php" />

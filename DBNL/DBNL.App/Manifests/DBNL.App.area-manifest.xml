@@ -1430,6 +1430,7 @@
     <string>Views\Article\View.aspx</string>
     <string>Views\Home\NewestJobControl.ascx</string>
     <string>Views\Home\PublicPollControl.ascx</string>
+    <string>Views\Shared\CategoriesOnHPView.ascx</string>
     <string>Views\Shared\FeatureCategoryView.ascx</string>
     <string>Views\Shared\ListFeatureNews.ascx</string>
     <string>Views\Shared\OtherNewsView.ascx</string>

@@ -94,6 +94,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>DBNL.dbml</DependentUpon>
     </Compile>
+    <Compile Include="Entities\ContentCategory.cs" />
     <Compile Include="Extensions\DateTimeExtensions.cs" />
     <Compile Include="Extensions\HtmlHelperExtensions.cs">
       <SubType>Code</SubType>

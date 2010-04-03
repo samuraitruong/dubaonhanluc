@@ -154,7 +154,7 @@ namespace DBNL.App.Admin.Controllers
             var model = from entity in poll.OrderBy(sidx + " " + sord)
                         select new
                         {
-                            EntityId = entity.Id,
+                            Id = entity.Id,
                             PollName = entity.PollName,
                             Status = entity.Status
                         };

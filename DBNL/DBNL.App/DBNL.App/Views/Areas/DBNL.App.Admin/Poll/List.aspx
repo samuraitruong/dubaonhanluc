@@ -35,10 +35,10 @@ $(document).ready(function () {
                         type: "POST"
                     },
                     datatype: "json",
-                    colNames: [ 'EntityId','PollName', 'Status'],
+                    colNames: [ 'Id','PollName', 'Status'],
                     colModel: [
                     {
-                        name: 'EntityId', index: 'EntityId', width: 40, align: 'left', editable: false, key: true, editoptions: {readonly:'readonly'},editrules: { edithidden: true }, hidden: true },
+                        name: 'Id', index: 'Id', width: 40, align: 'left', editable: false, key: true, editoptions: {readonly:'readonly'},editrules: { edithidden: true }, hidden: true },
 
                         { name: 'PollName', index: 'PollName', width: 250, sortable: true, editable: true, edittype: 'text', editoptions: { size: 20, maxlength:100} , hidden: false },
                         { name: 'Status', index: 'Status', width: 35, align: 'center', sortable: true, editable: true, edittype: 'select', style: 'select', editoptions: { dataUrl: "<%=Url.Action("GetSelectStatus", "Poll" )%>"}, hidden: false },
@@ -54,6 +54,7 @@ $(document).ready(function () {
                     autowidth: true,
                     rownumbers: true,
                     caption: 'Poll list',
+                    postData : {test:'hehe'},
                     
                     subGrid: true,
                     subGridRowExpanded: function(subgrid_id, row_id) { 
@@ -65,28 +66,21 @@ $(document).ready(function () {
                     var subgrid_table_id, pager_id; 
                     subgrid_table_id = subgrid_id+"_t"; 
                     pager_id = "p_"+subgrid_table_id; 
-                    var eid = $("#grid").getRowData(row_id)["EntityId"];
+                    var eid = $("#grid").getRowData(row_id)["Id"];
                     $("#"+subgrid_id).html("<table id='"+subgrid_table_id+"' class='scroll'></table><div id='"+pager_id+"' class='scroll'></div>"); 
                     jQuery("#"+subgrid_table_id).jqGrid({ 
                     
                             url:"<%=Url.Action("GetQuestions", "PollQuestion" )%>/", 
-                            editurl : "<%=Url.Action("EditRow", "PollQuestion" )%>"
+                            editurl : "<%=Url.Action("EditRow", "PollQuestion" )%>/?PollId=" + eid,
                             datatype: "json", 
                             ajaxGridOptions: {
-                            type: "POST"
-                        },
+                                                    type: "POST"
+                                                },
                             colNames: ['Id','Question','Responses'], 
                             colModel: [ 
-<<<<<<< .mine
-                                        {name:"Id",index:"Id",width:100, sortable: false, editable: false, editoptions: {readonly:'readonly'},editrules: { edithidden: true }, key:true, hidden:true},
-                                        {name:"Question",index:"Question",width:625, sortable: true, editable: true}, 
-                                        {name:"Responses",index:"Responses",width:150, align: 'center'},
-=======
-                                        {name:"Id", index:"Id", width:100, sortable: false, editable: true, editoptions: {readonly:'readonly'}, editrules: { edithidden: true }, key:true, hidden:true},
+                                        {name:"Id", index:"Id", width:100, sortable: false, editable: false, editoptions: {readonly:'readonly'}, editrules: { edithidden: true }, key:true, hidden:true},
                                         {name:"Question", index:"Question", width:625, sortable: true, editable: true}, 
-                                        {name:"Responses", index:"Responses", width:150, align: 'center'},
->>>>>>> .r66
-                                        
+                                        {name:"Responses", index:"Responses", width:150, align: 'center'}                                 
                                       ],
                              rowNum:20, 
                              rowList: [10, 20, 30],
@@ -99,7 +93,7 @@ $(document).ready(function () {
                              autowidth: true,
                             rownumbers: true,
                             caption: 'Danh sách câu hỏi trong mục này',
-                             userdata: {PollId:$("#grid").getRowData(row_id)["id"]},
+                            userdata: {PollId:$("#grid").getRowData(row_id)["Id"]},
                              postData: {PollId:eid}
                              
                     }); 
@@ -123,7 +117,7 @@ $(document).ready(function () {
                                          $.ajax({
                                                   type: 'POST',
                                                   url: "<%=Url.Action("Public", "Poll" )%>",
-                                                  data: {Id : ret["EntityId"]},
+                                                  data: {Id : ret["Id"]},
                                                   success: function() {
                                                     $("#grid").trigger("reloadGrid")
                                                   },
