@@ -11,10 +11,12 @@ namespace DBNL.App.Models.ViewData
     {
         public PublicPollViewData PublicPoll { get; set; }
         public FeatureCategoryViewData FeaturedCategory { get; set; }
+        public IEnumerable<ContentCategory> CategoriesOnHP { get; set; }
         public HomePageViewData()
         {
             PublicPoll = new PublicPollViewData();
             FeaturedCategory = new FeatureCategoryViewData();
+            CategoriesOnHP = CategoryService.GetCategoriesShowOnHP();
         }
     }
     public class FeatureCategoryViewData{
@@ -25,6 +27,8 @@ namespace DBNL.App.Models.ViewData
         public FeatureCategoryViewData()
         {
             Category = CategoryService.GetFeatureCategory();
+            if (Category == null)
+                Category = CategoryService.GetRandomCategory();
             HostestArticle = Category.Contents
                 .OrderByDescending(p => p.IsFeatured.Value)
                 .OrderByDescending(p1 => p1.UpdatedDate)

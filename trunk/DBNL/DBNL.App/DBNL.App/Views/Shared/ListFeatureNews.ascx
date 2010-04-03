@@ -10,7 +10,7 @@
         			<div class="pic"><a href="<%= Url.Action( item.Title, "View","Article")%>"><img width="99" height="73" alt="nguonnhanluc" src="upload/images/artseed-1270221892.jpeg"></a></div>
         			<div class="des">
         				<p>
-                            <%=Html.ActionLink(item.Title, "View","Article") %>
+                            <%=Html.ActionLink(item.Title, "View","Article") %> <small><%= item.UpdatedDate.ToString("dd/MM/yyyy") %></small>
                         </p>
         			</div>
             

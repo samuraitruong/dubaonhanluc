@@ -26,13 +26,21 @@ namespace DBNL.App.Models.Extensions
 
             // Set Doughnut chart type
             Chart1.Series["Default"].ChartType = ChartType;
+            Chart1.Series["Default"].Label = "#VALX (#VAL/#PERCENT)";
             Chart1.Series["Default"].ChartArea = "ChartArea1";
             // Set labels style
-            Chart1.Series["Default"]["PieLabelStyle"] = "outside";
+            Chart1.Series["Default"]["PieLabelStyle"] = "Disabled";
+            Chart1.Series["Default"]["PieLabelFormat"] ="#PERCENT";
             //Chart1.Series["Default"].Label = "#PERCENT{P1}";
             Chart1.Titles.Add(polltitle);
             // Enable 3D
             Chart1.ChartAreas["ChartArea1"].Area3DStyle.Enable3D = true;
+
+            Legend l = new Legend("xxx");
+            l.Title = "Hướng dẫn";
+            l.LegendStyle = LegendStyle.Table;
+            
+            Chart1.Legends.Add(l);
 
             Chart1.BorderSkin.SkinStyle = BorderSkinStyle.Emboss;
 

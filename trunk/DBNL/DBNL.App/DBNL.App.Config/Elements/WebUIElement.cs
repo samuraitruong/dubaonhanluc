@@ -52,6 +52,13 @@ namespace DBNL.App.Config
        {
            get { return (int)this["otherFeaturesNews"]; }
        }
+        [ConfigurationProperty("featuredItemOnHP")]
+       public int FeaturedItemOnHP
+       {
+           get { return (int)this["featuredItemOnHP"]; }
+       }
+
+       
        
     }
 }
