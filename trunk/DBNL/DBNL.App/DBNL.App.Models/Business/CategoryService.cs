@@ -12,9 +12,15 @@ namespace DBNL.App.Models.Business
 
             return Categories.Where(p => p.IsFeatured == true).FirstOrDefault();
         }
+
         public static IEnumerable<ContentCategory> GetAllCategories()
         {
             return GetInstance().ContentCategories.AsEnumerable();
+        }
+
+        public static IQueryable<ContentCategory> List()
+        {
+            return GetInstance().ContentCategories.AsQueryable();
         }
 
         public static ContentCategory AddCategory(string name, int? parentCategoryId)
@@ -41,6 +47,24 @@ namespace DBNL.App.Models.Business
                 return Categories.Where( p=>p.ParentCategoryId == null).AsQueryable();
             }
             return Categories.Where(p => p.ParentCategoryId.Value == ParentId.Value).AsQueryable();
+        }
+
+        public static ContentCategory Edit(int id, string name, int? parentId, bool isFeatured, bool showOnHP)
+        {
+            ContentCategory updCate = GetById(id);
+            updCate.CategoryName = name.Trim();
+            if (parentId.HasValue)
+            {
+                updCate.ParentCategoryId = parentId.Value;
+            }
+            else
+            {
+                updCate.ParentCategoryId = null;
+            }
+            updCate.IsFeatured = isFeatured;
+            updCate.ShowOnHP = showOnHP;
+            Commit();
+            return updCate;
         }
 
         public static ContentCategory GetRandomCategory()
