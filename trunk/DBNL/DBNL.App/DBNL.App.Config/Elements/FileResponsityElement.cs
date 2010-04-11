@@ -17,6 +17,20 @@ namespace DBNL.App.Config.Elements
             get { return GetRelativeUrl((string)this["bannerFolder"]); }
         }
 
+        [ConfigurationProperty("pictureFolder")]
+        public string PictureRelativeUrl
+        {
+            get { return GetRelativeUrl((string)this["pictureFolder"]); }
+        }
+
+
+        [ConfigurationProperty("pictureFolder")]
+
+        public string PictureFolder
+        {
+            get { return GetFullPath((string)this["pictureFolder"]); }
+        }
+
         [ConfigurationProperty("bannerFolder")]
 
         public string BannerFolder

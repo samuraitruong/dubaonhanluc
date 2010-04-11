@@ -80,7 +80,35 @@ namespace DBNL.App.Models.Extensions
 
             return sb.ToString();
         }
+        /// <summary>
+        /// Renders JavaScript to turn the specified file input control into an 
+        /// Uploadify upload control.
+        /// </summary>
+        /// <param name="helper"></param>
+        /// <param name="name"></param>
+        /// <param name="options"></param>
+        /// <returns></returns>
+        //public static string Uploadify(this HtmlHelper helper, string name, UploadifyOptions options)
+        //{
+        //    string scriptPath = helper.ResolveUrl("~/Content/jqueryPlugins/uploadify/");
 
+        //    StringBuilder sb = new StringBuilder();
+        //    //Include the JS file.
+        //    sb.Append(helper.ScriptInclude("~/Content/jqueryPlugins/uploadify/jquery.uploadify.js"));
+        //    sb.Append(helper.ScriptInclude("~/Content/jqueryPlugins/uploadify/jquery.uploadify.init.js"));
+
+        //    //Dump the script to initialze Uploadify
+        //    sb.AppendLine("<script type=\"text/javascript\">");
+        //    sb.AppendLine("$(document).ready(function() {");
+        //    sb.AppendFormat("initUploadify($('#{0}'),'{1}','{2}','{3}','{4}','{5}',{6},{7});", name, options.UploadUrl,
+        //                    scriptPath, options.FileExtensions, options.FileDescription, options.AuthenticationToken,
+        //                    options.ErrorFunction ?? "null", options.CompleteFunction ?? "null");
+        //    sb.AppendLine();
+        //    sb.AppendLine("});");
+        //    sb.AppendLine("</script");
+
+        //    return sb.ToString();
+        //}
     }
 }
  

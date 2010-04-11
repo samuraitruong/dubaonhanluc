@@ -16,7 +16,7 @@
 
     <%= Html.ValidationSummary("Create was unsuccessful. Please correct the errors and try again.") %>
 
-    <% using (Html.BeginForm()) {%>
+    <% using (Html.BeginForm("Create", "Content", FormMethod.Post, new {enctype="multipart/form-data"})) {%>
 
         <fieldset>
             <legend>Fields</legend>
@@ -46,7 +46,10 @@
                 <label for="IsFeatured">IsFeatured:</label>
                  <%= Html.CheckBox("IsFeatured")%>
             </p>
-            
+            <p>
+                <label>Hình minh họa</label>
+                <input type="file" id="Picture" name="Picture" />
+            </p>
            
             <p>
                 <input type="submit" value="Create" />

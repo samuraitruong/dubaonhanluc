@@ -3,6 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using DBNL.App.Config;
+using System.Web;
+using System.IO;
+using System.Drawing;
+using System.Drawing.Imaging;
 
 namespace DBNL.App.Models.Business
 {
@@ -19,8 +23,19 @@ namespace DBNL.App.Models.Business
             return Contents.AsEnumerable();
         }
 
-        public static Content Create(Content content)
+        public static Content Create(Content content, HttpPostedFileBase picture)
         {
+            if(picture != null) {
+                string ext = VirtualPathUtility.GetExtension(picture.FileName);
+                //picture.InputStream.Write(
+                MemoryStream ms = new MemoryStream();
+                Image bitmap = Image.FromStream(picture.InputStream);
+                string filename = content.UniqueKey + ".jpg";
+                bitmap.Save(Path.Combine(DBNLConfigurationManager.FileResponsity.PictureFolder, filename), ImageFormat.Jpeg);
+                content.Picture = filename;
+                bitmap.Dispose();
+                ms.Close();
+            }
             Contents.InsertOnSubmit(content);
             Commit();
             return content;
@@ -52,6 +67,11 @@ namespace DBNL.App.Models.Business
                 Skip(0).
                 Take(DBNLConfigurationManager.WebUI.OtherNewsCount).
                 AsEnumerable();
+        }
+
+        public static IQueryable<Content> All()
+        {
+            return Contents.AsQueryable();
         }
     }
 }

@@ -1844,6 +1844,7 @@
     <Folder Include="App_Data\" />
     <Folder Include="Areas\Polls\" />
     <Folder Include="Models\" />
+    <Folder Include="Resources\Pictures\" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v9.0\WebApplications\Microsoft.WebApplication.targets" />
