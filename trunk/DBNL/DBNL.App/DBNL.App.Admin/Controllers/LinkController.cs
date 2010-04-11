@@ -102,10 +102,6 @@ namespace DBNL.App.Admin.Controllers
                             Title = entity.Title,
                             Url = entity.Url,
                         };
-
-
-                
-
             return Json(model.ToJqGridData(page, rows, null, "", new[] { "Title", "Url" }), JsonRequestBehavior.AllowGet);
         }
 

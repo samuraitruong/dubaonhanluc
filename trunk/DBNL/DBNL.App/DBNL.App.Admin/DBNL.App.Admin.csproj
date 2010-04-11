@@ -84,6 +84,7 @@
     <Compile Include="Controllers\PollController.cs" />
     <Compile Include="Controllers\PollQuestionController.cs" />
     <Compile Include="Controllers\RolesController.cs" />
+    <Compile Include="Controllers\SecurityController.cs" />
     <Compile Include="Controllers\SupporterController.cs" />
     <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -129,6 +130,7 @@
     <Content Include="Views\Poll\List.aspx" />
     <Content Include="Views\Roles\Create.aspx" />
     <Content Include="Views\Roles\Index.aspx" />
+    <Content Include="Views\Security\LogOn.aspx" />
     <Content Include="Views\Supporter\Create.aspx" />
     <Content Include="Views\Supporter\Index.aspx" />
     <Content Include="Views\User\Create.aspx" />
@@ -200,6 +202,9 @@
           <IISUrl>
           </IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>False</UseCustomServer>
+          <CustomServerUrl>
+          </CustomServerUrl>
           <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
         </WebProjectProperties>
       </FlavorProperties>

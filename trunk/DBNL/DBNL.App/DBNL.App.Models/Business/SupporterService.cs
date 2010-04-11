@@ -18,5 +18,26 @@ namespace DBNL.App.Models.Business
         {
             return Supporters.AsEnumerable();
         }
+
+        public static IQueryable<Supporter> List()
+        {
+            return Supporters.AsQueryable();
+        }
+        public static Supporter GetItem(int id) {
+            return Supporters.Where(p => p.Id == id).SingleOrDefault();
+        }
+        public static Supporter Add(Supporter sp)
+        {
+            Supporters.InsertOnSubmit(sp);
+            Commit();
+            return sp;
+        }
+
+        public static void Delete(int id)
+        {
+            Supporter sp = GetItem(id);
+            Supporters.DeleteOnSubmit(sp);
+            Commit();
+        }
     }
 }

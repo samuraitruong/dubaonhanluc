@@ -1,12 +1,12 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Views/Shared/Site.Master" Inherits="System.Web.Mvc.ViewPage<IEnumerable<DBNL.App.Models.Contact>>" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="TitleContent" runat="server">
-	List
+	Danh sách email liên hệ với trung tâm
 </asp:Content>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
 
-    <h2>List</h2>
+    <h2>Danh sách các email.</h2>
 
      <div>
         <table id="grid" cellpadding="0" cellspacing="0">
@@ -54,7 +54,7 @@ $(document).ready(function () {
                     height: '100%',
                     autowidth: true,
                     rownumbers: true,
-                    caption: 'Contact list'
+                    caption: 'DANH SÁCH EMAIL TRUNG TÂM TRUNG TÂM DỰ BÁO NHU CẦU NHÂN LỰC VÀ THÔNG TIN THỊ TRƯỜNG LAO ĐỘNG TP.HCM'
                     
                 })
         .navGrid('#pager', { edit: true, add: true, del: false, search: true, view: true });

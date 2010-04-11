@@ -17,7 +17,7 @@ namespace DBNL.App.Admin
         {
             context.MapRoute(
                 "Admin_Default",
-                "admin1/{controller}/{action}/{id}",
+                "CMS/{controller}/{action}/{id}",
                 new { controller = "Administrations", action = "Index", id = "" }
                 //new string[] { "DBNL.App.Admin.Controllers" }
             );

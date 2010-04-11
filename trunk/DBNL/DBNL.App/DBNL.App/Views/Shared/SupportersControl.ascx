@@ -11,11 +11,11 @@
     <% foreach (var item in Model) { %>
         <div class="support">
         <% if(item.Type == SupportTypes.Skype.ToString()) { %>
-            <a href="skype:mdnguyen86?chat"><img src="<%=Url.Content("~/images")%>/skype_on.jpg" alt="<% =Html.Encode(item.NickName)%>" /></a>
+            <a href="skype:?chat"><img src="<%=Url.Content("~/images")%>/skype_on.jpg" alt="<% =Html.Encode(item.NickName)%>" /></a>
                 <a href="skype:<% =Html.Encode(item.NickName)%>?chat">Skype</a>
                 <% } else { %>
                 <a href="ymsgr:sendIM:mdnguyen86"><img src="<%=Url.Content("~/images")%>/yahoo_on.jpg" alt="<% =Html.Encode(item.NickName)%>" /></a>
-                <a href="ymsgr:sendIM:<% =Html.Encode(item.NickName)%>">Yahoo</a>
+                <a href="ymsgr:sendIM:<% =Html.Encode(item.NickName)%>" title="<%=item.Name %>"><%=item.Name %></a>
                 <% } %>
                 
         </div>

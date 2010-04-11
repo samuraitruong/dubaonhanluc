@@ -1,12 +1,12 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Views/Shared/Site.Master" Inherits="System.Web.Mvc.ViewPage<IEnumerable<DBNL.App.Models.User>>" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="TitleContent" runat="server">
-	List
+	Quản trị viên hệ thống
 </asp:Content>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
 
-    <h2>List</h2>
+    <h2>Quản trị viên hệ thống</h2>
 
      <div>
         <table id="grid" cellpadding="0" cellspacing="0">
@@ -35,25 +35,28 @@ $(document).ready(function () {
                         type: "POST"
                     },
                     datatype: "json",
-                    colNames: [ 'EntityId','PollName', 'Status'],
+                    colNames: [ 'Id','Họ Tên', 'Tên đăng nhập','Nhóm','Trạng Thái','Mật khẩu'],
                     colModel: [
                     {
-                        name: 'EntityId', index: 'EntityId', width: 40, align: 'left', editable: false, key: true, editoptions: {readonly:'readonly'},editrules: { edithidden: true }, hidden: true },
+                        name: 'Id', index: 'Id', width: 40, align: 'left', editable: false, key: true, editoptions: {readonly:'readonly'},editrules: { edithidden: true }, hidden: true },
 
-                        { name: 'PollName', index: 'PollName', width: 250, sortable: true, editable: true, edittype: 'text', editoptions: { size: 20, maxlength:100} , hidden: false },
-                        { name: 'Status', index: 'Status', width: 35, align: 'center', sortable: true, editable: true, edittype: 'select', style: 'select', editoptions: { dataUrl: "<%=Url.Action("GetSelectStatus", "Poll" )%>"}, hidden: false },
+                        { name: 'Name', index: 'Name', width: 150, sortable: true, editable: true, edittype: 'text', editoptions: { size: 20, maxlength:100} , hidden: false },
+                        { name: 'Username', index: 'Username', width: 60, sortable: true, editable: true, edittype: 'text', editoptions: { size: 20, maxlength:100} , hidden: false },
+                        { name: 'Roles', index: 'Roles', width: 150, sortable: true, editable: true, edittype: 'text', editoptions: { size: 20, maxlength:100} , hidden: false },
+                        { name: 'Status', index: 'Status', width: 35, align: 'center', sortable: true, editable: true, edittype: 'text', style: 'select', editoptions: { dataUrl: ""}, hidden: false },
+                        { name: 'Password', index: 'Password', width: 35, align: 'center', sortable: true, editable: true, edittype: 'text', style: 'select', editoptions: { dataUrl: ""}, hidden: true },
                       ],
                     rowNum: 10,
                     rowList: [10, 20, 30],
                     pager: pager,
-                    sortname: 'PollName',
+                    sortname: 'Name',
                     sortorder: "asc",
                     viewrecords: true,
                     width: '100%',
                     height: '100%',
                     autowidth: true,
                     rownumbers: true,
-                    caption: 'Poll list',
+                    caption: 'Danh sách quản trị viên',
                     
                     subGrid: true,
                     subGridRowExpanded: function(subgrid_id, row_id) { 

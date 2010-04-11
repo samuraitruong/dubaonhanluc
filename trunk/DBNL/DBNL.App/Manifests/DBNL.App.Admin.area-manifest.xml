@@ -40,6 +40,7 @@
     <string>Views\Poll\List.aspx</string>
     <string>Views\Roles\Create.aspx</string>
     <string>Views\Roles\Index.aspx</string>
+    <string>Views\Security\LogOn.aspx</string>
     <string>Views\Supporter\Create.aspx</string>
     <string>Views\Supporter\Index.aspx</string>
     <string>Views\User\Create.aspx</string>

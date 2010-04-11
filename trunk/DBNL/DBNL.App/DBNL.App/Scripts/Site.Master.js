@@ -10,7 +10,8 @@ var DBNL = {
         Poll: {},
         Categories: { Articles: {} },
         Articles: {},
-        Navigations :{}
+        Navigations :{},
+        Supporters:{}
     },
     SiteMaster: {
         setDefaults: function () {
@@ -69,3 +70,11 @@ var GridDemo = {
         }
     }
 };
+function imageFormater(cellvalue, options, rowObject) {
+    return "<img src='" + cellvalue + "' width='75' height='54' />";
+
+}
+function urlFormater(cellvalue, options, rowObject) {
+    return "<a href='" + cellvalue + "'  >" + cellvalue+"</a>";
+
+}

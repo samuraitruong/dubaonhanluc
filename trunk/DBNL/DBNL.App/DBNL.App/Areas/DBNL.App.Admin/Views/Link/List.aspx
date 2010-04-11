@@ -1,12 +1,12 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Views/Shared/Site.Master" Inherits="System.Web.Mvc.ViewPage<IEnumerable<DBNL.App.Models.Link>>" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="TitleContent" runat="server">
-	List
+	Liên kết website.
 </asp:Content>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
 
-    <h2>List</h2>
+    <h2>Liên kết website.</h2>
 
      <div>
         <table id="grid" cellpadding="0" cellspacing="0">
@@ -35,13 +35,13 @@ $(document).ready(function () {
                         type: "POST"
                     },
                     datatype: "json",
-                    colNames: [ 'EntityId','Title', 'Url'],
+                    colNames: [ 'EntityId','Tên cơ quan', 'Website'],
                     colModel: [
                     {
                         name: 'EntityId',key:true, index: 'EntityId', width: 40, align: 'left',editable: false, editoptions: {readonly:'readonly'},editrules: { edithidden: true }, hidden: true },
 
                         { name: 'Title', index: 'Title', sortable: true, editable: true, edittype: 'text', editoptions: { size: 20, maxlength:100} , hidden: false },
-                        { name: 'Url', index: 'Url', width: 150, align: 'left', formatter: 'showlink', formatoptions: { prefix: "$" }, sortable: true, editable: true, edittype: 'text', editoptions: { size: 20, maxlength:100}, hidden: false },
+                        { name: 'Url', index: 'Url', width: 150, align: 'left', formatter: urlFormater, formatoptions: { prefix: "$" }, sortable: true, editable: true, edittype: 'text', editoptions: { size: 20, maxlength:100}, hidden: false },
                       ],
                     rowNum: 10,
                     rowList: [10, 20, 30],
@@ -53,7 +53,7 @@ $(document).ready(function () {
                     height: '100%',
                     autowidth: true,
                     rownumbers: true,
-                    caption: 'Link list',
+                    caption: 'Danh sách các website có liên kết',
 //                    search : {
 //                                 caption: "Search...",
 //                                 Find: "Find",

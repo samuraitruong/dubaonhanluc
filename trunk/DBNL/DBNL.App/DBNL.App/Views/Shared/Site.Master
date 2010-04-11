@@ -14,27 +14,28 @@
 
         <div id="header">
             <div id="title">
-                <h1>My MVC Application</h1>
+                <h1>Web Administration System</h1>
             </div>
               
             <div id="logindisplay">
                 <% Html.RenderPartial("LogOnUserControl"); %>
             </div> 
-            
+            <div style="clear:both" />
             <div id="menucontainer">
             
                 <ul id="menu">              
-                     <li><%= Html.ActionLink("Home", "Index", "Home", new { area = "" }, null)%></li>
-                     <li><%= Html.ActionLink("Administration", "Index", "Administrations", new { area = "DBNL.App.Admin" }, null)%></li>
-                     <li><%= Html.ActionLink("Articles", "Index", "Articles", new { area = "articles" }, null)%></li>
-                     <li><%= Html.ActionLink("Banners", "Index", "Banner", new { area = "DBNL.App.Admin" }, null)%></li>
-                     <li><%= Html.ActionLink("Contacts", "Index", "Contact", new { area = "DBNL.App.Admin" }, null)%></li>
-                     <li><%= Html.ActionLink("Links", "Index", "Link", new { area = "DBNL.App.Admin" }, null)%></li>
-                     <li><%= Html.ActionLink("Polls", "Index", "Poll", new { area = "DBNL.App.Admin" }, null)%></li>
-                     <li><%= Html.ActionLink("Categories", "Index", "Categories", new { area = "DBNL.App.Admin" }, null)%></li>
-                     <li><%= Html.ActionLink("Users", "Index", "User", new { area = "DBNL.App.Admin" }, null)%></li>
-                     <li><%= Html.ActionLink("Supporters", "Index", "Supporter", new { area = "DBNL.App.Admin" }, null)%></li>
-                    <li><%= Html.ActionLink("About", "About", "Home", new { area = "" }, null)%></li>
+                     <li><%= Html.ActionLink("Trang chủ", "Index", "Home", new { area = "" }, null)%></li>
+                     <li><%= Html.ActionLink("Nội dung", "Index", "Categories", new { area = "DBNL.App.Admin" }, null)%></li>
+                     <li><%= Html.ActionLink("Danh mục", "Index", "Navigation", new { area = "DBNL.App.Admin" }, null)%></li>
+                     
+                    <li><%= Html.ActionLink("Người quản trị", "Index", "User", new { area = "DBNL.App.Admin" }, null)%></li>
+                     <li><%= Html.ActionLink("Liên kết website", "Index", "Link", new { area = "DBNL.App.Admin" }, null)%></li>
+                     <li><%= Html.ActionLink("Khảo sát ý kiến", "Index", "Poll", new { area = "DBNL.App.Admin" }, null)%></li>
+                     
+                     
+                     <li><%= Html.ActionLink("Hổ trợ", "Index", "Supporter", new { area = "DBNL.App.Admin" }, null)%></li>
+                      <li><%= Html.ActionLink("Banners", "Index", "Banner", new { area = "DBNL.App.Admin" }, null)%></li>
+                     <li><%= Html.ActionLink("Liện Hệ", "Index", "Contact", new { area = "DBNL.App.Admin" }, null)%></li>
                 </ul>
             
             </div>

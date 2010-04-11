@@ -9,6 +9,10 @@ namespace DBNL.App.Models.Business
 {
     public class UserService:BaseService
     {
+        public static User GetValidateUser(string Username, string Password)
+        {
+            return Users.Where(p => p.Username == Username && p.Password == Password).SingleOrDefault();
+        }
         public static IEnumerable<User> GetAllItems()
         {
             return GetInstance().Users.AsEnumerable();

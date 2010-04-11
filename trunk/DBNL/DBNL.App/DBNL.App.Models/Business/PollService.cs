@@ -36,7 +36,9 @@ namespace DBNL.App.Models.Business
         public static void Delete(int id)
         {
             Poll poll = GetItem(id);
-            GetInstance().Polls.DeleteOnSubmit(poll);
+            if (poll == null) return;
+            PollQuestions.DeleteAllOnSubmit(poll.PollQuestions);
+            Polls.DeleteOnSubmit(poll);
             Commit();
         }
 
