@@ -11,7 +11,8 @@
                
                <div class="hn tnb clearfix">
 					<div class="pic">
-						<a href="<%= Url.Action("View","Article", new {id=item.ContentId})%>"><img width="115" alt="nguonnhanluc" src="<% =item.ThumbanilUrl %>"></a>
+                    
+						<a href="<%= Url.Action("View","Article", new {id=item.ContentId})%>"><img width="115" alt="nguonnhanluc" src="<% =item.ThumbnailUrl %>"/></a>
 					</div>
 					<div class="des">
 						<h3><%=Html.ActionLink(item.Title, "View", "Article", new { id= item.ContentId}, null)%> <small><%= item.UpdatedDate.ToString("dd/MM/yyyy") %></small></h3>
