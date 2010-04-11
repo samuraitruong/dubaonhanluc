@@ -21,7 +21,7 @@
         <% foreach (var subitem in item.FeatureArtilesHonHP)
            {%>
     		<div class="hn clearfix">
-    			<div class="pic"><a href=""><img width="110" alt="nguonnhanluc" src="<%=item.ThumbnailUrl %>"></a></div>
+    			<div class="pic"><a href=""><img width="110" alt="nguonnhanluc" src="<%=subitem.ThumbnailUrl %>"></a></div>
     			<div class="des">
     				<h3><a href=""><%=subitem.Title %></a> <small>(04/03/2010)</small></h3>
     				<p>&nbsp;&nbsp; <%=subitem.Description.Substring(0, Math.Min(subitem.Title.Length, 150)) %></p>
