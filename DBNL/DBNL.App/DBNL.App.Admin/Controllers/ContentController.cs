@@ -17,6 +17,35 @@ namespace DBNL.App.Admin.Controllers
         // GET: /Content/
 
         [HttpPost]
+        public ActionResult GetList(int page, int rows, string sidx, string sord, int? CategoryId)
+        {
+            IQueryable<Models.Content> contents ;
+
+            if (!CategoryId.HasValue) contents = ContentService.All();
+            else
+
+                contents = ContentService.List(CategoryId.Value);
+
+            bool searchOn = bool.Parse(Request.Form["_search"]);
+            string searchExp = "";
+            if (searchOn)
+            {
+                searchExp = string.Format("{0}.ToString().Contains(@0)", getFormValue("searchField"));
+                contents = contents.Where(searchExp, new string[] { getFormValue("searchString") });
+            }
+            var model = from entity in contents.OrderBy(sidx + " " + sord)
+                        select new
+                        {
+                            Id = entity.ContentId,
+                            Title = entity.Title,
+                            Thumbnail = entity.ThumbnailUrl,
+                            Category= entity.ContentCategory.CategoryName,
+                            Status = entity.Status,
+                        };
+            return Json(model.ToJqGridData(page, rows, null, "", new[] { "Title" }), JsonRequestBehavior.AllowGet);
+        }
+
+        [HttpPost]
         public ActionResult List(int page, int rows, string sidx, string sord, int CategoryId)
         {
             var contents = ContentService.List(CategoryId);
@@ -48,7 +77,9 @@ namespace DBNL.App.Admin.Controllers
         }
         public ActionResult Index()
         {
-            ViewData.Model = ContentService.GetItems();
+            ViewData["Categories"] = CustomSelectList.CreateListCategories(false);
+
+            //ViewData.Model = ContentService.GetItems();
             return View();
         }
 
@@ -78,6 +109,7 @@ namespace DBNL.App.Admin.Controllers
         {
             try
             {
+                HttpPostedFileBase picture = (HttpPostedFileBase)Request.Files["Picture"];
                 // TODO: Add insert logic here
                 Models.Content content = new Models.Content(){
                     Title = collection["Title"],
@@ -88,11 +120,11 @@ namespace DBNL.App.Admin.Controllers
                     UniqueKey = collection["Title"].ToUrlKey(),
                     CategoryId = int.Parse(collection["CategoryId"]),
                     IsFeatured = collection["IsFeatured"].Contains("true"),
-                    Description = collection["Description"]
+                    Description = collection["Description"],
                 };
 
                 
-                ContentService.Create(content);
+                ContentService.Create(content, picture);
 
                 return RedirectToAction("Index");
             }

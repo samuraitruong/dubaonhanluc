@@ -22,7 +22,7 @@
         <div id="article_grid_pager" style="text-align: center;"/>
         
     </div>
-    
+        <p><%=Html.ActionLink("Thêm bài viết", "Create","Content") %></p>
     </div>
 </asp:Content>
 

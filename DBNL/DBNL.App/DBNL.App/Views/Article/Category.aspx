@@ -1,6 +1,7 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Views/Shared/FO.Master" Inherits="System.Web.Mvc.ViewPage<CategoryViewData>" %>
 <%@ Import Namespace="DBNL.App.Models.ViewData" %>
 <%@ Import Namespace="DBNL.App.Models.Extensions" %>
+<%@ Import Namespace="DBNL.App.Models" %>
 
 
 <asp:Content ID="Content5" ContentPlaceHolderID="headerPlaceHolder" runat="server">
@@ -24,7 +25,7 @@
                    {
                    %>
                     <div class="im_news clearfix">
-        				<div class="pic"> <a href=""><img width="140" height="110" alt="nguonnhanluc" src="upload/images/artseed-1267775708.jpg"/></a> </div>
+        				<div class="pic"> <a href="<%=Url.Action("View","Article", new {id= item.ContentId}) %>"><img width="140" height="110" alt="nguonnhanluc" src="<%=item.ThumbnailUrl %>"/></a> </div>
         				<div class="des">
         					<h3>
                                 <%= Html.ActionLink((item.Title), 
@@ -41,7 +42,7 @@
                    else
                    { %>
                     <div class="im_news_object">
-                    	<div class="im_news_pic"><a href="#neo_content"><img width="110" alt="nguonnhanluc" src="upload/images/artseed-1267775337.jpg"></a></div>
+                    	<div class="im_news_pic"><a href="<%=Url.Action("View","Article", new {id= item.ContentId}) %>"><img width="110" alt="nguonnhanluc" src="<%=item.ThumbnailUrl %>"></a></div>
                     	<h3>
                             <%= Html.ActionLink((item.Title), 
                                 DBNL.App.Models.Statics.Actions.View.ToString(), 
