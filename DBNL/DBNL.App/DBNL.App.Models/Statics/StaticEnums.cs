@@ -63,4 +63,11 @@ namespace DBNL.App.Models.Statics
         Active,
         Inactive
     }
+    public enum JqGridOperations
+    {
+        del,
+        edit,
+        add,
+        search
+    }
 }

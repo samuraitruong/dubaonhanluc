@@ -97,6 +97,7 @@
     </Compile>
     <Compile Include="Entities\Content.cs" />
     <Compile Include="Entities\ContentCategory.cs" />
+    <Compile Include="Entities\User.cs" />
     <Compile Include="Extensions\DateTimeExtensions.cs" />
     <Compile Include="Extensions\HtmlHelperExtensions.cs">
       <SubType>Code</SubType>

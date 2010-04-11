@@ -21,6 +21,14 @@ namespace DBNL.App.Models.Business
             }
         }
 
+        public static Table<User> Users
+        {
+            get
+            {
+                return GetInstance().Users;
+            }
+        }
+
         public static Table<Banner> Banners
         {
             get

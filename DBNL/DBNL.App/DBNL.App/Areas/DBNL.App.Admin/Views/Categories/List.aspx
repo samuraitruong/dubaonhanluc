@@ -1,18 +1,20 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Views/Shared/Site.Master" Inherits="System.Web.Mvc.ViewPage<IEnumerable<DBNL.App.Models.ContentCategory>>" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="TitleContent" runat="server">
-	List
+	Danh Mục
 </asp:Content>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
 
-    <h2>List</h2>
+    <h2>Danh Mục</h2>
 
      <div>
         <table id="grid" cellpadding="0" cellspacing="0">
         </table>
-        <div id="pager" style="text-align: center;"/>
+        <div id="pager" style="text-align: center;"></div>
         
+        
+        <p><%=Html.ActionLink("Thêm bài danh mục", "Create","Categories") %></p>
     </div>
     
      <div style="padding-top:35px">
@@ -23,7 +25,6 @@
         
     </div>
         <p><%=Html.ActionLink("Thêm bài viết", "Create","Content") %></p>
-    </div>
 </asp:Content>
 
 <asp:Content ID="Content3" runat="server" ContentPlaceHolderID="ScriptContent">

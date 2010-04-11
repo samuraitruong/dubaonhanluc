@@ -2,10 +2,14 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using System.Linq.Dynamic;
 using System.Web.Mvc;
-using System.Web.Mvc.Ajax;
-using DBNL.App.Models;
+using DBNL.App.Models.ViewData;
 using DBNL.App.Models.Business;
+using DBNL.App.Models.Helpers;
+using DBNL.App.Models;
+using DBNL.App.Models.Statics;
+
 
 namespace DBNL.App.Admin.Controllers
 {
@@ -17,6 +21,28 @@ namespace DBNL.App.Admin.Controllers
         public ActionResult Index()
         {
             return View();
+        }
+
+        [HttpPost]
+        public ActionResult EditRow(int? id, string Name, string Type, string NickName, string oper)
+        {
+
+            if (oper == JqGridOperations.add.ToString())
+            {
+                Supporter sp = new Supporter() {
+                Name = Name,
+                NickName = NickName,
+                Status = EntityStatuses.Actived.ToString(),
+                Type = Type,
+                };
+                SupporterService.Add(sp);
+                return Content("true");
+            }
+            if(oper == JqGridOperations.del.ToString()){
+                SupporterService.Delete(id.Value);
+            }
+
+            return Content("true");
         }
 
         //
@@ -46,6 +72,47 @@ namespace DBNL.App.Admin.Controllers
         public ActionResult Edit(int id)
         {
             return View();
+        }
+        protected string getFormValue(string key)
+        {
+            try
+            {
+                return Request.Form[key];
+            }
+            catch
+            {
+                return "";
+            }
+        }        //
+        [HttpPost]
+        public ActionResult List(int page, int rows, string sidx, string sord)
+        {
+
+            var links = SupporterService.List();
+
+            bool searchOn = bool.Parse(Request.Form["_search"]);
+            string searchExp = "";
+            if (searchOn)
+            {
+                searchExp = string.Format("{0}.ToString().Contains(@0)", getFormValue("searchField"));
+                links = links.Where(searchExp, new string[] { getFormValue("searchString") });
+            }
+
+
+            var model = from entity in links.OrderBy(sidx + " " + sord)
+                        select new
+                        {
+                            Id = entity.Id,
+                            Name= entity.Name,
+                            NickName = entity.NickName ,
+                            Type = entity.Type,
+                            Status = entity.Status
+                        };
+
+
+
+
+            return Json(model.ToJqGridData(page, rows, null, "", new[] { "Name", "NickName" }), JsonRequestBehavior.AllowGet);
         }
 
         //

@@ -3,8 +3,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using System.Linq.Dynamic;
 using DBNL.App.Models.Business;
-using DBNL.App.Models;
+using DBNL.App.Models.Helpers;
+using DBNL.App.Models.Statics;
+using DBNL.App.Models.Extensions;
+
 
 namespace DBNL.App.Admin.Controllers
 {
@@ -39,7 +43,7 @@ namespace DBNL.App.Admin.Controllers
         // POST: /User/Create
 
         [HttpPost]
-        public ActionResult Create(User user)
+        public ActionResult Create(Models.User user)
         {
             try
             {
@@ -111,6 +115,30 @@ namespace DBNL.App.Admin.Controllers
             {
                 return View();
             }
+        }
+
+        [HttpPost]
+        public ActionResult List(int page, int rows, string sidx, string sord)
+        {
+            var users = UserService.List();
+            bool searchOn = bool.Parse(Request.Form["_search"]);
+            string searchExp = "";
+            if (searchOn)
+            {
+                searchExp = string.Format("{0}.ToString().Contains(@0)", getFormValue("searchField"));
+                users = users.Where(searchExp, new string[] { getFormValue("searchString") });
+            }
+            var model = from entity in users.OrderBy(sidx + " " + sord)
+                        select new
+                        {
+                            Id = entity.Id,
+                            Name = entity.Name,
+                            Username = entity.Username,
+                            Status = entity.Status,
+                            Password = entity.Password,
+                            Roles= entity.GetRoles()
+                        };
+            return Json(model.ToJqGridData(page, rows, null, "", new[] { "Name", "Username","Status" }), JsonRequestBehavior.AllowGet);
         }
 
         protected string getFormValue(string key)

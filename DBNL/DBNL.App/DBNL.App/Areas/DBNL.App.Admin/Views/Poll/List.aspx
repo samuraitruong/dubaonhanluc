@@ -1,12 +1,12 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Views/Shared/Site.Master" Inherits="System.Web.Mvc.ViewPage<IEnumerable<DBNL.App.Models.Poll>>" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="TitleContent" runat="server">
-	List
+	Khảo sát ý kiến
 </asp:Content>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
 
-    <h2>List</h2>
+    <h2>Khảo sát ý kiến</h2>
 
      <div>
         <table id="grid" cellpadding="0" cellspacing="0">
@@ -35,7 +35,7 @@ $(document).ready(function () {
                         type: "POST"
                     },
                     datatype: "json",
-                    colNames: [ 'Id','PollName', 'Status'],
+                    colNames: [ 'Id','Tên', 'Trạng thái'],
                     colModel: [
                     {
                         name: 'Id', index: 'Id', width: 40, align: 'left', editable: false, key: true, editoptions: {readonly:'readonly'},editrules: { edithidden: true }, hidden: true },
@@ -53,8 +53,8 @@ $(document).ready(function () {
                     height: '100%',
                     autowidth: true,
                     rownumbers: true,
-                    caption: 'Poll list',
-                    postData : {test:'hehe'},
+                    caption: 'Danh sách các khảo sát hiện tại',
+                    postData : {},
                     
                     subGrid: true,
                     subGridRowExpanded: function(subgrid_id, row_id) { 
@@ -76,7 +76,7 @@ $(document).ready(function () {
                             ajaxGridOptions: {
                                                     type: "POST"
                                                 },
-                            colNames: ['Id','Question','Responses'], 
+                            colNames: ['Id','Câu hỏi','Số lần chọn'], 
                             colModel: [ 
                                         {name:"Id", index:"Id", width:100, sortable: false, editable: false, editoptions: {readonly:'readonly'}, editrules: { edithidden: true }, key:true, hidden:true},
                                         {name:"Question", index:"Question", width:625, sortable: true, editable: true}, 
@@ -125,7 +125,7 @@ $(document).ready(function () {
                                                 });
 
                                  } else { 
-                                 alert("Please select row");
+                                 alert("Bạn phải chọn một dòng để thực hiện thao tác này.");
                                  } 
                              } ,
                             

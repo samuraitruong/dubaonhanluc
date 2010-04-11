@@ -162,10 +162,15 @@ namespace DBNL.App.Admin.Controllers
         }
 
         [HttpPost]
-        public ActionResult EditRow(int? id, string PollName, string Status)
+        public ActionResult EditRow(int? id, string PollName, string Status, string oper)
         {
+            
             if (id.HasValue)
             {
+                if (oper == JqGridOperations.del.ToString())
+                {
+                    PollService.Delete(id.Value);
+                }
                 PollService.Edit(id.Value, PollName, Status);
             }
             else
