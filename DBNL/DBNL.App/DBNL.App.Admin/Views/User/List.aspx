@@ -14,6 +14,7 @@
         <div id="pager" style="text-align: center;">
         
     </div>
+    <p><%=Html.ActionLink("Thêm Quyền", "Create","Roles") %></p>
     </div>
 </asp:Content>
 
