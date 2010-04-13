@@ -78,3 +78,8 @@ function urlFormater(cellvalue, options, rowObject) {
     return "<a href='" + cellvalue + "'  >" + cellvalue+"</a>";
 
 }
+function customCheckboxFormater(cellvalue, options, rowObject) {
+    return "<input type='checkbox' name='" + cellvalue + "' id='" + cellvalue + "'/>";
+}
+
+

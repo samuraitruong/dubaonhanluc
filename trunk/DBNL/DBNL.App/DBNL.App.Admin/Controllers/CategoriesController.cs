@@ -60,6 +60,23 @@ namespace DBNL.App.Admin.Controllers
         }
 
         [HttpPost]
+        public ActionResult FullList(int page, int rows, string sidx, string sord)
+        {
+            var categories = CategoryService.List();
+            bool searchOn = bool.Parse(Request.Form["_search"]);
+            string searchExp = "";
+
+            var model = from entity in categories.OrderBy(sidx + " " + sord)
+                        select new
+                        {
+                            Id = entity.ID,
+                            Name = entity.CategoryName,
+                            Permission="category_" + entity.ID.ToString()
+                        };
+            return Json(model.ToJqGridData(page, rows, null, "", new[] { "Name", "ParentCateId", "IsFeatured", "ShowOnHP" }), JsonRequestBehavior.AllowGet);
+        }
+
+        [HttpPost]
         public ActionResult Create(FormCollection collection)
         {
             try

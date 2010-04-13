@@ -6,6 +6,7 @@ using System.Web.Mvc;
 using System.Web.Mvc.Ajax;
 using DBNL.App.Models;
 using DBNL.App.Models.Business;
+using DBNL.App.Models.Statics;
 
 namespace DBNL.App.Admin.Controllers
 {
@@ -49,8 +50,30 @@ namespace DBNL.App.Admin.Controllers
                 var roll = new Role() { };
                 
                 roll.RoleName = collection["RoleName"];
+                foreach (string key in collection.AllKeys)
+                {
+                    if (key.StartsWith("category_") && collection[key] == "on")
+                    {
+                        string id = key.Split('_')[1];
+                        roll.ContentPermission += (id + ",");//(string.IsNullOrEmpty(roll.ContentPermission) ? string.Empty : "," + key.Split('_')[1]);
+                        //roll.ContentPermission +=  key.Split('_')[1];
+                    }
+                }
+                
                 if (string.IsNullOrEmpty(roll.RoleName)) {
                     throw new Exception(""); }
+
+                roll.IsFullPermission           = !string.IsNullOrEmpty(collection["FullControl"]) && collection["FullControl"] == "on";
+                roll.AllowManageRole            = !string.IsNullOrEmpty(collection["Role"]) && collection["Role"] == "on";
+                roll.AllowManageUser            = !string.IsNullOrEmpty(collection["User"]) && collection["User"] == "on";
+                roll.AllowManageMenu            = !string.IsNullOrEmpty(collection["Menu"]) && collection["Menu"] == "on";
+                roll.AllowManageAllContent      = !string.IsNullOrEmpty(collection["AllContent"]) && collection["AllContent"] == "on";
+                roll.AllowManageLink            = !string.IsNullOrEmpty(collection["Link"]) && collection["Link"] == "on";
+                roll.AllowManageOnlineSupporter = !string.IsNullOrEmpty(collection["OnlineSupport"]) && collection["OnlineSupport"] == "on";
+                roll.AllowManageContact         = !string.IsNullOrEmpty(collection["Contact"]) && collection["Contact"] == "on";
+                roll.AllowManagePoll            = !string.IsNullOrEmpty(collection["Poll"]) && collection["Poll"] == "on";
+                roll.AllowManageBanner          = !string.IsNullOrEmpty(collection["Banner"]) && collection["Banner"] == "on";
+
                 RoleService.AddRole(roll);
                 return RedirectToAction("Index");
             }

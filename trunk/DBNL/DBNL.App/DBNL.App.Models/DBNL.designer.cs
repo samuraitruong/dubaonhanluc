@@ -51,9 +51,6 @@ namespace DBNL.App.Models
     partial void InsertPollQuestion(PollQuestion instance);
     partial void UpdatePollQuestion(PollQuestion instance);
     partial void DeletePollQuestion(PollQuestion instance);
-    partial void InsertRole(Role instance);
-    partial void UpdateRole(Role instance);
-    partial void DeleteRole(Role instance);
     partial void InsertSupporter(Supporter instance);
     partial void UpdateSupporter(Supporter instance);
     partial void DeleteSupporter(Supporter instance);
@@ -69,6 +66,9 @@ namespace DBNL.App.Models
     partial void InsertContent(Content instance);
     partial void UpdateContent(Content instance);
     partial void DeleteContent(Content instance);
+    partial void InsertRole(Role instance);
+    partial void UpdateRole(Role instance);
+    partial void DeleteRole(Role instance);
     #endregion
 		
 		public DBNLDataContext() : 
@@ -157,14 +157,6 @@ namespace DBNL.App.Models
 			}
 		}
 		
-		public System.Data.Linq.Table<Role> Roles
-		{
-			get
-			{
-				return this.GetTable<Role>();
-			}
-		}
-		
 		public System.Data.Linq.Table<Supporter> Supporters
 		{
 			get
@@ -202,6 +194,14 @@ namespace DBNL.App.Models
 			get
 			{
 				return this.GetTable<Content>();
+			}
+		}
+		
+		public System.Data.Linq.Table<Role> Roles
+		{
+			get
+			{
+				return this.GetTable<Role>();
 			}
 		}
 	}
@@ -446,9 +446,9 @@ namespace DBNL.App.Models
 		
 		private int _UserId;
 		
-		private EntityRef<Role> _Role;
-		
 		private EntityRef<User> _User;
+		
+		private EntityRef<Role> _Role;
 		
     #region Extensibility Method Definitions
     partial void OnLoaded();
@@ -462,8 +462,8 @@ namespace DBNL.App.Models
 		
 		public UserInRole()
 		{
-			this._Role = default(EntityRef<Role>);
 			this._User = default(EntityRef<User>);
+			this._Role = default(EntityRef<Role>);
 			OnCreated();
 		}
 		
@@ -515,40 +515,6 @@ namespace DBNL.App.Models
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Role_UserInRole", Storage="_Role", ThisKey="RoleId", OtherKey="Id", IsForeignKey=true)]
-		public Role Role
-		{
-			get
-			{
-				return this._Role.Entity;
-			}
-			set
-			{
-				Role previousValue = this._Role.Entity;
-				if (((previousValue != value) 
-							|| (this._Role.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._Role.Entity = null;
-						previousValue.UserInRoles.Remove(this);
-					}
-					this._Role.Entity = value;
-					if ((value != null))
-					{
-						value.UserInRoles.Add(this);
-						this._RoleId = value.Id;
-					}
-					else
-					{
-						this._RoleId = default(int);
-					}
-					this.SendPropertyChanged("Role");
-				}
-			}
-		}
-		
 		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="User_UserInRole", Storage="_User", ThisKey="UserId", OtherKey="Id", IsForeignKey=true)]
 		public User User
 		{
@@ -579,6 +545,40 @@ namespace DBNL.App.Models
 						this._UserId = default(int);
 					}
 					this.SendPropertyChanged("User");
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Role_UserInRole", Storage="_Role", ThisKey="RoleId", OtherKey="Id", IsForeignKey=true)]
+		public Role Role
+		{
+			get
+			{
+				return this._Role.Entity;
+			}
+			set
+			{
+				Role previousValue = this._Role.Entity;
+				if (((previousValue != value) 
+							|| (this._Role.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._Role.Entity = null;
+						previousValue.UserInRoles.Remove(this);
+					}
+					this._Role.Entity = value;
+					if ((value != null))
+					{
+						value.UserInRoles.Add(this);
+						this._RoleId = value.Id;
+					}
+					else
+					{
+						this._RoleId = default(int);
+					}
+					this.SendPropertyChanged("Role");
 				}
 			}
 		}
@@ -1446,168 +1446,6 @@ namespace DBNL.App.Models
 			{
 				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
 			}
-		}
-	}
-	
-	[global::System.Data.Linq.Mapping.TableAttribute(Name="artseed.Role")]
-	public partial class Role : INotifyPropertyChanging, INotifyPropertyChanged
-	{
-		
-		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
-		
-		private int _Id;
-		
-		private string _RoleName;
-		
-		private string _ContentPermission;
-		
-		private string _ComponentPermission;
-		
-		private EntitySet<UserInRole> _UserInRoles;
-		
-    #region Extensibility Method Definitions
-    partial void OnLoaded();
-    partial void OnValidate(System.Data.Linq.ChangeAction action);
-    partial void OnCreated();
-    partial void OnIdChanging(int value);
-    partial void OnIdChanged();
-    partial void OnRoleNameChanging(string value);
-    partial void OnRoleNameChanged();
-    partial void OnContentPermissionChanging(string value);
-    partial void OnContentPermissionChanged();
-    partial void OnComponentPermissionChanging(string value);
-    partial void OnComponentPermissionChanged();
-    #endregion
-		
-		public Role()
-		{
-			this._UserInRoles = new EntitySet<UserInRole>(new Action<UserInRole>(this.attach_UserInRoles), new Action<UserInRole>(this.detach_UserInRoles));
-			OnCreated();
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Id", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
-		public int Id
-		{
-			get
-			{
-				return this._Id;
-			}
-			set
-			{
-				if ((this._Id != value))
-				{
-					this.OnIdChanging(value);
-					this.SendPropertyChanging();
-					this._Id = value;
-					this.SendPropertyChanged("Id");
-					this.OnIdChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_RoleName", DbType="NVarChar(250) NOT NULL", CanBeNull=false)]
-		public string RoleName
-		{
-			get
-			{
-				return this._RoleName;
-			}
-			set
-			{
-				if ((this._RoleName != value))
-				{
-					this.OnRoleNameChanging(value);
-					this.SendPropertyChanging();
-					this._RoleName = value;
-					this.SendPropertyChanged("RoleName");
-					this.OnRoleNameChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ContentPermission", DbType="NVarChar(250)")]
-		public string ContentPermission
-		{
-			get
-			{
-				return this._ContentPermission;
-			}
-			set
-			{
-				if ((this._ContentPermission != value))
-				{
-					this.OnContentPermissionChanging(value);
-					this.SendPropertyChanging();
-					this._ContentPermission = value;
-					this.SendPropertyChanged("ContentPermission");
-					this.OnContentPermissionChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ComponentPermission", DbType="NVarChar(250)")]
-		public string ComponentPermission
-		{
-			get
-			{
-				return this._ComponentPermission;
-			}
-			set
-			{
-				if ((this._ComponentPermission != value))
-				{
-					this.OnComponentPermissionChanging(value);
-					this.SendPropertyChanging();
-					this._ComponentPermission = value;
-					this.SendPropertyChanged("ComponentPermission");
-					this.OnComponentPermissionChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Role_UserInRole", Storage="_UserInRoles", ThisKey="Id", OtherKey="RoleId")]
-		public EntitySet<UserInRole> UserInRoles
-		{
-			get
-			{
-				return this._UserInRoles;
-			}
-			set
-			{
-				this._UserInRoles.Assign(value);
-			}
-		}
-		
-		public event PropertyChangingEventHandler PropertyChanging;
-		
-		public event PropertyChangedEventHandler PropertyChanged;
-		
-		protected virtual void SendPropertyChanging()
-		{
-			if ((this.PropertyChanging != null))
-			{
-				this.PropertyChanging(this, emptyChangingEventArgs);
-			}
-		}
-		
-		protected virtual void SendPropertyChanged(String propertyName)
-		{
-			if ((this.PropertyChanged != null))
-			{
-				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-			}
-		}
-		
-		private void attach_UserInRoles(UserInRole entity)
-		{
-			this.SendPropertyChanging();
-			entity.Role = this;
-		}
-		
-		private void detach_UserInRoles(UserInRole entity)
-		{
-			this.SendPropertyChanging();
-			entity.Role = null;
 		}
 	}
 	
@@ -3145,6 +2983,408 @@ namespace DBNL.App.Models
 		{
 			this.SendPropertyChanging();
 			entity.Content1 = null;
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="artseed.Role")]
+	public partial class Role : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _Id;
+		
+		private string _RoleName;
+		
+		private string _ContentPermission;
+		
+		private string _ComponentPermission;
+		
+		private bool _AllowManageUser;
+		
+		private bool _AllowManagePoll;
+		
+		private bool _AllowManageContact;
+		
+		private bool _AllowManageLink;
+		
+		private bool _AllowManageOnlineSupporter;
+		
+		private bool _IsFullPermission;
+		
+		private bool _AllowManageAllContent;
+		
+		private bool _AllowManageBanner;
+		
+		private bool _AllowManageMenu;
+		
+		private bool _AllowManageRole;
+		
+		private EntitySet<UserInRole> _UserInRoles;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnIdChanging(int value);
+    partial void OnIdChanged();
+    partial void OnRoleNameChanging(string value);
+    partial void OnRoleNameChanged();
+    partial void OnContentPermissionChanging(string value);
+    partial void OnContentPermissionChanged();
+    partial void OnComponentPermissionChanging(string value);
+    partial void OnComponentPermissionChanged();
+    partial void OnAllowManageUserChanging(bool value);
+    partial void OnAllowManageUserChanged();
+    partial void OnAllowManagePollChanging(bool value);
+    partial void OnAllowManagePollChanged();
+    partial void OnAllowManageContactChanging(bool value);
+    partial void OnAllowManageContactChanged();
+    partial void OnAllowManageLinkChanging(bool value);
+    partial void OnAllowManageLinkChanged();
+    partial void OnAllowManageOnlineSupporterChanging(bool value);
+    partial void OnAllowManageOnlineSupporterChanged();
+    partial void OnIsFullPermissionChanging(bool value);
+    partial void OnIsFullPermissionChanged();
+    partial void OnAllowManageAllContentChanging(bool value);
+    partial void OnAllowManageAllContentChanged();
+    partial void OnAllowManageBannerChanging(bool value);
+    partial void OnAllowManageBannerChanged();
+    partial void OnAllowManageMenuChanging(bool value);
+    partial void OnAllowManageMenuChanged();
+    partial void OnAllowManageRoleChanging(bool value);
+    partial void OnAllowManageRoleChanged();
+    #endregion
+		
+		public Role()
+		{
+			this._UserInRoles = new EntitySet<UserInRole>(new Action<UserInRole>(this.attach_UserInRoles), new Action<UserInRole>(this.detach_UserInRoles));
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Id", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public int Id
+		{
+			get
+			{
+				return this._Id;
+			}
+			set
+			{
+				if ((this._Id != value))
+				{
+					this.OnIdChanging(value);
+					this.SendPropertyChanging();
+					this._Id = value;
+					this.SendPropertyChanged("Id");
+					this.OnIdChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_RoleName", DbType="NVarChar(250) NOT NULL", CanBeNull=false)]
+		public string RoleName
+		{
+			get
+			{
+				return this._RoleName;
+			}
+			set
+			{
+				if ((this._RoleName != value))
+				{
+					this.OnRoleNameChanging(value);
+					this.SendPropertyChanging();
+					this._RoleName = value;
+					this.SendPropertyChanged("RoleName");
+					this.OnRoleNameChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ContentPermission", DbType="NVarChar(250)")]
+		public string ContentPermission
+		{
+			get
+			{
+				return this._ContentPermission;
+			}
+			set
+			{
+				if ((this._ContentPermission != value))
+				{
+					this.OnContentPermissionChanging(value);
+					this.SendPropertyChanging();
+					this._ContentPermission = value;
+					this.SendPropertyChanged("ContentPermission");
+					this.OnContentPermissionChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ComponentPermission", DbType="NVarChar(250)")]
+		public string ComponentPermission
+		{
+			get
+			{
+				return this._ComponentPermission;
+			}
+			set
+			{
+				if ((this._ComponentPermission != value))
+				{
+					this.OnComponentPermissionChanging(value);
+					this.SendPropertyChanging();
+					this._ComponentPermission = value;
+					this.SendPropertyChanged("ComponentPermission");
+					this.OnComponentPermissionChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_AllowManageUser", DbType="Bit NOT NULL")]
+		public bool AllowManageUser
+		{
+			get
+			{
+				return this._AllowManageUser;
+			}
+			set
+			{
+				if ((this._AllowManageUser != value))
+				{
+					this.OnAllowManageUserChanging(value);
+					this.SendPropertyChanging();
+					this._AllowManageUser = value;
+					this.SendPropertyChanged("AllowManageUser");
+					this.OnAllowManageUserChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_AllowManagePoll", DbType="Bit NOT NULL")]
+		public bool AllowManagePoll
+		{
+			get
+			{
+				return this._AllowManagePoll;
+			}
+			set
+			{
+				if ((this._AllowManagePoll != value))
+				{
+					this.OnAllowManagePollChanging(value);
+					this.SendPropertyChanging();
+					this._AllowManagePoll = value;
+					this.SendPropertyChanged("AllowManagePoll");
+					this.OnAllowManagePollChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_AllowManageContact", DbType="Bit NOT NULL")]
+		public bool AllowManageContact
+		{
+			get
+			{
+				return this._AllowManageContact;
+			}
+			set
+			{
+				if ((this._AllowManageContact != value))
+				{
+					this.OnAllowManageContactChanging(value);
+					this.SendPropertyChanging();
+					this._AllowManageContact = value;
+					this.SendPropertyChanged("AllowManageContact");
+					this.OnAllowManageContactChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_AllowManageLink", DbType="Bit NOT NULL")]
+		public bool AllowManageLink
+		{
+			get
+			{
+				return this._AllowManageLink;
+			}
+			set
+			{
+				if ((this._AllowManageLink != value))
+				{
+					this.OnAllowManageLinkChanging(value);
+					this.SendPropertyChanging();
+					this._AllowManageLink = value;
+					this.SendPropertyChanged("AllowManageLink");
+					this.OnAllowManageLinkChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_AllowManageOnlineSupporter", DbType="Bit NOT NULL")]
+		public bool AllowManageOnlineSupporter
+		{
+			get
+			{
+				return this._AllowManageOnlineSupporter;
+			}
+			set
+			{
+				if ((this._AllowManageOnlineSupporter != value))
+				{
+					this.OnAllowManageOnlineSupporterChanging(value);
+					this.SendPropertyChanging();
+					this._AllowManageOnlineSupporter = value;
+					this.SendPropertyChanged("AllowManageOnlineSupporter");
+					this.OnAllowManageOnlineSupporterChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_IsFullPermission", DbType="Bit NOT NULL")]
+		public bool IsFullPermission
+		{
+			get
+			{
+				return this._IsFullPermission;
+			}
+			set
+			{
+				if ((this._IsFullPermission != value))
+				{
+					this.OnIsFullPermissionChanging(value);
+					this.SendPropertyChanging();
+					this._IsFullPermission = value;
+					this.SendPropertyChanged("IsFullPermission");
+					this.OnIsFullPermissionChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_AllowManageAllContent", DbType="Bit NOT NULL")]
+		public bool AllowManageAllContent
+		{
+			get
+			{
+				return this._AllowManageAllContent;
+			}
+			set
+			{
+				if ((this._AllowManageAllContent != value))
+				{
+					this.OnAllowManageAllContentChanging(value);
+					this.SendPropertyChanging();
+					this._AllowManageAllContent = value;
+					this.SendPropertyChanged("AllowManageAllContent");
+					this.OnAllowManageAllContentChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_AllowManageBanner", DbType="Bit NOT NULL")]
+		public bool AllowManageBanner
+		{
+			get
+			{
+				return this._AllowManageBanner;
+			}
+			set
+			{
+				if ((this._AllowManageBanner != value))
+				{
+					this.OnAllowManageBannerChanging(value);
+					this.SendPropertyChanging();
+					this._AllowManageBanner = value;
+					this.SendPropertyChanged("AllowManageBanner");
+					this.OnAllowManageBannerChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_AllowManageMenu", DbType="Bit NOT NULL")]
+		public bool AllowManageMenu
+		{
+			get
+			{
+				return this._AllowManageMenu;
+			}
+			set
+			{
+				if ((this._AllowManageMenu != value))
+				{
+					this.OnAllowManageMenuChanging(value);
+					this.SendPropertyChanging();
+					this._AllowManageMenu = value;
+					this.SendPropertyChanged("AllowManageMenu");
+					this.OnAllowManageMenuChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_AllowManageRole", DbType="Bit NOT NULL")]
+		public bool AllowManageRole
+		{
+			get
+			{
+				return this._AllowManageRole;
+			}
+			set
+			{
+				if ((this._AllowManageRole != value))
+				{
+					this.OnAllowManageRoleChanging(value);
+					this.SendPropertyChanging();
+					this._AllowManageRole = value;
+					this.SendPropertyChanged("AllowManageRole");
+					this.OnAllowManageRoleChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Role_UserInRole", Storage="_UserInRoles", ThisKey="Id", OtherKey="RoleId")]
+		public EntitySet<UserInRole> UserInRoles
+		{
+			get
+			{
+				return this._UserInRoles;
+			}
+			set
+			{
+				this._UserInRoles.Assign(value);
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+		
+		private void attach_UserInRoles(UserInRole entity)
+		{
+			this.SendPropertyChanging();
+			entity.Role = this;
+		}
+		
+		private void detach_UserInRoles(UserInRole entity)
+		{
+			this.SendPropertyChanging();
+			entity.Role = null;
 		}
 	}
 }

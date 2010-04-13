@@ -15,11 +15,11 @@
             <legend>Fields</legend>
             
             <div class="editor-label">
-                <%= Html.LabelFor(model => model.username) %>
+                <%= Html.LabelFor(model => model.Username) %>
             </div>
             <div class="editor-field">
-                <%= Html.TextBoxFor(model => model.username) %>
-                <%= Html.ValidationMessageFor(model => model.username) %>
+                <%= Html.TextBoxFor(model => model.Username)%>
+                <%= Html.ValidationMessageFor(model => model.Username)%>
             </div>
             
             <div class="editor-label">
