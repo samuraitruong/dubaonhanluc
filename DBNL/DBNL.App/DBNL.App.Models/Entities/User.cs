@@ -15,6 +15,41 @@ namespace DBNL.App.Models
             }
             return roles;
         }
+        public bool HasPermissionOnCategory(int catId){
+            if(MixRole.CategoryIds == null) return false;
+            return MixRole.CategoryIds.Contains(catId);
+        }
+        public Role MixRole
+        {
+            get {
+                Role myRole = this.UserInRoles[0].Role;
 
+                foreach (var item in this.UserInRoles)
+                {
+                    var cRole = item.Role;
+
+                    myRole.AllowManageAllContent = myRole.AllowManageAllContent | cRole.AllowManageAllContent;
+                    myRole.AllowManageBanner = myRole.AllowManageBanner | cRole.AllowManageBanner;
+                    myRole.AllowManageContact = myRole.AllowManageContact | cRole.AllowManageContact;
+                    myRole.AllowManageLink = myRole.AllowManageLink | cRole.AllowManageLink;
+                    myRole.AllowManageMenu = myRole.AllowManageMenu | cRole.AllowManageMenu;
+                    myRole.AllowManageOnlineSupporter = myRole.AllowManageOnlineSupporter | cRole.AllowManageOnlineSupporter;
+                    myRole.AllowManagePoll = myRole.AllowManagePoll | cRole.AllowManagePoll;
+                    myRole.AllowManageRole = myRole.AllowManageRole | cRole.AllowManageRole;
+                    myRole.AllowManageUser = myRole.AllowManageUser | cRole.AllowManageUser;
+                    myRole.CategoryIds = new List<int>();
+                    foreach (var sitem in cRole.ContentPermission.Split(','))
+                    {
+                        if (string.IsNullOrEmpty(sitem)) continue;
+                        int id =0;
+                        if (int.TryParse(sitem, out id)) {
+                            myRole.CategoryIds.Add(id);
+                        };
+                    }
+
+                }
+                return myRole;
+            }
+        }
     }
 }

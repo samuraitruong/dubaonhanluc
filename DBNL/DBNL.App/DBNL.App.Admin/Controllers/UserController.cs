@@ -8,6 +8,7 @@ using DBNL.App.Models.Business;
 using DBNL.App.Models.Helpers;
 using DBNL.App.Models.Statics;
 using DBNL.App.Models.Extensions;
+using System.Web.Security;
 
 
 namespace DBNL.App.Admin.Controllers
@@ -43,12 +44,31 @@ namespace DBNL.App.Admin.Controllers
         // POST: /User/Create
 
         [HttpPost]
-        public ActionResult Create(Models.User user)
+        public ActionResult Create(FormCollection forms)
         {
             try
             {
                 // TODO: Add insert logic here
-                UserService.Add(user.Username, user.Name, user.Password, user.Status);
+                List<int> Roles = new List<int>();
+                Models.User user = new Models.User() {
+                    CreatedDate= DateTime.Now,
+                    Name = forms["Name"],
+                    Password = FormsAuthentication.HashPasswordForStoringInConfigFile(forms["Password"], "MD5"),
+                    Status= EntityStatuses.Actived.ToString(),
+                    UpdatedDate = DateTime.Now,
+                    Username = forms["Username"]
+                };
+
+                foreach (string key in forms.AllKeys)
+                {
+                    if (key.StartsWith("roleid") && forms[key] == "on")
+                    {
+                        string id = key.Split('_')[1];
+                        Roles.Add(int.Parse(id));
+                    }
+                }
+
+                UserService.Add(user, Roles);
                 return RedirectToAction("List");
             }
             catch

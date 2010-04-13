@@ -60,5 +60,20 @@ namespace DBNL.App.Models.Business
             GetInstance().Users.DeleteOnSubmit(user);
             Commit();
         }
+
+        public static void Add(User user, List<int> Roles)
+        {
+            GetInstance().Users.InsertOnSubmit(user);
+            
+            Commit();
+            foreach (int i in Roles)
+            {
+                GetInstance().UserInRoles.InsertOnSubmit(new UserInRole() {
+                    RoleId = i,
+                    UserId = user.Id
+                });
+            }
+            Commit();
+        }
     }
 }

@@ -18,5 +18,10 @@ namespace DBNL.App.Models.Business
         {
             return GetInstance().Roles.OrderBy(p=>p.RoleName).AsEnumerable();
         }
+
+        public static IQueryable<Role> List()
+        {
+            return RoleService.Roles.OrderBy(p=>p.RoleName).AsQueryable();
+        }
     }
 }

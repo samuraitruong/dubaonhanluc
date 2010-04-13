@@ -29,6 +29,14 @@ namespace DBNL.App.Models.Business
             }
         }
 
+        public static Table<Role> Roles
+        {
+            get
+            {
+                return GetInstance().Roles;
+            }
+        }
+
         public static Table<Banner> Banners
         {
             get
