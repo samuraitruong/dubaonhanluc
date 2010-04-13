@@ -2,11 +2,14 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using DBNL.App.Models.Statics;
 
 namespace DBNL.App.Models
 {
+    
     public partial class User
     {
+        protected Role myRole;
         public string GetRoles() {
             string roles = "";
             foreach (var item in this.UserInRoles)
@@ -22,7 +25,9 @@ namespace DBNL.App.Models
         public Role MixRole
         {
             get {
-                Role myRole = this.UserInRoles[0].Role;
+                if (myRole != null) return myRole;
+
+                myRole = this.UserInRoles[0].Role;
 
                 foreach (var item in this.UserInRoles)
                 {
@@ -50,6 +55,10 @@ namespace DBNL.App.Models
                 }
                 return myRole;
             }
+        }
+        public bool HasPermisionOnModule(SiteModules module)
+        {
+            return true;
         }
     }
 }
