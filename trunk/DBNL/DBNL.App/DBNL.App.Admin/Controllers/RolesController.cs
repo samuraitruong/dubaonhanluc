@@ -3,10 +3,14 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
-using System.Web.Mvc.Ajax;
+using System.Linq.Dynamic;
 using DBNL.App.Models;
+using DBNL.App.Config;
 using DBNL.App.Models.Business;
+using DBNL.App.Models.ViewData;
 using DBNL.App.Models.Statics;
+using DBNL.App.Models.Helpers;
+using DBNL.App.Models.Extensions;
 
 namespace DBNL.App.Admin.Controllers
 {
@@ -35,7 +39,24 @@ namespace DBNL.App.Admin.Controllers
         public ActionResult Create()
         {
             return View();
-        } 
+        }
+
+        [HttpPost]
+        public ActionResult FullList(int page, int rows, string sidx, string sord)
+        {
+            var roles = RoleService.List();
+            bool searchOn = bool.Parse(Request.Form["_search"]);
+            string searchExp = "";
+
+            var model = from entity in roles.OrderBy(sidx + " " + sord)
+                        select new
+                        {
+                            Id = entity.Id,
+                            Name = entity.RoleName,
+                            Permission = "roleid_" + entity.Id.ToString()
+                        };
+            return Json(model.ToJqGridData(page, rows, null, "", new[] { "Name"}), JsonRequestBehavior.AllowGet);
+        }
 
         //
         // POST: /Roles/Create
