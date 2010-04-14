@@ -15,7 +15,7 @@
     <MvcBuildViews>false</MvcBuildViews>
     <FileUpgradeFlags>
     </FileUpgradeFlags>
-    <OldToolsVersion>3.5</OldToolsVersion>
+    <OldToolsVersion>4.0</OldToolsVersion>
     <UpgradeBackupLocation>
     </UpgradeBackupLocation>
   </PropertyGroup>
@@ -79,6 +79,20 @@
   <ItemGroup>
     <Compile Include="Areas\Articles\ArticleRoutes.cs" />
     <Compile Include="Areas\Articles\Controllers\ArticlesController.cs" />
+    <Compile Include="Areas\CMS\CMSAreaRegistration.cs" />
+    <Compile Include="Areas\CMS\Controllers\AdministrationsController.cs" />
+    <Compile Include="Areas\CMS\Controllers\BannerController.cs" />
+    <Compile Include="Areas\CMS\Controllers\CategoriesController.cs" />
+    <Compile Include="Areas\CMS\Controllers\ContactController.cs" />
+    <Compile Include="Areas\CMS\Controllers\ContentController.cs" />
+    <Compile Include="Areas\CMS\Controllers\LinkController.cs" />
+    <Compile Include="Areas\CMS\Controllers\NavigationController.cs" />
+    <Compile Include="Areas\CMS\Controllers\PollController.cs" />
+    <Compile Include="Areas\CMS\Controllers\PollQuestionController.cs" />
+    <Compile Include="Areas\CMS\Controllers\RolesController.cs" />
+    <Compile Include="Areas\CMS\Controllers\SecurityController.cs" />
+    <Compile Include="Areas\CMS\Controllers\SupporterController.cs" />
+    <Compile Include="Areas\CMS\Controllers\UserController.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\AdminController.cs" />
     <Compile Include="Controllers\ArticleController.cs" />
@@ -94,6 +108,54 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Areas\Articles\Views\Articles\Index.aspx" />
+    <Content Include="Areas\CMS\Views\Administrations\Index.aspx" />
+    <Content Include="Areas\CMS\Views\Banner\Create.aspx" />
+    <Content Include="Areas\CMS\Views\Banner\Delete.aspx" />
+    <Content Include="Areas\CMS\Views\Banner\Details.aspx" />
+    <Content Include="Areas\CMS\Views\Banner\Edit.aspx" />
+    <Content Include="Areas\CMS\Views\Banner\Index.aspx" />
+    <Content Include="Areas\CMS\Views\Banner\List.aspx" />
+    <Content Include="Areas\CMS\Views\Categories\Create.aspx" />
+    <Content Include="Areas\CMS\Views\Categories\List.aspx" />
+    <Content Include="Areas\CMS\Views\Contact\Create.aspx" />
+    <Content Include="Areas\CMS\Views\Contact\Delete.aspx" />
+    <Content Include="Areas\CMS\Views\Contact\Details.aspx" />
+    <Content Include="Areas\CMS\Views\Contact\Edit.aspx" />
+    <Content Include="Areas\CMS\Views\Contact\Index.aspx" />
+    <Content Include="Areas\CMS\Views\Contact\List.aspx" />
+    <Content Include="Areas\CMS\Views\Content\Create.aspx" />
+    <Content Include="Areas\CMS\Views\Content\Index.aspx" />
+    <Content Include="Areas\CMS\Views\Link\Create.aspx" />
+    <Content Include="Areas\CMS\Views\Link\Delete.aspx" />
+    <Content Include="Areas\CMS\Views\Link\Details.aspx" />
+    <Content Include="Areas\CMS\Views\Link\Edit.aspx" />
+    <Content Include="Areas\CMS\Views\Link\Index.aspx" />
+    <Content Include="Areas\CMS\Views\Link\List.aspx" />
+    <Content Include="Areas\CMS\Views\Navigation\Create.aspx" />
+    <Content Include="Areas\CMS\Views\Navigation\Index.aspx" />
+    <Content Include="Areas\CMS\Views\PollQuestion\Create.aspx" />
+    <Content Include="Areas\CMS\Views\PollQuestion\Delete.aspx" />
+    <Content Include="Areas\CMS\Views\PollQuestion\Details.aspx" />
+    <Content Include="Areas\CMS\Views\PollQuestion\Edit.aspx" />
+    <Content Include="Areas\CMS\Views\PollQuestion\Index.aspx" />
+    <Content Include="Areas\CMS\Views\PollQuestion\List.aspx" />
+    <Content Include="Areas\CMS\Views\Poll\Create.aspx" />
+    <Content Include="Areas\CMS\Views\Poll\Delete.aspx" />
+    <Content Include="Areas\CMS\Views\Poll\Details.aspx" />
+    <Content Include="Areas\CMS\Views\Poll\Edit.aspx" />
+    <Content Include="Areas\CMS\Views\Poll\Index.aspx" />
+    <Content Include="Areas\CMS\Views\Poll\List.aspx" />
+    <Content Include="Areas\CMS\Views\Roles\Create.aspx" />
+    <Content Include="Areas\CMS\Views\Roles\Index.aspx" />
+    <Content Include="Areas\CMS\Views\Security\LogOn.aspx" />
+    <Content Include="Areas\CMS\Views\Supporter\Create.aspx" />
+    <Content Include="Areas\CMS\Views\Supporter\Index.aspx" />
+    <Content Include="Areas\CMS\Views\User\Create.aspx" />
+    <Content Include="Areas\CMS\Views\User\Delete.aspx" />
+    <Content Include="Areas\CMS\Views\User\Details.aspx" />
+    <Content Include="Areas\CMS\Views\User\Edit.aspx" />
+    <Content Include="Areas\CMS\Views\User\Index.aspx" />
+    <Content Include="Areas\CMS\Views\User\List.aspx" />
     <Content Include="Areas\DBNL.App.Admin\Views\Administrations\Index.aspx" />
     <Content Include="Areas\DBNL.App.Admin\Views\Administrations\ViewPage1.aspx" />
     <Content Include="Areas\DBNL.App.Admin\Views\Categories\Create.aspx" />
@@ -1788,10 +1850,6 @@
     <Content Include="Views\Shared\FO.Master" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\DBNL.App.Admin\DBNL.App.Admin.csproj">
-      <Project>{770D3DB8-A69D-4398-9F66-7AE226B5560F}</Project>
-      <Name>DBNL.App.Admin</Name>
-    </ProjectReference>
     <ProjectReference Include="..\DBNL.App.Config\DBNL.App.Config.csproj">
       <Project>{54D04437-083F-472C-844C-8A0F2F1C2318}</Project>
       <Name>DBNL.App.Config</Name>
@@ -1799,6 +1857,10 @@
     <ProjectReference Include="..\DBNL.App.Models\DBNL.App.Models.csproj">
       <Project>{A8D2094A-076F-4FEF-A749-4C5E3259B282}</Project>
       <Name>DBNL.App.Models</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DynamicQuery\DynamicQuery.csproj">
+      <Project>{3B623031-E5FE-4AC5-BDB9-89A6DE24238F}</Project>
+      <Name>DynamicQuery</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
@@ -1809,6 +1871,7 @@
     <Content Include="Configs\App.config">
       <SubType>Designer</SubType>
     </Content>
+    <Content Include="Areas\CMS\Views\Web.config" />
     <None Include="Content\Sidebar\functions.php" />
     <None Include="Content\Sidebar\index.php" />
     <None Include="Content\jqueryUI1.8a\development-bundle\demos\autocomplete\search.php" />
@@ -1842,6 +1905,10 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Areas\CMS\Content\" />
+    <Folder Include="Areas\CMS\Models\" />
+    <Folder Include="Areas\CMS\Scripts\" />
+    <Folder Include="Areas\CMS\Views\Shared\" />
     <Folder Include="Areas\Polls\" />
     <Folder Include="Models\" />
     <Folder Include="Resources\Pictures\" />
@@ -1852,9 +1919,10 @@
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">
   </Target> -->
-  <!-- To enable MVC area subproject support, uncomment the following two lines: -->
+  <!-- To enable MVC area subproject support, uncomment the following two lines:
   <UsingTask TaskName="Microsoft.Web.Mvc.Build.CreateAreaManifest" AssemblyName="Microsoft.Web.Mvc.Build, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35" />
   <UsingTask TaskName="Microsoft.Web.Mvc.Build.CopyAreaManifests" AssemblyName="Microsoft.Web.Mvc.Build, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35" />
+   -->
   <Target Name="AfterBuild" DependsOnTargets="AfterBuildCompiler">
     <PropertyGroup>
       <AreasManifestDir>$(ProjectDir)\..\Manifests</AreasManifestDir>
@@ -1862,9 +1930,10 @@
     <!-- If this is an area child project, uncomment the following line:
     <CreateAreaManifest AreaName="$(AssemblyName)" AreaType="Child" AreaPath="$(ProjectDir)" ManifestPath="$(AreasManifestDir)" ContentFiles="@(Content)" />
     -->
-    <!-- If this is an area parent project, uncomment the following lines: -->
+    <!-- If this is an area parent project, uncomment the following lines:
     <CreateAreaManifest AreaName="$(AssemblyName)" AreaType="Parent" AreaPath="$(ProjectDir)" ManifestPath="$(AreasManifestDir)" ContentFiles="@(Content)" />
     <CopyAreaManifests ManifestPath="$(AreasManifestDir)" CrossCopy="false" RenameViews="true" />
+	-->
   </Target>
   <Target Name="AfterBuildCompiler" Condition="'$(MvcBuildViews)'=='true'">
     <AspNetCompiler VirtualPath="temp" PhysicalPath="$(ProjectDir)\..\$(ProjectName)" />
@@ -1888,4 +1957,5 @@
       </FlavorProperties>
     </VisualStudio>
   </ProjectExtensions>
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" />
 </Project>

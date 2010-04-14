@@ -25,17 +25,17 @@
             
                 <ul id="menu">              
                      <li><%= Html.ActionLink("Trang chủ", "Index", "Home", new { area = "" }, null)%></li>
-                     <li><%= Html.ActionLink("Nội dung", "Index", "Categories", new { area = "DBNL.App.Admin" }, null)%></li>
-                     <li><%= Html.ActionLink("Danh mục", "Index", "Navigation", new { area = "DBNL.App.Admin" }, null)%></li>
+                     <li><%= Html.ActionLink("Nội dung", "Index", "Categories", new { area = "CMS" }, null)%></li>
+                     <li><%= Html.ActionLink("Danh mục", "Index", "Navigation", new { area = "CMS" }, null)%></li>
                      
-                    <li><%= Html.ActionLink("Người quản trị", "Index", "User", new { area = "DBNL.App.Admin" }, null)%></li>
-                     <li><%= Html.ActionLink("Liên kết website", "Index", "Link", new { area = "DBNL.App.Admin" }, null)%></li>
-                     <li><%= Html.ActionLink("Khảo sát ý kiến", "Index", "Poll", new { area = "DBNL.App.Admin" }, null)%></li>
+                    <li><%= Html.ActionLink("Người quản trị", "Index", "User", new { area = "CMS" }, null)%></li>
+                     <li><%= Html.ActionLink("Liên kết website", "Index", "Link", new { area = "CMS" }, null)%></li>
+                     <li><%= Html.ActionLink("Khảo sát ý kiến", "Index", "Poll", new { area = "CMS" }, null)%></li>
                      
                      
-                     <li><%= Html.ActionLink("Hổ trợ", "Index", "Supporter", new { area = "DBNL.App.Admin" }, null)%></li>
-                      <li><%= Html.ActionLink("Banners", "Index", "Banner", new { area = "DBNL.App.Admin" }, null)%></li>
-                     <li><%= Html.ActionLink("Liện Hệ", "Index", "Contact", new { area = "DBNL.App.Admin" }, null)%></li>
+                     <li><%= Html.ActionLink("Hổ trợ", "Index", "Supporter", new { area = "CMS" }, null)%></li>
+                      <li><%= Html.ActionLink("Banners", "Index", "Banner", new { area = "CMS" }, null)%></li>
+                     <li><%= Html.ActionLink("Liện Hệ", "Index", "Contact", new { area = "CMS" }, null)%></li>
                 </ul>
             
             </div>
