@@ -19,6 +19,7 @@ namespace DBNL.App.Models
 	using System.Linq;
 	using System.Linq.Expressions;
 	using System.ComponentModel;
+    using System.ComponentModel.DataAnnotations;
 	using System;
 	
 	
@@ -1944,7 +1945,8 @@ namespace DBNL.App.Models
 		}
 		
 		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Name", DbType="NVarChar(250)")]
-		public string Name
+        [Required(ErrorMessage = "Menu name is required")]
+        public string Name
 		{
 			get
 			{

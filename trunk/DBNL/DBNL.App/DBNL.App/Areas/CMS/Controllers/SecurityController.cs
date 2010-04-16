@@ -6,6 +6,7 @@ using System.Web.Mvc;
 using System.Web.Mvc.Ajax;
 using DBNL.App.Models.Business;
 using System.Web.Security;
+using DBNL.App.Models;
 
 namespace DBNL.App.Areas.CMS.Controllers
 {
@@ -16,6 +17,7 @@ namespace DBNL.App.Areas.CMS.Controllers
 
         public ActionResult LogOff()
         {
+            SessionManager.Profile = null;
             FormsAuthentication.SignOut();
            return  RedirectToAction("LogOn", "Security");
             return View();
@@ -23,6 +25,7 @@ namespace DBNL.App.Areas.CMS.Controllers
 
         public ActionResult LogOn()
         {
+            SessionManager.Profile = null;
             //throw new Exception(FormsAuthentication.HashPasswordForStoringInConfigFile("spadmin", "MD5"));
             return View();
         }
@@ -45,7 +48,14 @@ namespace DBNL.App.Areas.CMS.Controllers
                 return View();
             }
 
-           return  this.RedirectFromLoginPage(u.Username, ReturnUrl);
+            SessionManager.Profile = new Profile() { 
+                Id = u.Id,
+                Role = u.MixRole,
+                Name = u.Name,
+                User = u
+            };
+
+           return  this.RedirectFromLoginPage(u.Name, ReturnUrl);
 
 
         }

@@ -25,14 +25,14 @@ namespace DBNL.App.Models
         public Role MixRole
         {
             get {
-                if (myRole != null) return myRole;
+                if (UserInRoles.Count == 0) return null;
 
                 myRole = this.UserInRoles[0].Role;
 
                 foreach (var item in this.UserInRoles)
                 {
                     var cRole = item.Role;
-
+                    myRole.IsFullPermission = myRole.IsFullPermission | cRole.IsFullPermission;
                     myRole.AllowManageAllContent = myRole.AllowManageAllContent | cRole.AllowManageAllContent;
                     myRole.AllowManageBanner = myRole.AllowManageBanner | cRole.AllowManageBanner;
                     myRole.AllowManageContact = myRole.AllowManageContact | cRole.AllowManageContact;
@@ -43,6 +43,8 @@ namespace DBNL.App.Models
                     myRole.AllowManageRole = myRole.AllowManageRole | cRole.AllowManageRole;
                     myRole.AllowManageUser = myRole.AllowManageUser | cRole.AllowManageUser;
                     myRole.CategoryIds = new List<int>();
+                    if (string.IsNullOrEmpty(cRole.ContentPermission)) return myRole;
+
                     foreach (var sitem in cRole.ContentPermission.Split(','))
                     {
                         if (string.IsNullOrEmpty(sitem)) continue;

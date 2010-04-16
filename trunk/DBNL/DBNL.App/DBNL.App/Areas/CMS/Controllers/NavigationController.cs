@@ -38,13 +38,13 @@ namespace DBNL.App.Areas.CMS.Controllers
 
         public ActionResult Create()
         {
-            //ViewData["Categories"] = new SelectList(CategoryService.GetAllCategories(), "ID", "CategoryName");
-            ViewData.Model = new NavigationDataView() { 
+            ViewData["ExtraData"] = new NavigationDataView()
+            { 
                 Categories = CustomSelectList.CreateListCategories(true),
                 NavigationPositions = CustomSelectList.CreateMenuPosition(),
                 RootNavigations = CustomSelectList.CreateListNavigations(true)
             };
-            return View();
+            return View(new Models.Navigation());
         }
 
         [HttpPost]
@@ -67,20 +67,35 @@ namespace DBNL.App.Areas.CMS.Controllers
         // POST: /Navigation/Create
 
         [AcceptVerbs(HttpVerbs.Post)]
-        public ActionResult Create(FormCollection collection)
+        public ActionResult Create(FormCollection collection, Navigation navigation)
         {
             try
             {
 
-                Navigation navigation = new Navigation()
+                
+
+                //Navigation navigation = new Navigation()
+                //{
+                //    Name = collection["Name"],
+                //    Position = collection["Possition"],
+                //    ContentId = string.IsNullOrEmpty(collection["ContentId"]) ? new Nullable<int>() : int.Parse(collection["ContentId"]),
+                //    ParentId = string.IsNullOrEmpty(collection["ParentId"]) ? new Nullable<int>() : int.Parse(collection["ParentId"]),
+                //    Status= EntityStatuses.Actived.ToString(),
+                //    Component = collection["Component"]
+                //};
+                navigation.Status= EntityStatuses.Actived.ToString();
+
+                if (!ModelState.IsValid)
                 {
-                    Name = collection["Name"],
-                    Position = collection["Possition"],
-                    ContentId = string.IsNullOrEmpty(collection["ContentId"]) ? new Nullable<int>() : int.Parse(collection["ContentId"]),
-                    ParentId = string.IsNullOrEmpty(collection["ParentId"]) ? new Nullable<int>() : int.Parse(collection["ParentId"]),
-                    Status= EntityStatuses.Actived.ToString(),
-                    Component = collection["Component"]
-                };
+                    ViewData["ExtraData"] = new NavigationDataView()
+                    {
+                        Categories = CustomSelectList.CreateListCategories(true),
+                        NavigationPositions = CustomSelectList.CreateMenuPosition(),
+                        RootNavigations = CustomSelectList.CreateListNavigations(true)
+                    };
+
+                    return View(navigation);
+                }
                 if(collection["Component"] == SiteModules.Article.ToString()) 
                 {
                     if (navigation.ContentId.HasValue)

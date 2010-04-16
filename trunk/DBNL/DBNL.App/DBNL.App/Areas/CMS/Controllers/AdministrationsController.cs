@@ -18,8 +18,14 @@ namespace DBNL.App.Areas.CMS.Controllers
         }
 
         //
-        // GET: /Administrations/Details/5
-
+        public ActionResult Sample() {
+            return View(new Models.Sample());
+        }
+        [HttpPost]
+        public ActionResult Sample(Models.Sample sample)
+        {
+            return View(sample);
+        }
         public ActionResult Details(int id)
         {
             return View();

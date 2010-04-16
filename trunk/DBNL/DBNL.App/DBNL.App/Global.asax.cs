@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.Routing;
+using System.Web.Security;
 
 namespace DBNL.App
 {
@@ -35,7 +36,11 @@ namespace DBNL.App
             // Code that runs when a new session is started
             string sessionId = Session.SessionID;
         }
-
+        void Session_End(object sender, EventArgs e)
+        {
+            // Code that runs when a new session is started
+            FormsAuthentication.SignOut();
+        }
 
 
     }
