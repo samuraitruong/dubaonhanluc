@@ -53,7 +53,9 @@
     <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Microsoft.Build.Conversion.v3.5" />
     <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.configuration" />
     <Reference Include="System.Core">
       <RequiredTargetFramework>3.5</RequiredTargetFramework>
@@ -99,6 +101,7 @@
     <Compile Include="Entities\ContentCategory.cs" />
     <Compile Include="Entities\Role.cs" />
     <Compile Include="Entities\User.cs" />
+    <Compile Include="Extensions\ControllerExtensions.cs" />
     <Compile Include="Extensions\DateTimeExtensions.cs" />
     <Compile Include="Extensions\HtmlHelperExtensions.cs">
       <SubType>Code</SubType>
@@ -117,6 +120,7 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
       <DependentUpon>Settings.settings</DependentUpon>
     </Compile>
+    <Compile Include="Sample.cs" />
     <Compile Include="Statics\StaticEnums.cs" />
     <Compile Include="Statics\CustomSelectList.cs" />
     <Compile Include="Statics\EntityStatuses.cs" />
@@ -126,6 +130,7 @@
     <Compile Include="ViewData\HomePageViewData.cs" />
     <Compile Include="ViewData\NavigationDataView.cs" />
     <Compile Include="ViewData\ViewContentDataView.cs" />
+    <Compile Include="ViewResults\ImageResult.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />

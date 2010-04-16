@@ -6,7 +6,11 @@
 <asp:Content runat="server" ContentPlaceHolderID="headerPlaceHolder" >
     <script language="javascript" type="text/javascript">
         $(document).ready(function () {
-            CKEDITOR.replace('Content');
+            CKEDITOR.replace('Content',
+             {
+	            filebrowserBrowseUrl: '<%= Url.Content("~/Scripts/FileManager/index.html") %>'
+            }
+          );
         });
     </script>
 </asp:Content>

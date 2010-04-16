@@ -15,6 +15,7 @@
         
     </div>
     <p><%=Html.ActionLink("Thêm Quyền", "Create","Roles") %></p>
+     <p><%=Html.ActionLink("Thêm Người quản trị", "Create","User") %></p>
     </div>
 </asp:Content>
 

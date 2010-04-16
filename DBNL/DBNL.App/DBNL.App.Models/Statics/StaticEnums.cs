@@ -36,12 +36,16 @@ namespace DBNL.App.Models.Statics
     }
     public enum SiteModules
     {
+        MenuNavigation,
         Article,
         WebLink,
         WebContact,
         Poll,
         Contact,
-        Url
+        Url,
+        Supportter,
+        Banner,
+        User
     }
     public enum BannerPositions
     { 
