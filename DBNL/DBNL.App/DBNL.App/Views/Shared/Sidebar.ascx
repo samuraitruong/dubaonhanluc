@@ -1,5 +1,5 @@
 ﻿<%@ Control Language="C#" Inherits="System.Web.Mvc.ViewUserControl" %>
-<div id="sidebar" style="left: 0px;">
+<%--<div id="sidebar" style="left: 0px;">
     <span class="sidebarOpen" id="sidebarToggleButton"  >&nbsp;&nbsp;&nbsp;&nbsp;</span>
     <ul class="ui-accordion">
         <li class="widget widget_categories selected" id="categories-1"><span class="ui-accordion-left">
@@ -94,3 +94,4 @@
         </li>
     </ul>
 </div>
+--%>
