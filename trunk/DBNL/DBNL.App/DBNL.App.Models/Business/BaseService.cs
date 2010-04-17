@@ -14,13 +14,19 @@ namespace DBNL.App.Models.Business
             if (instance == null) instance = new DBNLDataContext();
             return instance;
         }
+        
+        public static Table<UserInRole> UserInRoles
+        {
+            get{
+                return GetInstance().UserInRoles;
+            }
+        }
         public static Table<Navigation> Navigations
         {
             get{
                 return GetInstance().Navigations;
             }
         }
-
         public static Table<User> Users
         {
             get

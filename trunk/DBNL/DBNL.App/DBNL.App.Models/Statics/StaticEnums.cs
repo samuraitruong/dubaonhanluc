@@ -45,7 +45,8 @@ namespace DBNL.App.Models.Statics
         Url,
         Supportter,
         Banner,
-        User
+        User,
+        Role
     }
     public enum BannerPositions
     { 

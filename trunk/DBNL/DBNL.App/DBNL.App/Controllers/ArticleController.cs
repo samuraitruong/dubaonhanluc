@@ -6,7 +6,8 @@ using System.Web.Mvc;
 using System.Web.Mvc.Ajax;
 using DBNL.App.Models.Business;
 using DBNL.App.Models.ViewData;
-
+using DBNL.App.Models.Helpers;
+using DBNL.App.Config;
 namespace DBNL.App.Controllers
 {
     public class ArticleController : FOController
@@ -17,12 +18,13 @@ namespace DBNL.App.Controllers
 
        
 
-        public ActionResult Category(int id)
+        public ActionResult Category(int id, int? page)
         {
             ViewData.Model = new CategoryViewData() {
                 Category = CategoryService.GetById(id),
                 Articles = ContentService.GetContentByCategoryId(id),
                 FeaturedArticles = ContentService.GetFeaturedArtileByCategoryId(id),
+                ArticlesPagedList = ContentService.All(id).ToPagedList(page.HasValue?page.Value:1, DBNLConfigurationManager.WebUI.ArticlePagingItem)
             
             };
             return View();

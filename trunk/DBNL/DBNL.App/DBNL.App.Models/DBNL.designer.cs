@@ -2566,6 +2566,7 @@ namespace DBNL.App.Models
 	}
 	
 	[global::System.Data.Linq.Mapping.TableAttribute(Name="artseed.Content")]
+    
 	public partial class Content : INotifyPropertyChanging, INotifyPropertyChanged
 	{
 		

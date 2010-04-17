@@ -17,8 +17,11 @@
 		dir = Request.Form["dir"];
 	System.IO.DirectoryInfo di = new System.IO.DirectoryInfo(HttpContext.Current.Server.MapPath(dir));
 	Response.Write("<ul class=\"jqueryFileTree\" style=\"display: none;\">\n");
-	foreach (System.IO.DirectoryInfo di_child in di.GetDirectories())
-		Response.Write("\t<li class=\"directory collapsed\"><a href=\"#\" rel=\"" + dir +"/"+ di_child.Name + "/\">" + di_child.Name + "</a></li>\n");
+    foreach (System.IO.DirectoryInfo di_child in di.GetDirectories())
+    {
+        if(di_child.Name.StartsWith(".")) continue;
+        Response.Write("\t<li class=\"directory collapsed\"><a href=\"#\" rel=\"" + dir + "/" + di_child.Name + "/\">" + di_child.Name + "</a></li>\n");
+    }
 	foreach (System.IO.FileInfo fi in di.GetFiles())
 	{
 		string ext = ""; 

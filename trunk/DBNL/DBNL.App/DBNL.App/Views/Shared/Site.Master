@@ -34,7 +34,10 @@
                         { %>
                     <li><%= Html.ActionLink("Người quản trị", "Index", "User", new { area = "CMS" }, null)%></li>
                     <%} %>
-                    
+                     <% if (SessionManager.Profile.HasPermission(DBNL.App.Models.Statics.SiteModules.Role))
+                        { %>
+                    <li><%= Html.ActionLink("Nhóm", "Index", "Roles", new { area = "CMS" }, null)%></li>
+                    <%} %>
                     <% if (SessionManager.Profile.HasPermission(DBNL.App.Models.Statics.SiteModules.WebLink))
                        { %>
                      <li><%= Html.ActionLink("Liên kết website", "Index", "Link", new { area = "CMS" }, null)%></li>

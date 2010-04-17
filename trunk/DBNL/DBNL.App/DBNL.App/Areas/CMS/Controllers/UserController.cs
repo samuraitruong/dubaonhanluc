@@ -160,6 +160,29 @@ namespace DBNL.App.Areas.CMS.Controllers
                         };
             return Json(model.ToJqGridData(page, rows, null, "", new[] { "Name", "Username","Status" }), JsonRequestBehavior.AllowGet);
         }
+        [HttpPost]
+        public ActionResult ListByRole(int page, int rows, string sidx, string sord, int RoleId)
+        {
+            var users = UserService.List(RoleId);
+            bool searchOn = bool.Parse(Request.Form["_search"]);
+            string searchExp = "";
+            if (searchOn)
+            {
+                searchExp = string.Format("{0}.ToString().Contains(@0)", getFormValue("searchField"));
+                users = users.Where(searchExp, new string[] { getFormValue("searchString") });
+            }
+            var model = from entity in users.OrderBy(sidx + " " + sord)
+                        select new
+                        {
+                            Id = entity.Id,
+                            Name = entity.Name,
+                            Username = entity.Username,
+                            Status = entity.Status,
+                            Password = entity.Password,
+                        };
+            return Json(model.ToJqGridData(page, rows, null, "", new[] { "Name", "Username", "Status" }), JsonRequestBehavior.AllowGet);
+        }
+
 
         protected string getFormValue(string key)
         {

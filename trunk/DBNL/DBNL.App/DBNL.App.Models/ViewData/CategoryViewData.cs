@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using DBNL.App.Models.Helpers;
 
 namespace DBNL.App.Models.ViewData
 {
@@ -10,5 +11,6 @@ namespace DBNL.App.Models.ViewData
         public ContentCategory Category { get; set; }
         public IEnumerable<Content> Articles { get; set; }
         public IEnumerable<Content> FeaturedArticles { get; set; }
+        public IPagedList<Content> ArticlesPagedList { get; set; }
     }
 }

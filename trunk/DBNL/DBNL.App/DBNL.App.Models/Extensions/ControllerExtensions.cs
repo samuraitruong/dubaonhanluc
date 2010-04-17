@@ -10,12 +10,14 @@ namespace DBNL.App.Models.Extensions
 {
     public static class ControllerExtensions
     {
+        public static ImageResult Image(this Controller controller, string file)
+        {
+            return new ImageResult(file);
+        }
         public static ImageResult Image(this Controller controller, Stream imageStream, string contentType)
         {
-  
 
-     return new ImageResult(imageStream, contentType);
-
+            return new ImageResult(imageStream, contentType);
         }
 
         public static ImageResult Image(this Controller controller, string fileName, int w, int h)

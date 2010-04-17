@@ -435,6 +435,7 @@
     <Content Include="Content\jqGrid3.6.4\src\ui.multiselect.js" />
     <Content Include="Content\login.css" />
     <Content Include="Content\message.css" />
+    <Content Include="Content\Pagination.css" />
     <Content Include="Content\Sidebar\images\activeBg.png" />
     <Content Include="Content\Sidebar\images\h1.png" />
     <Content Include="Content\Sidebar\images\inactiveBg.png" />
@@ -1726,6 +1727,7 @@
     <Content Include="Views\Shared\FeatureCategoryView.ascx" />
     <Content Include="Views\Shared\ListFeatureNews.ascx" />
     <Content Include="Views\Shared\OtherNewsView.ascx" />
+    <Content Include="Views\Shared\Pagination.ascx" />
     <Content Include="Views\Shared\Sample.aspx" />
     <Content Include="Views\Shared\ScriptsControl.ascx" />
     <Content Include="Views\Shared\Sidebar.ascx" />

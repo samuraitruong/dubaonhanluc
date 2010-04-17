@@ -6,6 +6,7 @@
 
 <asp:Content ID="Content5" ContentPlaceHolderID="headerPlaceHolder" runat="server">
     <link rel="Stylesheet" type="text/css" href="<%=Url.Content("~/Content/news_article.css")%>" ></link>
+    <link rel="Stylesheet" type="text/css" href="<%=Url.Content("~/Content/pagination.css")%>" ></link>
 </asp:Content>
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
 
@@ -16,10 +17,19 @@
 		<div class="news_article">
 			<div class="top_page clearfix">
 				<div class="fl"><a href="#"><img alt="nguonnhanluc" src="<%= Url.Content("~/images/sort_a.jpg") %>"></a> <a href="#"><img alt="nguonnhanluc" src="<%= Url.Content("~/images/sort_b.jpg") %>"></a> <a href="#"><img alt="nguonnhanluc" src="<%= Url.Content("~/images/sort_c.jpg") %>"></a></div>
-				<div class="pageitem fr">Trang: <a class="active">1</a> | <a href="/index.php?artseed=articles&amp;cid=349&amp;idActive=349&amp;page=2#neo_content">2 | </a><a href="/index.php?artseed=articles&amp;cid=349&amp;idActive=349&amp;page=3#neo_content">3 | </a><a href="/index.php?artseed=articles&amp;cid=349&amp;idActive=349&amp;page=4#neo_content">4 | </a><a href="/index.php?artseed=articles&amp;cid=349&amp;idActive=349&amp;page=5#neo_content">5 | </a><a href="/index.php?artseed=articles&amp;cid=349&amp;idActive=349&amp;page=6#neo_content">6</a></div>
+				<div class="pageitem fr" style="width:350px;float:right">
+                     <%Html.RenderPartial("~/Views/Shared/Pagination.ascx", new PaginationViewData()
+                    {
+                        PageIndex = Model.ArticlesPagedList.PageIndex,
+                        TotalPages = Model.ArticlesPagedList.PageCount,
+                        PageActionLink = Url.Action("Category", "Article", new { id = Model.Category.ID, page = "{page}" }),
+                        TotalCount = Model.ArticlesPagedList.TotalItemCount,
+                        PageSize = Model.ArticlesPagedList.PageSize
+                    }); %>  
+                </div>
 			</div>
 			<!--top page-->
-            <% foreach (var item in Model.Articles)
+            <% foreach (var item in Model.ArticlesPagedList)
                {
                    if (item.IsFeatured.HasValue && item.IsFeatured.Value == true)
                    {

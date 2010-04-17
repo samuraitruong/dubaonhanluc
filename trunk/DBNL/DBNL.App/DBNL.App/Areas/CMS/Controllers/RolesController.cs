@@ -38,7 +38,7 @@ namespace DBNL.App.Areas.CMS.Controllers
 
         public ActionResult Create()
         {
-            return View();
+            return View(new Role());
         }
 
         [HttpPost]
@@ -61,41 +61,87 @@ namespace DBNL.App.Areas.CMS.Controllers
         //
         // POST: /Roles/Create
 
+        [HttpPost]
+        public ActionResult List(int page, int rows, string sidx, string sord)
+        {
+            var roles = RoleService.List();
+            bool searchOn = bool.Parse(Request.Form["_search"]);
+            string searchExp = "";
+            if (searchOn)
+            {
+                searchExp = string.Format("{0}.ToString().Contains(@0)", getFormValue("searchField"));
+                roles = roles.Where(searchExp, new string[] { getFormValue("searchString") });
+            }
+            var model = from entity in roles.OrderBy(sidx + " " + sord)
+                        select new
+                        {
+                            Id = entity.Id,
+                            RoleName = entity.RoleName,
+                            IsFullPermission = entity.IsFullPermission,
+                            AllowManageContent = entity.AllowManageAllContent,
+                            AllowManageUser = entity.AllowManageUser,
+
+                            AllowManageBanner = entity.AllowManageBanner,
+                            AllowManageContact = entity.AllowManageContact,
+                            AllowManageLink = entity.AllowManageLink,
+                            AllowManageMenu = entity.AllowManageMenu,
+                            AllowManageOnlineSupporter = entity.AllowManageOnlineSupporter,
+                            AllowManagePoll = entity.AllowManagePoll,
+                            AllowManageRole = entity.AllowManageRole,
+                        };
+            return Json(model.ToJqGridData(page, rows, null, "", new[] { "RoleName" }), JsonRequestBehavior.AllowGet);
+        }
+
+        protected string getFormValue(string key)
+        {
+            try
+            {
+                return Request.Form[key];
+            }
+            catch
+            {
+                return "";
+            }
+        }
+
         [AcceptVerbs(HttpVerbs.Post)]
-        public ActionResult Create(FormCollection collection)
+        public ActionResult Create(FormCollection collection, Role role)
         {
             try
             {
                 // TODO: Add insert logic here
 
-                var roll = new Role() { };
+                //var roll = new Role() { };
                 
-                roll.RoleName = collection["RoleName"];
+                //roll.RoleName = collection["RoleName"];
+                if (!ModelState.IsValid) return View(role);
+
+
                 foreach (string key in collection.AllKeys)
                 {
                     if (key.StartsWith("category_") && collection[key] == "on")
                     {
                         string id = key.Split('_')[1];
-                        roll.ContentPermission += (id + ",");//(string.IsNullOrEmpty(roll.ContentPermission) ? string.Empty : "," + key.Split('_')[1]);
+                        role.ContentPermission += (id + ",");//(string.IsNullOrEmpty(roll.ContentPermission) ? string.Empty : "," + key.Split('_')[1]);
                         //roll.ContentPermission +=  key.Split('_')[1];
                     }
                 }
                 
-                if (string.IsNullOrEmpty(roll.RoleName)) {
+                if (string.IsNullOrEmpty(role.RoleName)) {
                     throw new Exception(""); }
 
-                roll.IsFullPermission           = !string.IsNullOrEmpty(collection["FullControl"]) && collection["FullControl"] == "on";
-                roll.AllowManageRole            = !string.IsNullOrEmpty(collection["Role"]) && collection["Role"] == "on";
-                roll.AllowManageUser            = !string.IsNullOrEmpty(collection["User"]) && collection["User"] == "on";
-                roll.AllowManageMenu            = !string.IsNullOrEmpty(collection["Menu"]) && collection["Menu"] == "on";
-                roll.AllowManageAllContent      = !string.IsNullOrEmpty(collection["AllContent"]) && collection["AllContent"] == "on";
-                roll.AllowManageLink            = !string.IsNullOrEmpty(collection["Link"]) && collection["Link"] == "on";
-                roll.AllowManageOnlineSupporter = !string.IsNullOrEmpty(collection["OnlineSupport"]) && collection["OnlineSupport"] == "on";
-                roll.AllowManageContact         = !string.IsNullOrEmpty(collection["Contact"]) && collection["Contact"] == "on";
-                roll.AllowManagePoll            = !string.IsNullOrEmpty(collection["Poll"]) && collection["Poll"] == "on";
-                roll.AllowManageBanner          = !string.IsNullOrEmpty(collection["Banner"]) && collection["Banner"] == "on";
+                role.IsFullPermission = !string.IsNullOrEmpty(collection["FullControl"]) && collection["FullControl"] == "on";
+                role.AllowManageRole = !string.IsNullOrEmpty(collection["Role"]) && collection["Role"] == "on";
+                role.AllowManageUser = !string.IsNullOrEmpty(collection["User"]) && collection["User"] == "on";
+                role.AllowManageMenu = !string.IsNullOrEmpty(collection["Menu"]) && collection["Menu"] == "on";
+                role.AllowManageAllContent = !string.IsNullOrEmpty(collection["AllContent"]) && collection["AllContent"] == "on";
+                role.AllowManageLink = !string.IsNullOrEmpty(collection["Link"]) && collection["Link"] == "on";
+                role.AllowManageOnlineSupporter = !string.IsNullOrEmpty(collection["OnlineSupport"]) && collection["OnlineSupport"] == "on";
+                role.AllowManageContact = !string.IsNullOrEmpty(collection["Contact"]) && collection["Contact"] == "on";
+                role.AllowManagePoll = !string.IsNullOrEmpty(collection["Poll"]) && collection["Poll"] == "on";
+                role.AllowManageBanner = !string.IsNullOrEmpty(collection["Banner"]) && collection["Banner"] == "on";
 
-                RoleService.AddRole(roll);
+                RoleService.AddRole(role);
                 return RedirectToAction("Index");
             }
             catch

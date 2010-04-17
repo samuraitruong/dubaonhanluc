@@ -41,6 +41,11 @@ namespace DBNL.App.Models.Business
             return content;
         }
 
+        public static IQueryable<Content> All(int id)
+        {
+            return Contents.Where(p => p.CategoryId == id).OrderBy(o => o.IsFeatured).AsQueryable();
+        }
+
         public static IEnumerable<Content> GetContentByCategoryId(int id)
         {
             return Contents.Where(p => p.CategoryId == id).OrderBy(o => o.IsFeatured).AsEnumerable();

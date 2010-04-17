@@ -22,6 +22,16 @@ namespace DBNL.App.Models.Business
         {
             return GetInstance().Users.AsQueryable();
         }
+        public static IQueryable<User> List(int roleId)
+        {
+
+            var query = from p in Users
+                        join p1 in UserInRoles
+                        on p.Id equals p1.UserId
+                        where p1.RoleId == roleId
+                        select p;
+            return query;
+        }
 
         public static User GetItem(int id)
         {

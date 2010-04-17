@@ -3,9 +3,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using DBNL.App.Config;
+using System.ComponentModel.DataAnnotations;
+
 
 namespace DBNL.App.Models
 {
+    [MetadataType(typeof(ContentMetaData))]
     public partial class Content
     {
         public string ThumbnailUrl { 
@@ -15,5 +18,12 @@ namespace DBNL.App.Models
             return DBNLConfigurationManager.FileResponsity.PictureRelativeUrl + "/"+this.Picture;
             
         } }
+
+        public class ContentMetaData
+        {
+            [Required(ErrorMessageResourceName="Content_Title", ErrorMessageResourceType= typeof(DataAnnotations))]
+            public string Title { get; set; }
+        }
+
     }
 }

@@ -10,6 +10,9 @@ namespace DBNL.App.Models.FileManager
         addfolder,
         getfolder,
         add,
-        getinfo
+        getinfo,
+        rename,
+        delete,
+        download
     }
 }

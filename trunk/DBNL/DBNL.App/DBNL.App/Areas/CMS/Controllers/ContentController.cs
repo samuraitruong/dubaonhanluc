@@ -97,33 +97,39 @@ namespace DBNL.App.Areas.CMS.Controllers
         public ActionResult Create()
         {
             ViewData["Categories"] = CustomSelectList.CreateListCategories(false);
-            return View();
+            
+            return View(new Models.Content());
         } 
 
         //
         // POST: /Content/Create
 
-        [AcceptVerbs(HttpVerbs.Post)]
+        [HttpPost]
         [ValidateInput(false)]
-        public ActionResult Create(FormCollection collection)
+        public ActionResult Create(FormCollection collection, Models.Content content)
         {
             try
             {
                 HttpPostedFileBase picture = (HttpPostedFileBase)Request.Files["Picture"];
                 // TODO: Add insert logic here
-                Models.Content content = new Models.Content(){
-                    Title = collection["Title"],
-                    Content1 = collection["Content"],
-                    Status = EntityStatuses.Actived.ToString(),
-                    CreatedDate = DateTime.Now,
-                    UpdatedDate = DateTime.Now,
-                    UniqueKey = collection["Title"].ToUrlKey(),
-                    CategoryId = int.Parse(collection["CategoryId"]),
-                    IsFeatured = collection["IsFeatured"].Contains("true"),
-                    Description = collection["Description"],
-                };
+                //Models.Content content = new Models.Content(){
+                //    Title = collection["Title"],
+                //    Content1 = collection["Content"],
+                //    Status = EntityStatuses.Actived.ToString(),
+                //    CreatedDate = DateTime.Now,
+                //    UpdatedDate = DateTime.Now,
+                //    UniqueKey = collection["Title"].ToUrlKey(),
+                //    CategoryId = int.Parse(collection["CategoryId"]),
+                //    IsFeatured = collection["IsFeatured"].Contains("true"),
+                //    Description = collection["Description"],
+                //};
+                content.Status = EntityStatuses.Actived.ToString();
 
-                
+                if (!ModelState.IsValid)
+                {
+                    return View(content);
+                }
+
                 ContentService.Create(content, picture);
 
                 return RedirectToAction("Index");
