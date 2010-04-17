@@ -331,7 +331,8 @@ div#title
 
 #content 
 {
-    width: 840px;
+    xwidth: 840px;
+    width: 95%;
     float:left;
     padding-left: 50px;
     border-left: dotted #33333 1px;
