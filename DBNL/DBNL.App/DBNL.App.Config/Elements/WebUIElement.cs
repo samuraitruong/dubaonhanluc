@@ -9,9 +9,13 @@ namespace DBNL.App.Config
    public class WebUIElement : ConfigurationElement
     {
 
+        [ConfigurationProperty("articlePagingItem")]
+           public int ArticlePagingItem
+           {
+               get { return (int)this["articlePagingItem"]; }
+           }
 
        [ConfigurationProperty("replacementChar")]
-
        public string ReplacementChar
        {
            get { return (string)this["replacementChar"]; }

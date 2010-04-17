@@ -28,7 +28,6 @@ namespace DBNL.App.Areas.CMS.Controllers
                 Operation = (FileManagerOperations)Enum.Parse(typeof(FileManagerOperations), mode)
             };
             JavaScriptSerializer sr = new JavaScriptSerializer();
-
             return Content(sr.Serialize(mgr.GetResult()));
             return Json(mgr.GetResult(), JsonRequestBehavior.AllowGet);     
         }
@@ -40,6 +39,10 @@ namespace DBNL.App.Areas.CMS.Controllers
                 Path = path,
                 Operation = (FileManagerOperations)Enum.Parse(typeof(FileManagerOperations), mode)
             };
+            if (mgr.Operation == FileManagerOperations.download)
+            {
+                return this.Image(System.Web.HttpContext.Current.Server.MapPath(path));
+            }
             return Json(mgr.GetResult(), JsonRequestBehavior.AllowGet);
 
             var obj = new {

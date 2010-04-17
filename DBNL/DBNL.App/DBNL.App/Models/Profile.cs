@@ -39,7 +39,10 @@ namespace DBNL.App.Models
                  return true;
              if (modules == SiteModules.Banner && Role.AllowManageBanner)
                  return true;
-          
+
+             if (modules == SiteModules.Role && Role.AllowManageRole)
+                 return true;
+
             return false;
         }
         public virtual  bool IsAuthenticated { 

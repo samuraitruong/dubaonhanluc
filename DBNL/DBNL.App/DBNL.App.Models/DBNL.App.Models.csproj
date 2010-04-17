@@ -92,6 +92,11 @@
     <Compile Include="Business\RoleService.cs" />
     <Compile Include="Business\SupporterService.cs" />
     <Compile Include="Business\UserService.cs" />
+    <Compile Include="DataAnnotations.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DataAnnotations.resx</DependentUpon>
+    </Compile>
     <Compile Include="DBNL.designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -99,6 +104,9 @@
     </Compile>
     <Compile Include="Entities\Content.cs" />
     <Compile Include="Entities\ContentCategory.cs" />
+    <Compile Include="Entities\Pagination.cs">
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
     <Compile Include="Entities\Role.cs" />
     <Compile Include="Entities\User.cs" />
     <Compile Include="Extensions\ControllerExtensions.cs" />
@@ -129,6 +137,7 @@
     <Compile Include="ViewData\FOMasterViewData.cs" />
     <Compile Include="ViewData\HomePageViewData.cs" />
     <Compile Include="ViewData\NavigationDataView.cs" />
+    <Compile Include="ViewData\PaginationViewData.cs" />
     <Compile Include="ViewData\ViewContentDataView.cs" />
     <Compile Include="ViewResults\ImageResult.cs" />
   </ItemGroup>
@@ -178,6 +187,12 @@
       <ProductName>Windows Installer 3.1</ProductName>
       <Install>true</Install>
     </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="DataAnnotations.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>DataAnnotations.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

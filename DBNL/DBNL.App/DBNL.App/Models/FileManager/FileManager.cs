@@ -33,8 +33,45 @@ namespace DBNL.App.Models.FileManager
                 case FileManagerOperations.getinfo:
                     return GetFileInfoResult();
                     break;
+                case FileManagerOperations.rename:
+                    return GetFileRenameResult();
+                    break;
+                case FileManagerOperations.delete:
+                    return GetFileDeleteResult();
+                    break;   
+                 
             }
             return null;
+        }
+
+        private object GetFileDeleteResult()
+        {
+            string fullPath = HttpContext.Current.Server.MapPath(Path);
+            System.IO.File.Delete(fullPath);
+            return new
+            {
+                Error = "",
+                Code = 0,
+                Path = Path
+
+            };
+        }
+
+        private object GetFileRenameResult()
+        {
+            string fullPath = HttpContext.Current.Server.MapPath(Path);
+            //FileInfo fi = new FileInfo(fullPath);
+            string fpath = System.IO.Path.GetDirectoryName(fullPath);
+            string oldName = System.IO.Path.GetFileName(fullPath);
+
+            string newFullPath = System.IO.Path.Combine(fpath, Name); ;
+            System.IO.File.Move(fullPath, newFullPath);
+            return new {
+                Error="",
+                Code=0,
+                Path= Path.Replace(oldName, Name),
+                Name=Name
+            };
         }
 
         private object GetFileInfoResult()
@@ -49,7 +86,7 @@ namespace DBNL.App.Models.FileManager
                 Properties = new {
                                     Height= 120,
                                     Width =120,
-                                    Size= 1234,
+                                    Size= fi.Length,
                                  },
                 Error= "",
                 Code =0
@@ -61,38 +98,88 @@ namespace DBNL.App.Models.FileManager
         {
             string fullPath = HttpContext.Current.Server.MapPath(Path);
             fullPath = System.IO.Path.Combine(fullPath, Name);
-            File.SaveAs(fullPath);
-            return new {
-                Path = Path,
-                Name = Name,
-                Error="",
-                Code =0
-            };
+            if (CheckFileType(Name))
+            {
+
+                File.SaveAs(fullPath);
+                string rest = string.Format("{{"+
+                                                
+                                               "Path: \"{0}\","+
+                                                "Name: \"{1}\"," +
+                                                "Error: \"Successful\"," +
+                                                "Code: 0"+
+                                                "}}", Path, Name);
 
 
+
+                //return rest;
+                return new
+                {
+                    Path = Path,
+                    Name = Name,
+                    Error = "",
+                    Code = 0
+                };
+            }
+            //return string.Format("{" +
+
+            //                                   "Path : '{0}'," +
+            //                                    "Name : '{1}'," +
+            //                                    "Error : '{2}'," +
+            //                                    "Code :-1" +
+            //                                    "}", Path, Name,"Bạn chỉ được upload các file hình (.gif, .jpg, .bmp, .png, .jpeg)");
+
+            return new
+                {
+                    Path = Path,
+                    Name = Name,
+                    Error = "Bạn chỉ được upload các file hình (.gif, .jpg, .bmp, .png, .jpeg)",
+                    Code = -1
+                };
+        }
+
+        bool CheckFileType(string fileName)
+        {
+            string ext = System.IO.Path.GetExtension(fileName);
+            switch (ext.ToLower())
+            {
+                case ".gif":
+                    return true;
+                case ".png":
+                    return true;
+                case ".jpg":
+                    return true;
+                case ".jpeg":
+                    return true;
+                case ".bmp":
+                    return true;
+                default:
+                    return false;
+            }
         }
         public object GetFolderResult()
         {
             string fullPath = HttpContext.Current.Server.MapPath(Path);
             DirectoryInfo di = new DirectoryInfo(fullPath);
             var query = from p in di.GetFiles()
-                        select new { 
-                            FileItem= GetFileInfo(p)
-                        };
+                        select GetFileInfo(p);
 
             return query;
         }
         public object GetFileInfo(FileInfo fi)
         {
+            string FilePath = Path + "/" + fi.Name;
+            string previewPath = string.Format("/CMS/FileManager/Preview?Path={0}&Width={1}&Height={2}", FilePath, 120, 120);
+
             return new  {
-                Path="",
+                Path = FilePath,
                 Filename = fi.Name,
                 FileType =fi.Extension,
-                Preview="",
+                Preview=previewPath,
                 Properties = new {
-                                    Height= 14,
-                                    Width =14,
-                                    Size= 123,
+                                    Height= 120,
+                                    Width =120,
+                                    Size = fi.Length,
 
                                  },
                 Error= "",

@@ -1,7 +1,7 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Views/Shared/Site.Master" Inherits="System.Web.Mvc.ViewPage<DBNL.App.Models.Content>" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="TitleContent" runat="server">
-	Create
+	Thêm mới chủ đề.
 </asp:Content>
 <asp:Content runat="server" ContentPlaceHolderID="headerPlaceHolder" >
     <script language="javascript" type="text/javascript">
@@ -16,18 +16,19 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
 
-    <h2>Create</h2>
+    <h2>Thêm mới chủ đề.</h2>
 
     <%= Html.ValidationSummary("Create was unsuccessful. Please correct the errors and try again.") %>
 
     <% using (Html.BeginForm("Create", "Content", FormMethod.Post, new {enctype="multipart/form-data"})) {%>
 
         <fieldset>
-            <legend>Fields</legend>
+            
             <p>
                 <label for="Title">Title:</label>
-                <%= Html.TextBox("Title") %>
+                <%= Html.TextBoxFor(p=>p.Title) %>
                 <%= Html.ValidationMessage("Title", "*") %>
+                <%= Html.ValidationMessageFor(p=>p.Title)%>
             </p>
             
             <p>

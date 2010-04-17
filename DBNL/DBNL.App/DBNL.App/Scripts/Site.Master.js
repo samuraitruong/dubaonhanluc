@@ -79,7 +79,13 @@ function urlFormater(cellvalue, options, rowObject) {
 
 }
 function customCheckboxFormater(cellvalue, options, rowObject) {
-    return "<input type='checkbox' name='" + cellvalue + "' id='" + cellvalue + "'/>";
+    return "<input type='checkbox'  name='" + cellvalue + "' id='" + cellvalue + "'/>";
 }
 
+function statiCheckboxFormater(cellvalue, options, rowObject) {
+    if(cellvalue )
+        return "<input type='checkbox' readonly='readonly' disabled='disabled'  checked  name='" + rowObject["id"] + "' id='" + rowObject["id"] + "'/>";
+
+    return "<input type='checkbox' readonly='readonly' disabled='disabled'   name='" + rowObject["id"] + "' id='" + rowObject["id"] + "'/>";
+}
 
