@@ -54,7 +54,8 @@ namespace DBNL.App.Areas.CMS.Controllers
                             Name = entity.CategoryName,
                             ParentCateId = entity.ParentCategoryId,
                             IsFeatured = entity.IsFeatured,
-                            ShowOnHP = entity.ShowOnHP
+                            ShowOnHP = entity.ShowOnHP,
+                            Articles = entity.Contents.Count()
                         };
             return Json(model.ToJqGridData(page, rows, null, "", new[] { "Name", "ParentCateId", "IsFeatured", "ShowOnHP" }), JsonRequestBehavior.AllowGet);
         }

@@ -2,13 +2,13 @@
 
 
 <asp:Content ID="Content1" ContentPlaceHolderID="TitleContent" runat="server">
-	List
+	Hệ thống menu
 </asp:Content>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
 
-    <h2>List</h2>
-        <div>
+    <h2>Hệ thống menu</h2>
+        <div style="padding-bottom: 20px">
         <label>Chọn vị trí menu</label>
             <%=Html.DropDownList("Position", DBNL.App.Models.Statics.CustomSelectList.CreateMenuPosition() )%>
         </div>
@@ -19,7 +19,7 @@
         
     </div>
     
-     <div style="padding-top:35px">
+     <div style="padding-top:35px" >
      <h2>Danh sách các bài viết</h2>
         <table id="article_grid" cellpadding="0" cellspacing="0">
         </table>
@@ -36,7 +36,10 @@
 <asp:Content ID="Content3" runat="server" ContentPlaceHolderID="ScriptContent">
     <script language="javascript" type="text/javascript" src="<%= Url.Content("~/Scripts/GridData.js") %>"></script>
     <script type="text/javascript">
-$(document).ready(function () {
+        function displayOrder(cellvalue, options, rowObject) {
+            return cellvalue;
+        }
+        $(document).ready(function () {
 
             DBNL.Admin.Navigations.setupGrid($("#grid"), $("#pager"));
             
@@ -60,25 +63,53 @@ $(document).ready(function () {
                         type: "POST"
                     },
                     datatype: "json",
-                    colNames: [ 'Id','Name'],
+                    colNames: [ 'Id','Tên', 'Chức Năng','Url','Thứ tự',''],
                     colModel: [
-                    {
-                        name: 'Id', index: 'ID', width: 40, align: 'left', editable: false, key: true, editoptions: {readonly:'readonly'},editrules: { edithidden: true }, hidden: true },
-
-                        { name: 'Name', index: 'Name', width: 250, sortable: true, editable: true, edittype: 'text', editoptions: { size: 20, maxlength:100} , hidden: false }
+                        { name: 'Id', index: 'ID', width: 40, align: 'left', editable: false, key: true, editoptions: {readonly:'readonly'},editrules: { edithidden: true }, hidden: true },
+                        { name: 'Name', index: 'Name', width: 250, sortable: false, editable: true, edittype: 'text', editoptions: { size: 20, maxlength:100} , hidden: false },
+                        { name: 'Component', align:"center",index: 'Component', width: 100, sortable: true, editable: false, edittype: 'text', editoptions: { size: 20, maxlength:100} , hidden: false },
+                        { name: 'Url', index: 'Url', width: 80, sortable: true,formatter:'link',formatoptions:{target:'_blank'}, editable: false, edittype: 'link', editoptions: { size: 20, maxlength:100} , hidden: false },
+                        { name: 'DisplayOrder', index: 'DisplayOrder',width: 20,formatter:'integer', align:'center', hidden: false },
+                        { name: 'Options', index: 'Options',width: 60, align:'center', hidden: false }
                       ],
                     rowNum: 10,
                     rowList: [10, 20, 30],
                     pager: pager,
-                    sortname: 'Name',
+                    sortname: 'DisplayOrder',
                     sortorder: "asc",
                     viewrecords: true,
                     width: '100%',
                     height: '100%',
                     autowidth: true,
                     rownumbers: true,
-                    caption: 'Categories List',
+                    caption: 'Danh sách menu',
                     postData : {Position: $("#Position").val()},
+                    loadComplete: function(){ 
+                            var ids = jQuery("#grid").getDataIDs(); 
+                            for(var i=0;i<ids.length;i++){ 
+                                    var cl = ids[i];
+                                    var up = '<a  class="Up" rel="' +cl + '" href="<%=Url.Action("Up","Navigation")%>/' + cl +'" ><img src="<%=Url.Content("~/Images/arrow_up.png") %>" /></a>';
+                                    var down = '<a  class="Down" rel="' +cl + '" href="<%=Url.Action("Up","Navigation")%>/' + cl +'" ><img src="<%=Url.Content("~/Images/arrow_down.png") %>" /></a>';
+                                    var edit = '<a  class="Edit" rel="' +cl + '" href="<%=Url.Action("Edit","Navigation")%>/' + cl +'" ><img src="<%=Url.Content("~/Images/edit_medium.png") %>" /></a>';
+                                    jQuery("#grid").setRowData(ids[i],{Options:up+down+edit}) ;
+
+                                    $(".Up, .Down").unbind('click');
+                                    
+                                    $(".Up, .Down").bind('click', function () {
+                                       $.ajax({
+                                                  type: 'POST',
+                                                  url: "<%=Url.Action("Reorder", "Navigation" )%>",
+                                                  data: {Id : $(this).attr('rel'), Method: $(this).attr('class')},
+                                                  success: function() {
+                                                    $("#grid").trigger("reloadGrid")
+                                                  },
+                                                  dataType: 'json'
+                                                });
+                                        return false;
+                                    });
+                            } 
+                    }, 
+
                     subGrid: true,
                     subGridRowExpanded: function(subgrid_id, row_id) { 
                     // we pass two parameters // subgrid_id is a id of the div tag created whitin a table data 
@@ -98,12 +129,14 @@ $(document).ready(function () {
                             ajaxGridOptions: {
                             type: "POST"
                         },
-                            colNames: [ 'Id','Name'],
+                            colNames: [ 'Id','Tên','Chức Năng','Url', 'Thứ tự',''],
                             colModel: [
-                            {
-                                name: 'Id', index: 'ID', width: 40, align: 'left', editable: false, key: true, editoptions: {readonly:'readonly'},editrules: { edithidden: true }, hidden: true },
-
-                                { name: 'Name', index: 'Name', width: 250, sortable: true, editable: true, edittype: 'text', editoptions: { size: 20, maxlength:100} , hidden: false }
+                                { name: 'Id', index: 'ID', width: 40, align: 'left', editable: false, key: true, editoptions: {readonly:'readonly'},editrules: { edithidden: true }, hidden: true },
+                                { name: 'Name', index: 'Name', width: 250, sortable: true, editable: true, edittype: 'text', editoptions: { size: 20, maxlength:100} , hidden: false },
+                                { name: 'Component', align:"center", index: 'Component', width: 100, sortable: true, editable: false, edittype: 'text', editoptions: { size: 20, maxlength:100} , hidden: false },
+                                { name: 'Url', index: 'Url', width: 80,formatter:'link',formatoptions:{target:'_blank'},sortable: true, editable: false, edittype: 'link', editoptions: { size: 20, maxlength:100} , hidden: false },
+                                { name: 'DisplayOrder', index: 'DisplayOrder',width: 20,formatter:'integer', align:'center', hidden: false },
+                                { name: 'Options', index: 'Options',width: 60, align:'center', hidden: false }
                               ],
                              rowNum:20, 
                              rowList: [10, 20, 30],
@@ -118,6 +151,32 @@ $(document).ready(function () {
                             caption: 'Danh sách menu con',
                              userdata: {PollId:$("#grid").getRowData(row_id)["id"]},
                              postData: {ParentId:eid},
+                             loadComplete: function(){ 
+                                        var ids = jQuery("#"+subgrid_table_id).getDataIDs(); 
+                                        for(var i=0;i<ids.length;i++){ 
+                                                var cl = ids[i];
+                                                var up = '<a  class="Up" rel="' +cl + '" href="<%=Url.Action("Reorder","Navigation")%>/' + cl +'" ><img src="<%=Url.Content("~/Images/arrow_up.png") %>" /></a>';
+                                                var down = '<a  class="Down" rel="' +cl + '" href="<%=Url.Action("Reorder","Navigation")%>/' + cl +'" ><img src="<%=Url.Content("~/Images/arrow_down.png") %>" /></a>';
+                                                var edit = '<a  class="Edit" rel="' +cl + '" href="<%=Url.Action("Edit","Navigation")%>/' + cl +'" ><img src="<%=Url.Content("~/Images/edit_medium.png") %>" /></a>';
+
+                                                jQuery("#"+subgrid_table_id).setRowData(ids[i],{Options:up+down+edit}) ;
+
+                                                $(".Up, .Down").unbind('click');
+                                    
+                                                $(".Up, .Down").bind('click', function () {
+                                                   $.ajax({
+                                                              type: 'POST',
+                                                              url: "<%=Url.Action("Reorder", "Navigation" )%>",
+                                                              data: {Id : $(this).attr('rel'), Method: $(this).attr('class')},
+                                                              success: function() {
+                                                                $("#"+subgrid_table_id).trigger("reloadGrid")
+                                                              },
+                                                              dataType: 'json'
+                                                            });
+                                                    return false;
+                                                });
+                                        } 
+                                }, 
                             onSelectRow: function(ids) {  
                                 return;
                                 if (ids != null) {  
@@ -129,7 +188,7 @@ $(document).ready(function () {
                             }
                              
                     }); 
-                    jQuery("#"+subgrid_table_id).jqGrid('navGrid',"#"+pager_id,{edit:true,add:true,del:true,search: true, view: true})
+                    jQuery("#"+subgrid_table_id).jqGrid('navGrid',"#"+pager_id,{edit:true,add:true,del:true,search: true, view: true},{},{},{url:'<%=Url.Action("JsonDelete", "Navigation" )%>'})
 
                },
                 subGridRowColapsed: function(subgrid_id, row_id) {
@@ -145,7 +204,7 @@ $(document).ready(function () {
                            .trigger('reloadGrid');  
                         } 
                 }
-                }).navGrid('#pager', { edit: true, add: true, del: true, search: true, view: true }).navButtonAdd('#pager',{
+                }).navGrid('#pager', { edit: true, add: true, del: true, search: true, view: true },{},{},{url:'<%=Url.Action("JsonDelete", "Navigation" )%>'}).navButtonAdd('#pager',{
                            caption:"Public", 
                            buttonicon:"ui-icon-add", 
                            onClickButton: function(){ 

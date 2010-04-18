@@ -7,7 +7,7 @@
 		</div>
 		<div class="news_article"  style="min-height:0px;">
 			<div class="top_page clearfix">
-				<div class="pageitem fr"><a href="#"><img alt="b1" src="images/icon_b1.png"></a>&nbsp;&nbsp;<a href="#"><img alt="b2" src="images/icon_b2.png"></a>&nbsp;&nbsp;<a href="#"><img alt="b3" src="images/icon_b3.png"></a></div>
+				<div class="pageitem fr"><a href="#"><img alt="b1" src="/images/icon_b1.png"></a>&nbsp;&nbsp;<a href="#"><img alt="b2" src="/images/icon_b2.png"></a>&nbsp;&nbsp;<a href="#"><img alt="b3" src="/images/icon_b3.png"></a></div>
 			</div>
 			<!--top page-->
 			<div class="news_article_detail">

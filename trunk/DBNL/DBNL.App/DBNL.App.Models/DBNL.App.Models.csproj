@@ -102,8 +102,12 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>DBNL.dbml</DependentUpon>
     </Compile>
+    <Compile Include="Entities\Attributes\UsernameAttribute.cs" />
+    <Compile Include="Entities\Banner.cs" />
     <Compile Include="Entities\Content.cs" />
     <Compile Include="Entities\ContentCategory.cs" />
+    <Compile Include="Entities\EntitiesBase.cs" />
+    <Compile Include="Entities\Navigation.cs" />
     <Compile Include="Entities\Pagination.cs">
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
@@ -190,7 +194,7 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="DataAnnotations.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
+      <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>DataAnnotations.Designer.cs</LastGenOutput>
     </EmbeddedResource>
   </ItemGroup>

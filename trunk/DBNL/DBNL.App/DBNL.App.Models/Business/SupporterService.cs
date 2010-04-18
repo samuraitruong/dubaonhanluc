@@ -18,6 +18,10 @@ namespace DBNL.App.Models.Business
         {
             return Supporters.AsEnumerable();
         }
+        public static IEnumerable<Supporter> GetItems(EntityStatuses status)
+        {
+            return Supporters.Where(p=>p.Status == status.ToString()).AsEnumerable();
+        }
 
         public static IQueryable<Supporter> List()
         {
@@ -37,6 +41,26 @@ namespace DBNL.App.Models.Business
         {
             Supporter sp = GetItem(id);
             Supporters.DeleteOnSubmit(sp);
+            Commit();
+        }
+
+        public static void Public(int id)
+        {
+            Supporter sp = GetItem(id);
+            if (sp.Status == EntityStatuses.Actived.ToString())
+                sp.Status = EntityStatuses.Inactive.ToString();
+            else
+            {
+                sp.Status = EntityStatuses.Actived.ToString();
+            }
+            Commit();
+        }
+
+        public static void Edit(int id, string NickName, string Name)
+        {
+            Supporter sp = GetItem(id);
+            sp.NickName = NickName;
+            sp.Name = Name;
             Commit();
         }
     }

@@ -2,12 +2,6 @@
 <ordesignerObjectsDiagram dslVersion="1.0.0.0" absoluteBounds="0, 0, 13.75, 11.625" name="DBNLDataContext">
   <DataContextMoniker Name="/DBNLDataContext" />
   <nestedChildShapes>
-    <classShape Id="37f61211-1a8d-4b04-a9e1-3faa522a3364" absoluteBounds="0.75, 8.75, 2, 2.0822371419270844">
-      <DataClassMoniker Name="/DBNLDataContext/Banner" />
-      <nestedChildShapes>
-        <elementListCompartment Id="60f154f8-1e65-48ca-a937-79441c62a199" absoluteBounds="0.765, 9.21, 1.9700000000000002, 1.5222371419270833" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
-      </nestedChildShapes>
-    </classShape>
     <classShape Id="296972cf-93e6-4447-92fb-21cdd8e5052b" absoluteBounds="9.5, 4, 2, 1.0961531575520844">
       <DataClassMoniker Name="/DBNLDataContext/UserInRole" />
       <nestedChildShapes>
@@ -116,7 +110,7 @@
         <classShapeMoniker Id="2c2d09d3-c27e-4160-82b8-53d9ceb62945" />
       </nodes>
     </associationConnector>
-    <associationConnector edgePoints="[(2.625 : 4.875); (2.625 : 3.23962646484375)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+    <associationConnector edgePoints="[(3.09375 : 4.875); (3.09375 : 3.23962646484375)]" fixedFrom="Algorithm" fixedTo="Algorithm">
       <AssociationMoniker Name="/DBNLDataContext/ContentCategory/ContentCategory_Content" />
       <nodes>
         <classShapeMoniker Id="32afc33f-5309-4d5e-91f5-843de049651f" />
@@ -129,12 +123,18 @@
         <elementListCompartment Id="7eae3748-a46d-4c23-b698-05b63b0f8e69" absoluteBounds="5.14, 3.96, 1.9700000000000002, 2.508321126302083" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
-    <associationConnector edgePoints="[(7.125 : 4.54807657877604); (9.5 : 4.54807657877604)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+    <associationConnector edgePoints="[(7.125 : 4.54807657877604); (9.5 : 4.54807657877604)]" fixedFrom="NotFixed" fixedTo="NotFixed">
       <AssociationMoniker Name="/DBNLDataContext/Role/Role_UserInRole" />
       <nodes>
         <classShapeMoniker Id="e088878a-bc60-4366-aa50-a2a0e0505ec7" />
         <classShapeMoniker Id="296972cf-93e6-4447-92fb-21cdd8e5052b" />
       </nodes>
     </associationConnector>
+    <classShape Id="332dbcde-f06d-48b7-ac55-413ac063f401" absoluteBounds="0.625, 3.25, 2, 2.0822371419270831">
+      <DataClassMoniker Name="/DBNLDataContext/Banner" />
+      <nestedChildShapes>
+        <elementListCompartment Id="c50194ec-7d21-4714-9708-8e0e9766de97" absoluteBounds="0.64000000000000012, 3.71, 1.9700000000000002, 1.5222371419270833" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
   </nestedChildShapes>
 </ordesignerObjectsDiagram>

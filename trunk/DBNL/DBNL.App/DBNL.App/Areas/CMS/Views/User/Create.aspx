@@ -68,7 +68,19 @@
 <asp:Content ID="Content3" runat="server" ContentPlaceHolderID="ScriptContent">
     <script language="javascript" type="text/javascript" src="<%= Url.Content("~/Scripts/GridData.js") %>"></script>
     <script type="text/javascript">
-$(document).ready(function () {
+    function myelem (value, options) {
+      var el = document.createElement("input");
+      el.type="checkbox";
+      //el.value = value;
+      el.checked = $(value).attr("checked");
+      
+      return el;
+    }
+ 
+    function myvalue(elem) {
+      return $(elem).val();
+    }
+    $(document).ready(function () {
 
             DBNL.Admin.Users.setupGrid($("#grid"), $("#pager"));
                    });
@@ -83,12 +95,24 @@ $(document).ready(function () {
                         type: "POST"
                     },
                     datatype: "json",
-                    colNames: [ 'Id','Nhóm', 'Chọn'],
+                    colNames: [ 'Id','Tên nhóm', 'Toàn quyền','QL Nội dung','QL Danh mục','QL người dùng','QL Liên kết website','QL KSYK','QL Hổ sợ','QL Banner','QL Liên hệ','Chọn'],
                     colModel: [
-                                { name: 'Id', index: 'Id', width: 40, align: 'left', editable: false, key: true, editoptions: {readonly:'readonly'},editrules: { edithidden: true }, hidden: true },
-                                { name: 'Name', index: 'RoleName', width: 250, sortable: true, editable: true, edittype: 'text', editoptions: { size: 20, maxlength:100} , hidden: false },
-                                { name: 'Permission', index: 'Permission', align:'center',  sortable: true, hidden: false, formatter: customCheckboxFormater}
-                              ],
+                    {
+                        name: 'Id', index: 'Id', width: 40, align: 'left', editable: false, key: true, editoptions: {readonly:'readonly'},editrules: { edithidden: true }, hidden: true },
+
+                        { name: 'RoleName', index: 'RoleName', width: 150, sortable: true, editable: true, edittype: 'text', editoptions: { size: 20, maxlength:100} , hidden: false },
+                        { name: 'IsFullPermission', index: 'IsFullPermission', align:'center',formatter:statiCheckboxFormater, width: 150, sortable: true, editable: true, edittype:'custom', editoptions:{custom_element: myelem, custom_value:myvalue} , hidden: false },
+                        { name: 'AllowManageContent', index: 'AllowManageContent', align:'center',formatter:statiCheckboxFormater,width: 150, sortable: true, editable: true, edittype:'custom', editoptions:{custom_element: myelem, custom_value:myvalue} , hidden: false },
+                        { name: 'AllowManageMenu', index: 'AllowManageMenu',align:'center',formatter:statiCheckboxFormater, width: 150, sortable: true, editable: true, edittype:'custom', editoptions:{custom_element: myelem, custom_value:myvalue} , hidden: false },
+                        { name: 'AllowManageUser', index: 'AllowManageUser',align:'center',formatter:statiCheckboxFormater, width: 150, sortable: true, editable: true, edittype:'custom', editoptions:{custom_element: myelem, custom_value:myvalue} , hidden: false },
+                        { name: 'AllowManageLink', index: 'AllowManageLink',align:'center',formatter:statiCheckboxFormater, width: 150, sortable: true, editable: true, edittype:'custom', editoptions:{custom_element: myelem, custom_value:myvalue} , hidden: false },
+                        { name: 'AllowManagePoll', index: 'AllowManagePoll', align:'center',formatter:statiCheckboxFormater,width: 150, sortable: true, editable: true, edittype:'custom', editoptions:{custom_element: myelem, custom_value:myvalue} , hidden: false },
+                        { name: 'AllowManageOnlineSupporter', index: 'AllowManageOnlineSupporter',formatter:statiCheckboxFormater, align:'center',width: 150, sortable: true, editable: true, edittype:'custom', editoptions:{custom_element: myelem, custom_value:myvalue} , hidden: false },
+                        { name: 'AllowManageBanner', index: 'AllowManageBanner', align:'center',formatter:statiCheckboxFormater,width: 150, sortable: true, editable: true,edittype:'custom', editoptions:{custom_element: myelem, custom_value:myvalue} , hidden: false },
+                        { name: 'AllowManageContact', index: 'AllowManageContact',align:'center',formatter:statiCheckboxFormater, width: 150, sortable: true, editable: true, edittype:'custom', editoptions:{custom_element: myelem, custom_value:myvalue} , hidden: false },
+                        { name: 'Permission', index: 'Permission', align:'center',  sortable: true, hidden: false, formatter: customCheckboxFormater}
+                      ],
+
                     rowNum: 10,
                     rowList: [10, 20, 30],
                     pager: pager,

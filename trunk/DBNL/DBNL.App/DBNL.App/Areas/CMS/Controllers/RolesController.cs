@@ -52,7 +52,18 @@ namespace DBNL.App.Areas.CMS.Controllers
                         select new
                         {
                             Id = entity.Id,
-                            Name = entity.RoleName,
+                            RoleName = entity.RoleName,
+                            IsFullPermission = entity.IsFullPermission,
+                            AllowManageContent = entity.AllowManageAllContent,
+                            AllowManageUser = entity.AllowManageUser,
+
+                            AllowManageBanner = entity.AllowManageBanner,
+                            AllowManageContact = entity.AllowManageContact,
+                            AllowManageLink = entity.AllowManageLink,
+                            AllowManageMenu = entity.AllowManageMenu,
+                            AllowManageOnlineSupporter = entity.AllowManageOnlineSupporter,
+                            AllowManagePoll = entity.AllowManagePoll,
+                            AllowManageRole = entity.AllowManageRole,
                             Permission = "roleid_" + entity.Id.ToString()
                         };
             return Json(model.ToJqGridData(page, rows, null, "", new[] { "Name"}), JsonRequestBehavior.AllowGet);

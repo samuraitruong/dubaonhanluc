@@ -57,7 +57,7 @@ $(document).ready(function () {
                     caption: 'DANH SÁCH EMAIL TRUNG TÂM TRUNG TÂM DỰ BÁO NHU CẦU NHÂN LỰC VÀ THÔNG TIN THỊ TRƯỜNG LAO ĐỘNG TP.HCM'
                     
                 })
-        .navGrid('#pager', { edit: true, add: true, del: false, search: true, view: true });
+        .navGrid('#pager', { edit: true, add: true, del: true, search: true, view: true },{},{},{url:'<%=Url.Action("JsonDelete", "Contact" )%>'});
             }
         };
 </script>

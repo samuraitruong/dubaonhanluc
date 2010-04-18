@@ -13,6 +13,6 @@ namespace DBNL.App.Models.ViewData
         public IEnumerable<SelectListItem> RootNavigations { get; set; }
         public IEnumerable<SelectListItem>  NavigationPositions { get; set; }
         public IEnumerable<SelectListItem>  Categories { get; set; }
-        public IEnumerable<SelectListItem> SiteModules { get { return CustomSelectList.CreateModuleList();} }
+        public IEnumerable<SelectListItem> SiteModules { get; set; }
     }
 }

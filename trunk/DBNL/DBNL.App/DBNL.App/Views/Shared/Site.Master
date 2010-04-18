@@ -14,7 +14,7 @@
 
         <div id="header">
             <div id="title">
-                <h1>Web Administration System</h1>
+                <h1>Web Content Administration System</h1>
             </div>
               
             <div id="logindisplay">
@@ -22,8 +22,7 @@
             </div> 
             <div style="clear:both" />
             <div id="menucontainer">
-            
-                <ul id="menu">              
+            <ul id="menu">              
                      <li><%= Html.ActionLink("Trang chủ", "Index", "Home", new { area = "" }, null)%></li>
                      <li><%= Html.ActionLink("Nội dung", "Index", "Categories", new { area = "CMS" }, null)%></li>
                      <% if (SessionManager.Profile.HasPermission(DBNL.App.Models.Statics.SiteModules.MenuNavigation))

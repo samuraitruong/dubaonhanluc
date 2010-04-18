@@ -15,7 +15,11 @@ namespace DBNL.App.Areas.CMS.Controllers
     {
         //
         // GET: /Content/
-
+        [HttpPost]
+        public ActionResult ToggleActive(int id) {
+            ContentService.ToggleActive(id);
+            return Json(true);
+        }
         [HttpPost]
         public ActionResult GetList(int page, int rows, string sidx, string sord, int? CategoryId)
         {
@@ -41,6 +45,7 @@ namespace DBNL.App.Areas.CMS.Controllers
                             Thumbnail = entity.ThumbnailUrl,
                             Category= entity.ContentCategory.CategoryName,
                             Status = entity.Status,
+                            Url = this.Url.Action("View",Models.Statics.Controllers.Article.ToString(), new {Area="", id=entity.ContentId})
                         };
             return Json(model.ToJqGridData(page, rows, null, "", new[] { "Title" }), JsonRequestBehavior.AllowGet);
         }
@@ -60,7 +65,10 @@ namespace DBNL.App.Areas.CMS.Controllers
                         select new
                         {
                             Id = entity.ContentId,
-                            Title = entity.Title
+                            Title = entity.Title,
+                            Thumbnail = entity.ThumbnailUrl,
+                            Status = entity.Status,
+                            Url= this.Url.Action("View",Models.Statics.Controllers.Article.ToString(), new {Area="", id=entity.ContentId})
                         };
             return Json(model.ToJqGridData(page, rows, null, "", new[] { "Title" }), JsonRequestBehavior.AllowGet);
         }

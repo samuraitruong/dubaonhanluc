@@ -7,6 +7,7 @@ using System.Web;
 using System.IO;
 using System.Drawing;
 using System.Drawing.Imaging;
+using DBNL.App.Models.Statics;
 
 namespace DBNL.App.Models.Business
 {
@@ -77,6 +78,19 @@ namespace DBNL.App.Models.Business
         public static IQueryable<Content> All()
         {
             return Contents.AsQueryable();
+        }
+
+        public static void ToggleActive(int id)
+        {
+            Content item = GetItems(id);
+            if (item.Status == EntityStatuses.Actived.ToString()) item.Status = EntityStatuses.Inactive.ToString();
+            else item.Status = EntityStatuses.Actived.ToString();
+            Commit();
+        }
+
+        private static Content GetItems(int id)
+        {
+            return Contents.Where(p => p.CategoryId == id).SingleOrDefault();
         }
     }
 }

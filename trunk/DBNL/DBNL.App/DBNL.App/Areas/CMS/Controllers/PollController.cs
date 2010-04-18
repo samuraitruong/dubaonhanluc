@@ -76,7 +76,12 @@ namespace DBNL.App.Areas.CMS.Controllers
             ViewData.Model = PollService.GetItem(id);
             return View();
         }
-
+        [HttpPost]
+        public ActionResult JsonDelete(int id)
+        {
+            PollService.Delete(id);
+            return Json(true);
+        }
         //
         // POST: /Poll/Delete/5
 

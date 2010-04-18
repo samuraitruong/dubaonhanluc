@@ -24,7 +24,7 @@ namespace DBNL.App.Controllers
                 Category = CategoryService.GetById(id),
                 Articles = ContentService.GetContentByCategoryId(id),
                 FeaturedArticles = ContentService.GetFeaturedArtileByCategoryId(id),
-                ArticlesPagedList = ContentService.All(id).ToPagedList(page.HasValue?page.Value:1, DBNLConfigurationManager.WebUI.ArticlePagingItem)
+                ArticlesPagedList = ContentService.All(id).ToPagedList(page.HasValue?page.Value-1:0, DBNLConfigurationManager.WebUI.ArticlePagingItem)
             
             };
             return View();

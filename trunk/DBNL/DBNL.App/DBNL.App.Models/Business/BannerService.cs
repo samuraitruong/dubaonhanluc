@@ -18,6 +18,12 @@ namespace DBNL.App.Models.Business
             return GetInstance().Banners.AsQueryable();
         }
 
+        public static IQueryable<Banner> List(string pos)
+        {
+            if (string.IsNullOrEmpty(pos)) return List();
+
+            return GetInstance().Banners.Where(p=>p.BannerPosition == pos).AsQueryable();
+        }
         public static Banner GetItem(int id)
         {
             return GetInstance().Banners.Where(p => p.Id == id).SingleOrDefault();
@@ -50,7 +56,7 @@ namespace DBNL.App.Models.Business
             Banner banner = GetItem(id);
             banner.Name = name.Trim();
             banner.Url = url.Trim();
-            banner.BannerImage = bannerImage.Trim();
+            //banner.BannerImage = bannerImage.Trim();
             banner.Status = status.Trim();
             banner.UpdatedDate = DateTime.Now;
             banner.BannerPosition = bannerPosition;
@@ -60,7 +66,36 @@ namespace DBNL.App.Models.Business
 
         public static IEnumerable<Banner> GetItems(BannerPositions bannerPositions)
         {
-            return Banners.Where(p => p.BannerPosition == bannerPositions.ToString()).AsEnumerable();
+            return Banners.Where(p=>p.Status == EntityStatuses.Actived.ToString() &&  p.BannerPosition == bannerPositions.ToString()).AsEnumerable();
         }
+
+
+        public static void Add(Banner banner)
+        {
+            Banners.InsertOnSubmit(banner);
+            Commit();
+        }
+
+        public static void Public(int id)
+        {
+            Banner banner = GetItem(id);
+            if (banner.Status == EntityStatuses.Actived.ToString())
+                banner.Status = EntityStatuses.Inactive.ToString();
+            else
+            {
+                banner.Status = EntityStatuses.Actived.ToString();
+                banner.UpdatedDate = DateTime.Now;
+            }
+
+            Commit();
+            //var banners = Banners.Where(p => p.BannerPosition == banner.BannerPosition).OrderByDescending(p => p.UpdatedDate).Skip(2);
+            //foreach (var item in banners)
+            //{
+            //    item.Status = EntityStatuses.Inactive.ToString();
+            //}
+            //Commit();
+        }
+
+        public static string EntitiStatuses { get; set; }
     }
 }

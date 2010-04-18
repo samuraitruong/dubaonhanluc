@@ -21,7 +21,8 @@ namespace DBNL.App.Models.Statics
         Article,
         Link,
         WebLink,
-        WebContact
+        WebContact,
+        Home
     }
 
     public enum Actions
@@ -46,7 +47,8 @@ namespace DBNL.App.Models.Statics
         Supportter,
         Banner,
         User,
-        Role
+        Role,
+        Home
     }
     public enum BannerPositions
     { 

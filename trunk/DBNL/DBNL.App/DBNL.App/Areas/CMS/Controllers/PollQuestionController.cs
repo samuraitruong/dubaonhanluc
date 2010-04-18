@@ -13,6 +13,13 @@ namespace DBNL.App.Areas.CMS.Controllers
 {
     public class PollQuestionController : Controller
     {
+        [HttpPost]
+        public ActionResult JsonDelete(int id)
+        {
+            PollQuestionService.Delete(id);
+            return Json(true);
+        }
+
         //
         // GET: /PollQuestion/
         [HttpPost]
