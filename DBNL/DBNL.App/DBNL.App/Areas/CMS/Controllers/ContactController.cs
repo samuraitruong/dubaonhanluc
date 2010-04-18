@@ -91,6 +91,21 @@ namespace DBNL.App.Areas.CMS.Controllers
             }
         }
 
+        [HttpPost]
+        public ActionResult JsonDelete(int id)
+        {
+            try
+            {
+                // TODO: Add delete logic here
+                ContactService.Delete(id);
+                return Json(true, JsonRequestBehavior.AllowGet);
+            }
+            catch
+            {
+                return Json(false, JsonRequestBehavior.AllowGet);
+            }
+        }
+
         //
         // GET: /Contact/Edit/5
  
@@ -144,7 +159,7 @@ namespace DBNL.App.Areas.CMS.Controllers
             var model = from entity in contact.OrderBy(sidx + " " + sord)
                         select new
                         {
-                            EntityId = entity.Id,
+                            Id = entity.Id,
                             Name = entity.Name,
                             Email = entity.Email,
                             Status = entity.Status

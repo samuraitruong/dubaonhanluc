@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Web.Security;
 using System.Security.Cryptography;
+using DBNL.App.Models.Statics;
 
 namespace DBNL.App.Models.Business
 {
@@ -11,7 +12,7 @@ namespace DBNL.App.Models.Business
     {
         public static User GetValidateUser(string Username, string Password)
         {
-            return Users.Where(p => p.Username == Username && p.Password == Password).SingleOrDefault();
+            return Users.Where(p => p.Username == Username && p.Password == Password && p.Status == EntityStatuses.Actived.ToString()).SingleOrDefault();
         }
         public static IEnumerable<User> GetAllItems()
         {
@@ -84,6 +85,61 @@ namespace DBNL.App.Models.Business
                 });
             }
             Commit();
+        }
+
+        public static void Active(int id)
+        {
+            User   user = GetItem(id);
+            if (user.Status == EntityStatuses.Actived.ToString())
+            {
+                user.Status = EntityStatuses.Inactive.ToString();
+            }
+            else
+            {
+                user.Status = EntityStatuses.Actived.ToString();
+            }
+            Commit();
+        }
+
+        public static User GetItem(int? id)
+        {
+            return GetItem(id.Value);
+        }
+
+        public static void UpdateUser(User user)
+        {
+            try
+            {
+                User storeUser = GetItem(user.Id);
+                storeUser.Name = user.Name;
+                storeUser.Username = user.Username;
+                storeUser.Password = string.IsNullOrEmpty(user.Password) ? storeUser.Password : user.Password;
+                storeUser.UpdatedDate = DateTime.Now;
+
+                UserInRoles.DeleteAllOnSubmit(UserInRoles.Where(u => u.UserId == user.Id).ToList());
+                Commit();
+
+                //Users.Attach(storeUser, user);
+                foreach (var item in user.UserInRoles)
+                {
+                    UserInRoles.InsertOnSubmit(new UserInRole() { UserId = user.Id,
+                    RoleId = item.RoleId});
+                }
+                //UserInRoles.InsertAllOnSubmit(user.UserInRoles);
+                Commit();
+
+                
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            
+            Commit();
+
+            //UserInRoles.DeleteAllOnSubmit(storeUser.UserInRoles);
+           // Commit();
+            
         }
     }
 }

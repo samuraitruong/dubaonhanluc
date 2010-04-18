@@ -30,14 +30,19 @@ namespace DBNL.App.Areas.CMS.Controllers
             if (oper == JqGridOperations.add.ToString())
             {
                 Supporter sp = new Supporter() {
-                Name = Name,
-                NickName = NickName,
-                Status = EntityStatuses.Actived.ToString(),
-                Type = Type,
-                };
+                    Name = Name,
+                    NickName = NickName,
+                    Status = EntityStatuses.Actived.ToString(),
+                    Type = string.IsNullOrEmpty(Type)? SupportTypes.Yahoo.ToString() : Type,
+                    };
                 SupporterService.Add(sp);
                 return Content("true");
             }
+            if (oper == JqGridOperations.edit.ToString())
+            {
+                SupporterService.Edit(id.Value, NickName, Name);
+            }
+
             if(oper == JqGridOperations.del.ToString()){
                 SupporterService.Delete(id.Value);
             }
@@ -68,7 +73,13 @@ namespace DBNL.App.Areas.CMS.Controllers
        
         //
         // GET: /Supporter/Edit/5
- 
+
+        public ActionResult Public(int id)
+        {
+            SupporterService.Public(id);
+            return Json(true);
+        }
+
         public ActionResult Edit(int id)
         {
             return View();

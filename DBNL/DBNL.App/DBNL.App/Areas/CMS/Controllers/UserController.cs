@@ -85,7 +85,20 @@ namespace DBNL.App.Areas.CMS.Controllers
 
         //
         // GET: /User/Delete/5
- 
+        [HttpPost]
+        public ActionResult JsonDelete(int id)
+        {
+             UserService.Delete(id);
+            return Json(true);
+        }
+
+        [HttpPost]
+        public ActionResult Active(int id)
+        {
+            UserService.Active(id);
+            return Json(true);
+        }
+
         public ActionResult Delete(int id)
         {
             ViewData.Model = UserService.GetItem(id);
@@ -112,10 +125,14 @@ namespace DBNL.App.Areas.CMS.Controllers
 
         //
         // GET: /User/Edit/5
- 
-        public ActionResult Edit(int id)
+        
+        public ActionResult Edit(int? id)
         {
-            ViewData.Model = UserService.GetItem(id);
+
+            Models.User user =  UserService.GetItem(id);
+            if (user == null) return RedirectToAction("List");
+            ViewData["RoleIds"] = (from u in user.UserInRoles select u.RoleId).ToList();
+            ViewData.Model = user;
             return View();
         }
 
@@ -123,12 +140,33 @@ namespace DBNL.App.Areas.CMS.Controllers
         // POST: /User/Edit/5
 
         [HttpPost]
-        public ActionResult Edit(int id, string username, string name, string password, string status)
+        public ActionResult Edit(int id, Models.User user, FormCollection forms)
         {
             try
             {
-                // TODO: Add update logic here
-                UserService.Edit(id, username, name, password, status);
+                foreach (string key in forms.AllKeys)
+                {
+                    if (key.StartsWith("roleid") && forms[key] == "on")
+                    {
+                        string sid = key.Split('_')[1];
+                        user.UserInRoles.Add(new Models.UserInRole() { RoleId = int.Parse(sid), UserId = id });
+                    }
+                }
+
+                if (!ModelState.IsValid)
+                {
+                    ViewData["RoleIds"] = (from u in user.UserInRoles select u.RoleId).ToList();
+
+                    return View(user);
+                }
+                user.UpdatedDate = DateTime.Now;
+                if (user.Password != null)
+                    user.Password = FormsAuthentication.HashPasswordForStoringInConfigFile(user.Password.Trim(), "MD5");
+
+
+                
+                UserService.UpdateUser(user);
+
                 return RedirectToAction("List");
             }
             catch
@@ -155,7 +193,7 @@ namespace DBNL.App.Areas.CMS.Controllers
                             Name = entity.Name,
                             Username = entity.Username,
                             Status = entity.Status,
-                            Password = entity.Password,
+                            Password = "",
                             Roles= entity.GetRoles()
                         };
             return Json(model.ToJqGridData(page, rows, null, "", new[] { "Name", "Username","Status" }), JsonRequestBehavior.AllowGet);
@@ -178,7 +216,7 @@ namespace DBNL.App.Areas.CMS.Controllers
                             Name = entity.Name,
                             Username = entity.Username,
                             Status = entity.Status,
-                            Password = entity.Password,
+                            Password = "",
                         };
             return Json(model.ToJqGridData(page, rows, null, "", new[] { "Name", "Username", "Status" }), JsonRequestBehavior.AllowGet);
         }

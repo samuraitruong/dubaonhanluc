@@ -18,11 +18,14 @@ namespace DBNL.App.Controllers
         {
             ViewData["FOMasterViewData"] = new FOMasterViewData()
             {
-                Supporters = SupporterService.GetItems(),
+                Supporters = SupporterService.GetItems(EntityStatuses.Actived),
                 MainNavigationItems = NavigationService.GetItems(NavigationPositions.Main, true),
                 TopNavigationItems = NavigationService.GetItems(NavigationPositions.Top, true),
                 LeftNavigationItems = NavigationService.GetItems(NavigationPositions.Left, true),
-                BottomBanners = BannerService.GetItems(BannerPositions.Bottom)
+                BottomBanners = BannerService.GetItems(BannerPositions.Bottom),
+                LeftBanners = BannerService.GetItems(BannerPositions.Left),
+                RightBanners = BannerService.GetItems(BannerPositions.Right),
+                TopBanners = BannerService.GetItems(BannerPositions.Top)
                 
             };
         }

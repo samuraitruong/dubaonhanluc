@@ -97,7 +97,7 @@ $(document).ready(function () {
                              postData: {PollId:eid}
                              
                     }); 
-                    jQuery("#"+subgrid_table_id).jqGrid('navGrid',"#"+pager_id,{edit:true,add:true,del:true,search: true, view: true})
+                    jQuery("#"+subgrid_table_id).jqGrid('navGrid',"#"+pager_id,{edit:true,add:true,del:true,search: true, view: true}, {},{},{url:'<%=Url.Action("JsonDelete", "PollQuestion" )%>'})
 
                },
                 subGridRowColapsed: function(subgrid_id, row_id) {
@@ -105,7 +105,7 @@ $(document).ready(function () {
                      subgrid_table_id = subgrid_id+"_t"; //
                      jQuery("#"+subgrid_table_id).remove(); 
                  } 
-                }).navGrid('#pager', { edit: true, add: true, del: true, search: true, view: true }).navButtonAdd('#pager',{
+                }).navGrid('#pager', { edit: true, add: true, del: true, search: true, view: true }, {},{},{url:'JsonDelete'}).navButtonAdd('#pager',{
                            caption:"Public", 
                            buttonicon:"ui-icon-add", 
                            onClickButton: function(){ 

@@ -29,7 +29,9 @@ namespace DBNL.App
 
         protected void Application_Start()
         {
+            
             RegisterRoutes(RouteTable.Routes);
+            FormsAuthentication.SignOut();
         }
         void Session_Start(object sender, EventArgs e)
         {

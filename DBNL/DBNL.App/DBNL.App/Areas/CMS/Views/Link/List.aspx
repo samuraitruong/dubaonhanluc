@@ -41,7 +41,7 @@ $(document).ready(function () {
                         name: 'EntityId',key:true, index: 'EntityId', width: 40, align: 'left',editable: false, editoptions: {readonly:'readonly'},editrules: { edithidden: true }, hidden: true },
 
                         { name: 'Title', index: 'Title', sortable: true, editable: true, edittype: 'text', editoptions: { size: 20, maxlength:100} , hidden: false },
-                        { name: 'Url', index: 'Url', width: 150, align: 'left', formatter: urlFormater, formatoptions: { prefix: "$" }, sortable: true, editable: true, edittype: 'text', editoptions: { size: 20, maxlength:100}, hidden: false },
+                        { name: 'Url', index: 'Url', width: 150, align: 'left', formatter: 'link', formatoptions: { prefix: "$" }, sortable: true, editable: true, edittype: 'text', editoptions: { size: 20, maxlength:100}, hidden: false },
                       ],
                     rowNum: 10,
                     rowList: [10, 20, 30],

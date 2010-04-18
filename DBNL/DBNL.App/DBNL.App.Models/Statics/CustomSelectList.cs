@@ -80,6 +80,7 @@ namespace DBNL.App.Models.Statics
        {
            List<SelectListItem> list = new List<SelectListItem>();
            list.Add(new SelectListItem() { Text = "Chọn Module", Value = "" });
+           list.Add(new SelectListItem() { Text = "Trang chủ", Value = SiteModules.Home.ToString() });
            list.Add(new SelectListItem() { Text = "Tin tức", Value = SiteModules.Article.ToString() });
            list.Add(new SelectListItem() { Text = "Liên kết website", Value = SiteModules.WebLink.ToString() });
            list.Add(new SelectListItem() { Text = "Khảo sát", Value = SiteModules.Poll.ToString() });
@@ -88,6 +89,42 @@ namespace DBNL.App.Models.Statics
            return list.AsEnumerable();
        }
 
+
+       public static IEnumerable<SelectListItem> CreateListCategories(bool includeEmpty, int? catId)
+       {
+           IEnumerable<SelectListItem> items = CreateListCategories(includeEmpty);
+           if (!catId.HasValue) return items;
+
+           SelectListItem selectedItem = items.Where(p => p.Value == catId.Value.ToString()).Single();
+           selectedItem.Selected = true;
+           return items;
+       }
+
+       public static IEnumerable<SelectListItem> CreateListNavigations(bool includeEmpty, int? parentId)
+       {
+           IEnumerable<SelectListItem> items = CreateListNavigations(includeEmpty);
+           if (!parentId.HasValue) return items;
+
+           SelectListItem selectedItem = items.Where(p => p.Value == parentId.Value.ToString()).Single();
+           selectedItem.Selected = true;
+           return items;
+       }
+
+       public static IEnumerable<SelectListItem> CreateMenuPosition(string pos)
+       {
+           IEnumerable<SelectListItem> items = CreateMenuPosition();
+           SelectListItem selectedItem = items.Where(p => p.Value == pos).Single();
+           selectedItem.Selected = true;
+           return items;
+       }
+
+       public static IEnumerable<SelectListItem> CreateModuleList(string comp)
+       {
+           IEnumerable<SelectListItem> items = CreateModuleList();
+           SelectListItem selectedItem = items.Where(p => p.Value == comp).Single();
+           selectedItem.Selected = true;
+           return items;
+       }
    }
     
 }

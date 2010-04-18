@@ -12,5 +12,8 @@ namespace DBNL.App.Models.ViewData
         public IEnumerable<Navigation> TopNavigationItems { get; set; }
         public IEnumerable<Navigation> LeftNavigationItems { get; set; }
         public IEnumerable<Banner> BottomBanners { get; set; }
+        public IEnumerable<Banner> TopBanners { get; set; }
+        public IEnumerable<Banner> LeftBanners { get; set; }
+        public IEnumerable<Banner> RightBanners { get; set; }
     }
 }

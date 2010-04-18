@@ -20,7 +20,8 @@
 <asp:Content ID="Content3" runat="server" ContentPlaceHolderID="ScriptContent">
     <script language="javascript" type="text/javascript" src="<%= Url.Content("~/Scripts/GridData.js") %>"></script>
     <script type="text/javascript">
-$(document).ready(function () {
+
+    $(document).ready(function () {
 
             DBNL.Admin.Supporters.setupGrid($("#grid"), $("#pager"));
         });
@@ -41,9 +42,9 @@ $(document).ready(function () {
                         name: 'Id',key:true, index: 'Id', width: 40, align: 'left',editable: false, editoptions: {readonly:'readonly'},editrules: { edithidden: true }, hidden: true },
 
                         { name: 'Name', index: 'Name', width: 200,sortable: true, editable: true, edittype: 'text', editoptions: { size: 20, maxlength:100} , hidden: false },
-                        { name: 'NickName', index: 'NickName', width: 120, align: 'left', formatter: 'text', formatoptions: { prefix: "$" }, sortable: true, editable: true, edittype: 'text', editoptions: { size: 20, maxlength:100}, hidden: false },
-                        { name: 'Type', index: 'Url', width: 50, align: 'center', formatter: 'text', formatoptions: { prefix: "$" }, sortable: true, editable: true, edittype: 'text', editoptions: {value:'Yahoo', size: 20, maxlength:100}, hidden: false },
-                        { name: 'Status', index: 'Url', width: 75, align: 'center', formatter: 'text', formatoptions: { prefix: "$" }, sortable: true, editable: false, edittype: 'text', editoptions: { size: 20, maxlength:100}, hidden: false },
+                        { name: 'NickName', index: 'NickName', width: 120, align: 'left', formatter: 'text',  sortable: true, editable: true, edittype: 'text', editoptions: { size: 20, maxlength:100}, hidden: false },
+                        { name: 'Type', index: 'Url', width: 50, align: 'center', formatter: 'text', sortable: true, editable: true, edittype: 'text', editoptions: {value:'Yahoo',dataInit : function (elem) { $(elem).val('Yahoo');} , size: 20, maxlength:100, readonly:'readonly', disabled:'disabled'}, hidden: false },
+                        { name: 'Status', index: 'Url', width: 75, align: 'center', formatter: 'text',  sortable: true, editable: false, edittype: 'text', editoptions: { size: 20, maxlength:100}, hidden: false },
                       ],
                     rowNum: 10,
                     rowList: [10, 20, 30],
@@ -65,8 +66,35 @@ $(document).ready(function () {
 //                                 matchText: " match",
 //                                 rulesText: " rules"
 //                               }
-                })
-        .navGrid('#pager', { edit: true, add: true, del: true, search: true, view: true }, {}, {});
+                }).navGrid('#pager', { edit: true, add: true, del: true, search: true, view: true }, {}, {}).navButtonAdd('#pager',{
+                           caption:"Active/Inactive", 
+                           title:'Active or Inactive',
+                           buttonicon:"ui-icon-power", 
+                           onClickButton: function(){ 
+                             
+                                 var id = jQuery("#grid").jqGrid('getGridParam','selrow'); 
+                                 
+                                 if (id) { 
+                                         var ret = jQuery("#grid").getRowData(id); 
+                                         
+                                         
+                                         $.ajax({
+                                                  type: 'POST',
+                                                  url: "<%=Url.Action("Public", "Supporter" )%>",
+                                                  data: {Id : ret["Id"]},
+                                                  success: function() {
+                                                    $("#grid").trigger("reloadGrid")
+                                                  },
+                                                  dataType: 'json'
+                                                });
+
+                                 } else { 
+                                 alert("Bạn phải chọn một dòng để thực hiện thao tác này.");
+                                 } 
+                             } ,
+                            
+                           position:"last"
+            });;
             }
         };
 </script>

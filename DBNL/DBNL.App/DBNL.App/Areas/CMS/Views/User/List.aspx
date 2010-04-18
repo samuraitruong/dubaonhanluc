@@ -37,17 +37,16 @@ $(document).ready(function () {
                         type: "POST"
                     },
                     datatype: "json",
-                    colNames: [ 'Id','Họ Tên', 'Tên đăng nhập','Nhóm','Trạng Thái','Mật khẩu'],
+                    colNames: [ 'Id','Họ Tên', 'Tên đăng nhập','Nhóm','Trạng Thái','Mật khẩu',''],
                     colModel: [
-                    {
-                        name: 'Id', index: 'Id', width: 40, align: 'left', editable: false, key: true, editoptions: {readonly:'readonly'},editrules: { edithidden: true }, hidden: true },
-
+                        { name: 'Id', index: 'Id', width: 40, align: 'left', editable: false, key: true, editoptions: {readonly:'readonly'},editrules: { edithidden: true }, hidden: true },
                         { name: 'Name', index: 'Name', width: 150, sortable: true, editable: true, edittype: 'text', editoptions: { size: 20, maxlength:100} , hidden: false },
                         { name: 'Username', index: 'Username', width: 60, sortable: true, editable: true, edittype: 'text', editoptions: { size: 20, maxlength:100} , hidden: false },
-                        { name: 'Roles', index: 'Roles', width: 150, sortable: true, editable: true, edittype: 'text', editoptions: { size: 20, maxlength:100} , hidden: false },
+                        { name: 'Roles', index: 'Roles', width: 150, sortable: true, editable: false, edittype: 'text', editoptions: { size: 20, maxlength:100} , hidden: false },
                         { name: 'Status', index: 'Status', width: 35, align: 'center', sortable: true, editable: true, edittype: 'text', style: 'select', editoptions: { dataUrl: ""}, hidden: false },
-                        { name: 'Password', index: 'Password', width: 35, align: 'center', sortable: true, editable: true, edittype: 'text', style: 'select', editoptions: { dataUrl: ""}, hidden: true },
-                      ],
+                        { name: 'Password', index: 'Password', width: 35, align: 'center', sortable: false, editable: true, edittype: 'password', style: 'text', editoptions: { dataUrl: ""}, hidden: false },
+                        { name: 'Options',index:'Options',width:40,editable: false}
+                    ],
                     rowNum: 10,
                     rowList: [10, 20, 30],
                     pager: pager,
@@ -59,8 +58,17 @@ $(document).ready(function () {
                     autowidth: true,
                     rownumbers: true,
                     caption: 'Danh sách quản trị viên',
-                    
-                    subGrid: true,
+                     loadComplete: function(){ 
+                            var ids = jQuery("#grid").getDataIDs(); 
+                            for(var i=0;i<ids.length;i++){ 
+                                    var cl = ids[i];
+                                    send = "<input class='sendbuttons' id='tbuttonSend"+cl+"' type='button' value='Send' /><br />"; 
+                                    clear = "<input class='sendbuttons' id='tbuttonClear"+cl+"' type='button' value='Send' /><br />"; 
+                                    var edit = '<a  class="EditRecord" href="<%=Url.Action("Edit","User")%>/' + cl +'" ><img src="<%=Url.Content("~/Images/edit-small.png") %>" /></a>';
+                                    jQuery("#grid").setRowData(ids[i],{Options:edit}) 
+                            } 
+                    }, 
+                    subGrid: false,
                     subGridRowExpanded: function(subgrid_id, row_id) { 
                     // we pass two parameters // subgrid_id is a id of the div tag created whitin a table data 
                     // the id of this elemenet is a combination of the "sg_" + id of the row // the row_id is the id of the row 
@@ -109,9 +117,9 @@ $(document).ready(function () {
                      subgrid_table_id = subgrid_id+"_t"; //
                      jQuery("#"+subgrid_table_id).remove(); 
                  } 
-                }).navGrid('#pager', { edit: true, add: true, del: true, search: true, view: true }).navButtonAdd('#pager',{
-                           caption:"Public", 
-                           buttonicon:"ui-icon-add", 
+                }).navGrid('#pager', { edit: true, add: true, del: true, search: true, view: true },{},{},{url:'<%=Url.Action("JsonDelete", "User" )%>'}).navButtonAdd('#pager',{
+                           caption:"Active/Inactive", 
+                           buttonicon:"ui-icon-power", 
                            onClickButton: function(){ 
                              
                                  var id = jQuery("#grid").jqGrid('getGridParam','selrow'); 
@@ -120,8 +128,8 @@ $(document).ready(function () {
                                          var ret = jQuery("#grid").getRowData(id); 
                                          $.ajax({
                                                   type: 'POST',
-                                                  url: "<%=Url.Action("Public", "Poll" )%>",
-                                                  data: {Id : ret["EntityId"]},
+                                                  url: "<%=Url.Action("Active", "User" )%>",
+                                                  data: {Id : ret["Id"]},
                                                   success: function() {
                                                     $("#grid").trigger("reloadGrid")
                                                   },

@@ -333,7 +333,21 @@ div#title
 {
     xwidth: 840px;
     width: 95%;
+    min-height: 380px;
     float:left;
     padding-left: 50px;
     border-left: dotted #33333 1px;
+}
+.EditRecord
+{
+    xbackground: url('../Images/edit-small.png');
+    width: 32px;
+
+}
+.EditRecord img ,
+.Up img ,
+.Down img ,
+.Edit img
+{
+    border:none;
 }

@@ -45,36 +45,50 @@ namespace DBNL.App.Areas.CMS.Controllers
 
         public ActionResult Create()
         {
-            ViewData.Model = new BannerViewData() 
+            ViewData["Extra"]= new BannerViewData() 
             {
                 banner = new Banner(),
                 BannerPositions = CustomSelectList.CreateBannerPosition()
             };
-            return View();
+            return View(new Banner());
         } 
 
         //
         // POST: /Banner/Create
 
         [HttpPost]
-        public ActionResult Create(FormCollection collection)
+        public ActionResult Create(FormCollection collection, Banner banner)
         {
             try
             {
                 // TODO: Add insert logic here
-                ViewData.Model = new BannerViewData()
+
+                if (!ModelState.IsValid || Request.Files[0].ContentLength==0)
                 {
-                    banner = new Banner(),
-                    BannerPositions = CustomSelectList.CreateBannerPosition()
-                };
+                    if (Request.Files[0].ContentLength == 0) ViewData.ModelState.AddModelError("Image","Phải chọn hình");
+                    ViewData["Extra"] = new BannerViewData()
+                    {
+                        banner = new Banner(),
+                        BannerPositions = CustomSelectList.CreateBannerPosition()
+                    };
+                    return View(banner);
+                }
+                
+
                 string fileName = "No files";
                 fileName = Request.Files[0].FileName;
                 Request.Files[0].SaveAs(Path.Combine( DBNLConfigurationManager.FileResponsity.BannerFolder, fileName));
-                BannerService.Add(collection["banner.Name"], collection["banner.Url"], fileName, collection["BannerPosition"]);
+                banner.Status = EntityStatuses.Actived.ToString();
+                banner.BannerImage = fileName;
+                banner.CreatedDate = DateTime.Now;
+                banner.UpdatedDate = DateTime.Now;
+
+                BannerService.Add(banner);
                 return RedirectToAction("List");
             }
-            catch
+            catch (Exception ex)
             {
+                throw ex;
                 return View();
             }
         }
@@ -90,6 +104,22 @@ namespace DBNL.App.Areas.CMS.Controllers
 
         //
         // POST: /Banner/Delete/5
+        
+
+        [HttpPost]
+        public ActionResult JsonDelete(int id)
+        {
+            try
+            {
+                // TODO: Add delete logic here
+                BannerService.Delete(id);
+                return Json(true);
+            }
+            catch
+            {
+                return Json(false);
+            }
+        }
 
         [HttpPost]
         public ActionResult Delete(int id, FormCollection collection)
@@ -174,10 +204,15 @@ namespace DBNL.App.Areas.CMS.Controllers
             }
         }
 
-        [HttpPost]
-        public ActionResult List(int page, int rows, string sidx, string sord)
+        public ActionResult Public(int id)
         {
-            var bann = BannerService.List();
+            BannerService.Public(id);
+            return Json(true);
+        }
+        [HttpPost]
+        public ActionResult List(int page, int rows, string sidx, string sord, string Position)
+        {
+            var bann = BannerService.List(Position);
             bool searchOn = bool.Parse(Request.Form["_search"]);
             string searchExp = "";
             if (searchOn)
@@ -188,11 +223,11 @@ namespace DBNL.App.Areas.CMS.Controllers
             var model = from entity in bann.OrderBy(sidx + " " + sord)
                         select new
                         {
-                            EntityId = entity.Id,
+                            Id = entity.Id,
                             Name = entity.Name,
                             Url = entity.Url,
-                            //Image = string.Format("<img alt='Banner image' src='" + entity.BannerImage + "' style='width:100px;height:100px;' />"),
-                            Image = entity.BannerImage,
+                            
+                            Image = DBNLConfigurationManager.FileResponsity.BannerRelativeUrl+ "/" + entity.BannerImage,
                             Status = entity.Status,
                             Position = entity.BannerPosition
                         };

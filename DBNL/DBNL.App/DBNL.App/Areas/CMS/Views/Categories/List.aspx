@@ -25,6 +25,7 @@
         
     </div>
         <p><%=Html.ActionLink("Thêm bài viết", "Create","Content") %></p>
+        <p><%=Html.ActionLink("Xem tất cả", "Index","Content") %></p>
 </asp:Content>
 
 <asp:Content ID="Content3" runat="server" ContentPlaceHolderID="ScriptContent">
@@ -46,12 +47,13 @@ $(document).ready(function () {
                         type: "POST"
                     },
                     datatype: "json",
-                    colNames: [ 'Id','Tên', 'Chủ đề cha', 'Chủ đề nổi bật', 'Hiển thị trên Trang chủ'],
+                    colNames: [ 'Id','Tên', 'Số bài viêt','Chủ đề cha', 'Chủ đề nổi bật', 'Hiển thị trên Trang chủ'],
                     colModel: [
                     {
                         name: 'Id', index: 'Id', width: 40, align: 'left', editable: false, key: true, editoptions: {readonly:'readonly'},editrules: { edithidden: true }, hidden: true },
 
                         { name: 'Name', index: 'CategoryName', width: 250, sortable: true, editable: true, edittype: 'text', editoptions: { size: 20, maxlength:100} , hidden: false },
+                        { name: 'Articles', index: 'Artiles', width: 40, align:'center', formatter:'integer',sortable: true, editable: false, edittype: 'text', editoptions: { size: 20, maxlength:100} , hidden: false },
                         { name: 'ParentCateId', index: 'ParentCateId', align:'center', sortable: true, editable: true, edittype: 'select', style: 'select', editoptions: { dataUrl: "<%=Url.Action("GetSelectParentId", "Categories")%>" }, hidden: false},
                         { name: 'IsFeatured', index: 'IsFeatured', align:'center', width: 80, sortable: true, editable: true, edittype: 'checkbox', editoptions: { value:"True:False" } , hidden: false },
                         { name: 'ShowOnHP', index: 'ShowOnHP', align:'center', sortable:true, editable: true, edittype: 'checkbox', editoptions: { value:"True:False"} , hidden: false }
@@ -170,12 +172,12 @@ $(document).ready(function () {
                         type: "POST"
                     },
                     datatype: "json",
-                    colNames: [ 'Id','Tiêu đề'],
+                    colNames: [ 'Id','Tiêu đề', 'Hình','Trạng Thái'],
                     colModel: [
-                    {
-                        name: 'Id', index: 'ContentId', width: 40, align: 'left', editable: false, key: true, editoptions: {readonly:'readonly'},editrules: { edithidden: true }, hidden: true },
-
-                        { name: 'Title', index: 'Title', width: 250, sortable: true, editable: true, edittype: 'text', editoptions: { size: 20, maxlength:100} , hidden: false }
+                        { name: 'Id', index: 'ContentId', width: 40, align: 'left', editable: false, key: true, editoptions: {readonly:'readonly'},editrules: { edithidden: true }, hidden: true },
+                        { name: 'Title', index: 'Title', width: 250, sortable: true, editable: true, edittype: 'text', editoptions: { size: 20, maxlength:100} , hidden: false },
+                        { name: 'Thumbnail', index: 'Thumbnail', align:'center', formatter:imageFormater,width: 60, sortable: false, editable: false, edittype: 'text', editoptions: { size: 20, maxlength:100} , hidden: false },
+                        { name: 'Status', index: 'Status', align:'center', formatter:'text',width: 50, sortable: true, editable: false, edittype: 'text', editoptions: { size: 20, maxlength:100} , hidden: false }
                       ],
                     rowNum: 10,
                     rowList: [10, 20, 30],
@@ -190,18 +192,20 @@ $(document).ready(function () {
                     postData : {CategoryId: 0},
                     caption: 'Categories List'
                 }).navGrid('#article_grid_pager', { edit: true, add: true, del: true, search: true, view: true }).navButtonAdd('#article_grid_pager',{
-                           caption:"Public", 
-                           buttonicon:"ui-icon-add", 
+                           caption:"Active/Inactive", 
+                           buttonicon:"ui-icon-power", 
                            onClickButton: function(){ 
                              
-                                 var id = jQuery("#article_grid").jqGrid('getGridParam','selrow'); 
+                                 var myid = jQuery("#article_grid").jqGrid('getGridParam','selrow'); 
                                  
-                                 if (id) { 
-                                         var ret = jQuery("#artile_grid").getRowData(id); 
+                                 if (myid) { 
+                                        
+                                         var ret = jQuery("#artile_grid").getRowData(myid); 
+                                         alert(ret[0]);
                                          $.ajax({
                                                   type: 'POST',
-                                                  url: "<%=Url.Action("Public", "Poll" )%>",
-                                                  data: {Id : ret["EntityId"]},
+                                                  url: "<%=Url.Action("ToggleActive", "Content" )%>",
+                                                  data: {Id : ret["Id"]},
                                                   success: function() {
                                                     $("#grid").trigger("reloadGrid")
                                                   },

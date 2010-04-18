@@ -10,6 +10,7 @@ using DBNL.App.Models.Statics;
 using DBNL.App.Models.Extensions;
 using DBNL.App.Models.ViewData;
 using DBNL.App.Models;
+using System.Web.Routing;
 
 
 namespace DBNL.App.Areas.CMS.Controllers
@@ -32,7 +33,12 @@ namespace DBNL.App.Areas.CMS.Controllers
         {
             return View();
         }
-
+        [HttpPost]
+        public ActionResult Reorder(int Id, string Method)
+        {
+            NavigationService.Reorder(Id, Method);
+            return Json(true);
+        }
         //
         // GET: /Navigation/Create
 
@@ -42,7 +48,8 @@ namespace DBNL.App.Areas.CMS.Controllers
             { 
                 Categories = CustomSelectList.CreateListCategories(true),
                 NavigationPositions = CustomSelectList.CreateMenuPosition(),
-                RootNavigations = CustomSelectList.CreateListNavigations(true)
+                RootNavigations = CustomSelectList.CreateListNavigations(true),
+                SiteModules = CustomSelectList.CreateModuleList()
             };
             return View(new Models.Navigation());
         }
@@ -58,10 +65,25 @@ namespace DBNL.App.Areas.CMS.Controllers
                         select new
                         {
                             Id = entity.Id,
-                            Name = entity.Name
+                            Name = entity.Name,
+                            Component = entity.Component,
+                            Url= GetUrl(entity),
+                            DisplayOrder = entity.DisplayOrder
                         };
             return Json(model.ToJqGridData(page, rows, null, "", new[] { "Name" }), JsonRequestBehavior.AllowGet);
         }
+
+        private string GetUrl(Navigation entity)
+        {
+             if(entity.Component == SiteModules.Article.ToString())
+                return Url.Action(entity.Action, entity.Controller, new {Area="", id= entity.ContentId });
+
+             if (entity.Component == SiteModules.Url.ToString())
+                 return entity.ExternalUrl;
+            return Url.Action(entity.Action, entity.Controller, new { Area = ""});
+        }
+
+        
 
         //
         // POST: /Navigation/Create
@@ -71,18 +93,6 @@ namespace DBNL.App.Areas.CMS.Controllers
         {
             try
             {
-
-                
-
-                //Navigation navigation = new Navigation()
-                //{
-                //    Name = collection["Name"],
-                //    Position = collection["Possition"],
-                //    ContentId = string.IsNullOrEmpty(collection["ContentId"]) ? new Nullable<int>() : int.Parse(collection["ContentId"]),
-                //    ParentId = string.IsNullOrEmpty(collection["ParentId"]) ? new Nullable<int>() : int.Parse(collection["ParentId"]),
-                //    Status= EntityStatuses.Actived.ToString(),
-                //    Component = collection["Component"]
-                //};
                 navigation.Status= EntityStatuses.Actived.ToString();
 
                 if (!ModelState.IsValid)
@@ -91,7 +101,8 @@ namespace DBNL.App.Areas.CMS.Controllers
                     {
                         Categories = CustomSelectList.CreateListCategories(true),
                         NavigationPositions = CustomSelectList.CreateMenuPosition(),
-                        RootNavigations = CustomSelectList.CreateListNavigations(true)
+                        RootNavigations = CustomSelectList.CreateListNavigations(true),
+                        SiteModules = CustomSelectList.CreateModuleList()
                     };
 
                     return View(navigation);
@@ -113,7 +124,12 @@ namespace DBNL.App.Areas.CMS.Controllers
                         navigation.Action = DBNL.App.Models.Statics.Actions.Index.ToString();
                         //navigation.Area = "";
                 }
-
+                if (collection["Component"] == SiteModules.Home.ToString())
+                {
+                    navigation.Controller = DBNL.App.Models.Statics.Controllers.Home.ToString();
+                    navigation.Action = DBNL.App.Models.Statics.Actions.Index.ToString();
+                    //navigation.Area = "";
+                }
 
                 if (collection["Component"] == SiteModules.WebContact.ToString())
                 {
@@ -140,35 +156,101 @@ namespace DBNL.App.Areas.CMS.Controllers
                 {
                     Categories = CustomSelectList.CreateListCategories(true),
                     NavigationPositions = CustomSelectList.CreateMenuPosition(),
-                    RootNavigations = CustomSelectList.CreateListNavigations(true)
+                    RootNavigations = CustomSelectList.CreateListNavigations(true),
+                    SiteModules = CustomSelectList.CreateModuleList()
                 };
 
                 return View();
             }
         }
-
         //
         // GET: /Navigation/Edit/5
  
         public ActionResult Edit(int id)
         {
-            return View();
+            Navigation nav = NavigationService.GetItem(id);
+            ViewData["ExtraData"] = new NavigationDataView()
+            {
+                Categories = CustomSelectList.CreateListCategories(true, nav.ContentId),
+                NavigationPositions = CustomSelectList.CreateMenuPosition(nav.Position),
+                RootNavigations = CustomSelectList.CreateListNavigations(true, nav.ParentId),
+                SiteModules = CustomSelectList.CreateModuleList(nav.Component)
+            };
+            NavigationService service = new NavigationService();
+            return View(nav);
         }
-
+        [HttpPost]
+        public ActionResult JsonDelete(int id)
+        {
+            NavigationService.Delete(id);
+            return Json(true);
+        }
         //
         // POST: /Navigation/Edit/5
 
         [AcceptVerbs(HttpVerbs.Post)]
-        public ActionResult Edit(int id, FormCollection collection)
+        public ActionResult Edit(int id, Navigation navigation, FormCollection collection)
         {
             try
             {
-                // TODO: Add update logic here
+
+                if (!ModelState.IsValid)
+                {
+                    ViewData["ExtraData"] = new NavigationDataView()
+                    {
+                        Categories = CustomSelectList.CreateListCategories(true, navigation.ContentId),
+                        NavigationPositions = CustomSelectList.CreateMenuPosition(navigation.Position),
+                        RootNavigations = CustomSelectList.CreateListNavigations(true, navigation.ParentId),
+                        SiteModules = CustomSelectList.CreateModuleList(navigation.Component)
+                    };
+                    return View(navigation);
+                }
+                if (collection["Component"] == SiteModules.Article.ToString())
+                {
+                    if (navigation.ContentId.HasValue)
+                    {
+                        navigation.Controller = DBNL.App.Models.Statics.Controllers.Article.ToString();
+                        navigation.Action = DBNL.App.Models.Statics.Actions.Category.ToString();
+                        navigation.Area = "";
+
+                    }
+                }
+                if (collection["Component"] == SiteModules.Home.ToString())
+                {
+                    navigation.Controller = DBNL.App.Models.Statics.Controllers.Home.ToString();
+                    navigation.Action = DBNL.App.Models.Statics.Actions.Index.ToString();
+                    //navigation.Area = "";
+                }
+                if (collection["Component"] == SiteModules.WebLink.ToString())
+                {
+                    navigation.Controller = DBNL.App.Models.Statics.Controllers.WebLink.ToString();
+                    navigation.Action = DBNL.App.Models.Statics.Actions.Index.ToString();
+                    //navigation.Area = "";
+                }
+
+
+                if (collection["Component"] == SiteModules.WebContact.ToString())
+                {
+                    navigation.Controller = DBNL.App.Models.Statics.Controllers.WebContact.ToString();
+                    navigation.Action = DBNL.App.Models.Statics.Actions.Index.ToString();
+                    //navigation.Area = "";
+                }
+
+                
+
+                NavigationService.UpdateMenuItem(navigation);
  
                 return RedirectToAction("Index");
             }
             catch
             {
+                ViewData["ExtraData"] = new NavigationDataView()
+                {
+                    Categories = CustomSelectList.CreateListCategories(true, navigation.ContentId),
+                    NavigationPositions = CustomSelectList.CreateMenuPosition(navigation.Position),
+                    RootNavigations = CustomSelectList.CreateListNavigations(true, navigation.ParentId),
+                    SiteModules = CustomSelectList.CreateModuleList(navigation.Component)
+                };
                 return View();
             }
         }

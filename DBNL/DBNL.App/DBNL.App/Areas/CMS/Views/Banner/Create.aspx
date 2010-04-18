@@ -1,33 +1,33 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Views/Shared/Site.Master" Inherits="System.Web.Mvc.ViewPage<DBNL.App.Models.ViewData.BannerViewData>" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Views/Shared/Site.Master" Inherits="System.Web.Mvc.ViewPage<DBNL.App.Models.Banner>" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="TitleContent" runat="server">
-	Create
+	Thêm mới banner
 </asp:Content>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
 
-    <h2>Create</h2>
-    
+    <h2>Thêm mới banner</h2>
+    <% var Data = (BannerViewData)ViewData["Extra"]; %>
     <% using (Html.BeginForm("Create", "Banner", FormMethod.Post, new {enctype="multipart/form-data"})) {%>
         <%= Html.ValidationSummary(true) %>
         
         <fieldset>
             <legend>Fields</legend>
-
+            <%= Html.ValidationSummary("Create was unsuccessful. Please correct the errors and try again.") %>
             <div class="editor-label">
-                <%= Html.LabelFor(model => model.banner.Name) %>
+                <%= Html.LabelFor(p=>p.Name) %>
             </div>
             <div class="editor-field">
-                <%= Html.TextBoxFor(model => model.banner.Name) %>
-                <%= Html.ValidationMessageFor(model => model.banner.Name) %>
+                <%= Html.TextBoxFor(p=>p.Name) %>
+                <%= Html.ValidationMessageFor(p=>p.Name) %>
             </div>
             
             <div class="editor-label">
-                <%= Html.LabelFor(model => model.banner.Url) %>
+                <%= Html.LabelFor(p=>p.Url) %>
             </div>
             <div class="editor-field">
-                <%= Html.TextBoxFor(model => model.banner.Url) %>
-                <%= Html.ValidationMessageFor(model => model.banner.Url) %>
+                <%= Html.TextBoxFor(p=>p.Url) %>
+                <%= Html.ValidationMessageFor(p=>p.Url) %>
             </div>
             
             <div>
@@ -36,11 +36,11 @@
             </div>
             
             <div class="editor-label">
-                <%= Html.LabelFor(model => model.banner.BannerPosition) %>
+                <%= Html.LabelFor(p=>p.BannerPosition) %>
             </div>
             <div class="editor-field">
-                <%=Html.DropDownList("BannerPosition", Model.BannerPositions) %>
-                <%=Html.ValidationMessageFor(model => model.banner.BannerPosition) %>
+                <%=Html.DropDownList("BannerPosition", Data.BannerPositions)%>
+                <%=Html.ValidationMessageFor(p=>p.BannerPosition) %>
             </div>
             
             <p>

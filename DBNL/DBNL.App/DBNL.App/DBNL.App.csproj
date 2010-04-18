@@ -108,6 +108,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\Extensions.cs" />
     <Compile Include="Models\FileManager\FileManager.cs" />
     <Compile Include="Models\FileManager\FileManagerOperations.cs" />
     <Compile Include="Models\Profile.cs" />
@@ -141,6 +142,7 @@
     <Content Include="Areas\CMS\Views\Link\Index.aspx" />
     <Content Include="Areas\CMS\Views\Link\List.aspx" />
     <Content Include="Areas\CMS\Views\Navigation\Create.aspx" />
+    <Content Include="Areas\CMS\Views\Navigation\Edit.aspx" />
     <Content Include="Areas\CMS\Views\Navigation\Index.aspx" />
     <Content Include="Areas\CMS\Views\PollQuestion\Create.aspx" />
     <Content Include="Areas\CMS\Views\PollQuestion\Delete.aspx" />
@@ -964,6 +966,13 @@
     <Content Include="Content\jqueryUI1.8a\js\jquery-ui-1.8.min.js" />
     <Content Include="Content\styles_v1.css" />
     <Content Include="Content\wysiwyg.css" />
+    <Content Include="images\16m.png" />
+    <Content Include="images\16s.png" />
+    <Content Include="images\16t.png" />
+    <Content Include="images\arrow_down.png" />
+    <Content Include="images\arrow_up.png" />
+    <Content Include="images\edit-small.png" />
+    <Content Include="images\edit_medium.png" />
     <Content Include="Resources\Galleries\CIMG0422.JPG" />
     <Content Include="Scripts\FileManager\connectors\lasso\client_params.inc" />
     <Content Include="Scripts\FileManager\connectors\lasso\encode_json.inc" />
