@@ -172,12 +172,14 @@ $(document).ready(function () {
                         type: "POST"
                     },
                     datatype: "json",
-                    colNames: [ 'Id','Tiêu đề', 'Hình','Trạng Thái'],
+                    colNames: [ 'Id','Tiêu đề', 'Hình', 'Url','Trạng Thái',''],
                     colModel: [
-                        { name: 'Id', index: 'ContentId', width: 40, align: 'left', editable: false, key: true, editoptions: {readonly:'readonly'},editrules: { edithidden: true }, hidden: true },
+                        { name: 'Id', index: 'Id', width: 40, align: 'left', sortable: false,editable: false, key: true, editoptions: {readonly:'readonly'},editrules: { edithidden: true }, hidden: true },
                         { name: 'Title', index: 'Title', width: 250, sortable: true, editable: true, edittype: 'text', editoptions: { size: 20, maxlength:100} , hidden: false },
                         { name: 'Thumbnail', index: 'Thumbnail', align:'center', formatter:imageFormater,width: 60, sortable: false, editable: false, edittype: 'text', editoptions: { size: 20, maxlength:100} , hidden: false },
-                        { name: 'Status', index: 'Status', align:'center', formatter:'text',width: 50, sortable: true, editable: false, edittype: 'text', editoptions: { size: 20, maxlength:100} , hidden: false }
+                        { name: 'Url', index: 'Url', align:'left', formatter:'link', formatoptions: {target:'_blank'},width: 80, sortable: false, editable: false, edittype: 'text', editoptions: { size: 20, maxlength:100} , hidden: false },
+                        { name: 'Status', index: 'Status', align:'center', formatter:'text',width: 50, sortable: true, editable: false, edittype: 'text', editoptions: { size: 20, maxlength:100} , hidden: false },
+                        { name: 'Options', index: 'Options', align:'center', formatter:'text',width: 50, sortable: false, editable: false, edittype: 'text', editoptions: { size: 20, maxlength:100} , hidden: false }
                       ],
                     rowNum: 10,
                     rowList: [10, 20, 30],
@@ -190,8 +192,20 @@ $(document).ready(function () {
                     autowidth: true,
                     rownumbers: true,
                     postData : {CategoryId: 0},
-                    caption: 'Categories List'
-                }).navGrid('#article_grid_pager', { edit: true, add: true, del: true, search: true, view: true }).navButtonAdd('#article_grid_pager',{
+                    caption: '',
+                    loadComplete: function(){ 
+                            var ids = jQuery("#article_grid").getDataIDs(); 
+                            for(var i=0;i<ids.length;i++){ 
+                                    var cl = ids[i];
+                                    //var up = '<a  class="Up" rel="' +cl + '" href="<%=Url.Action("Up","Navigation")%>/' + cl +'" ><img src="<%=Url.Content("~/Images/arrow_up.png") %>" /></a>';
+                                    //var down = '<a  class="Down" rel="' +cl + '" href="<%=Url.Action("Up","Navigation")%>/' + cl +'" ><img src="<%=Url.Content("~/Images/arrow_down.png") %>" /></a>';
+                                    var edit = '<a  class="Edit" rel="' +cl + '" href="<%=Url.Action("Edit","Content")%>/' + cl +'" ><img src="<%=Url.Content("~/Images/edit_medium.png") %>" /></a>';
+                                    jQuery("#article_grid").setRowData(ids[i],{Options:edit}) ;
+                            } 
+                    } 
+
+
+                }).navGrid('#article_grid_pager', { edit: true, add: true, del: true, search: true, view: true },{},{},{url:'<%=Url.Action("JsonDelete", "Content" )%>'}).navButtonAdd('#article_grid_pager',{
                            caption:"Active/Inactive", 
                            buttonicon:"ui-icon-power", 
                            onClickButton: function(){ 
@@ -200,14 +214,13 @@ $(document).ready(function () {
                                  
                                  if (myid) { 
                                         
-                                         var ret = jQuery("#artile_grid").getRowData(myid); 
-                                         alert(ret[0]);
+                                         var ret = jQuery("#article_grid").getRowData(myid); 
                                          $.ajax({
                                                   type: 'POST',
                                                   url: "<%=Url.Action("ToggleActive", "Content" )%>",
                                                   data: {Id : ret["Id"]},
                                                   success: function() {
-                                                    $("#grid").trigger("reloadGrid")
+                                                    $("#article_grid").trigger("reloadGrid")
                                                   },
                                                   dataType: 'json'
                                                 });

@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using DBNL.App.Config;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel;
 
 
 namespace DBNL.App.Models
@@ -14,6 +15,7 @@ namespace DBNL.App.Models
         public string ThumbnailUrl { 
         
         get {
+            
             if (string.IsNullOrEmpty(Picture)) return string.Empty;
             return DBNLConfigurationManager.FileResponsity.PictureRelativeUrl + "/"+this.Picture;
             
@@ -22,7 +24,28 @@ namespace DBNL.App.Models
         public class ContentMetaData
         {
             [Required(ErrorMessageResourceName="Content_Title", ErrorMessageResourceType= typeof(DataAnnotations))]
+            [DisplayName("Tựa đề bài viết")]
             public string Title { get; set; }
+
+            [DisplayName("Nội dung")]
+            public string Content1 { get; set; }
+
+            [DisplayName("Danh mục")]
+            public string CategoryId { get; set; }
+
+
+            [DisplayName("Là chủ đề nổi bật")]
+            public bool IsFeatured { get; set; }
+
+
+            [DisplayName("Hình minh họa")]
+            public string Picture { get; set; }
+
+            [DisplayName("Mô tả")]
+            public string Description { get; set; }
+            
+            
+            
         }
 
     }

@@ -8,6 +8,7 @@ using System.IO;
 using System.Drawing;
 using System.Drawing.Imaging;
 using DBNL.App.Models.Statics;
+using DBNL.App.Models.Extensions;
 
 namespace DBNL.App.Models.Business
 {
@@ -82,7 +83,8 @@ namespace DBNL.App.Models.Business
 
         public static void ToggleActive(int id)
         {
-            Content item = GetItems(id);
+            Content item = GetItem(id);
+            if (item == null) return;
             if (item.Status == EntityStatuses.Actived.ToString()) item.Status = EntityStatuses.Inactive.ToString();
             else item.Status = EntityStatuses.Actived.ToString();
             Commit();
@@ -91,6 +93,55 @@ namespace DBNL.App.Models.Business
         private static Content GetItems(int id)
         {
             return Contents.Where(p => p.CategoryId == id).SingleOrDefault();
+        }
+
+        public static void Delete(int id)
+        {
+            Content item = GetItem(id);
+            Contents.DeleteOnSubmit(item);
+            Commit();
+        }
+
+        public static Content GetItem(int id)
+        {
+            return Contents.Where(p => p.ContentId == id).SingleOrDefault();
+        }
+
+        public static void Update(Content content, HttpPostedFileBase picture)
+        {
+            Content original = GetItem(content.ContentId);
+
+            original.Title = content.Title;
+            original.Content1 = content.Content1;
+            original.Description = content.Description;
+            original.IsFeatured = content.IsFeatured;
+            original.UniqueKey = content.Title.ToUrlKey();
+
+            Commit();
+            try
+            {
+                if (picture != null && picture.ContentLength > 0)
+                {
+                    if (string.IsNullOrEmpty(content.Picture))
+                    {
+                        string ext = VirtualPathUtility.GetExtension(picture.FileName);
+                        content.Picture = content.UniqueKey + ".jpg";
+                    }
+                    MemoryStream ms = new MemoryStream();
+                    Image bitmap = Image.FromStream(picture.InputStream);
+                    bitmap.Save(Path.Combine(DBNLConfigurationManager.FileResponsity.PictureFolder, content.Picture), ImageFormat.Jpeg);
+                    bitmap.Dispose();
+                    ms.Close();
+                }
+            }
+            catch (Exception ex)
+            {
+            }
+            finally {
+                Commit();
+            }
+
+
         }
     }
 }

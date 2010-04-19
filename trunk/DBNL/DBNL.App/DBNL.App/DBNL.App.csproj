@@ -134,6 +134,7 @@
     <Content Include="Areas\CMS\Views\Contact\Index.aspx" />
     <Content Include="Areas\CMS\Views\Contact\List.aspx" />
     <Content Include="Areas\CMS\Views\Content\Create.aspx" />
+    <Content Include="Areas\CMS\Views\Content\Edit.aspx" />
     <Content Include="Areas\CMS\Views\Content\Index.aspx" />
     <Content Include="Areas\CMS\Views\Link\Create.aspx" />
     <Content Include="Areas\CMS\Views\Link\Delete.aspx" />
@@ -973,6 +974,7 @@
     <Content Include="images\arrow_up.png" />
     <Content Include="images\edit-small.png" />
     <Content Include="images\edit_medium.png" />
+    <Content Include="images\lock.png" />
     <Content Include="Resources\Galleries\CIMG0422.JPG" />
     <Content Include="Scripts\FileManager\connectors\lasso\client_params.inc" />
     <Content Include="Scripts\FileManager\connectors\lasso\encode_json.inc" />
