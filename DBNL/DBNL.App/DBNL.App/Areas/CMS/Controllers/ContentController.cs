@@ -131,6 +131,7 @@ namespace DBNL.App.Areas.CMS.Controllers
                 //    IsFeatured = collection["IsFeatured"].Contains("true"),
                 //    Description = collection["Description"],
                 //};
+                content.UniqueKey = content.Title.ToUrlKey();
                 content.Status = EntityStatuses.Actived.ToString();
 
                 if (!ModelState.IsValid)
@@ -154,18 +155,33 @@ namespace DBNL.App.Areas.CMS.Controllers
  
         public ActionResult Edit(int id)
         {
-            return View();
+
+            var item = ContentService.GetItem(id);
+            if (item == null) return RedirectToAction("Index");
+            ViewData["Categories"] = CustomSelectList.CreateListCategories(false).SetSelectedValue(item.CategoryId.ToString());
+
+            return View(item);
         }
 
         //
         // POST: /Content/Edit/5
 
+        public ActionResult JsonDelete(int id)
+        {
+            ContentService.Delete(id);
+            return Json(true);
+        }
         [AcceptVerbs(HttpVerbs.Post)]
-        public ActionResult Edit(int id, FormCollection collection)
+        [ValidateInput(false)]
+        public ActionResult Edit(int id, Models.Content content, FormCollection collection)
         {
             try
             {
-                // TODO: Add update logic here
+                if (!ModelState.IsValid) {
+                    ViewData["Categories"] = CustomSelectList.CreateListCategories(false).SetSelectedValue(content.CategoryId.ToString());
+                    return View(content); }
+                HttpPostedFileBase picture = (HttpPostedFileBase)Request.Files["Picture"];
+                ContentService.Update(content, picture);
  
                 return RedirectToAction("Index");
             }

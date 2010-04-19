@@ -18,5 +18,17 @@ namespace DBNL.App.Models.Extensions
             sb.AppendLine("</select>");
             return sb.ToString();
         }
+        public static IEnumerable<SelectListItem> SetSelectedValue(this IEnumerable<SelectListItem> list, string value)
+        {
+            foreach (var item in list)
+            {
+                if (item.Value == value)
+                {
+                    item.Selected = true;
+                    break;
+                }
+            }
+            return list;
+        }
     }
 }

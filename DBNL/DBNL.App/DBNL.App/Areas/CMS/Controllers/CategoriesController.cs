@@ -130,21 +130,29 @@ namespace DBNL.App.Areas.CMS.Controllers
         }
 
         [HttpPost]
-        public ActionResult EditRow(FormCollection collection)
+        public ActionResult EditRow(int? id, string oper, bool IsFeatured, string Name, int? ParentCateId, bool ShowOnHP)
         {
-            int? pCate = null;
-            if (String.IsNullOrEmpty(collection["ParentCateId"]) == false)
+            if (oper == JqGridOperations.edit.ToString())
             {
-                pCate = Convert.ToInt32(collection["ParentCateId"]);
+                CategoryService.Edit(id.Value, Name, ParentCateId, IsFeatured, ShowOnHP);
             }
-            if (IsNumeric(collection["Id"]))
+            if (oper == JqGridOperations.add.ToString())
             {
-                CategoryService.Edit(Convert.ToInt32(collection["Id"]), collection["Name"], pCate, Convert.ToBoolean(collection["IsFeatured"]), Convert.ToBoolean(collection["ShowOnHP"]));
+                CategoryService.AddCategory(Name, ParentCateId);
             }
-            else
-            {
-                CategoryService.AddCategory(collection["Name"], pCate);
-            }
+            //int? pCate = null;
+            //if (String.IsNullOrEmpty(collection["ParentCateId"]) == false)
+            //{
+            //    pCate = Convert.ToInt32(collection["ParentCateId"]);
+            //}
+            //if (IsNumeric(collection["Id"]))
+            //{
+            //    CategoryService.Edit(Convert.ToInt32(collection["Id"]), collection["Name"], pCate, Convert.ToBoolean(collection["IsFeatured"]), Convert.ToBoolean(collection["ShowOnHP"]));
+            //}
+            //else
+            //{
+            //    CategoryService.AddCategory(collection["Name"], pCate);
+            //}
             return Content("true");
         }
 
