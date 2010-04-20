@@ -28,7 +28,7 @@
             <ul>
                 <%   
                foreach (var subItem in item.Navigations) { %>
-                <li>
+                <li class="">
                 <% if (subItem.Component == DBNL.App.Models.Statics.SiteModules.Url.ToString())
                    { %>
                    <a href="<%=subItem.ExternalUrl %>"><%=subItem.Name%></a>

@@ -9,10 +9,10 @@
             { %>
                 
                <div class="tieudiem">
-        			<div class="pic"><a href="<%= Url.Action("View","Article", new {id=item.ContentId})%>"><img width="99" height="73" alt="nguonnhanluc" src="<%=item.ThumbnailUrl %>"></a></div>
+        			<div class="pic"><a href="<%= Url.Action("View","Article", new {id=item.ContentId})%>"><img width="99" height="73" alt="nguonnhanluc" src="<%=item.ThumbnailUrl %>" /></a></div>
         			<div class="des">
         				<p>
-                            <%=Html.ActionLink(item.Title, "View","Article" ,new {id = item.ContentId},null) %> <small><%= item.UpdatedDate.ToString("dd/MM/yyyy") %></small>
+                            <%=Html.ActionLink(item.Title.ToUpper(), "View","Article" ,new {id = item.ContentId},null) %>
                         </p>
         			</div>
             
@@ -24,5 +24,5 @@
 				
 			
 			</div>
-	<div class="bottom_cat"><img width="291" height="14" alt="nguonnhanluc" src="<%=Url.Content("~/images/bg_lsdm_bottom.jpg")%>"></div>
+	<div class="bottom_cat"><img width="291" height="14" alt="nguonnhanluc" src="<%=Url.Content("~/images/bg_lsdm_bottom.jpg")%>" /></div>
 </div>

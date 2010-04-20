@@ -84,7 +84,7 @@
 						<div class="cont_object"><strong>»</strong> <a href="#">Nhấp vào đây để xem việc làm tốt nhất</a></div>
 					</div>
 				</div>
-				<div class="bottom_main_inside"><img src="images/bg_main_bottom.png" alt="nguonnhanluc" height="18" width="523"></div>
+				<div class="bottom_main_inside"><img src="<%=Url.Content("~/images/bg_main_bottom.png") %>" alt="nguonnhanluc" height="18" width="523"></div>
 			</div>
 			
 	

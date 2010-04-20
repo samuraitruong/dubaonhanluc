@@ -13,19 +13,20 @@
             <% var i = 1; %>
             <h2>DANH SÁCH EMAIL TRUNG TÂM TRUNG TÂM DỰ BÁO NHU CẦU NHÂN LỰC VÀ THÔNG TIN THỊ TRƯỜNG LAO ĐỘNG TP.HCM</h2>
             <br />
-	        <table width="100%" border="1" cellpadding="20" cellspacing="0">
+
+	        <table width="100%" border="1" cellpadding="20" cellspacing="0" class="stripeMe">
                 <thead>
                 <tr style="font-weight:bolder">
-                    <td>STT</td>
-                    <td>DANH SÁCH</td>
-                    <td>EMAIL</td>
+                    <th>STT</th>
+                    <th>DANH SÁCH</th>
+                    <th>EMAIL</th>
                     </tr>
                 </thead>
             <tbody>
                 <% foreach (var item in Model)
                    { %>
                         <tr>
-                            <td align="center">
+                            <td>
                             <%=i++ %>
                             </td>
                             <td><%=item.Name %></td>
@@ -39,6 +40,16 @@
 	</div>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="headerPlaceHolder" runat="server">
+    <link type="text/css" rel="Stylesheet" href="<%=Url.Content("~/Content/table.css") %>" />
+    <link rel="Stylesheet" type="text/css" href="<%=Url.Content("~/Content/news_article.css")%>"></link>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $(".stripeMe tr").mouseover(function () { $(this).addClass("over"); }).mouseout(function () { $(this).removeClass("over"); });
+            $(".stripeMe tr:even").addClass("alt");
+        });
+</script>
+
+
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="UnderMenuContent" runat="server">
 </asp:Content>

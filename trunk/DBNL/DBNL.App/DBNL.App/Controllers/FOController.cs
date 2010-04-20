@@ -25,7 +25,8 @@ namespace DBNL.App.Controllers
                 BottomBanners = BannerService.GetItems(BannerPositions.Bottom),
                 LeftBanners = BannerService.GetItems(BannerPositions.Left),
                 RightBanners = BannerService.GetItems(BannerPositions.Right),
-                TopBanners = BannerService.GetItems(BannerPositions.Top)
+                TopBanners = BannerService.GetItems(BannerPositions.Top),
+                HotNews = ContentService.GetHostNewsList(DBNL.App.Config.DBNLConfigurationManager.WebUI.MarqueeItemCount)
                 
             };
         }
