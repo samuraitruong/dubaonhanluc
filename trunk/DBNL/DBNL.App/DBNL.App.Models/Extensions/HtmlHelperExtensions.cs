@@ -80,6 +80,26 @@ namespace DBNL.App.Models.Extensions
 
             return sb.ToString();
         }
+
+        public static string BannerList(this HtmlHelper helper, IEnumerable<Banner> banners, int witdh)
+        {
+            StringBuilder sb = new StringBuilder();
+            sb.Append("<ul>");
+
+            foreach (var item in banners)
+            {
+                sb.AppendFormat("<li><a href='{0}' alt='{2}' target='_blank'><img src='{1}' alt='{2}' width='{3}' /></a></li>",
+
+                    item.Url,
+                    string.Format("{0}/{1}", DBNLConfigurationManager.FileResponsity.BannerRelativeUrl, item.BannerImage),
+                    item.Name,
+                    witdh
+                    );
+            }
+            sb.Append("</ul>");
+
+            return sb.ToString();
+        }
         /// <summary>
         /// Renders JavaScript to turn the specified file input control into an 
         /// Uploadify upload control.

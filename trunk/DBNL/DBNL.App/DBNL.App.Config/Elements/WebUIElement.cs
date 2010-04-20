@@ -14,6 +14,11 @@ namespace DBNL.App.Config
            {
                get { return (int)this["articlePagingItem"]; }
            }
+       [ConfigurationProperty("marqueeItemCount")]
+           public int MarqueeItemCount
+           {
+               get { return (int)this["marqueeItemCount"]; }
+           }
 
        [ConfigurationProperty("replacementChar")]
        public string ReplacementChar

@@ -18,7 +18,11 @@ namespace DBNL.App.Areas.CMS.Controllers
     {
         //
         // GET: /Categories/
-
+        public ActionResult JsonDelete(int id)
+        {
+            CategoryService.Delete(id);
+            return Json(true);
+        }
         public ActionResult Index()
         {
             return RedirectToAction("List");
@@ -55,7 +59,8 @@ namespace DBNL.App.Areas.CMS.Controllers
                             ParentCateId = entity.ParentCategoryId,
                             IsFeatured = entity.IsFeatured,
                             ShowOnHP = entity.ShowOnHP,
-                            Articles = entity.Contents.Count()
+                            Articles = entity.Contents.Count(),
+                            Url = Url.Action(Actions.Category.ToString(), SiteModules.Article.ToString(), new {id = entity.ID, Area=""})
                         };
             return Json(model.ToJqGridData(page, rows, null, "", new[] { "Name", "ParentCateId", "IsFeatured", "ShowOnHP" }), JsonRequestBehavior.AllowGet);
         }

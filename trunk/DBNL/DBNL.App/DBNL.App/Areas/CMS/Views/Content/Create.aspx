@@ -6,7 +6,7 @@
 <asp:Content runat="server" ContentPlaceHolderID="headerPlaceHolder" >
     <script language="javascript" type="text/javascript">
         $(document).ready(function () {
-            CKEDITOR.replace('Content',
+            CKEDITOR.replace('Content1',
              {
 	            filebrowserBrowseUrl: '<%= Url.Content("~/Scripts/FileManager/index.html") %>'
             }
@@ -24,37 +24,49 @@
 
         <fieldset>
             
-            <p>
-                <label for="Title">Title:</label>
-                <%= Html.TextBoxFor(p=>p.Title) %>
-                <%= Html.ValidationMessage("Title", "*") %>
-                <%= Html.ValidationMessageFor(p=>p.Title)%>
-            </p>
+            <div class="editor-label">
+                <%= Html.LabelFor(model => model.Title) %>
+            </div>
+            <div class="editor-field">
+                <%= Html.TextBoxFor(model => model.Title, new { size = 80, maxlength = 255 })%>
+                <%= Html.ValidationMessageFor(model => model.Title) %>
+            </div>
             
-            <p>
-                <label for="Description">Mô tả:</label>
-                <%= Html.TextArea("Description","", 3, 40, null) %>
-                <%= Html.ValidationMessage("Description", "*")%>
-            </p>
-            <p>
-                <label for="Content1">Content1:</label>
-                <%= Html.TextArea("Content","", 10, 40, null) %>
-                <%= Html.ValidationMessage("Content", "*") %>
-            </p>
-            <p>
-                <label for="CategoryId">CategoryId:</label>
-                 <%= Html.DropDownList("CategoryId", (IEnumerable<SelectListItem>)ViewData["Categories"])%>
-                <%= Html.ValidationMessage("CategoryId", "*") %>
-            </p>
+            <div class="editor-label">
+                <%= Html.LabelFor(model => model.Description) %>
+            </div>
+            <div class="editor-field">
+                <%= Html.TextAreaFor(model => model.Description, new { rows = 10, cols = 60 })%>
+                <%= Html.ValidationMessageFor(model => model.Description) %>
+            </div>
+           <div class="editor-label">
+                <%= Html.LabelFor(model => model.Content1) %>
+            </div>
+            <div class="editor-field">
+                <%= Html.TextAreaFor(model => model.Content1, new { rows=25, cols="60" })%>
+                <%= Html.ValidationMessageFor(model => model.Content1) %>
+            </div>
+           <div class="editor-label">
+                <%= Html.LabelFor(model => model.CategoryId) %>
+            </div>
+            <div class="editor-field">
+                <%= Html.DropDownList("CategoryId", (IEnumerable<SelectListItem>)ViewData["Categories"])%>
+                <%= Html.ValidationMessageFor(model => model.CategoryId) %>
+            </div>
             
-            <p>
-                <label for="IsFeatured">IsFeatured:</label>
-                 <%= Html.CheckBox("IsFeatured")%>
-            </p>
-            <p>
-                <label>Hình minh họa</label>
-                <input type="file" id="Picture" name="Picture" />
-            </p>
+            <div class="editor-label">
+                <%= Html.LabelFor(model => model.IsFeatured) %>
+            </div>
+            <div class="editor-field">
+                <%= Html.CheckBox("IsFeatured",false) %>
+                <%= Html.ValidationMessageFor(model => model.IsFeatured) %>
+            </div>
+            <div class="editor-label">
+                <%= Html.LabelFor(model => model.Picture) %>
+            </div>
+            <div class="editor-field">
+                <input type="file" name="Picture" />
+            </div>
            
             <p>
                 <input type="submit" value="Create" />

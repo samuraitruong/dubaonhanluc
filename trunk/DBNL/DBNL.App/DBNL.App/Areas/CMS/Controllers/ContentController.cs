@@ -114,7 +114,7 @@ namespace DBNL.App.Areas.CMS.Controllers
 
         [HttpPost]
         [ValidateInput(false)]
-        public ActionResult Create(FormCollection collection, Models.Content content)
+        public ActionResult Create(Models.Content content, FormCollection collection)
         {
             try
             {
@@ -133,6 +133,7 @@ namespace DBNL.App.Areas.CMS.Controllers
                 //};
                 content.UniqueKey = content.Title.ToUrlKey();
                 content.Status = EntityStatuses.Actived.ToString();
+                
 
                 if (!ModelState.IsValid)
                 {

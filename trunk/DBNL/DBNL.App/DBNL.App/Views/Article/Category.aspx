@@ -7,6 +7,7 @@
 <asp:Content ID="Content5" ContentPlaceHolderID="headerPlaceHolder" runat="server">
     <link rel="Stylesheet" type="text/css" href="<%=Url.Content("~/Content/news_article.css")%>" ></link>
     <link rel="Stylesheet" type="text/css" href="<%=Url.Content("~/Content/pagination.css")%>" ></link>
+    
 </asp:Content>
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
 
@@ -16,7 +17,7 @@
 		</div>
 		<div class="news_article">
 			<div class="top_page clearfix">
-				<div class="fl"><a href="#"><img alt="nguonnhanluc" src="<%= Url.Content("~/images/sort_a.jpg") %>"></a> <a href="#"><img alt="nguonnhanluc" src="<%= Url.Content("~/images/sort_b.jpg") %>"></a> <a href="#"><img alt="nguonnhanluc" src="<%= Url.Content("~/images/sort_c.jpg") %>"></a></div>
+				<div class="fl"><a href="#"><img alt="nguonnhanluc" src="<%= Url.Content("~/images/sort_a.jpg") %>"/></a> <a href="#"><img alt="nguonnhanluc" src="<%= Url.Content("~/images/sort_b.jpg") %>"></a> <a href="#"><img alt="nguonnhanluc" src="<%= Url.Content("~/images/sort_c.jpg") %>"></a></div>
 				<div class="pageitem fr" style="width:350px;float:right">
                      <%Html.RenderPartial("~/Views/Shared/Pagination.ascx", new PaginationViewData()
                     {

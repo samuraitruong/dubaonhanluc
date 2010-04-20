@@ -19,7 +19,7 @@
     
 
     <p>
-        <%= Html.ActionLink("Create New", "Create") %>
+        <%= Html.ActionLink("Thêm mới", "Create") %>
     </p>
 
 </asp:Content>

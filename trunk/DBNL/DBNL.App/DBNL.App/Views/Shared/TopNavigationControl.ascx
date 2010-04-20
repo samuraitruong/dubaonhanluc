@@ -2,7 +2,7 @@
 
 <ul id="nav2">
 <% foreach(var item in Model) { %>
-    <li class="">
+    <li class="" rel="<%=Url.Action(item.Action, item.Controller, new { id = item.ContentId }, null)%>">
     <% if (item.Component == DBNL.App.Models.Statics.SiteModules.Url.ToString())
        { %>
        <a href="<%=item.ExternalUrl %>"><%=item.Name %></a>

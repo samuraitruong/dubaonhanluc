@@ -47,14 +47,12 @@ $(document).ready(function () {
                         type: "POST"
                     },
                     datatype: "json",
-                    colNames: [ 'Id','Tên', 'Số bài viêt','Chủ đề cha', 'Chủ đề nổi bật', 'Hiển thị trên Trang chủ'],
+                    colNames: [ 'Id','Tên','Url', 'Số bài viêt', 'Chủ đề nổi bật', 'Hiển thị trên Trang chủ'],
                     colModel: [
-                    {
-                        name: 'Id', index: 'Id', width: 40, align: 'left', editable: false, key: true, editoptions: {readonly:'readonly'},editrules: { edithidden: true }, hidden: true },
-
-                        { name: 'Name', index: 'CategoryName', width: 250, sortable: true, editable: true, edittype: 'text', editoptions: { size: 20, maxlength:100} , hidden: false },
-                        { name: 'Articles', index: 'Artiles', width: 40, align:'center', formatter:'integer',sortable: true, editable: false, edittype: 'text', editoptions: { size: 20, maxlength:100} , hidden: false },
-                        { name: 'ParentCateId', index: 'ParentCateId', align:'center', sortable: true, editable: true, edittype: 'select', style: 'select', editoptions: { dataUrl: "<%=Url.Action("GetSelectParentId", "Categories")%>" }, hidden: false},
+                        { name: 'Id', index: 'Id', width: 40, align: 'left', editable: false, key: true, editoptions: {readonly:'readonly'},editrules: { edithidden: true }, hidden: true },
+                        { name: 'Name', index: 'CategoryName', width: 200, sortable: true, editable: true, edittype: 'text', editoptions: { size: 20, maxlength:100} , hidden: false },
+                        { name: 'Url', index: 'Url', width: 120, sortable: false, editable: false, formatter: 'link', formatoptions: {target : '_blank'}},
+                        { name: 'Articles', index: 'Artiles', width:60, align:'center', formatter:'integer',sortable: true, editable: false, edittype: 'text', editoptions: { size: 20, maxlength:100} , hidden: false },
                         { name: 'IsFeatured', index: 'IsFeatured', align:'center', width: 80, sortable: true, editable: true, edittype: 'checkbox', editoptions: { value:"True:False" } , hidden: false },
                         { name: 'ShowOnHP', index: 'ShowOnHP', align:'center', sortable:true, editable: true, edittype: 'checkbox', editoptions: { value:"True:False"} , hidden: false }
                       ],
@@ -89,13 +87,15 @@ $(document).ready(function () {
                             ajaxGridOptions: {
                             type: "POST"
                         },
-                            colNames: [ 'Id','Name'],
+                            colNames: [ 'Id','Tên','Url', 'Số bài viêt', 'Chủ đề nổi bật', 'Hiển thị trên Trang chủ'],
                             colModel: [
-                            {
-                                name: 'Id', index: 'ID', width: 40, align: 'left', editable: false, key: true, editoptions: {readonly:'readonly'},editrules: { edithidden: true }, hidden: true },
-
-                                { name: 'Name', index: 'CategoryName', width: 250, sortable: true, editable: true, edittype: 'text', editoptions: { size: 20, maxlength:100} , hidden: false }
-                              ],
+                                { name: 'Id', index: 'Id', width: 40, align: 'left', editable: false, key: true, editoptions: {readonly:'readonly'},editrules: { edithidden: true }, hidden: true },
+                                { name: 'Name', index: 'CategoryName', width: 200, sortable: true, editable: true, edittype: 'text', editoptions: { size: 20, maxlength:100} , hidden: false },
+                                { name: 'Url', index: 'Url', width: 120, sortable: false, editable: false, formatter: 'link', formatoptions: {target : '_blank'}},
+                                { name: 'Articles', index: 'Artiles', width:60, align:'center', formatter:'integer',sortable: true, editable: false, edittype: 'text', editoptions: { size: 20, maxlength:100} , hidden: false },
+                                { name: 'IsFeatured', index: 'IsFeatured', align:'center', width: 80, sortable: true, editable: true, edittype: 'checkbox', editoptions: { value:"True:False" } , hidden: false },
+                                { name: 'ShowOnHP', index: 'ShowOnHP', align:'center', sortable:true, editable: true, edittype: 'checkbox', editoptions: { value:"True:False"} , hidden: false }
+                                ],
                              rowNum:20, 
                              rowList: [10, 20, 30],
                              pager: pager_id, 
@@ -106,7 +106,7 @@ $(document).ready(function () {
                              viewrecords: true,
                              autowidth: true,
                             rownumbers: true,
-                            caption: 'Danh sách câu hỏi trong mục này',
+                            caption: 'Danh sách  chủ đề con trong mục này',
                              userdata: {PollId:$("#grid").getRowData(row_id)["id"]},
                              postData: {ParentId:eid},
                             onSelectRow: function(ids) {  
@@ -135,7 +135,7 @@ $(document).ready(function () {
                            .trigger('reloadGrid');  
                         } 
                 }
-                }).navGrid('#pager', { edit: true, add: true, del: true, search: true, view: true }).navButtonAdd('#pager',{
+                }).navGrid('#pager', { edit: true, add: true, del: true, search: true, view: true }, {},{},{url : '<%=Url.Action("JsonDelete", "Categories" )%>'}).navButtonAdd('#pager',{
                            caption:"Public", 
                            buttonicon:"ui-icon-add", 
                            onClickButton: function(){ 
