@@ -1,12 +1,12 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Views/Shared/Site.Master" Inherits="System.Web.Mvc.ViewPage<DBNL.App.Models.Content>" %>
 <%@ Import Namespace="DBNL.App.Config" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="TitleContent" runat="server">
-	Edit
+	Cập nhật chủ đề
 </asp:Content>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
 
-    <h2>Edit</h2>
+    <h2>Cập nhật chủ đề</h2>
 
     <% using ((Html.BeginForm("Edit", "Content", FormMethod.Post, new { enctype = "multipart/form-data" })))
        {%>

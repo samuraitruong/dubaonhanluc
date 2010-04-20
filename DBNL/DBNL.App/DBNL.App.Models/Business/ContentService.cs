@@ -38,6 +38,9 @@ namespace DBNL.App.Models.Business
                 bitmap.Dispose();
                 ms.Close();
             }
+            content.CreatedDate = DateTime.Now;
+            content.UpdatedDate = DateTime.Now;
+
             Contents.InsertOnSubmit(content);
             Commit();
             return content;
@@ -141,6 +144,12 @@ namespace DBNL.App.Models.Business
                 Commit();
             }
 
+
+        }
+
+        public static IEnumerable<Content> GetHostNewsList(int item)
+        {
+            return Contents.Where(p => p.IsFeatured.HasValue && p.IsFeatured.Value ==true).OrderByDescending(p => p.UpdatedDate).Skip(0).Take(item).AsEnumerable();
 
         }
     }

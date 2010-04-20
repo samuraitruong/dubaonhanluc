@@ -6,11 +6,13 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
     <div class="ex" id="hot_news">
 		<div class="top_hot_news">
-			<h2>Danh mục nổi bật<a href="#">Tin tức và sự kiện</a></h2>
+			<h2>Danh mục nổi bật
+            <% = Html.ActionLink(Model.Content.ContentCategory.CategoryName, "Category", "Article", new { id= Model.Content.CategoryId}, null) %>
+            </h2>
 		</div>
 		<div class="news_article">
 			<div class="top_page clearfix">
-				<div class="pageitem fr"><a href="#"><img alt="b1" src="<%=Url.Content("~/images/icon_b1.png") %>"></a>&nbsp;&nbsp;<a href="#"><img alt="b2" src="<%=Url.Content("~/images/icon_b2.png") %>"></a>&nbsp;&nbsp;<a href="#"><img alt="b3" src="<%=Url.Content("~/images/icon_b3.png") %>"></a></div>
+				<div class="pageitem fr"><a href="#"><img alt="b1" src="<%=Url.Content("~/images/icon_b1.png") %>" /></a>&nbsp;&nbsp;<a href="#"><img alt="b2" src="<%=Url.Content("~/images/icon_b2.png") %>" /></a>&nbsp;&nbsp;<a href="#"><img alt="b3" src="<%=Url.Content("~/images/icon_b3.png") %>" /></a></div>
 			</div>
 			<!--top page-->
 			<div class="news_article_detail">

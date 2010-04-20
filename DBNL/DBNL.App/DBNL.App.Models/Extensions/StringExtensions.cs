@@ -22,5 +22,21 @@ namespace DBNL.App.Models.Extensions
             return regex.Replace(strFormD, String.Empty).Replace('\u0111', 'd').Replace('\u0110', 'D');
         }
 
+
+        public static string TrimmedWord(this string src, int word)
+        {
+           string[] arr = src.Split(' ');
+           StringBuilder sb = new StringBuilder();
+           if (arr.Length <= word) return src;
+           for (int i = 0; i < word; i++)
+           {
+               sb.AppendFormat("{0} ", arr[i]);
+           }
+           sb.Append("...");
+           return sb.ToString();
+                 
+        }
+
+
     }
 }

@@ -6,7 +6,7 @@ to use a different color start by replacing all instances of
 body
 {
     background-color: #5c87b2;
-    font-size: .75em;
+    font-size: 0.96em;
     font-family: Verdana, Helvetica, Sans-Serif;
     margin: 0;
     padding: 0;
@@ -84,7 +84,7 @@ first child of the left and right table columns */
 page width. Or, you can specify an exact pixel width. */
 .page
 {
-    width: 98%;
+    width: 96%;
     margin-left: auto;
     margin-right: auto;
 }
@@ -111,11 +111,12 @@ page width. Or, you can specify an exact pixel width. */
 
 #main
 {
-    overflow:hidden;
-    padding: 30px 30px 15px 1px;
+    overflow:auto;
+    width: 100%;
+    padding: 30px 0px 15px 0px;
     background-color: #fff;
     margin-bottom: 30px;
-    _height: 1px; /* only IE6 applies CSS properties starting with an underscrore */
+    _height: 1px; /* only IE6 applies CSS properties starting with an underscore */
 }
 
 #footer
@@ -143,6 +144,7 @@ ul#menu li
 {
     display: inline;
     list-style: none;
+    font-size : 
 }
 
 ul#menu li#greeting
@@ -156,7 +158,8 @@ ul#menu li#greeting
 
 ul#menu li a
 {
-    padding: 10px 20px;
+    font-size: 13px;
+    padding: 10px 10px;
     font-weight: bold;
     text-decoration: none;
     line-height: 2.8em;
@@ -184,12 +187,7 @@ ul#menu li.selected a
 
 /* FORM LAYOUT ELEMENTS   
 ----------------------------------------------------------*/
-.ban_pre_img
-{
-	width:50px;
-	height:50px;
-	border:0;
-}
+
 fieldset 
 {
     margin: 1em 0;
@@ -200,16 +198,6 @@ fieldset
 fieldset p 
 {
     margin: 2px 12px 10px 10px;
-}
-
-fieldset label 
-{
-    display: block;
-}
-
-fieldset label.inline 
-{
-    display: inline;
 }
 
 legend 
@@ -232,12 +220,12 @@ input[type="password"]
 }
 
 /* TABLE
-----------------------------------------------------------*/
+----------------------------------------------------------
 
 table 
 {
-  border: solid 1px #e8eef4;
-  border-collapse: collapse;
+  xborder: solid 1px #e8eef4;
+  xborder-collapse: collapse;
 }
 
 table td 
@@ -253,7 +241,7 @@ table th
   background-color: #e8eef4; 
   border: solid 1px #e8eef4;   
 }
-
+*/
 /* MISC  
 ----------------------------------------------------------*/
 .clear
@@ -305,9 +293,16 @@ div#title
     text-decoration: none;
 }
 
+/* Styles for validation helpers
+-----------------------------------------------------------*/
 .field-validation-error
 {
     color: #ff0000;
+}
+
+.field-validation-valid
+{
+    display: none;
 }
 
 .input-validation-error
@@ -322,6 +317,37 @@ div#title
     color: #ff0000;
 }
 
+.validation-summary-valid
+{
+    display: none;
+}
+
+/* Styles for editor and display helpers
+----------------------------------------------------------*/
+.display-label,
+.editor-label,
+.display-field,
+.editor-field
+{
+    margin: 0.5em 0;
+}
+
+.text-box
+{
+    width: 30em;
+}
+
+.text-box.multi-line
+{
+    height: 6.5em;
+}
+
+.tri-state
+{
+    width: 6em;
+}
+
+
 #sidebar
 {
     float:left;
@@ -333,9 +359,9 @@ div#title
 {
     xwidth: 840px;
     width: 95%;
-    min-height: 380px;
+    min-height: 540px;
     float:left;
-    padding-left: 50px;
+    padding-left: 20px;
     border-left: dotted #33333 1px;
 }
 .EditRecord

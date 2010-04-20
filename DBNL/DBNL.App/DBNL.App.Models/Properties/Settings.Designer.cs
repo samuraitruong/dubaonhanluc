@@ -26,28 +26,6 @@ namespace DBNL.App.Models.Properties {
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
-        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=ausp.edu.vn;Initial Catalog=hostpro_dubao;Persist Security Info=True;" +
-            "User ID=ausp_dubao;Password=latuine")]
-        public string hostpro_dubaoConnectionString {
-            get {
-                return ((string)(this["hostpro_dubaoConnectionString"]));
-            }
-        }
-        
-        [global::System.Configuration.ApplicationScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
-        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=eduvision.com.vn;Persist Security Info=True;User ID=artseed;Password=" +
-            "L@tuine299")]
-        public string DataSourceConnectionString {
-            get {
-                return ((string)(this["DataSourceConnectionString"]));
-            }
-        }
-        
-        [global::System.Configuration.ApplicationScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
         [global::System.Configuration.DefaultSettingValueAttribute("Data Source=eduvision.com.vn;Initial Catalog=dbnl;User ID=artseed")]
         public string dbnlConnectionString {
             get {

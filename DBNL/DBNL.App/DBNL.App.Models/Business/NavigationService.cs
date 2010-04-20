@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using DBNL.App.Models.Statics;
+using DBNL.App.Models.Extensions;
 
 namespace DBNL.App.Models.Business
 {
@@ -33,6 +34,42 @@ namespace DBNL.App.Models.Business
         }
         public static Navigation Create(Navigation nv)
         {
+            nv.CreatedDate = DateTime.Now;
+            nv.UpdatedDate = DateTime.Now;
+            if(nv.ParentId.HasValue && nv.ParentId.Value ==0) nv.ParentId = new Nullable<int>();
+            nv.Status = EntityStatuses.Actived.ToString();
+
+            if (nv.Component == SiteModules.Article.ToString())
+            {
+                if (!nv.ContentId.HasValue || nv.ContentId.Value == 0)
+                {
+                    ContentCategory cat = new ContentCategory()
+                    {
+                        CategoryName = nv.Name,
+                        CreatedDate = DateTime.Now,
+                        IsFeatured = false,
+                        Key = nv.Name.ToUrlKey(),
+                        ParentCategoryId = new Nullable<int>(),
+                        Status = EntityStatuses.Actived.ToString(),
+                        UpdatedDate = DateTime.Now
+                    };
+
+
+                    Navigation parent = GetItem(nv.ParentId.HasValue? nv.ParentId.Value: 0);
+                    if (parent != null && parent.Component == SiteModules.Article.ToString())
+                    {
+                        cat.ParentCategoryId = parent.ContentId;
+                    }
+                    nv.Controller = DBNL.App.Models.Statics.Controllers.Article.ToString();
+                    nv.Action = DBNL.App.Models.Statics.Actions.Category.ToString();
+                    nv.Area = "";
+
+
+                    Categories.InsertOnSubmit(cat);
+                    Commit();
+                    nv.ContentId = cat.ID;
+                }
+            }
             Navigations.InsertOnSubmit(nv);
             Commit();
             Reorder(nv.Id, ReorderMethods.Down.ToString());
@@ -41,7 +78,9 @@ namespace DBNL.App.Models.Business
 
         public static IQueryable<Navigation> List(int? ParentId, string Position)
         {
-            var query = string.IsNullOrEmpty(Position) ? Navigations : Navigations.Where(p => p.Position == Position);
+            var query = Navigations.Where(p=>p.Status != EntityStatuses.Deleted.ToString());
+
+            if(!string.IsNullOrEmpty(Position) ) query = query.Where(p => p.Position == Position);
 
             if (!ParentId.HasValue)
             {
@@ -113,6 +152,7 @@ namespace DBNL.App.Models.Business
             original.Action     = navigation.Action;
             original.Area = navigation.Area;
             original.Component = navigation.Component;
+            original.Position = navigation.Position;
             original.ContentId = navigation.ContentId;
             original.Controller = navigation.Controller;
             original.DisplayOrder = navigation.DisplayOrder;
@@ -128,11 +168,18 @@ namespace DBNL.App.Models.Business
         public static void Delete(int id)
         {
             Navigation item = GetItem(id);
-            if (item == null) return;
-            Navigations.DeleteAllOnSubmit(item.Navigations);
+            Delete(item);
+        }
 
-            Commit();
-            Navigations.DeleteOnSubmit(item);
+        public static void Delete(Navigation nav)
+        {
+            if (nav == null) return;
+
+            foreach (var item in nav.Navigations)
+            {
+                Delete(item);
+            }
+            Navigations.DeleteOnSubmit(nav);
             Commit();
         }
     }

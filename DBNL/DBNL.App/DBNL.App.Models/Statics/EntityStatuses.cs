@@ -10,6 +10,7 @@ namespace DBNL.App.Models.Statics
         Actived,
         Public,
         Unpublic,
-        Inactive
+        Inactive,
+        Deleted
     }
 }
