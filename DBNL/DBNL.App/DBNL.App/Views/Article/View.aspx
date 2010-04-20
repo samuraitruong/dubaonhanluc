@@ -22,17 +22,15 @@
 		</div>
 		<div class="bottom_news_article">
 			<div class="top_page clearfix">
-				<div class="pageitem fr"><a href="#"><img alt="b1" src="images/icon_b1.png"></a>&nbsp;&nbsp;<a href="#"><img alt="b2" src="images/icon_b2.png"></a>&nbsp;&nbsp;<a href="#"><img alt="b3" src="images/icon_b3.png"></a></div>
+				<div class="pageitem fr"><a href="#"><img alt="b1" src="<%=Url.Content("~/images/icon_b1.png") %>"></a>&nbsp;&nbsp;<a href="#"><img alt="b2" src="<%=Url.Content("~/images/icon_b2.png") %>"></a>&nbsp;&nbsp;<a href="#"><img alt="b3" src="<%=Url.Content("~/images/icon_b3.png") %>"></a></div>
 			</div>
 			<!--top page-->
 		</div>
-	</div>
-
+    </div>
 </asp:Content>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="UnderMenuContent" runat="server">
 <% Html.RenderPartial("ListFeatureNews", Model.FeaturedContents); %>
 </asp:Content>
-
 <asp:Content ID="Content3" ContentPlaceHolderID="MidlePageMainContent" runat="server">
 </asp:Content>

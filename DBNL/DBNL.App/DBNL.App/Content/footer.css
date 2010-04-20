@@ -1,4 +1,4 @@
-#wrap_footer { float:left; width:970px; height:170px;}
+﻿#wrap_footer { float:left; width:970px; height:170px;}
 #top_footer { background:url(../images/bg_top_footer.jpg) repeat-x; height:61px; margin:12px 0; line-height:61px;}
 #top_footer .top_footer_inside { width:970px; margin:0 auto;}
 #top_footer .s1 { width:350px; padding-left:20px; color:#f00; font-size:12px; font-weight:bold;}
@@ -15,3 +15,153 @@ fieldset.sendlink { display:inline; float:left; border:none; width:280px; paddin
 #footer { width:970px; color:#333; font-size:12px; font-weight:normal; line-height:20px;}
 #footer .f1 { float:left; width:580px;}
 #footer .f2 { float:right; width:370px; text-align:right;}
+
+ ....loading....
+	0	Started
+	0	0	DNS Lookup
+	0	0	Connecting
+	0	0	Blocking
+	0	0	Sending
+	0	3.25s	Waiting
+	+3.25s	0	Receiving
+	+5.15s	'DOMContentLoaded' (event)
+	+5.4s	'load' (event)
+Firebug's log limit has been reached. 0 entries not shown.		Preferences	 
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+</head>
+<body>
+<div id="wrapper"></div>
+<div id="page">
+<div id="header">
+</div>
+<div id="top_content">
+</div>
+<a name="neo_content"></a>
+<div id="wrap_dm" class="clearfix">
+<div id="wrap_cat">
+</div>
+<div id="hot_news" class="ex">
+<div class="top_hot_news">
+</div>
+<div class="news_article">
+</div>
+<div class="bottom_news_article">
+</div>
+</div>
+</div>
+<div id="partner">
+</div>
+<div id="wrap_ad" class="clearfix">
+</div>
+<div id="wrap_footer">
+<div id="top_footer">
+<div class="top_footer_inside clearfix">
+<div class="s1 fl">
+</div>
+<div class="s3 fr">
+</div>
+</div>
+</div>
+<div id="footer" class="clearfix">
+<div class="f1">
+<p>Copyright &copy; 2009 thuộc Trung Tâm Dự báo nhu cầu nhân lực và Thông tin thị trường lao động TPHCM - Sở Lao động - Thương binh và Xã hội giữ trọn bản quyền</p>
+</div>
+<div class="f2">
+<p>Địa Chỉ: 250 Nguyễn Thái Sơn, Phường 4, Quận Gò Vấp, Tp.HCM</p>
+<p>Điện Thoại : (08) 3588 8753 - Fax (08) 3588 8754</p>
+<p>
+</p>
+</div>
+</div>
+</div>
+</div>
+</body>
+</html>
+Firebug's log limit has been reached. 0 entries not shown.		Preferences	 
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+</head>
+<body>
+</body>
+</html>
+#wrap_footer {
+float:left;
+height:170px;
+width:970px;
+}
+#top_footer {
+background:url("../images/bg_top_footer.jpg") repeat-x scroll 0 0 transparent;
+height:61px;
+line-height:61px;
+margin:12px 0;
+}
+#top_footer .top_footer_inside {
+margin:0 auto;
+width:970px;
+}
+#top_footer .s1 {
+color:#FF0000;
+font-size:12px;
+font-weight:bold;
+padding-left:20px;
+width:350px;
+}
+#top_footer .s3 {
+padding-right:10px;
+padding-top:10px;
+width:355px;
+}
+#top_footer .s3 img {
+display:inline;
+float:right;
+margin-left:25px;
+}
+fieldset.sendlink {
+border:medium none;
+display:inline;
+float:left;
+padding-top:15px;
+width:280px;
+}
+.sendlink input {
+border:0 none;
+color:#746046;
+float:left;
+font-family:Tahoma,Helvetica,sans-serif;
+font-size:12px;
+}
+.sendlink input.box {
+background:none repeat scroll 0 0 #FFFFFF;
+border:1px solid #189AFA;
+height:14px;
+margin-right:5px;
+padding:5px;
+width:162px;
+}
+.sendlink input.btn {
+background:url("../images/b_button.jpg") no-repeat scroll 0 0 transparent;
+border:0 none;
+color:#FFFFFF;
+cursor:pointer;
+font-size:12px;
+font-weight:bold;
+height:27px;
+width:72px;
+}
+#footer {
+color:#333333;
+font-size:12px;
+font-weight:normal;
+line-height:20px;
+width:970px;
+}
+#footer .f1 {
+float:left;
+width:580px;
+}
+#footer .f2 {
+float:right;
+text-align:right;
+width:370px;
+}

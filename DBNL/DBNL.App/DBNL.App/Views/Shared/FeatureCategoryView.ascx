@@ -33,6 +33,6 @@
 				</ul>
 			</div><!--wrap list-->
 		</div>
-		<div class="bottom_hot_news"><img width="674" height="14" alt="nguonnhanluc" src="images/bg_lsnews_bottom.jpg"></div>
+		<div class="bottom_hot_news"><img width="674" height="14" alt="nguonnhanluc" src="<%=Url.Content("~/images/bg_lsnews_bottom.jpg")%>" /></div>
 			</div>
             

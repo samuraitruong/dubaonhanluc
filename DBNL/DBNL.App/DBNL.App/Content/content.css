@@ -389,3 +389,9 @@
 #wrap_ad ul li{ display:inline; padding-right:2px;}
 .news_article_detail img{padding:5px;}
 .news_article_detail table tr td{padding:5px;}
+
+.top_newsjob h3 a
+{
+    color:#ffffff;
+    text-decoration:none;
+}

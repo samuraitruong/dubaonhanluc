@@ -1736,6 +1736,8 @@
     <Content Include="Views\Home\PublicPollControl.ascx" />
     <Content Include="Views\Shared\CategoriesOnHPView.ascx" />
     <Content Include="Views\Shared\FeatureCategoryView.ascx" />
+    <Content Include="Views\Shared\HitStats.ascx" />
+    <Content Include="Views\Shared\HotNewsControl.ascx" />
     <Content Include="Views\Shared\ListFeatureNews.ascx" />
     <Content Include="Views\Shared\OtherNewsView.ascx" />
     <Content Include="Views\Shared\Pagination.ascx" />

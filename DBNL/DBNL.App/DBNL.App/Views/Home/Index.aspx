@@ -29,7 +29,7 @@
     <% Html.RenderPartial("NewestJobControl"); %>
 
     <div class="banner">
-        <%= Html.BannerList(Data.RightBanners)%>
+        <%= Html.BannerList(Data.RightBanners, 204)%>
     </div>
     </div>
 </asp:Content>

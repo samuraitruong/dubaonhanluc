@@ -31,6 +31,9 @@
 </asp:Content>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="headerPlaceHolder" runat="server">
+ <link type="text/css" rel="Stylesheet" href="<%=Url.Content("~/Content/table.css") %>" />
+    <link rel="Stylesheet" type="text/css" href="<%=Url.Content("~/Content/news_article.css")%>"></link>
+   
 </asp:Content>
 
 <asp:Content ID="Content3" ContentPlaceHolderID="UnderMenuContent" runat="server">
