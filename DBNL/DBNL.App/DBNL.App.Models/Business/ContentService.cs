@@ -149,7 +149,7 @@ namespace DBNL.App.Models.Business
 
         public static IEnumerable<Content> GetHostNewsList(int item)
         {
-            return Contents.Where(p => p.IsFeatured.HasValue && p.IsFeatured.Value ==true).OrderByDescending(p => p.UpdatedDate).Skip(0).Take(item).AsEnumerable();
+            return Contents.Where(p=>p.IsFeatured ==true).OrderByDescending(p => p.UpdatedDate).Skip(0).Take(item).AsEnumerable();
 
         }
     }

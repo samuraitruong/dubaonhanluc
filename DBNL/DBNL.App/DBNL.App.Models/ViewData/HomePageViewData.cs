@@ -30,13 +30,13 @@ namespace DBNL.App.Models.ViewData
             if (Category == null)
                 Category = CategoryService.GetRandomCategory();
             HostestArticle = Category.Contents
-                .OrderByDescending(p => p.IsFeatured.Value)
+                .OrderByDescending(p => p.IsFeatured)
                 .OrderByDescending(p1 => p1.UpdatedDate)
                 .Skip(0).Take(DBNL.App.Config.DBNLConfigurationManager.WebUI.HotestNewsCount)
                 .AsEnumerable();
 
             Articles = Category.Contents
-                .OrderByDescending(p => p.IsFeatured.Value)
+                .OrderByDescending(p => p.IsFeatured)
                 .OrderByDescending(p1 => p1.UpdatedDate)
                 .Skip(DBNLConfigurationManager.WebUI.HotestNewsCount)
                 .Take(DBNLConfigurationManager.WebUI.OtherFeaturesNews)
