@@ -27,6 +27,14 @@ namespace DBNL.App.Models.Business
                 return GetInstance().Navigations;
             }
         }
+
+        public static Table<Job> Jobs
+        {
+            get
+            {
+                return GetInstance().Jobs;
+            }
+        }
         public static Table<User> Users
         {
             get

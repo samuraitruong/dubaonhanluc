@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?><Database Name="dbnl" Class="DBNLDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
-  <Connection Mode="AppSettings" ConnectionString="Data Source=eduvision.com.vn;Initial Catalog=dbnl;User ID=artseed" SettingsObjectName="DBNL.App.Models.Properties.Settings" SettingsPropertyName="dbnlConnectionString" Provider="System.Data.SqlClient" />
+  <Connection Mode="AppSettings" ConnectionString="Data Source=eduvision.com.vn;Initial Catalog=dbnl;Persist Security Info=True;User ID=artseed" SettingsObjectName="DBNL.App.Models.Properties.Settings" SettingsPropertyName="dbnlConnectionString1" Provider="System.Data.SqlClient" />
   <Table Name="artseed.UserInRole" Member="UserInRoles">
     <Type Name="UserInRole">
       <Column Name="RoleId" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
@@ -162,6 +162,21 @@
       <Association Name="Content_ContentRelation" Member="ContentRelations" ThisKey="ContentId" OtherKey="ContentId" Type="ContentRelation" />
       <Association Name="Content_ContentRelation1" Member="ContentRelations1" ThisKey="ContentId" OtherKey="RelatedId" Type="ContentRelation" />
       <Association Name="ContentCategory_Content" Member="ContentCategory" ThisKey="CategoryId" OtherKey="ID" Type="ContentCategory" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="artseed.Job" Member="Jobs">
+    <Type Name="Job">
+      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Title" Type="System.String" DbType="NVarChar(250) NOT NULL" CanBeNull="false" />
+      <Column Name="Description" Type="System.String" DbType="NText NOT NULL" CanBeNull="false" UpdateCheck="Never" />
+      <Column Name="JobDetail" Type="System.String" DbType="NText NOT NULL" CanBeNull="false" UpdateCheck="Never" />
+      <Column Name="Company" Type="System.String" DbType="NVarChar(255) NOT NULL" CanBeNull="false" />
+      <Column Name="CompanyInfo" Type="System.String" DbType="NText NOT NULL" CanBeNull="false" UpdateCheck="Never" />
+      <Column Name="CreatedDate" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="Deadline" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="UpdatedDate" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="Status" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="[Key]" Member="Key" Type="System.String" DbType="NVarChar(255) NOT NULL" CanBeNull="false" />
     </Type>
   </Table>
 </Database>

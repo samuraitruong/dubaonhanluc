@@ -5,6 +5,9 @@ using System.Web;
 using System.Web.Mvc;
 using System.Web.Routing;
 using System.Web.Security;
+using System.Globalization;
+using System.Threading;
+using DBNL.App.Models;
 
 namespace DBNL.App
 {
@@ -44,6 +47,14 @@ namespace DBNL.App
             FormsAuthentication.SignOut();
         }
 
+        protected void Application_AcquireRequestState(object sender, EventArgs e)
+        {
+            if (HttpContext.Current.Session != null)
+            {
+                Thread.CurrentThread.CurrentUICulture = SessionManager.CurentCulture;
 
+                Thread.CurrentThread.CurrentCulture = CultureInfo.CreateSpecificCulture(SessionManager.CurentCulture.Name);
+            }
+        }
     }
 }

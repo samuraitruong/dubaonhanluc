@@ -97,6 +97,24 @@ namespace DBNL.App.Models {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Tên công ty không được phép rỗng.
+        /// </summary>
+        public static string Job_Company {
+            get {
+                return ResourceManager.GetString("Job_Company", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Tên công việc không được phép rỗng.
+        /// </summary>
+        public static string Job_Title {
+            get {
+                return ResourceManager.GetString("Job_Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Tên Menu không được phép rỗng..
         /// </summary>
         public static string Navigation_Name {

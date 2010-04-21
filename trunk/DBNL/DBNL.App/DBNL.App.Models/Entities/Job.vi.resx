@@ -117,37 +117,7 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="Banner_Name" xml:space="preserve">
-    <value>Tên banner bắt buộc nhập.</value>
-  </data>
-  <data name="Banner_Url" xml:space="preserve">
-    <value>Banner Url bắt buộc nhập</value>
-  </data>
-  <data name="Banner_UrlFormat" xml:space="preserve">
-    <value>Url không đúng định dạng.</value>
-  </data>
-  <data name="Content_Title" xml:space="preserve">
-    <value>Tự đề bài viết không được phép bỏ trống.</value>
-  </data>
-  <data name="Job_Company" xml:space="preserve">
-    <value>Tên công ty không được phép rỗng</value>
-  </data>
-  <data name="Job_Title" xml:space="preserve">
-    <value>Tên công việc không được phép rỗng</value>
-  </data>
-  <data name="Navigation_Name" xml:space="preserve">
-    <value>Tên Menu không được phép rỗng.</value>
-  </data>
-  <data name="Role_RoleName" xml:space="preserve">
-    <value>Tên nhóm bắt buột phải nhập.</value>
-  </data>
-  <data name="User_Name" xml:space="preserve">
-    <value>Tên quản trị viên bắt buộc phải nhập</value>
-  </data>
-  <data name="User_Username" xml:space="preserve">
-    <value>Tên đăng nhập không được phép trống.</value>
-  </data>
-  <data name="User_Username_Duplicated" xml:space="preserve">
-    <value>Tên đăng nhập bị trùng</value>
+  <data name="Title" xml:space="preserve">
+    <value>Tên công việc</value>
   </data>
 </root>

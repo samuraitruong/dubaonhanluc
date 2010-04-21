@@ -12,7 +12,7 @@
 		</div>
 		<div class="news_article">
 			<div class="top_page clearfix">
-				<div class="pageitem fr"><a href="#"><img alt="b1" src="<%=Url.Content("~/images/icon_b1.png") %>" /></a>&nbsp;&nbsp;<a href="#"><img alt="b2" src="<%=Url.Content("~/images/icon_b2.png") %>" /></a>&nbsp;&nbsp;<a href="#"><img alt="b3" src="<%=Url.Content("~/images/icon_b3.png") %>" /></a></div>
+				<% Html.RenderPartial("ControlBar"); %>
 			</div>
 			<!--top page-->
 			<div class="news_article_detail">
@@ -24,7 +24,7 @@
 		</div>
 		<div class="bottom_news_article">
 			<div class="top_page clearfix">
-				<div class="pageitem fr"><a href="#"><img alt="b1" src="<%=Url.Content("~/images/icon_b1.png") %>"></a>&nbsp;&nbsp;<a href="#"><img alt="b2" src="<%=Url.Content("~/images/icon_b2.png") %>"></a>&nbsp;&nbsp;<a href="#"><img alt="b3" src="<%=Url.Content("~/images/icon_b3.png") %>"></a></div>
+				<% Html.RenderPartial("ControlBar"); %>
 			</div>
 			<!--top page-->
 		</div>
