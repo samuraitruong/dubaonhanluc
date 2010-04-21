@@ -69,6 +69,9 @@ namespace DBNL.App.Models
     partial void InsertContent(Content instance);
     partial void UpdateContent(Content instance);
     partial void DeleteContent(Content instance);
+    partial void InsertJob(Job instance);
+    partial void UpdateJob(Job instance);
+    partial void DeleteJob(Job instance);
     #endregion
 		
 		public DBNLDataContext() : 
@@ -202,6 +205,14 @@ namespace DBNL.App.Models
 			get
 			{
 				return this.GetTable<Content>();
+			}
+		}
+		
+		public System.Data.Linq.Table<Job> Jobs
+		{
+			get
+			{
+				return this.GetTable<Job>();
 			}
 		}
 	}
@@ -3574,6 +3585,308 @@ namespace DBNL.App.Models
 		{
 			this.SendPropertyChanging();
 			entity.Content1 = null;
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="artseed.Job")]
+	public partial class Job : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _Id;
+		
+		private string _Title;
+		
+		private string _Description;
+		
+		private string _JobDetail;
+		
+		private string _Company;
+		
+		private string _CompanyInfo;
+		
+		private System.DateTime _CreatedDate;
+		
+		private System.DateTime _Deadline;
+		
+		private System.DateTime _UpdatedDate;
+		
+		private string _Status;
+		
+		private string _Key;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnIdChanging(int value);
+    partial void OnIdChanged();
+    partial void OnTitleChanging(string value);
+    partial void OnTitleChanged();
+    partial void OnDescriptionChanging(string value);
+    partial void OnDescriptionChanged();
+    partial void OnJobDetailChanging(string value);
+    partial void OnJobDetailChanged();
+    partial void OnCompanyChanging(string value);
+    partial void OnCompanyChanged();
+    partial void OnCompanyInfoChanging(string value);
+    partial void OnCompanyInfoChanged();
+    partial void OnCreatedDateChanging(System.DateTime value);
+    partial void OnCreatedDateChanged();
+    partial void OnDeadlineChanging(System.DateTime value);
+    partial void OnDeadlineChanged();
+    partial void OnUpdatedDateChanging(System.DateTime value);
+    partial void OnUpdatedDateChanged();
+    partial void OnStatusChanging(string value);
+    partial void OnStatusChanged();
+    partial void OnKeyChanging(string value);
+    partial void OnKeyChanged();
+    #endregion
+		
+		public Job()
+		{
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Id", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public int Id
+		{
+			get
+			{
+				return this._Id;
+			}
+			set
+			{
+				if ((this._Id != value))
+				{
+					this.OnIdChanging(value);
+					this.SendPropertyChanging();
+					this._Id = value;
+					this.SendPropertyChanged("Id");
+					this.OnIdChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Title", DbType="NVarChar(250) NOT NULL", CanBeNull=false)]
+		public string Title
+		{
+			get
+			{
+				return this._Title;
+			}
+			set
+			{
+				if ((this._Title != value))
+				{
+					this.OnTitleChanging(value);
+					this.SendPropertyChanging();
+					this._Title = value;
+					this.SendPropertyChanged("Title");
+					this.OnTitleChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Description", DbType="NText NOT NULL", CanBeNull=false, UpdateCheck=UpdateCheck.Never)]
+		public string Description
+		{
+			get
+			{
+				return this._Description;
+			}
+			set
+			{
+				if ((this._Description != value))
+				{
+					this.OnDescriptionChanging(value);
+					this.SendPropertyChanging();
+					this._Description = value;
+					this.SendPropertyChanged("Description");
+					this.OnDescriptionChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_JobDetail", DbType="NText NOT NULL", CanBeNull=false, UpdateCheck=UpdateCheck.Never)]
+		public string JobDetail
+		{
+			get
+			{
+				return this._JobDetail;
+			}
+			set
+			{
+				if ((this._JobDetail != value))
+				{
+					this.OnJobDetailChanging(value);
+					this.SendPropertyChanging();
+					this._JobDetail = value;
+					this.SendPropertyChanged("JobDetail");
+					this.OnJobDetailChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Company", DbType="NVarChar(255) NOT NULL", CanBeNull=false)]
+		public string Company
+		{
+			get
+			{
+				return this._Company;
+			}
+			set
+			{
+				if ((this._Company != value))
+				{
+					this.OnCompanyChanging(value);
+					this.SendPropertyChanging();
+					this._Company = value;
+					this.SendPropertyChanged("Company");
+					this.OnCompanyChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CompanyInfo", DbType="NText NOT NULL", CanBeNull=false, UpdateCheck=UpdateCheck.Never)]
+		public string CompanyInfo
+		{
+			get
+			{
+				return this._CompanyInfo;
+			}
+			set
+			{
+				if ((this._CompanyInfo != value))
+				{
+					this.OnCompanyInfoChanging(value);
+					this.SendPropertyChanging();
+					this._CompanyInfo = value;
+					this.SendPropertyChanged("CompanyInfo");
+					this.OnCompanyInfoChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CreatedDate", DbType="DateTime NOT NULL")]
+		public System.DateTime CreatedDate
+		{
+			get
+			{
+				return this._CreatedDate;
+			}
+			set
+			{
+				if ((this._CreatedDate != value))
+				{
+					this.OnCreatedDateChanging(value);
+					this.SendPropertyChanging();
+					this._CreatedDate = value;
+					this.SendPropertyChanged("CreatedDate");
+					this.OnCreatedDateChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Deadline", DbType="DateTime NOT NULL")]
+		public System.DateTime Deadline
+		{
+			get
+			{
+				return this._Deadline;
+			}
+			set
+			{
+				if ((this._Deadline != value))
+				{
+					this.OnDeadlineChanging(value);
+					this.SendPropertyChanging();
+					this._Deadline = value;
+					this.SendPropertyChanged("Deadline");
+					this.OnDeadlineChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_UpdatedDate", DbType="DateTime NOT NULL")]
+		public System.DateTime UpdatedDate
+		{
+			get
+			{
+				return this._UpdatedDate;
+			}
+			set
+			{
+				if ((this._UpdatedDate != value))
+				{
+					this.OnUpdatedDateChanging(value);
+					this.SendPropertyChanging();
+					this._UpdatedDate = value;
+					this.SendPropertyChanged("UpdatedDate");
+					this.OnUpdatedDateChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Status", DbType="NVarChar(50) NOT NULL", CanBeNull=false)]
+		public string Status
+		{
+			get
+			{
+				return this._Status;
+			}
+			set
+			{
+				if ((this._Status != value))
+				{
+					this.OnStatusChanging(value);
+					this.SendPropertyChanging();
+					this._Status = value;
+					this.SendPropertyChanged("Status");
+					this.OnStatusChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Name="[Key]", Storage="_Key", DbType="NVarChar(255) NOT NULL", CanBeNull=false)]
+		public string Key
+		{
+			get
+			{
+				return this._Key;
+			}
+			set
+			{
+				if ((this._Key != value))
+				{
+					this.OnKeyChanging(value);
+					this.SendPropertyChanging();
+					this._Key = value;
+					this.SendPropertyChanged("Key");
+					this.OnKeyChanged();
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
 		}
 	}
 }

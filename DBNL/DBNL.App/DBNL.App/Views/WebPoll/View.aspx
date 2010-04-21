@@ -7,17 +7,17 @@
 		</div>
 		<div class="news_article"  style="min-height:0px;">
 			<div class="top_page clearfix">
-				<div class="pageitem fr"><a href="#"><img alt="b1" src="/images/icon_b1.png"></a>&nbsp;&nbsp;<a href="#"><img alt="b2" src="/images/icon_b2.png"></a>&nbsp;&nbsp;<a href="#"><img alt="b3" src="/images/icon_b3.png"></a></div>
+				<% Html.RenderPartial("ControlBar"); %>
 			</div>
 			<!--top page-->
 			<div class="news_article_detail">
-            <% Html.PollChart(Model, 640, 480, System.Web.UI.DataVisualization.Charting.SeriesChartType.Bar, this);%>
+            <% Html.PollChart(Model, 640, 480, System.Web.UI.DataVisualization.Charting.SeriesChartType.Pie, this);%>
 				</div>
 			<div class="clear"></div>
 		</div>
 		<div class="bottom_news_article">
 			<div class="top_page clearfix">
-				<div class="pageitem fr"><a href="#"><img alt="b1" src="images/icon_b1.png"></a>&nbsp;&nbsp;<a href="#"><img alt="b2" src="images/icon_b2.png"></a>&nbsp;&nbsp;<a href="#"><img alt="b3" src="images/icon_b3.png"></a></div>
+				<% Html.RenderPartial("ControlBar"); %>
 			</div>
 		</div>
 	</div>

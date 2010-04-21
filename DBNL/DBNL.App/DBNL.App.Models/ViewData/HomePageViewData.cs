@@ -12,11 +12,15 @@ namespace DBNL.App.Models.ViewData
         public PublicPollViewData PublicPoll { get; set; }
         public FeatureCategoryViewData FeaturedCategory { get; set; }
         public IEnumerable<ContentCategory> CategoriesOnHP { get; set; }
+        public IEnumerable<Job> JobsList { get; set; }
         public HomePageViewData()
         {
             PublicPoll = new PublicPollViewData();
             FeaturedCategory = new FeatureCategoryViewData();
             CategoriesOnHP = CategoryService.GetCategoriesShowOnHP();
+            JobsList = JobService.GetNewestJob(DBNLConfigurationManager.WebUI.JobDisplayOnHP);
+
+
         }
     }
     public class FeatureCategoryViewData{

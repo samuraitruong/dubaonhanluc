@@ -1,5 +1,5 @@
 ﻿<%@ Master Language="C#" Inherits="System.Web.Mvc.ViewMasterPage" %>
-
+<%@ Import Namespace="DBNL.App.Views.Shared" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
@@ -14,7 +14,7 @@
 
         <div id="header">
             <div id="title">
-                <h1>Web Content Administration System</h1>
+                <h1><% =BOMasterStrings.Title %></h1>
             </div>
               
             <div id="logindisplay">
@@ -29,6 +29,8 @@
                         { %>
                      <li><%= Html.ActionLink("Danh mục", "Index", "Navigation", new { area = "CMS" }, null)%></li>
                      <%} %>
+                     <li><%= Html.ActionLink("Nghề nghiệp", "Index", "Job", new { area = "CMS" }, null)%></li>
+
                      <% if (SessionManager.Profile.HasPermission(DBNL.App.Models.Statics.SiteModules.User))
                         { %>
                     <li><%= Html.ActionLink("Người quản trị", "Index", "User", new { area = "CMS" }, null)%></li>

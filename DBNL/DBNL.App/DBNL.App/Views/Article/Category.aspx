@@ -32,7 +32,7 @@
 			<!--top page-->
             <% foreach (var item in Model.ArticlesPagedList)
                {
-                   if (item.IsFeatured.HasValue && item.IsFeatured.Value == true)
+                   if (item.IsFeatured)
                    {
                    %>
                     <div class="im_news clearfix">

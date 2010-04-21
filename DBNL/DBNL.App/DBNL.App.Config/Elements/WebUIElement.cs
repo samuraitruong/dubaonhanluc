@@ -8,12 +8,17 @@ namespace DBNL.App.Config
 {
    public class WebUIElement : ConfigurationElement
     {
-
+       
         [ConfigurationProperty("articlePagingItem")]
-           public int ArticlePagingItem
-           {
-               get { return (int)this["articlePagingItem"]; }
-           }
+        public int ArticlePagingItem
+        {
+            get { return (int)this["articlePagingItem"]; }
+        }
+       [ConfigurationProperty("jobDisplayOnHP")]
+        public int JobDisplayOnHP
+        {
+            get { return (int)this["jobDisplayOnHP"]; }
+        }
        [ConfigurationProperty("marqueeItemCount")]
            public int MarqueeItemCount
            {

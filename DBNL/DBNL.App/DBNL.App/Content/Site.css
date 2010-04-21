@@ -209,13 +209,17 @@ legend
 
 input[type="text"] 
 {
-    width: 200px;
     border: 1px solid #CCC;
 }
 
+textarea
+{
+    width: 95%;
+    border: 1px solid #CCC;
+}
 input[type="password"] 
 {
-    width: 200px;
+    width: 95%;
     border: 1px solid #CCC;
 }
 
@@ -273,6 +277,7 @@ div#title
     text-align:right;
     margin:10px;
     color:White;
+    overflow:auto;
 }
 
 #logindisplay a:link
@@ -332,6 +337,14 @@ div#title
     margin: 0.5em 0;
 }
 
+.editor-field input[type='text']
+{
+    width: 95%;
+}
+.editor-label 
+{
+    font-weight :bolder;
+}
 .text-box
 {
     width: 30em;
@@ -376,4 +389,30 @@ div#title
 .Edit img
 {
     border:none;
+}
+.DatePicker 
+{
+    width: 150px !important;
+}
+.ui-paging-info,
+.ui-pg-div 
+{
+    font-size:0.86em;
+}
+ul.Language 
+{
+    padding-left:660px;
+}
+ul.Language  li
+{
+    float:left;
+    padding-left: 25px;
+    list-style-type:none;
+}
+ul.Language  li a,
+ul.Language  li a.link,
+ul.Language  li a.visited
+{
+    text-decoration: none;
+    
 }

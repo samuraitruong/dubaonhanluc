@@ -9,7 +9,23 @@ $(document).ready(function () {
     var menuItem = $("li[rel='" + curentUrl + "']");
     if (menuItem != null) menuItem.addClass("active");
 
-   // $("li").each(function() {alert($(this).attr('rel'))});
+    $(".pageitem a[rel='CtrlBack']").each(function () {
+        $(this).click(function () {
+            window.history.go(-1);
+            return false;
+        });
+    });
 
+    $("#saveBookmark").click(function () {
+        alert('av');
+        if (document.all)
+            window.external.AddFavorite(document.location.href, document.title)//IE
+        window.sidebar.addPanel(document.location.href, document.title, ''); //Moz
+
+
+        return false;
+
+    });
 });
-  
+
+

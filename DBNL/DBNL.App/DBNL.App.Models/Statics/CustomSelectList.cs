@@ -31,9 +31,8 @@ namespace DBNL.App.Models.Statics
        public static IEnumerable<SelectListItem> CreateBannerStatus()
        {
            List<SelectListItem> statList = new List<SelectListItem>();
-           statList.Add(new SelectListItem() { Text = "Kích hoạt", Value = BannerStatus.Active.ToString() });
-           statList.Add(new SelectListItem() { Text = "Công khai", Value = BannerStatus.Public.ToString() });
-           statList.Add(new SelectListItem() { Text = "Không kích hoạt", Value = BannerStatus.Inactive.ToString() });
+           statList.Add(new SelectListItem() { Text = "Kích hoạt", Value = EntityStatuses.Actived.ToString() });
+           statList.Add(new SelectListItem() { Text = "Không kích hoạt", Value = EntityStatuses.Inactive.ToString() });
            return statList;
        }
 

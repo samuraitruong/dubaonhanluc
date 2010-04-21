@@ -55,7 +55,7 @@
                 <%= Html.LabelFor(model => model.IsFeatured) %>
             </div>
             <div class="editor-field">
-                <%= Html.CheckBox("IsFeatured", Model.IsFeatured.Value) %>
+                <%= Html.CheckBox("IsFeatured", Model.IsFeatured) %>
                 <%= Html.ValidationMessageFor(model => model.IsFeatured) %>
             </div>
             

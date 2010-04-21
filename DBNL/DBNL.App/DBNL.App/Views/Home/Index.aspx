@@ -26,7 +26,7 @@
         <%= Html.BannerList(Data.TopBanners)%>
      </div>
 		    <!--logo-->
-    <% Html.RenderPartial("NewestJobControl"); %>
+    <% Html.RenderPartial("NewestJobControl", Model.JobsList); %>
 
     <div class="banner">
         <%= Html.BannerList(Data.RightBanners, 204)%>
