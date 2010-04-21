@@ -23,7 +23,7 @@ namespace DBNL.App.Models.Extensions
             Chart1.Series.Add("Default");
             Chart1.ChartAreas.Add("ChartArea1");
             Chart1.Series["Default"].Points.DataBindXY(labels, values);
-
+            
             // Set Doughnut chart type
             Chart1.Series["Default"].ChartType = ChartType;
             Chart1.Series["Default"].Label = "#VALX (#VAL/#PERCENT)";
@@ -63,6 +63,19 @@ namespace DBNL.App.Models.Extensions
             }
             Chart(helper, data.ActivePoll.PollName, values, labels, width, height, SeriesChartType.Pie, page);
         }
+        public static void PollChart(this HtmlHelper<DBNL.App.Models.ViewData.PublicPollViewData> helper, PublicPollViewData data, int width, int height, SeriesChartType type, Page page)
+        {
+            List<int> values = new List<int>();
+            List<string> labels = new List<string>();
+            foreach (var item in data.Questions)
+            {
+                values.Add(item.Responses);
+                labels.Add(item.Question);
+            }
+            Chart(helper, data.ActivePoll.PollName, values, labels, width, height,type, page);
+        }
+
+
 
         public static string BannerList(this HtmlHelper helper , IEnumerable<Banner>  banners){
             StringBuilder sb = new StringBuilder();

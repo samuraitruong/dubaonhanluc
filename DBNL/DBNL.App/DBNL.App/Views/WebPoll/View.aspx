@@ -11,7 +11,7 @@
 			</div>
 			<!--top page-->
 			<div class="news_article_detail">
-            <% Html.PollChart(Model, 640, 480, this);%>
+            <% Html.PollChart(Model, 640, 480, System.Web.UI.DataVisualization.Charting.SeriesChartType.Bar, this);%>
 				</div>
 			<div class="clear"></div>
 		</div>
