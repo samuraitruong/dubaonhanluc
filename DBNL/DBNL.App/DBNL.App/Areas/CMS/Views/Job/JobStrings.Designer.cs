@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace DBNL.App.Models.Entities {
+namespace DBNL.App.Areas.CMS.Views.Job {
     using System;
     
     
@@ -22,14 +22,14 @@ namespace DBNL.App.Models.Entities {
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "4.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    public class Job {
+    public class JobStrings {
         
         private static global::System.Resources.ResourceManager resourceMan;
         
         private static global::System.Globalization.CultureInfo resourceCulture;
         
         [global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode")]
-        internal Job() {
+        internal JobStrings() {
         }
         
         /// <summary>
@@ -39,7 +39,7 @@ namespace DBNL.App.Models.Entities {
         public static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("DBNL.App.Models.Entities.Job", typeof(Job).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("DBNL.App.Areas.CMS.Views.Job.JobStrings", typeof(JobStrings).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;
@@ -61,11 +61,11 @@ namespace DBNL.App.Models.Entities {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Job Title.
+        ///   Looks up a localized string similar to List all jobs avaiable at the moment..
         /// </summary>
-        public static string Title {
+        public static string Index_Title {
             get {
-                return ResourceManager.GetString("Title", resourceCulture);
+                return ResourceManager.GetString("Index.Title", resourceCulture);
             }
         }
     }

@@ -117,19 +117,16 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="Job_Company" xml:space="preserve">
-    <value>Công ty</value>
+  <data name="Company" xml:space="preserve">
+    <value>Tên Công ty</value>
   </data>
-  <data name="Job_Deadline" xml:space="preserve">
-    <value>Hạn nộp hồ sơ</value>
+  <data name="CompanyRequiredMessage" xml:space="preserve">
+    <value>Tên công ty bắt buộc phải nhập.</value>
   </data>
-  <data name="Job_Description" xml:space="preserve">
-    <value>Mô tả</value>
+  <data name="Title" xml:space="preserve">
+    <value>Tên công việc</value>
   </data>
-  <data name="Job_Detail" xml:space="preserve">
-    <value>Mô tả chi tiết</value>
-  </data>
-  <data name="Job_Title" xml:space="preserve">
-    <value>Tên Công Việc</value>
+  <data name="TitleRequiredMessage" xml:space="preserve">
+    <value>Bạn phải nhập tên công việc.</value>
   </data>
 </root>

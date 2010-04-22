@@ -16,13 +16,13 @@ namespace DBNL.App.Models
     {
         public class JobMetaData
         {
-            //[LocalizedDisplayName("Title", NameResourceType = typeof(Entities.Job))]
-            //[Required(ErrorMessageResourceName = "Job_Title", ErrorMessageResourceType = typeof(DataAnnotations))]
-            //public string Title { get; set; }
+           [LocalizedDisplayName(DisplayNameResourceName = "Title", DisplayNameResourceType = typeof(DBNL.App.Models.Resources.JobStrings))]
+           [Required(ErrorMessageResourceName = "TitleRequiredMessage", ErrorMessageResourceType = typeof(DBNL.App.Models.Resources.JobStrings))]
+            public string Title { get; set; }
 
-            //[LocalizedDisplayName("Job_Company")]
-            //[Required(ErrorMessageResourceName = "Job_Company", ErrorMessageResourceType = typeof(DataAnnotations))]
-            //public string Company { get; set; }
+           [LocalizedDisplayName(DisplayNameResourceName = "Company", DisplayNameResourceType = typeof(DBNL.App.Models.Resources.JobStrings))]
+           [Required(ErrorMessageResourceName = "CompanyRequiredMessage", ErrorMessageResourceType = typeof(DBNL.App.Models.Resources.JobStrings))]
+           public string Company { get; set; }
         }
 
     }
