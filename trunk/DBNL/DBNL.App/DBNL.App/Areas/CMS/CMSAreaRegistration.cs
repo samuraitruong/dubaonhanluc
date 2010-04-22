@@ -16,7 +16,7 @@ namespace DBNL.App.Areas.CMS
         {
             context.MapRoute(
                 "CMS_default",
-                "CMS/{controller}/{action}/{id}",
+                "CMS/{controller}.aspx/{action}/{id}",
                 new { action = "Index", controller="Administrations" ,id = UrlParameter.Optional }
             );
         }
