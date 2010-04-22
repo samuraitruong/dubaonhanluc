@@ -108,18 +108,8 @@
     <Compile Include="Entities\Banner.cs" />
     <Compile Include="Entities\Content.cs" />
     <Compile Include="Entities\ContentCategory.cs" />
-    <Compile Include="Entities\DisplayNames.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>DisplayNames.resx</DependentUpon>
-    </Compile>
     <Compile Include="Entities\Job.cs" />
     <Compile Include="Entities\EntitiesBase.cs" />
-    <Compile Include="Entities\Job.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Job.resx</DependentUpon>
-    </Compile>
     <Compile Include="Entities\Navigation.cs" />
     <Compile Include="Entities\Pagination.cs">
       <SubType>ASPXCodeBehind</SubType>
@@ -144,6 +134,16 @@
       <AutoGen>True</AutoGen>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
       <DependentUpon>Settings.settings</DependentUpon>
+    </Compile>
+    <Compile Include="Resources\JobStrings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>JobStrings.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Resources\Resource1.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resource1.resx</DependentUpon>
     </Compile>
     <Compile Include="Sample.cs" />
     <Compile Include="Statics\StaticEnums.cs" />
@@ -210,20 +210,17 @@
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>DataAnnotations.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <EmbeddedResource Include="Entities\DisplayNames.resx">
+    <EmbeddedResource Include="Resources\JobStrings.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
-      <LastGenOutput>DisplayNames.Designer.cs</LastGenOutput>
+      <LastGenOutput>JobStrings.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <EmbeddedResource Include="Entities\DisplayNames.vi-VN.resx" />
-    <EmbeddedResource Include="Entities\Job.resx">
-      <DependentUpon>Job.cs</DependentUpon>
-      <Generator>PublicResXFileCodeGenerator</Generator>
-      <LastGenOutput>Job.Designer.cs</LastGenOutput>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Entities\Job.vi.resx">
-      <DependentUpon>Job.cs</DependentUpon>
+    <EmbeddedResource Include="Resources\JobStrings.vi.resx" />
+    <EmbeddedResource Include="Resources\Resource1.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resource1.Designer.cs</LastGenOutput>
     </EmbeddedResource>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
@@ -232,4 +229,7 @@
   <Target Name="AfterBuild">
   </Target>
   -->
+  <!--<Target Name="BeforeBuild" Outputs="Properties\Resources.cs">
+    <Exec Command="C:\...0\resGen /str:c# /publicClass Properties\Resources.resx"/>
+  </Target>-->
 </Project>

@@ -6,11 +6,11 @@
 
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
 
-    <h2>Index</h2>
+    <h2><% = DBNL.App.Areas.CMS.Views.Job.JobStrings.Index_Title %></h2>
     <div>
         <table id="grid" cellpadding="0" cellspacing="0">
         </table>
-        <div id="pager" style="text-align: center;">
+        <div id="pager" style="text-align: center;"/>
         
     </div>
     <p>

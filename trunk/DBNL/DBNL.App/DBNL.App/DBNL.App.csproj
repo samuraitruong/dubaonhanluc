@@ -98,6 +98,11 @@
     <Compile Include="Areas\CMS\Controllers\SecurityController.cs" />
     <Compile Include="Areas\CMS\Controllers\SupporterController.cs" />
     <Compile Include="Areas\CMS\Controllers\UserController.cs" />
+    <Compile Include="Areas\CMS\Views\Job\JobStrings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>JobStrings.resx</DependentUpon>
+    </Compile>
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\AdminController.cs" />
     <Compile Include="Controllers\ArticleController.cs" />
@@ -2099,6 +2104,11 @@
     <Folder Include="Scripts\FileManager\trunk\" />
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="Areas\CMS\Views\Job\JobStrings.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>JobStrings.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Areas\CMS\Views\Job\JobStrings.vi.resx" />
     <EmbeddedResource Include="Views\Shared\BOMasterStrings.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>BOMasterStrings.Designer.cs</LastGenOutput>

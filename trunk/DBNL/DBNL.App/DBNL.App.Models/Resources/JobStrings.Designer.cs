@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace DBNL.App.Models.Entities {
+namespace DBNL.App.Models.Resources {
     using System;
     
     
@@ -22,14 +22,14 @@ namespace DBNL.App.Models.Entities {
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "4.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    public class DisplayNames {
+    public class JobStrings {
         
         private static global::System.Resources.ResourceManager resourceMan;
         
         private static global::System.Globalization.CultureInfo resourceCulture;
         
         [global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode")]
-        internal DisplayNames() {
+        internal JobStrings() {
         }
         
         /// <summary>
@@ -39,7 +39,7 @@ namespace DBNL.App.Models.Entities {
         public static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("DBNL.App.Models.Entities.DisplayNames", typeof(DisplayNames).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("DBNL.App.Models.Resources.JobStrings", typeof(JobStrings).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;
@@ -61,47 +61,38 @@ namespace DBNL.App.Models.Entities {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Công ty.
+        ///   Looks up a localized string similar to Company Name.
         /// </summary>
-        public static string Job_Company {
+        public static string Company {
             get {
-                return ResourceManager.GetString("Job_Company", resourceCulture);
+                return ResourceManager.GetString("Company", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Hạn nộp hồ sơ.
+        ///   Looks up a localized string similar to Company name  is required..
         /// </summary>
-        public static string Job_Deadline {
+        public static string CompanyRequiredMessage {
             get {
-                return ResourceManager.GetString("Job_Deadline", resourceCulture);
+                return ResourceManager.GetString("CompanyRequiredMessage", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Mô tả.
+        ///   Looks up a localized string similar to Job Title.
         /// </summary>
-        public static string Job_Description {
+        public static string Title {
             get {
-                return ResourceManager.GetString("Job_Description", resourceCulture);
+                return ResourceManager.GetString("Title", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Mô tả chi tiết.
+        ///   Looks up a localized string similar to Job title is required..
         /// </summary>
-        public static string Job_Detail {
+        public static string TitleRequiredMessage {
             get {
-                return ResourceManager.GetString("Job_Detail", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Tên Công Việc.
-        /// </summary>
-        public static string Job_Title {
-            get {
-                return ResourceManager.GetString("Job_Title", resourceCulture);
+                return ResourceManager.GetString("TitleRequiredMessage", resourceCulture);
             }
         }
     }
