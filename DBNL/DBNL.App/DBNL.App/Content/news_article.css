@@ -19,6 +19,7 @@
 	line-height:28px;
 	color:#333;
 	font-size:12px;
+	float:left;
 	font-weight:bold;
 }
 #wrap_dm #hot_news .news_article .top_page .pageitem a { color:#333;}
@@ -117,11 +118,12 @@ ul.k_ss_im_news li { display:inline; float:left; width:300px; min-height:140px; 
 	height:28px;
 }
 .bottom_news_article .top_page .pageitem {
-	width:350px;
+	width:auto;
 	line-height:28px;
 	color:#333;
 	font-size:12px;
 	font-weight:bold;
+	float:left;
 }
 .bottom_news_article .top_page .pageitem a { color:#333;}
 .bottom_news_article .top_page .pageitem a:hover, .bottom_news_article .top_page .pageitem a.active { color:#f00; text-decoration:none;}
@@ -153,3 +155,26 @@ ul.k_otherpage { margin:0;}
 ul.k_otherpage li { padding-bottom:9px; color:#333; font-size:12px;}
 ul.k_otherpage li a { background:url(../images/icon_cont2.jpg) 2px 1px no-repeat; color:#666; padding-left:16px;}
 ul.k_otherpage li a:hover { background:url(../images/icon_cont2_hover.jpg) 2px 1px no-repeat; color:#ff5300; text-decoration:none;}
+
+.PagerContainer 
+{
+    float:right;
+    width:auto;
+}
+ul.Path
+{
+    float:left;
+}
+ul.Path li
+{
+    float:left;
+    list-style-type:none;
+    color: #ffffff;
+    font-weight:bolder;
+    padding-left:15px;
+}
+ul.Path li a {
+background:url("../images/icon_a_title.jpg") no-repeat scroll 5px center transparent;
+color:#FFFFFF;
+padding-left:20px;
+}

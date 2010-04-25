@@ -22,23 +22,46 @@ namespace DBNL.App
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
             AreaRegistration.RegisterAllAreas();
             routes.MapRoute(
+                "Category-View-Route",
+                "{category}_{page}.aspx",
+                new
+                {
+                    controller = "Article",
+                    action = "ViewCategory",
+                    page=1
+                });
+
+            routes.MapRoute(
+                "Content-View-Route",
+                "{category}/{contentkey}.aspx",
+                new
+                {
+                    controller = "Article",
+                    action = "ViewContent",
+                });
+
+            routes.MapRoute(
                 "Default",                                              // Route name
                 "{controller}.aspx/{action}/{id}",                           // URL with parameters
                 new { controller = "Home", action = "Index", id = "" }  // Parameter defaults
                 //new string[] { "DBNL.App.Controllers" }
             );
 
+            
+
+          
         }
 
         protected void Application_Start()
         {
             
             RegisterRoutes(RouteTable.Routes);
-            FormsAuthentication.SignOut();
+            
         }
         void Session_Start(object sender, EventArgs e)
         {
             // Code that runs when a new session is started
+            FormsAuthentication.SignOut();
             string sessionId = Session.SessionID;
         }
         void Session_End(object sender, EventArgs e)

@@ -117,7 +117,55 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="Banner" xml:space="preserve">
+    <value>Banners</value>
+  </data>
+  <data name="BOHome" xml:space="preserve">
+    <value>Home BO</value>
+  </data>
+  <data name="Contact" xml:space="preserve">
+    <value>Contacts</value>
+  </data>
+  <data name="Content" xml:space="preserve">
+    <value>Contents</value>
+  </data>
+  <data name="En" xml:space="preserve">
+    <value>En</value>
+  </data>
+  <data name="Group" xml:space="preserve">
+    <value>Group Permission</value>
+  </data>
+  <data name="Home" xml:space="preserve">
+    <value>Home Page</value>
+  </data>
+  <data name="Job" xml:space="preserve">
+    <value>Careers</value>
+  </data>
+  <data name="Link" xml:space="preserve">
+    <value>Links</value>
+  </data>
+  <data name="LogOff" xml:space="preserve">
+    <value>Log Off</value>
+  </data>
+  <data name="Menu" xml:space="preserve">
+    <value>Menus</value>
+  </data>
+  <data name="Servey" xml:space="preserve">
+    <value>Serveys</value>
+  </data>
+  <data name="Support" xml:space="preserve">
+    <value>Supportters </value>
+  </data>
   <data name="Title" xml:space="preserve">
     <value>Web Content Administration System</value>
+  </data>
+  <data name="User" xml:space="preserve">
+    <value>Administrators</value>
+  </data>
+  <data name="Vn" xml:space="preserve">
+    <value>Vn</value>
+  </data>
+  <data name="Welcome" xml:space="preserve">
+    <value>Welcome</value>
   </data>
 </root>

@@ -54,11 +54,11 @@
                 <%= Html.ValidationMessage("Component", "*")%>
             </div>
             <div class="editor-label ContentId">
-                <%= Html.LabelFor(model => model.ContentId) %>
+                <%= Html.LabelFor(model => model.CategoryId)%>
             </div>
             <div class="editor-field ContentId">
                 <%= Html.DropDownList("ContentId", data.Categories, new { width = 150 })%>
-                <%= Html.ValidationMessageFor(model => model.ContentId) %>
+                <%= Html.ValidationMessageFor(model => model.CategoryId)%>
             </div>
 
             <div class="editor-label ExternalUrl">
@@ -68,6 +68,20 @@
                 <%= Html.TextBoxFor(model => model.ExternalUrl) %>
                 <%= Html.ValidationMessageFor(model => model.ExternalUrl) %>
             </div>
+             <div class="editor-label ArticleId">
+                <%= Html.LabelFor(model => model.CategoryId)%>
+            </div>
+            <div class="editor-field ArticleId">
+                <%=Html.DropDownList("ContentId", data.OrphanArticles)%>
+                <%= Html.ValidationMessageFor(model => model.CategoryId)%>
+            </div>
+
+             <p id="articleLink">
+                <label for="ExternalUrl">Chọn bài viết:</label>
+                 
+                
+            </p>
+
             <p>
                 <input type="submit" value="Save" />
             </p>
@@ -91,15 +105,20 @@
     function ShowHide(val) {
         $(".ContentId").hide();
         $(".ExternalUrl").hide();
+        $(".ArticleId").hide();
         if (val == 'Article') {
             $(".ContentId").show();
         }
         else if (val == 'Url') {
             $(".ExternalUrl").show();
         }
+        else if (val == 'Post') {
+            $(".ArticleId").show();
+        }
         else {
             $(".ContentId").hide();
             $(".ExternalUrl").hide();
+            $(".ArticleId").hide();
         }
     }
     $(document).ready(function () {

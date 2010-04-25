@@ -12,10 +12,10 @@
                <div class="hn tnb clearfix">
 					<div class="pic">
                     
-						<a href="<%= Url.Action("View","Article", new {id=item.ContentId})%>"><img width="115" alt="nguonnhanluc" src="<% =item.ThumbnailUrl %>"/></a>
+						<a href="<%= Url.ContentLink(item)%>"><img width="115" alt="nguonnhanluc" src="<% =item.ThumbnailUrl %>"/></a>
 					</div>
 					<div class="des">
-						<h3><%=Html.ActionLink(item.Title, "View", "Article", new { id= item.ContentId}, null)%> <small><%= item.UpdatedDate.ToString("dd/MM/yyyy") %></small></h3>
+						<h3><%= Html.ContentLink(item)%> <small><%= item.UpdatedDate.ToString("dd/MM/yyyy") %></small></h3>
 						<p>&nbsp;&nbsp; <%=item.Description.Substring(0,Math.Min(150, item.Description.Length)) %> </p>
 					</div>	
 				</div>
@@ -27,7 +27,7 @@
                 <% foreach (var item1 in Model.Articles)
                     { %>
                        
-                          <li><%=Html.ActionLink(item1.Title, "View","Article" ,new {id=item1.ContentId}, null) %></li> 
+                          <li><%= Html.ContentLink(item1)%></li> 
                        
                    <%} %>
 				</ul>

@@ -1,11 +1,13 @@
 ﻿<%@ Master Language="C#" Inherits="System.Web.Mvc.ViewMasterPage" %>
 <%@ Import Namespace="DBNL.App.Views.Shared" %>
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
     <title><asp:ContentPlaceHolder ID="TitleContent" runat="server" /></title>
     <%Html.RenderPartial("ScriptsControl"); %>
     <asp:ContentPlaceHolder ID="headerPlaceHolder" runat="server"></asp:ContentPlaceHolder>
+
     
 </head>
 
@@ -23,43 +25,45 @@
             <div style="clear:both" />
             <div id="menucontainer">
             <ul id="menu">              
-                     <li><%= Html.ActionLink("Trang chủ", "Index", "Home", new { area = "" }, null)%></li>
-                     <li><%= Html.ActionLink("Nội dung", "Index", "Categories", new { area = "CMS" }, null)%></li>
+                     <li><%= Html.ActionLink(BOMasterStrings.Home, "Index", "Home", new { area = "" }, null)%></li>
+                     <li><%= Html.ActionLink(BOMasterStrings.BOHome, "Index", "Administrations", new { area = "CMS" }, null)%></li>
+
+                     <li><%= Html.ActionLink(BOMasterStrings.Content, "Index", "Categories", new { area = "CMS" }, null)%></li>
                      <% if (SessionManager.Profile.HasPermission(DBNL.App.Models.Statics.SiteModules.MenuNavigation))
                         { %>
-                     <li><%= Html.ActionLink("Danh mục", "Index", "Navigation", new { area = "CMS" }, null)%></li>
+                     <li><%= Html.ActionLink(BOMasterStrings.Menu, "Index", "Navigation", new { area = "CMS" }, null)%></li>
                      <%} %>
-                     <li><%= Html.ActionLink("Nghề nghiệp", "Index", "Job", new { area = "CMS" }, null)%></li>
+                     <li><%= Html.ActionLink(BOMasterStrings.Job, "Index", "Job", new { area = "CMS" }, null)%></li>
 
                      <% if (SessionManager.Profile.HasPermission(DBNL.App.Models.Statics.SiteModules.User))
                         { %>
-                    <li><%= Html.ActionLink("Người quản trị", "Index", "User", new { area = "CMS" }, null)%></li>
+                    <li><%= Html.ActionLink(BOMasterStrings.User, "Index", "User", new { area = "CMS" }, null)%></li>
                     <%} %>
                      <% if (SessionManager.Profile.HasPermission(DBNL.App.Models.Statics.SiteModules.Role))
                         { %>
-                    <li><%= Html.ActionLink("Nhóm", "Index", "Roles", new { area = "CMS" }, null)%></li>
+                    <li><%= Html.ActionLink(BOMasterStrings.Group, "Index", "Roles", new { area = "CMS" }, null)%></li>
                     <%} %>
                     <% if (SessionManager.Profile.HasPermission(DBNL.App.Models.Statics.SiteModules.WebLink))
                        { %>
-                     <li><%= Html.ActionLink("Liên kết website", "Index", "Link", new { area = "CMS" }, null)%></li>
+                     <li><%= Html.ActionLink(BOMasterStrings.Link, "Index", "Link", new { area = "CMS" }, null)%></li>
                      <%} %>
                      <% if (SessionManager.Profile.HasPermission(DBNL.App.Models.Statics.SiteModules.Poll))
                         { %>
-                     <li><%= Html.ActionLink("Khảo sát ý kiến", "Index", "Poll", new { area = "CMS" }, null)%></li>
+                     <li><%= Html.ActionLink(BOMasterStrings.Servey, "Index", "Poll", new { area = "CMS" }, null)%></li>
                      <%} %>
                      
                      <% if (SessionManager.Profile.HasPermission(DBNL.App.Models.Statics.SiteModules.Supportter)) { %>
-                     <li><%= Html.ActionLink("Hổ trợ", "Index", "Supporter", new { area = "CMS" }, null)%></li>
+                     <li><%= Html.ActionLink(BOMasterStrings.Support, "Index", "Supporter", new { area = "CMS" }, null)%></li>
                      <%} %>
 
                      <% if (SessionManager.Profile.HasPermission(DBNL.App.Models.Statics.SiteModules.Banner))
                         { %>
-                      <li><%= Html.ActionLink("Banners", "Index", "Banner", new { area = "CMS" }, null)%></li>
+                      <li><%= Html.ActionLink(BOMasterStrings.Banner, "Index", "Banner", new { area = "CMS" }, null)%></li>
                       <%} %>
                      
                      <% if (SessionManager.Profile.HasPermission(DBNL.App.Models.Statics.SiteModules.Contact))
                         { %>
-                     <li><%= Html.ActionLink("Liện Hệ", "Index", "Contact", new { area = "CMS" }, null)%></li>
+                     <li><%= Html.ActionLink(BOMasterStrings.Contact, "Index", "Contact", new { area = "CMS" }, null)%></li>
                      <%} %>
                 </ul>
             

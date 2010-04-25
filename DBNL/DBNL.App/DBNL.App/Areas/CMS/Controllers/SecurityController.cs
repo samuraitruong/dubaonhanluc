@@ -20,13 +20,13 @@ namespace DBNL.App.Areas.CMS.Controllers
             SessionManager.Profile = null;
             FormsAuthentication.SignOut();
            return  RedirectToAction("LogOn", "Security");
-            return View();
+            
         }
 
         public ActionResult LogOn()
         {
             SessionManager.Profile = null;
-            //throw new Exception(FormsAuthentication.HashPasswordForStoringInConfigFile("spadmin", "MD5"));
+            FormsAuthentication.SignOut();
             return View();
         }
         private ActionResult RedirectFromLoginPage(string userName, string ReturnUrl)

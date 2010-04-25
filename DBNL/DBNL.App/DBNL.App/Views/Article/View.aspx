@@ -6,8 +6,8 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
     <div class="ex" id="hot_news">
 		<div class="top_hot_news">
-			<h2>Danh mục nổi bật
-            <% = Html.ActionLink(Model.Content.ContentCategory.CategoryName, "Category", "Article", new { id= Model.Content.CategoryId}, null) %>
+			<h2><% =Html.Label(Model.Content.ContentCategory.ContentCategory1 != null ? Model.Content.ContentCategory.ContentCategory1.CategoryName : "")%>
+            <% = Html.CategoryLink(Model.Content.ContentCategory) %>
             </h2>
 		</div>
 		<div class="news_article">

@@ -30,6 +30,24 @@ namespace DBNL.App.Controllers
             return View();
         }
 
+       
+        public ActionResult ViewCategory(string category, int? page)
+        {
+            int id = 1;
+            //return RedirectToAction("Category", new { id = 1, page = page });
+            Models.ContentCategory Cat = CategoryService.GetByKey(category);
+
+            ViewData.Model = new CategoryViewData()
+            {
+                Category = Cat,
+                Articles = ContentService.GetContentByCategoryId(Cat.ID),
+                FeaturedArticles = ContentService.GetFeaturedArtileByCategoryId(Cat.ID),
+                ArticlesPagedList = ContentService.All(Cat.ID).ToPagedList(page.HasValue ? page.Value - 1 : 0, DBNLConfigurationManager.WebUI.ArticlePagingItem)
+
+            };
+            return View("~/Views/Article/Category.aspx");
+        }
+
         public ActionResult Index()
         {
             return View();
@@ -43,6 +61,18 @@ namespace DBNL.App.Controllers
             return View();
         }
 
+        public ActionResult ViewContent(string contentkey)
+        {
+            DBNL.App.Models.Content content = ContentService.GetContentByKey(contentkey);
+
+            ViewData.Model = new ViewContentDataView()
+            {
+                Content = content,
+                FeaturedContents = ContentService.GetFeaturedArtileByCategoryId(content.CategoryId),
+                OtherNewses = ContentService.GetOlderNews(content)
+            };
+            return View("~/Views/Article/View.aspx");
+        }
         public ActionResult View(int id)
         {
             DBNL.App.Models.Content content = ContentService.GetContentById(id);

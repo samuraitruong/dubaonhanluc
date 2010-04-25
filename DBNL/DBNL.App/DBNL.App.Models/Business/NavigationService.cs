@@ -36,12 +36,13 @@ namespace DBNL.App.Models.Business
         {
             nv.CreatedDate = DateTime.Now;
             nv.UpdatedDate = DateTime.Now;
+            nv.DisplayOrder = 1;
             if(nv.ParentId.HasValue && nv.ParentId.Value ==0) nv.ParentId = new Nullable<int>();
             nv.Status = EntityStatuses.Actived.ToString();
 
             if (nv.Component == SiteModules.Article.ToString())
             {
-                if (!nv.ContentId.HasValue || nv.ContentId.Value == 0)
+                if (!nv.CategoryId.HasValue || nv.CategoryId.Value == 0)
                 {
                     ContentCategory cat = new ContentCategory()
                     {
@@ -58,7 +59,7 @@ namespace DBNL.App.Models.Business
                     Navigation parent = GetItem(nv.ParentId.HasValue? nv.ParentId.Value: 0);
                     if (parent != null && parent.Component == SiteModules.Article.ToString())
                     {
-                        cat.ParentCategoryId = parent.ContentId;
+                        cat.ParentCategoryId = parent.CategoryId;
                     }
                     nv.Controller = DBNL.App.Models.Statics.Controllers.Article.ToString();
                     nv.Action = DBNL.App.Models.Statics.Actions.Category.ToString();
@@ -67,7 +68,7 @@ namespace DBNL.App.Models.Business
 
                     Categories.InsertOnSubmit(cat);
                     Commit();
-                    nv.ContentId = cat.ID;
+                    nv.CategoryId = cat.ID;
                 }
             }
             Navigations.InsertOnSubmit(nv);
@@ -153,7 +154,7 @@ namespace DBNL.App.Models.Business
             original.Area = navigation.Area;
             original.Component = navigation.Component;
             original.Position = navigation.Position;
-            original.ContentId = navigation.ContentId;
+            original.CategoryId = navigation.CategoryId;
             original.Controller = navigation.Controller;
             original.DisplayOrder = navigation.DisplayOrder;
             original.ExternalUrl = navigation.ExternalUrl;

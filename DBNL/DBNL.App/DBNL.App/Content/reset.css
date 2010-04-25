@@ -1,0 +1,21 @@
+﻿body {
+}
+html,
+body,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+h7,
+p,
+div,
+ul,
+li,
+form,
+ol { display:block; margin:0; padding:0; font:normal 12px Arial, Helvetica, sans-serif; list-style:none; outline:none; color:#666666; }
+a { text-decoration:none; outline:none; }
+a:link { outline:none; }
+a:visited { outline:none; } 
+a:active { outline:none; }

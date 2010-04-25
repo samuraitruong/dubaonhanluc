@@ -105,46 +105,6 @@
       <Column Name="BannerPosition" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
     </Type>
   </Table>
-  <Table Name="artseed.ContentCategory" Member="ContentCategories">
-    <Type Name="ContentCategory">
-      <Column Name="ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
-      <Column Name="CategoryName" Type="System.String" DbType="NVarChar(150) NOT NULL" CanBeNull="false" />
-      <Column Name="[Key]" Member="Key" Type="System.String" DbType="NVarChar(150) NOT NULL" CanBeNull="false" />
-      <Column Name="ParentCategoryId" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="IsFeatured" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
-      <Column Name="ShowOnHP" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
-      <Column Name="CreatedDate" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
-      <Column Name="UpdatedDate" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
-      <Column Name="Status" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
-      <Association Name="ContentCategory_ContentCategory" Member="ContentCategories" ThisKey="ID" OtherKey="ParentCategoryId" Type="ContentCategory" />
-      <Association Name="ContentCategory_Navigation" Member="Navigations" ThisKey="ID" OtherKey="ContentId" Type="Navigation" />
-      <Association Name="ContentCategory_Content" Member="Contents" ThisKey="ID" OtherKey="CategoryId" Type="Content" />
-      <Association Name="ContentCategory_ContentCategory" Member="ContentCategory1" ThisKey="ParentCategoryId" OtherKey="ID" Type="ContentCategory" IsForeignKey="true" />
-    </Type>
-  </Table>
-  <Table Name="artseed.Navigation" Member="Navigations">
-    <Type Name="Navigation">
-      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
-      <Column Name="Name" Type="System.String" DbType="NVarChar(250) NOT NULL" CanBeNull="false" />
-      <Column Name="ParentId" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="Position" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
-      <Column Name="Status" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
-      <Column Name="RelativeUrl" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
-      <Column Name="DisplayOrder" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="Image" Type="System.String" DbType="NVarChar(150)" CanBeNull="true" />
-      <Column Name="ContentId" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="Component" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
-      <Column Name="ExternalUrl" Type="System.String" DbType="VarChar(250)" CanBeNull="true" />
-      <Column Name="Action" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
-      <Column Name="Controller" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
-      <Column Name="Area" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
-      <Column Name="CreatedDate" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
-      <Column Name="UpdatedDate" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
-      <Association Name="Navigation_Navigation" Member="Navigations" ThisKey="Id" OtherKey="ParentId" Type="Navigation" />
-      <Association Name="ContentCategory_Navigation" Member="ContentCategory" ThisKey="ContentId" OtherKey="ID" Type="ContentCategory" IsForeignKey="true" />
-      <Association Name="Navigation_Navigation" Member="Navigation1" ThisKey="ParentId" OtherKey="Id" Type="Navigation" IsForeignKey="true" />
-    </Type>
-  </Table>
   <Table Name="artseed.Content" Member="Contents">
     <Type Name="Content">
       <Column Name="ContentId" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
@@ -161,6 +121,7 @@
       <Column Name="Picture" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
       <Association Name="Content_ContentRelation" Member="ContentRelations" ThisKey="ContentId" OtherKey="ContentId" Type="ContentRelation" />
       <Association Name="Content_ContentRelation1" Member="ContentRelations1" ThisKey="ContentId" OtherKey="RelatedId" Type="ContentRelation" />
+      <Association Name="Content_Navigation" Member="Navigations" ThisKey="ContentId" OtherKey="ContentId" Type="Navigation" />
       <Association Name="ContentCategory_Content" Member="ContentCategory" ThisKey="CategoryId" OtherKey="ID" Type="ContentCategory" IsForeignKey="true" />
     </Type>
   </Table>
@@ -177,6 +138,49 @@
       <Column Name="UpdatedDate" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
       <Column Name="Status" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
       <Column Name="[Key]" Member="Key" Type="System.String" DbType="NVarChar(255) NOT NULL" CanBeNull="false" />
+    </Type>
+  </Table>
+  <Table Name="artseed.ContentCategory" Member="ContentCategories">
+    <Type Name="ContentCategory">
+      <Column Name="ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="CategoryName" Type="System.String" DbType="NVarChar(150) NOT NULL" CanBeNull="false" />
+      <Column Name="[Key]" Member="Key" Type="System.String" DbType="NVarChar(150) NOT NULL" CanBeNull="false" />
+      <Column Name="ParentCategoryId" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="IsFeatured" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="ShowOnHP" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="CreatedDate" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="UpdatedDate" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="Status" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="Invisible" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Association Name="ContentCategory_Content" Member="Contents" ThisKey="ID" OtherKey="CategoryId" Type="Content" />
+      <Association Name="ContentCategory_ContentCategory" Member="ContentCategories" ThisKey="ID" OtherKey="ParentCategoryId" Type="ContentCategory" />
+      <Association Name="ContentCategory_Navigation" Member="Navigations" ThisKey="ID" OtherKey="CategoryId" Type="Navigation" />
+      <Association Name="ContentCategory_ContentCategory" Member="ContentCategory1" ThisKey="ParentCategoryId" OtherKey="ID" Type="ContentCategory" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="artseed.Navigation" Member="Navigations">
+    <Type Name="Navigation">
+      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Name" Type="System.String" DbType="NVarChar(250) NOT NULL" CanBeNull="false" />
+      <Column Name="ParentId" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Position" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="Status" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="RelativeUrl" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="DisplayOrder" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Image" Type="System.String" DbType="NVarChar(150)" CanBeNull="true" />
+      <Column Name="ContentId" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="CategoryId" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Component" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="ExternalUrl" Type="System.String" DbType="VarChar(250)" CanBeNull="true" />
+      <Column Name="Action" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+      <Column Name="Controller" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+      <Column Name="Area" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+      <Column Name="CreatedDate" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="UpdatedDate" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Association Name="Navigation_Navigation" Member="Navigations" ThisKey="Id" OtherKey="ParentId" Type="Navigation" />
+      <Association Name="Content_Navigation" Member="Content" ThisKey="ContentId" OtherKey="ContentId" Type="Content" IsForeignKey="true" />
+      <Association Name="ContentCategory_Navigation" Member="ContentCategory" ThisKey="CategoryId" OtherKey="ID" Type="ContentCategory" IsForeignKey="true" />
+      <Association Name="Navigation_Navigation" Member="Navigation1" ThisKey="ParentId" OtherKey="Id" Type="Navigation" IsForeignKey="true" />
     </Type>
   </Table>
 </Database>

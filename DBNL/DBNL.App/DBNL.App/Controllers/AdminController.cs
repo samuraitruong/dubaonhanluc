@@ -356,7 +356,7 @@ namespace DBNL.App.Controllers
             Navigation updNavigation = db.Navigations.Where(p => p.Id == id).SingleOrDefault();
             updNavigation.Component = nav.Component;
             updNavigation.ContentCategory = nav.ContentCategory;
-            updNavigation.ContentId = nav.ContentId;
+            updNavigation.CategoryId = nav.CategoryId;
             updNavigation.DisplayOrder = nav.DisplayOrder;
             updNavigation.ExternalUrl = nav.ExternalUrl;
             updNavigation.Image = nav.Image;

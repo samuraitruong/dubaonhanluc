@@ -11,7 +11,8 @@ namespace DBNL.App.Models.ViewData
        public int TotalPages { get; set; }  
        public int PageSize { get; set; }  
        public int TotalCount { get; set; }  
-       public string PageActionLink { get; set; }  
+       public string PageActionLink { get; set; }
+       public int DisplayItems { get; set; }
        public bool HasPreviousPage  
        {  
            get  
@@ -24,7 +25,7 @@ namespace DBNL.App.Models.ViewData
        {  
            get  
            {  
-               return (PageIndex * PageSize) <= TotalCount;  
+               return (PageIndex * PageSize) < TotalCount;  
            }  
        }  
     }

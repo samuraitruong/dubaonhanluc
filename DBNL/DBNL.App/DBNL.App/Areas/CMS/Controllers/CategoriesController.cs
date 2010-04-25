@@ -59,10 +59,33 @@ namespace DBNL.App.Areas.CMS.Controllers
                             ParentCateId = entity.ParentCategoryId,
                             IsFeatured = entity.IsFeatured,
                             ShowOnHP = entity.ShowOnHP,
-                            Articles = entity.Contents.Count(),
+                            Articles = entity.CountArticles(true),
                             Url = Url.Action(Actions.Category.ToString(), SiteModules.Article.ToString(), new {id = entity.ID, Area=""})
                         };
             return Json(model.ToJqGridData(page, rows, null, "", new[] { "Name", "ParentCateId", "IsFeatured", "ShowOnHP" }), JsonRequestBehavior.AllowGet);
+        }
+
+        [HttpPost]
+        public ActionResult TreeNode(int? Node, FormCollection collection)
+        {
+            IEnumerable<ContentCategory> categories =null;
+            if (Node == null)
+            {
+                categories = CategoryService.GetItems(new Nullable<int>());
+            }
+            else
+            {
+                categories = CategoryService.GetItems(Node.Value);
+            }
+            var query = from p in categories
+                        select new {
+                            text=p.CategoryName,
+                            hasChildren = p.ContentCategories.Count>0,
+                            id=p.ID.ToString(),
+                            classes ="Clickable"
+                        };
+
+            return Json(query);
         }
 
         [HttpPost]
@@ -83,26 +106,30 @@ namespace DBNL.App.Areas.CMS.Controllers
         }
 
         [HttpPost]
-        public ActionResult Create(FormCollection collection)
+        public ActionResult Create(ContentCategory category, FormCollection collection)
         {
             try
             {
-                string name = collection["CategoryName"];
-                int? pid = null;
-                if(!string.IsNullOrEmpty(collection["ParentCategoryId"]))
-                {
-                    pid = int.Parse(collection["ParentCategoryId"]);
+                if (!ModelState.IsValid) {
+                    ViewData["Categories"] = CustomSelectList.CreateListCategories(true);
+                    return View(category);
                 }
-                CategoryService.AddCategory(name, pid);
+
+                CategoryService.Create(category);
+
+               
                 return RedirectToAction("List");
             }
             catch(Exception ex){
+                ModelState.AddModelError("Exception", ex);
             }
-            return View();
+            ViewData["Categories"] = CustomSelectList.CreateListCategories(true);
+            return View(category);
         }
         public ActionResult Create()
         {
             ViewData["Categories"] = CustomSelectList.CreateListCategories(true);
+            ViewData["Articles"] = CustomSelectList.CreateListOphanArticles();
             return View();
         }
         //
@@ -112,20 +139,29 @@ namespace DBNL.App.Areas.CMS.Controllers
         // GET: /Categories/Edit/5
  
         public ActionResult Edit(int id)
-        {
-            return View();
+        {var item = CategoryService.GetItem(id);
+            ViewData["Categories"] = CustomSelectList.CreateListCategories(false);
+            ViewData["Status"] = CustomSelectList.CreateEntityStatus().SetSelectedValue(item.Status);
+            
+            return View(item);
         }
 
         //
         // POST: /Categories/Edit/5
 
         [AcceptVerbs(HttpVerbs.Post)]
-        public ActionResult Edit(int id, FormCollection collection)
+        public ActionResult Edit(int id, ContentCategory category, FormCollection collection)
         {
             try
             {
+                if (!ModelState.IsValid){ 
+                    ViewData["Categories"] = CustomSelectList.CreateListCategories(true);
+                    ViewData["Status"] = CustomSelectList.CreateEntityStatus();
+                    return View(category);
+
+                };
                 // TODO: Add update logic here
- 
+                CategoryService.Update(id, category);
                 return RedirectToAction("Index");
             }
             catch

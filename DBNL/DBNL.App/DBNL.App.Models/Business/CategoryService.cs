@@ -16,12 +16,12 @@ namespace DBNL.App.Models.Business
 
         public static IEnumerable<ContentCategory> GetAllCategories()
         {
-            return GetInstance().ContentCategories.Where(p=>p.Status != EntityStatuses.Deleted.ToString()).AsEnumerable();
+            return GetInstance().ContentCategories.Where(p=>p.Status != EntityStatuses.Deleted.ToString() && p.Invisible == false).AsEnumerable();
         }
 
         public static IQueryable<ContentCategory> List()
         {
-            return GetInstance().ContentCategories.Where(p=>p.Status != EntityStatuses.Deleted.ToString()).AsQueryable();
+            return GetInstance().ContentCategories.Where(p => p.Status != EntityStatuses.Deleted.ToString() && p.Invisible == false).AsQueryable();
         }
 
         public static ContentCategory AddCategory(string name, int? parentCategoryId)
@@ -47,7 +47,7 @@ namespace DBNL.App.Models.Business
 
         public static IQueryable<ContentCategory> List(int? ParentId)
         {
-            var query = Categories.Where(p => p.Status != EntityStatuses.Deleted.ToString());
+            var query = Categories.Where(p => p.Status != EntityStatuses.Deleted.ToString() && p.Invisible == false);
 
             if(!ParentId.HasValue){
                 return query.Where(p => p.ParentCategoryId == null).AsQueryable();
@@ -71,6 +71,7 @@ namespace DBNL.App.Models.Business
             updCate.IsFeatured = isFeatured;
             updCate.ShowOnHP = showOnHP;
             Commit();
+            UpdateFeaturedCategory();
             return updCate;
         }
 
@@ -107,7 +108,7 @@ namespace DBNL.App.Models.Business
             //    content.Status = 
             //}
 
-            var query = Navigations.Where(p => p.ContentId == cat.ID 
+            var query = Navigations.Where(p => p.CategoryId == cat.ID 
                                             && p.Component == SiteModules.Article.ToString()
                                             ).AsEnumerable();
 
@@ -130,6 +131,62 @@ namespace DBNL.App.Models.Business
         public static ContentCategory GetItem(int id)
         {
             return Categories.Where(p => p.ID == id).SingleOrDefault();
+        }
+
+        public static ContentCategory GetByKey(string category)
+        {
+            return Categories.Where(p => p.Key == category).SingleOrDefault();
+        }
+
+        public static IEnumerable<ContentCategory> GetItems(int? ParentId)
+        {
+            if(!ParentId.HasValue) return Categories.Where(p=>p.ParentCategoryId == null &&  p.Invisible == false).OrderBy(p => p.CategoryName).AsEnumerable();
+
+            return Categories.Where(p => p.ParentCategoryId == ParentId.Value && p.Invisible == false).OrderBy(p => p.CategoryName).AsEnumerable();
+
+        }
+
+        public static void Update(int id, ContentCategory category)
+        {
+            var original = GetById(id);
+            original.CategoryName = category.CategoryName;
+            original.Key = category.CategoryName.ToUrlKey();
+            original.IsFeatured = category.IsFeatured;
+            original.ShowOnHP = category.ShowOnHP;
+            original.Status =category.Status;
+            original.UpdatedDate = DateTime.Now;
+            if(category.ParentCategoryId.HasValue)
+            original.ContentCategory1 = GetById(category.ParentCategoryId.Value);
+            Commit();
+            UpdateFeaturedCategory();
+        }
+
+        public static void Create(ContentCategory category)
+        {
+            string key = category.CategoryName.ToUrlKey();
+            var item = GetByKey(key);
+            if (item != null)
+            {
+                key += category.GetHashCode().ToString();
+            }
+            category.CreatedDate = DateTime.Now;
+            category.UpdatedDate = DateTime.Now;
+            category.Key = key;
+
+            category.Status = EntityStatuses.Actived.ToString();
+            Categories.InsertOnSubmit(category);
+            Commit();
+            UpdateFeaturedCategory();
+        }
+
+        private static void UpdateFeaturedCategory()
+        {
+            
+        }
+
+        public static ContentCategory GetInvisibleCategory()
+        {
+            return Categories.Where(p => p.Invisible == true).SingleOrDefault();
         }
     }
 }

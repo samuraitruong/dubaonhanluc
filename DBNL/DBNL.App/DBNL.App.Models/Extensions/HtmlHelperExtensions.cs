@@ -7,11 +7,102 @@ using System.Web.UI.DataVisualization.Charting;
 using System.Web.UI;
 using DBNL.App.Models.ViewData;
 using DBNL.App.Config;
+using DBNL.App.Models.Statics;
+using System.Web.Mvc.Html;
+using DBNL.App.Models.Business;
 
 namespace DBNL.App.Models.Extensions
 {
     public static class HtmlHelperExtensions
     {
+
+        public static string CategoryLink(this UrlHelper helper, ContentCategory category)
+        {
+
+            return helper.RouteUrl("Category-View-Route", new { category = category.Key});
+
+        }
+        public static MvcHtmlString CategoryLink(this HtmlHelper helper, ContentCategory category)
+        {
+
+            return helper.RouteLink(category.CategoryName, "Category-View-Route", new { category = category.Key});
+        }
+
+        public static string ContentLink(this UrlHelper helper, Content content)
+        {
+
+            return helper.RouteUrl("Content-View-Route", new {category=content.ContentCategory.Key, contentkey = content.UniqueKey});
+            
+        }
+        public static MvcHtmlString ContentLink(this HtmlHelper helper, Content content)
+        {
+
+            return helper.RouteLink(content.Title, "Content-View-Route", new { category = content.ContentCategory.Key, contentkey = content.UniqueKey });
+        }
+        public static string ContentLink(this UrlHelper helper, string category, Content content)
+        {
+
+            return helper.RouteUrl("Content-View-Route", new { category = category, contentkey = content.UniqueKey });
+
+        }
+        public static MvcHtmlString ContentLink(this HtmlHelper helper, string category, Content content)
+        {
+            return helper.RouteLink(content.Title, "Content-View-Route", new { category = category, contentkey = content.UniqueKey });
+        }
+        public static MvcHtmlString ContentLink(this HtmlHelper helper,Content content, int Word)
+        {
+            return helper.RouteLink(content.Title.TrimmedWord(Word), "Content-View-Route", new { category = content.ContentCategory.Key, contentkey = content.UniqueKey });
+        }
+        public static string NavigationLink(this UrlHelper helper, Navigation navigation)
+        {
+            if (navigation.Component == SiteModules.Article.ToString())
+            {
+                return helper.RouteUrl("Category-View-Route", new { category = navigation.ContentCategory.Key });
+
+            }
+            if (navigation.Component == SiteModules.Post.ToString())
+            {
+                var content = navigation.Content;
+                return helper.RouteUrl("Content-View-Route", new { category = content.ContentCategory.Key, contentkey = content.UniqueKey });
+            }
+            return helper.Action(navigation.Action, navigation.Controller, new { id = navigation.CategoryId });
+        }
+        public static MvcHtmlString NavigationLink(this HtmlHelper helper, Navigation navigation)
+        {
+            if (navigation.Component == SiteModules.Article.ToString())
+            {
+                return helper.RouteLink(navigation.Name, "Category-View-Route", new { category = navigation.ContentCategory.Key });
+
+            }
+             if (navigation.Component == SiteModules.Post.ToString())
+            {
+                var content = navigation.Content;
+
+
+                return helper.RouteLink(content.Title,"Content-View-Route", new { category = content.ContentCategory.Key, contentkey = content.UniqueKey });
+            }
+
+
+            return helper.ActionLink(navigation.Name, navigation.Action, navigation.Controller, new { id = navigation.CategoryId }, null);
+        }
+
+        public static MvcHtmlString NavigationLink(this HtmlHelper helper,string name, Navigation navigation)
+        {
+            if (navigation.Component == SiteModules.Article.ToString())
+            {
+                return helper.RouteLink(name, "Category-View-Route", new { category = navigation.ContentCategory.Key });
+
+            }
+            if (navigation.Component == SiteModules.Post.ToString())
+            {
+                var content = navigation.Content;
+
+
+                return helper.RouteLink(name, "Content-View-Route", new { category = content.ContentCategory.Key, contentkey = content.UniqueKey });
+            }
+            return helper.ActionLink(name, navigation.Action, navigation.Controller, new { id = navigation.CategoryId }, null);
+        }
+
         public static void Chart(this HtmlHelper helper, string polltitle, List<int> values, List<string> labels, int width, int height, SeriesChartType ChartType, System.Web.UI.Page page)
         {
             System.Web.UI.DataVisualization.Charting.Chart Chart1 = new System.Web.UI.DataVisualization.Charting.Chart();
@@ -110,9 +201,98 @@ namespace DBNL.App.Models.Extensions
                     );
             }
             sb.Append("</ul>");
-
             return sb.ToString();
         }
+      /// <summary>
+	    /// Create a TreeView of nodes starting from a root element
+	    /// </summary>
+	    /// <param name="treeId">The ID that will be used when the ul is created</param>
+	    /// <param name="rootItems">The root nodes to create</param>
+	    /// <param name="childrenProperty">A lambda expression that returns the children nodes</param>
+	    /// <param name="itemContent">A lambda expression defining the content in each tree node</param>
+	    public static string TreeView<T>(this HtmlHelper html, string treeId, IEnumerable<T> rootItems, Func<T, IEnumerable<T>> childrenProperty, Func<T, string> itemContent)
+	    {
+	        return html.TreeView(treeId, rootItems, childrenProperty, itemContent, true, null);
+	    }
+	 
+	    /// <summary>
+	    /// Create a TreeView of nodes starting from a root element
+	    /// </summary>
+	    /// <param name="treeId">The ID that will be used when the ul is created</param>
+	    /// <param name="rootItems">The root nodes to create</param>
+	    /// <param name="childrenProperty">A lambda expression that returns the children nodes</param>
+	    /// <param name="itemContent">A lambda expression defining the content in each tree node</param>
+	    /// <param name="includeJavaScript">If true, output will automatically render the JavaScript to turn the ul into the treeview</param>   
+	    public static string TreeView<T>(this HtmlHelper html, string treeId, IEnumerable<T> rootItems, Func<T, IEnumerable<T>> childrenProperty, Func<T, string> itemContent, bool includeJavaScript)
+	    {
+	        return html.TreeView(treeId, rootItems, childrenProperty, itemContent, includeJavaScript, null);
+	    }
+	 
+	    /// <summary>
+	    /// Create a TreeView of nodes starting from a root element
+	    /// </summary>
+	    /// <param name="treeId">The ID that will be used when the ul is created</param>
+	    /// <param name="rootItems">The root nodes to create</param>
+	    /// <param name="childrenProperty">A lambda expression that returns the children nodes</param>
+	    /// <param name="itemContent">A lambda expression defining the content in each tree node</param>
+	    /// <param name="includeJavaScript">If true, output will automatically render the JavaScript to turn the ul into the treeview</param>
+	    /// <param name="emptyContent">Content to be rendered when the tree is empty</param>
+	    /// <param name="includeJavaScript">If true, output will automatically into the JavaScript to turn the ul into the treeview</param>   
+	    public static string TreeView<T>(this HtmlHelper html, string treeId, IEnumerable<T> rootItems, Func<T, IEnumerable<T>> childrenProperty, Func<T, string> itemContent, bool includeJavaScript, string emptyContent)
+	    {
+	        StringBuilder sb = new StringBuilder();
+	 
+	        sb.AppendFormat("<ul id='{0}'>\r\n", treeId);
+	 
+	        if(rootItems.Count() == 0)
+	        {
+	            sb.AppendFormat("<li>{0}</li>", emptyContent);
+	        }
+	 
+	        foreach (T item in rootItems)
+	        {
+	            RenderLi(sb, item, itemContent);
+	            AppendChildren(sb, item, childrenProperty, itemContent);
+	        }
+	 
+	        sb.AppendLine("</ul>");
+	 
+	        if (includeJavaScript)
+	        {
+	            sb.AppendFormat(
+	                @"<script type='text/javascript'>
+	                    $(document).ready(function() {{
+	                        $('#{0}').treeview({{ animated: 'fast' }});
+	                    }});
+	                </script>", treeId);
+	        }
+	 
+	        return sb.ToString();
+	    }
+	 
+	    private static void AppendChildren<T>(StringBuilder sb, T root, Func<T, IEnumerable<T>> childrenProperty, Func<T, string> itemContent)
+	    {
+	        var children = childrenProperty(root);
+	        if(children.Count() == 0)
+	        {
+	            sb.AppendLine("</li>");
+	            return;
+	        }
+	 
+	        sb.AppendLine("\r\n<ul>");
+	        foreach (T item in children)
+	        {
+	            RenderLi(sb, item, itemContent);
+	            AppendChildren(sb, item, childrenProperty, itemContent);
+	        }
+	 
+	        sb.AppendLine("</ul></li>");
+	    }
+	 
+	    private static void RenderLi<T>(StringBuilder sb, T item, Func<T, string> itemContent)
+	    {
+	        sb.AppendFormat("<li>{0}", itemContent(item));           
+	    }
         /// <summary>
         /// Renders JavaScript to turn the specified file input control into an 
         /// Uploadify upload control.

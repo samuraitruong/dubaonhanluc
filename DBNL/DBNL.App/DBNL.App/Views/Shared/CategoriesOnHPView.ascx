@@ -8,12 +8,7 @@
 		<div class="top_newsjob">
 			<h3>
             
-            <%= Html.ActionLink((item.CategoryName),
-                                "Category",
-                                "Article",
-                                new {id=item.ID},
-                                null)
-                             %>
+            <%= Html.CategoryLink(item)%>
             </h3>
 		</div>
 		<div class="center_newsjob">
@@ -21,9 +16,16 @@
         <% foreach (var subitem in item.FeatureArtilesHonHP)
            {%>
     		<div class="hn clearfix">
-    			<div class="pic"><a href="<%=Url.Action("View","Article",new {id=subitem.ContentId}) %>"><img width="110" alt="nguonnhanluc" src="<%=subitem.ThumbnailUrl %>"></a></div>
+               
+    			<div class="pic"><a href="<%=Url.ContentLink(subitem) %>">
+                     <% if (subitem.ThumbnailUrl != "")
+                        { %>
+                            <img width="110" alt="nguonnhanluc" src="<%=subitem.ThumbnailUrl %>"></a>
+                        <%} %>
+                        </div>
+                
     			<div class="des">
-    				<h3><a href="<%=Url.Action("View","Article",new {id=subitem.ContentId}) %>"><%=subitem.Title %></a> <small>(04/03/2010)</small></h3>
+    				<h3><a href="<%=Url.ContentLink(subitem) %>"><%=subitem.Title %></a> <small>(04/03/2010)</small></h3>
     				<p>&nbsp;&nbsp; <%=subitem.Description.Substring(0, Math.Min(subitem.Title.Length, 150)) %></p>
     			</div>
 			</div>

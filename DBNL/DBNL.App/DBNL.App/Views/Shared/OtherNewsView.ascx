@@ -5,7 +5,7 @@
 	<ul class="k_otherpage">
 	<% foreach (var item in Model)
         { %>
-                <li><%=Html.ActionLink(item.Title.ToUpper(), "View","Article" ,new {id=item.ContentId}, null) %></li> 
+                <li><%=Html.ContentLink(item) %></li> 
                        
         <%} %>
 	</ul>

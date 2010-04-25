@@ -37,7 +37,8 @@ namespace DBNL.App.Areas.CMS.Controllers
             {
                 Name = name,
                 Path = path,
-                Operation = (FileManagerOperations)Enum.Parse(typeof(FileManagerOperations), mode)
+                Operation = (FileManagerOperations)Enum.Parse(typeof(FileManagerOperations), mode),
+                PreviewPath = Url.Action("Preview", "FileManager")
             };
             if (mgr.Operation == FileManagerOperations.download)
             {
