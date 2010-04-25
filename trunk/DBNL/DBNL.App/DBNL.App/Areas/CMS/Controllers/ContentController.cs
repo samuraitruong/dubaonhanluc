@@ -44,8 +44,33 @@ namespace DBNL.App.Areas.CMS.Controllers
                             Title = entity.Title,
                             Thumbnail = entity.ThumbnailUrl,
                             Category= entity.ContentCategory.CategoryName,
+                            PostedDate = entity.CreatedDate.ToShortDateString(),
                             Status = entity.Status,
                             Url = this.Url.Action("View",Models.Statics.Controllers.Article.ToString(), new {Area="", id=entity.ContentId})
+                        };
+            return Json(model.ToJqGridData(page, rows, null, "", new[] { "Title" }), JsonRequestBehavior.AllowGet);
+        }
+        
+            [HttpPost]
+        public ActionResult GetOrphanArticles(int page, int rows, string sidx, string sord)
+        {
+            var contents = ContentService.AllOrhanArticles();
+            bool searchOn = bool.Parse(Request.Form["_search"]);
+            string searchExp = "";
+            if (searchOn)
+            {
+                searchExp = string.Format("{0}.ToString().Contains(@0)", getFormValue("searchField"));
+                contents = contents.Where(searchExp, new string[] { getFormValue("searchString") });
+            }
+            var model = from entity in contents.OrderBy(sidx + " " + sord)
+                        select new
+                        {
+                            Id = entity.ContentId,
+                            Title = entity.Title,
+                            Thumbnail = entity.ThumbnailUrl,
+                            Status = entity.Status,
+                            PostedDate = entity.CreatedDate.ToShortDateString(),
+                            Url= this.Url.Action("View",Models.Statics.Controllers.Article.ToString(), new {Area="", id=entity.ContentId})
                         };
             return Json(model.ToJqGridData(page, rows, null, "", new[] { "Title" }), JsonRequestBehavior.AllowGet);
         }
@@ -68,6 +93,7 @@ namespace DBNL.App.Areas.CMS.Controllers
                             Title = entity.Title,
                             Thumbnail = entity.ThumbnailUrl,
                             Status = entity.Status,
+                            PostedDate = entity.CreatedDate.ToShortDateString(),
                             Url= this.Url.Action("View",Models.Statics.Controllers.Article.ToString(), new {Area="", id=entity.ContentId})
                         };
             return Json(model.ToJqGridData(page, rows, null, "", new[] { "Title" }), JsonRequestBehavior.AllowGet);
@@ -107,6 +133,40 @@ namespace DBNL.App.Areas.CMS.Controllers
             ViewData["Categories"] = CustomSelectList.CreateListCategories(false);
             
             return View(new Models.Content());
+        }
+
+        [HttpPost]
+        [ValidateInput(false)]
+        public ActionResult CreateIn (Models.Content content, FormCollection collection)
+        {
+            try
+            {
+                HttpPostedFileBase picture = (HttpPostedFileBase)Request.Files["Picture"];
+                content.UniqueKey = content.Title.ToUrlKey();
+                content.Status = EntityStatuses.Actived.ToString();
+
+
+                if (!ModelState.IsValid)
+                {
+                    ViewData["Category"] = CategoryService.GetById(content.CategoryId);
+                    return View(content);
+                }
+
+                ContentService.Create(content, picture);
+
+                return RedirectToAction("Index", "Administrations");
+            }
+            catch
+            {
+                ViewData["Category"] = CategoryService.GetById(content.CategoryId);
+                return View(content);
+            }
+        }
+        public ActionResult CreateIn(int id)
+        {
+            ViewData["Category"] = CategoryService.GetById(id);
+
+            return View(new Models.Content() {CategoryId =  id});
         } 
 
         //
@@ -146,8 +206,7 @@ namespace DBNL.App.Areas.CMS.Controllers
             }
             catch
             {
-                throw;
-                return View();
+                return View( content);
             }
         }
 
@@ -160,6 +219,14 @@ namespace DBNL.App.Areas.CMS.Controllers
             var item = ContentService.GetItem(id);
             if (item == null) return RedirectToAction("Index");
             ViewData["Categories"] = CustomSelectList.CreateListCategories(false).SetSelectedValue(item.CategoryId.ToString());
+
+            return View(item);
+        }
+        public ActionResult EditContent(int id)
+        {
+
+            var item = ContentService.GetItem(id);
+            if (item == null) return RedirectToAction("Index");
 
             return View(item);
         }
@@ -185,6 +252,26 @@ namespace DBNL.App.Areas.CMS.Controllers
                 ContentService.Update(content, picture);
  
                 return RedirectToAction("Index");
+            }
+            catch
+            {
+                return View();
+            }
+        }
+        [AcceptVerbs(HttpVerbs.Post)]
+        [ValidateInput(false)]
+        public ActionResult EditContent(int id, Models.Content content, FormCollection collection)
+        {
+            try
+            {
+                if (!ModelState.IsValid)
+                {
+                    return View(content);
+                }
+                HttpPostedFileBase picture = (HttpPostedFileBase)Request.Files["Picture"];
+                ContentService.Update(content, picture);
+
+                return RedirectToAction("Index","Administrations");
             }
             catch
             {

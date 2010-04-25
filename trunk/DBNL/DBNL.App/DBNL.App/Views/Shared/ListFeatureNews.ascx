@@ -9,10 +9,10 @@
             { %>
                 
                <div class="tieudiem">
-        			<div class="pic"><a href="<%= Url.Action("View","Article", new {id=item.ContentId})%>"><img width="99" height="73" alt="nguonnhanluc" src="<%=item.ThumbnailUrl %>" /></a></div>
+        			<div class="pic"><a href="<%= Url.ContentLink(item)%>"><img width="99" height="73" alt="nguonnhanluc" src="<%=item.ThumbnailUrl %>" /></a></div>
         			<div class="des">
         				<p>
-                            <%=Html.ActionLink(item.Title.ToUpper(), "View","Article" ,new {id = item.ContentId},null) %>
+                            <%=Html.ContentLink(item)%>
                         </p>
         			</div>
             

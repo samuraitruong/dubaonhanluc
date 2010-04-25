@@ -14,5 +14,6 @@ namespace DBNL.App.Models.ViewData
         public IEnumerable<SelectListItem>  NavigationPositions { get; set; }
         public IEnumerable<SelectListItem>  Categories { get; set; }
         public IEnumerable<SelectListItem> SiteModules { get; set; }
+        public IEnumerable<SelectListItem> OrphanArticles { get; set; }
     }
 }

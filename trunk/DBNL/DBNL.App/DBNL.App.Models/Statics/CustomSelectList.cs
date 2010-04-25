@@ -9,7 +9,14 @@ namespace DBNL.App.Models.Statics
 {
    public class CustomSelectList
    {
-       
+       public static IEnumerable<SelectListItem> CreateEntityStatus()
+       {
+           List<SelectListItem> statList = new List<SelectListItem>();
+           statList.Add(new SelectListItem() { Text = "Kích hoạt", Value = EntityStatuses.Actived.ToString() });
+           statList.Add(new SelectListItem() { Text = "Không kích hoạt", Value = EntityStatuses.Inactive.ToString() });
+           return statList;
+       }
+
        public static IEnumerable<SelectListItem>  CreateMenuPosition(){
            List<SelectListItem> list = new List<SelectListItem>();
            list.Add(new SelectListItem(){Text= "Chính",Value = NavigationPositions.Main.ToString()});
@@ -85,6 +92,7 @@ namespace DBNL.App.Models.Statics
            list.Add(new SelectListItem() { Text = "Khảo sát", Value = SiteModules.Poll.ToString() });
            list.Add(new SelectListItem() { Text = "Liên Hệ", Value = SiteModules.WebContact.ToString() });
            list.Add(new SelectListItem() { Text = "Liên kết trang web", Value = SiteModules.Url.ToString() });
+           list.Add(new SelectListItem() { Text = "Bài Viết", Value = SiteModules.Post.ToString() });
            return list.AsEnumerable();
        }
 
@@ -123,6 +131,16 @@ namespace DBNL.App.Models.Statics
            SelectListItem selectedItem = items.Where(p => p.Value == comp).Single();
            selectedItem.Selected = true;
            return items;
+       }
+
+       public static IEnumerable<SelectListItem>  CreateListOphanArticles()
+       {
+           List<SelectListItem> list = new List<SelectListItem>();
+           foreach (var item in ContentService.AllOrhanArticles())
+           {
+               list.Add(new SelectListItem() { Text = item.Title, Value = item.ContentId.ToString() });
+           }
+           return list.AsEnumerable();
        }
    }
     

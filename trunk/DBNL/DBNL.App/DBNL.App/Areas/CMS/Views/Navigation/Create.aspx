@@ -41,13 +41,18 @@
             
             <p id="extCategory">
                 <label for="ContentId">Chọn nhóm nội dung:</label>
-                <%=Html.DropDownList("ContentId", data.Categories)%>
-                <%= Html.ValidationMessage("ContentId", "*") %>
+                <%=Html.DropDownList("CategoryId", data.Categories)%>
+                <%= Html.ValidationMessage("CategoryId", "*")%>
             </p>
             
             <p id="extLink">
                 <label for="ExternalUrl">Liên kết bên ngoài:</label>
                 <%=Html.TextBox("ExternalUrl")%>
+                
+            </p>
+            <p id="articleLink">
+                <label for="ExternalUrl">Chọn bài viết:</label>
+                 <%=Html.DropDownList("ContentId", data.OrphanArticles)%>
                 
             </p>
             
@@ -67,6 +72,7 @@
     <script language="javascript" type="text/javascript">
         $("#extCategory").hide();
         $("#extLink").hide();
+        $("#articleLink").hide();
 
         $(document).ready(function () {
             $("#Component").bind("change", function () {
@@ -76,9 +82,13 @@
                 else if ($(this).val() == 'Url') {
                     $("#extLink").show();
                 }
+                else if ($(this).val() == 'Post') {
+                    $("#articleLink").show();
+                }
                 else {
                     $("#extCategory").hide();
                     $("#extLink").hide();
+                    $("#articleLink").hide();
                 }
             });
         });

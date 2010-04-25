@@ -80,8 +80,6 @@
     <Reference Include="System.Web.Mobile" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Areas\Articles\ArticleRoutes.cs" />
-    <Compile Include="Areas\Articles\Controllers\ArticlesController.cs" />
     <Compile Include="Areas\CMS\CMSAreaRegistration.cs" />
     <Compile Include="Areas\CMS\Controllers\AdministrationsController.cs" />
     <Compile Include="Areas\CMS\Controllers\BannerController.cs" />
@@ -129,7 +127,6 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Areas\Articles\Views\Articles\Index.aspx" />
     <Content Include="Areas\CMS\Views\Administrations\Index.aspx" />
     <Content Include="Areas\CMS\Views\Administrations\Sample.aspx" />
     <Content Include="Areas\CMS\Views\Banner\Create.aspx" />
@@ -139,14 +136,18 @@
     <Content Include="Areas\CMS\Views\Banner\Index.aspx" />
     <Content Include="Areas\CMS\Views\Banner\List.aspx" />
     <Content Include="Areas\CMS\Views\Categories\Create.aspx" />
+    <Content Include="Areas\CMS\Views\Categories\Edit.aspx" />
     <Content Include="Areas\CMS\Views\Categories\List.aspx" />
+    <Content Include="Areas\CMS\Views\Categories\ViewPage1.aspx" />
     <Content Include="Areas\CMS\Views\Contact\Create.aspx" />
     <Content Include="Areas\CMS\Views\Contact\Delete.aspx" />
     <Content Include="Areas\CMS\Views\Contact\Details.aspx" />
     <Content Include="Areas\CMS\Views\Contact\Edit.aspx" />
     <Content Include="Areas\CMS\Views\Contact\Index.aspx" />
     <Content Include="Areas\CMS\Views\Contact\List.aspx" />
+    <Content Include="Areas\CMS\Views\Content\EditContent.aspx" />
     <Content Include="Areas\CMS\Views\Content\Create.aspx" />
+    <Content Include="Areas\CMS\Views\Content\CreateIn.aspx" />
     <Content Include="Areas\CMS\Views\Content\Edit.aspx" />
     <Content Include="Areas\CMS\Views\Content\Index.aspx" />
     <Content Include="Areas\CMS\Views\Job\Create.aspx" />
@@ -184,12 +185,10 @@
     <Content Include="Areas\CMS\Views\User\Edit.aspx" />
     <Content Include="Areas\CMS\Views\User\Index.aspx" />
     <Content Include="Areas\CMS\Views\User\List.aspx" />
-    <Content Include="Areas\DBNL.App.Admin\Views\Administrations\Index.aspx" />
-    <Content Include="Areas\DBNL.App.Admin\Views\Administrations\ViewPage1.aspx" />
-    <Content Include="Areas\DBNL.App.Admin\Views\Categories\Create.aspx" />
-    <Content Include="Areas\DBNL.App.Admin\Views\Roles\Create.aspx" />
-    <Content Include="Areas\DBNL.App.Admin\Views\Roles\Index.aspx" />
     <Content Include="Content\calendar.css" />
+    <Content Include="Content\job.css" />
+    <Content Include="Content\jquery.treeview.css" />
+    <Content Include="Content\reset.css" />
     <Content Include="Content\table.css" />
     <Content Include="Content\editor.css" />
     <Content Include="Content\fancybox.css" />
@@ -991,8 +990,45 @@
     <Content Include="images\arrow_up.png" />
     <Content Include="images\edit-small.png" />
     <Content Include="images\edit_medium.png" />
+    <Content Include="images\jtreeview\file.gif" />
+    <Content Include="images\jtreeview\folder-closed.gif" />
+    <Content Include="images\jtreeview\folder.gif" />
+    <Content Include="images\jtreeview\minus.gif" />
+    <Content Include="images\jtreeview\plus.gif" />
+    <Content Include="images\jtreeview\treeview-black-line.gif" />
+    <Content Include="images\jtreeview\treeview-black.gif" />
+    <Content Include="images\jtreeview\treeview-default-line.gif" />
+    <Content Include="images\jtreeview\treeview-default.gif" />
+    <Content Include="images\jtreeview\treeview-famfamfam-line.gif" />
+    <Content Include="images\jtreeview\treeview-famfamfam.gif" />
+    <Content Include="images\jtreeview\treeview-gray-line.gif" />
+    <Content Include="images\jtreeview\treeview-gray.gif" />
+    <Content Include="images\jtreeview\treeview-red-line.gif" />
+    <Content Include="images\jtreeview\treeview-red.gif" />
     <Content Include="images\lock.png" />
-    <Content Include="Resources\Galleries\CIMG0422.JPG" />
+    <Content Include="images\ns_footer_bg.gif" />
+    <Content Include="images\ns_header_bg.gif" />
+    <Content Include="images\ns_right_title_bg.gif" />
+    <Content Include="images\ns_right_title_icon.gif" />
+    <Content Include="images\ns_temp_top_BG.gif" />
+    <Content Include="images\ns_temp_top_L.gif" />
+    <Content Include="images\ns_temp_top_R.gif" />
+    <Content Include="Resources\Pictures\-SAN--NGHE-NGAN-HAN.jpg" />
+    <Content Include="Resources\Pictures\CONG-NGHE-THONG-TIN-THIEU-HON-200-000-NHAN-LUC.jpg" />
+    <Content Include="Resources\Pictures\DIEN-DAN-GIAI-BAI-TOAN-LAO-DONG-CHO-TP-HCM--TRACH-NHIEM-CUA-CA-3-PHIA.jpg" />
+    <Content Include="Resources\Pictures\Gioi-thieu-Trung-tam.jpg" />
+    <Content Include="Resources\Pictures\HOI-NGHI-CONG-DONG-VAN-HOA---XA-HOI-ASEAN--ASCC--LAN-3.jpg" />
+    <Content Include="Resources\Pictures\NHAN-NGAY-NGUOI-KHUYET-TAT-VIET-NAM--18-04---CHU-TRONG-DAY-NGHE-CHO-NGUOI-KHUYET-TAT-.jpg" />
+    <Content Include="Resources\Pictures\So-do-to-chuc.jpg" />
+    <Content Include="Resources\Pictures\So-do-vi-tri-Trung-tam.jpg" />
+    <Content Include="Resources\Pictures\TINH-HINH-KINH-TE---XA-HOI-VIET-NAM-QUY-I-NAM-2010.jpg" />
+    <Content Include="Resources\Pictures\XUAT-KHAU-DET-MAY--NOI-BUON-QUAN-QUAN---BAI-1--CO-TIENG--CHUA-CO-MIENG-.jpg" />
+    <Content Include="Scripts\jquery.cookie.js" />
+    <Content Include="Scripts\jquery.treeview.async.js" />
+    <Content Include="Scripts\jquery.treeview.async.post.js" />
+    <Content Include="Scripts\jquery.treeview.js" />
+    <Content Include="Scripts\jquery.treeview.min.js" />
+    <Content Include="Scripts\jquery.treeview.pack.js" />
     <Content Include="Scripts\main.js" />
     <Content Include="Scripts\FileManager\connectors\lasso\client_params.inc" />
     <Content Include="Scripts\FileManager\connectors\lasso\encode_json.inc" />
@@ -1808,8 +1844,6 @@
     <Service Include="{3259AA49-8AA1-44D3-9025-A0B520596A8C}" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="bin\DBNL.App.Admin.dll" />
-    <Content Include="bin\DBNL.App.Admin.pdb" />
     <Content Include="bin\DBNL.App.Config.dll" />
     <Content Include="bin\DBNL.App.Config.pdb" />
     <Content Include="bin\DBNL.App.dll" />
@@ -2037,7 +2071,6 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Areas\DBNL.App.Admin\Views\Web.config" />
     <Content Include="bin\DynamicQuery.dll" />
     <Content Include="bin\DynamicQuery.pdb" />
     <Content Include="bin\System.Web.DataVisualization.dll" />
@@ -2099,8 +2132,7 @@
     <Folder Include="Areas\CMS\Models\" />
     <Folder Include="Areas\CMS\Scripts\" />
     <Folder Include="Areas\CMS\Views\Shared\" />
-    <Folder Include="Areas\Polls\" />
-    <Folder Include="Resources\Pictures\" />
+    <Folder Include="Resources\Galleries\" />
     <Folder Include="Scripts\FileManager\trunk\" />
   </ItemGroup>
   <ItemGroup>

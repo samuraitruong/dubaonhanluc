@@ -135,6 +135,11 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
       <DependentUpon>Settings.settings</DependentUpon>
     </Compile>
+    <Compile Include="Resources\CategoryStrings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>CategoryStrings.resx</DependentUpon>
+    </Compile>
     <Compile Include="Resources\JobStrings.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -150,6 +155,7 @@
     <Compile Include="Statics\CustomSelectList.cs" />
     <Compile Include="Statics\EntityStatuses.cs" />
     <Compile Include="ViewData\BannerViewData.cs" />
+    <Compile Include="ViewData\BOHomeViewData.cs" />
     <Compile Include="ViewData\CategoryViewData.cs" />
     <Compile Include="ViewData\FOMasterViewData.cs" />
     <Compile Include="ViewData\HomePageViewData.cs" />
@@ -210,6 +216,11 @@
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>DataAnnotations.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <EmbeddedResource Include="Resources\CategoryStrings.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>CategoryStrings.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\CategoryStrings.vi.resx" />
     <EmbeddedResource Include="Resources\JobStrings.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>JobStrings.Designer.cs</LastGenOutput>

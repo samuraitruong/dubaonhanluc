@@ -401,7 +401,8 @@ div#title
 }
 ul.Language 
 {
-    padding-left:660px;
+    float:right;
+    xpadding-left:660px;
 }
 ul.Language  li
 {
@@ -415,4 +416,21 @@ ul.Language  li a.visited
 {
     text-decoration: none;
     
+}
+.treeview
+{
+    width: 19%;
+    float:left;
+    border-right dotted #BBBBBB 1px;
+}
+.GridBox
+{
+    float:right;
+    width:80%;
+    position:relative;
+    
+}
+.Clickable
+{
+    cursor:pointer;
 }

@@ -49,7 +49,8 @@ namespace DBNL.App.Areas.CMS.Controllers
                 Categories = CustomSelectList.CreateListCategories(true),
                 NavigationPositions = CustomSelectList.CreateMenuPosition(),
                 RootNavigations = CustomSelectList.CreateListNavigations(true),
-                SiteModules = CustomSelectList.CreateModuleList()
+                SiteModules = CustomSelectList.CreateModuleList(),
+                OrphanArticles = CustomSelectList.CreateListOphanArticles(),
             };
             return View(new Models.Navigation());
         }
@@ -76,7 +77,11 @@ namespace DBNL.App.Areas.CMS.Controllers
         private string GetUrl(Navigation entity)
         {
              if(entity.Component == SiteModules.Article.ToString())
-                return Url.Action(entity.Action, entity.Controller, new {Area="", id= entity.ContentId });
+                 return Url.Action(entity.Action, entity.Controller, new { Area = "", id = entity.CategoryId });
+
+             if (entity.Component == SiteModules.Post.ToString())
+                 return Url.Action(entity.Action, entity.Controller, new { Area = "", id = entity.ContentId });
+
 
              if (entity.Component == SiteModules.Url.ToString())
                  return entity.ExternalUrl;
@@ -107,9 +112,20 @@ namespace DBNL.App.Areas.CMS.Controllers
 
                     return View(navigation);
                 }
-                if(collection["Component"] == SiteModules.Article.ToString()) 
+                if (collection["Component"] == SiteModules.Post.ToString())
                 {
                     if (navigation.ContentId.HasValue)
+                    {
+                        navigation.Controller = DBNL.App.Models.Statics.Controllers.Article.ToString();
+                        navigation.Action = DBNL.App.Models.Statics.Actions.View.ToString();
+                        navigation.Area = "";
+
+                    }
+                }
+
+                if(collection["Component"] == SiteModules.Article.ToString()) 
+                {
+                    if (navigation.CategoryId.HasValue)
                     {
                         navigation.Controller = DBNL.App.Models.Statics.Controllers.Article.ToString();
                         navigation.Action = DBNL.App.Models.Statics.Actions.Category.ToString();
@@ -171,7 +187,7 @@ namespace DBNL.App.Areas.CMS.Controllers
             Navigation nav = NavigationService.GetItem(id);
             ViewData["ExtraData"] = new NavigationDataView()
             {
-                Categories = CustomSelectList.CreateListCategories(true, nav.ContentId),
+                Categories = CustomSelectList.CreateListCategories(true, nav.CategoryId),
                 NavigationPositions = CustomSelectList.CreateMenuPosition(nav.Position),
                 RootNavigations = CustomSelectList.CreateListNavigations(true, nav.ParentId),
                 SiteModules = CustomSelectList.CreateModuleList(nav.Component)
@@ -198,16 +214,27 @@ namespace DBNL.App.Areas.CMS.Controllers
                 {
                     ViewData["ExtraData"] = new NavigationDataView()
                     {
-                        Categories = CustomSelectList.CreateListCategories(true, navigation.ContentId),
+                        Categories = CustomSelectList.CreateListCategories(true, navigation.CategoryId),
                         NavigationPositions = CustomSelectList.CreateMenuPosition(navigation.Position),
                         RootNavigations = CustomSelectList.CreateListNavigations(true, navigation.ParentId),
                         SiteModules = CustomSelectList.CreateModuleList(navigation.Component)
                     };
                     return View(navigation);
                 }
+                if (collection["Component"] == SiteModules.Post.ToString())
+                {
+                    if (navigation.CategoryId.HasValue)
+                    {
+                        navigation.Controller = DBNL.App.Models.Statics.Controllers.Article.ToString();
+                        navigation.Action = DBNL.App.Models.Statics.Actions.View.ToString();
+                        navigation.Area = "";
+
+                    }
+                }
+
                 if (collection["Component"] == SiteModules.Article.ToString())
                 {
-                    if (navigation.ContentId.HasValue)
+                    if (navigation.CategoryId.HasValue)
                     {
                         navigation.Controller = DBNL.App.Models.Statics.Controllers.Article.ToString();
                         navigation.Action = DBNL.App.Models.Statics.Actions.Category.ToString();
@@ -246,7 +273,7 @@ namespace DBNL.App.Areas.CMS.Controllers
             {
                 ViewData["ExtraData"] = new NavigationDataView()
                 {
-                    Categories = CustomSelectList.CreateListCategories(true, navigation.ContentId),
+                    Categories = CustomSelectList.CreateListCategories(true, navigation.CategoryId),
                     NavigationPositions = CustomSelectList.CreateMenuPosition(navigation.Position),
                     RootNavigations = CustomSelectList.CreateListNavigations(true, navigation.ParentId),
                     SiteModules = CustomSelectList.CreateModuleList(navigation.Component)

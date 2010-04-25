@@ -5,7 +5,7 @@
 // Sets paths to connectors based on language selection.
 var treeConnector = 'scripts/jquery.filetree/connectors/jqueryFileTree.' + lang;
 //var fileConnector = 'connectors/' + lang + '/filemanager.' + lang;
-var fileConnector = '/CMS/FileManager/Action';
+var fileConnector = '/CMS/FileManager.aspx/Action';
 
 // Options for alert, prompt, and confirm dialogues.
 $.SetImpromptuDefaults({

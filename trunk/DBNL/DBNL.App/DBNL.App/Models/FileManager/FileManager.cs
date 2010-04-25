@@ -13,6 +13,7 @@ namespace DBNL.App.Models.FileManager
         public string Name { get; set; }
         public FileManagerOperations Operation { get; set; }
         public HttpPostedFileBase File { get; set; }
+        public string PreviewPath { get; set; }
         public string Upload { get; set; }
         
         public object GetResult()
@@ -76,13 +77,15 @@ namespace DBNL.App.Models.FileManager
 
         private object GetFileInfoResult()
         {
+            
             string fullPath = HttpContext.Current.Server.MapPath(Path);
             FileInfo fi = new FileInfo(fullPath);
                 return new  {
                 Path=Path,
                 Filename = fi.Name,
                 FileType =fi.Extension,
-                Preview = string.Format("/CMS/FileManager/Preview?Path={0}&Width={1}&Height={2}", Path, 120,120),
+
+                Preview = string.Format("{3}?Path={0}&Width={1}&Height={2}", Path, 120,120, PreviewPath),
                 Properties = new {
                                     Height= 120,
                                     Width =120,
@@ -169,7 +172,7 @@ namespace DBNL.App.Models.FileManager
         public object GetFileInfo(FileInfo fi)
         {
             string FilePath = Path + "/" + fi.Name;
-            string previewPath = string.Format("/CMS/FileManager/Preview?Path={0}&Width={1}&Height={2}", FilePath, 120, 120);
+            string previewPath = string.Format("{3}?Path={0}&Width={1}&Height={2}", FilePath, 120, 120, PreviewPath);
 
             return new  {
                 Path = FilePath,

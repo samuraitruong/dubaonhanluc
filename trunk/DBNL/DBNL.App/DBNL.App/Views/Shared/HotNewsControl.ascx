@@ -3,6 +3,6 @@
      <%foreach (var item in Model)
        { %>
 
-       <li><%=Html.ActionLink(Html.Encode(item.Title.TrimmedWord(13).ToUpper()), "View","Article", new {id= item.ContentId}, null )%></li>
+       <li><%=Html.ContentLink(item, 14)%></li>
      <%} %>
     </ul>

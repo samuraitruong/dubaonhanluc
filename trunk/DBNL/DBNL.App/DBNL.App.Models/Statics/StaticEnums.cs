@@ -48,7 +48,8 @@ namespace DBNL.App.Models.Statics
         Banner,
         User,
         Role,
-        Home
+        Home,
+        Post
     }
     public enum BannerPositions
     { 

@@ -4,6 +4,8 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.Mvc.Ajax;
+using DBNL.App.Models.ViewData;
+using DBNL.App.Models.Business;
 
 namespace DBNL.App.Areas.CMS.Controllers
 {
@@ -14,6 +16,10 @@ namespace DBNL.App.Areas.CMS.Controllers
 
         public ActionResult Index()
         {
+            ViewData.Model = new BOHomeViewData()
+            {
+                CommonCategory = CategoryService.GetInvisibleCategory()
+            };
             return View();
         }
 

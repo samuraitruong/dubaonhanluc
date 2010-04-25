@@ -7,7 +7,7 @@
 		</div>
 		<div class="news_article">
 			<div class="top_page clearfix">
-				<div class="pageitem fr"><a href="#"><img alt="b1" src="images/icon_b1.png"></a>&nbsp;&nbsp;<a href="#"><img alt="b2" src="images/icon_b2.png"></a>&nbsp;&nbsp;<a href="#"><img alt="b3" src="images/icon_b3.png"></a></div>
+				<% Html.RenderPartial("ControlBar"); %>
 			</div>
 			<!--top page-->
 	        <ul>
@@ -20,7 +20,7 @@
 		</div>
 		<div class="bottom_news_article">
 			<div class="top_page clearfix">
-				<div class="pageitem fr"><a href="#"><img alt="b1" src="images/icon_b1.png"></a>&nbsp;&nbsp;<a href="#"><img alt="b2" src="images/icon_b2.png"></a>&nbsp;&nbsp;<a href="#"><img alt="b3" src="images/icon_b3.png"></a></div>
+				<% Html.RenderPartial("ControlBar"); %>
 			</div>
 			<!--top page-->
 		</div>
@@ -32,7 +32,7 @@
 
 <asp:Content ID="Content2" ContentPlaceHolderID="headerPlaceHolder" runat="server">
  <link type="text/css" rel="Stylesheet" href="<%=Url.Content("~/Content/table.css") %>" />
-    <link rel="Stylesheet" type="text/css" href="<%=Url.Content("~/Content/news_article.css")%>"></link>
+    <link rel="Stylesheet" type="text/css" href="<%=Url.Content("~/Content/news_article.css")%>"/>
    
 </asp:Content>
 

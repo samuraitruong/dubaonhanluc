@@ -27,7 +27,7 @@ namespace DBNL.App.Models.Business
 
         public static Content Create(Content content, HttpPostedFileBase picture)
         {
-            if(picture != null) {
+            if(picture != null && picture.ContentLength>0) {
                 string ext = VirtualPathUtility.GetExtension(picture.FileName);
                 //picture.InputStream.Write(
                 MemoryStream ms = new MemoryStream();
@@ -119,6 +119,8 @@ namespace DBNL.App.Models.Business
             original.Description = content.Description;
             original.IsFeatured = content.IsFeatured;
             original.UniqueKey = content.Title.ToUrlKey();
+            original.ContentCategory = CategoryService.GetById(content.CategoryId);
+
 
             Commit();
             try
@@ -150,6 +152,22 @@ namespace DBNL.App.Models.Business
         public static IEnumerable<Content> GetHostNewsList(int item)
         {
             return Contents.Where(p=>p.IsFeatured ==true).OrderByDescending(p => p.UpdatedDate).Skip(0).Take(item).AsEnumerable();
+
+        }
+
+        public static Content GetContentByKey(string content)
+        {
+            return Contents.Where(p => p.UniqueKey == content).FirstOrDefault();
+        }
+
+        public static IQueryable<Models.Content> AllOrhanArticles()
+        {
+            var query = from p in Contents
+                        join p2 in Categories on p.CategoryId equals p2.ID
+                        where p.Status != EntityStatuses.Deleted.ToString() && p2.Invisible ==true
+                        orderby p.Title
+                        select p;
+            return query.AsQueryable();
 
         }
     }
