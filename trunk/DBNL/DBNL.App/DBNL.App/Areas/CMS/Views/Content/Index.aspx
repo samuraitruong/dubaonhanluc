@@ -69,6 +69,7 @@ $(document).ready(function () {
                     jQuery("#grid").setGridParam({ postData: {CategoryId:  id}}).trigger('reloadGrid');  
                     
                     UpdateCreateInLink(id);
+                    $("#Category").val(id);
                 }
 		    })
             
@@ -84,14 +85,16 @@ $(document).ready(function () {
                         type: "POST"
                     },
                     datatype: "json",
-                    colNames: [ 'Id','Title', 'Thumbnail','Url','Ngày đăng', 'Status', 'Category',''],
+                    colNames: [ 'Id','Title', 'Thumbnail','Url','Featured','IsForcusing','Ngày đăng', 'Status', 'Category',''],
                     colModel: [
                     {
                         name: 'Id', key:true, index: 'Id', width: 20, align: 'left',editable: false, editoptions: {readonly:'readonly'},editrules: { edithidden: true }, hidden: true },
 
                         { name: 'Title', index: 'Title', width: 160,sortable: true, editable: true, edittype: 'text', editoptions: { size: 20, maxlength:100} , hidden: false },
-                        { name: 'Thumbnail', index: 'Thumbnail', width: 50, align: 'left', formatter: imageFormater, formatoptions: { prefix: "$" }, sortable: true, editable: true, edittype: 'text', editoptions: { size: 20, maxlength:100}, hidden: false },
+                        { name: 'Thumbnail', index: 'Thumbnail', width: 50,softable:false, align: 'left', formatter: imageFormater, formatoptions: { prefix: "$" }, sortable: true, editable: true, edittype: 'text', editoptions: { size: 20, maxlength:100}, hidden: false },
                         { name: 'Url', index: 'Url', align:'left', formatter:'link', formatoptions: {target:'_blank'},width: 80, sortable: false, editable: false, edittype: 'text', editoptions: { size: 20, maxlength:100} , hidden: false },
+                        { name: 'Featured', index: 'Featured', align:'center', sortable: true,formatter:'checkbox', formatoptions: {disabled:true},width: 80, sortable: false, editable: false, edittype: 'text', editoptions: { size: 20, maxlength:100} , hidden: false },
+                        { name: 'IsForcusing', index: 'IsForcusing', align:'center',sortable: true, formatter:'checkbox', formatoptions: {disabled:true},width: 80, sortable: false, editable: false, edittype: 'text', editoptions: { size: 20, maxlength:100} , hidden: false },
                         { name: 'PostedDate', index: 'CreatedDate', align:'center',width: 60, sortable: true, editable: false, edittype: 'text', editoptions: { size: 20, maxlength:100} , hidden: false },
                         { name: 'Status', index: 'Status', width: 40, align: 'center', editable: true, edittype: 'text', editoptions: { size: 20, maxlength:100}, hidden: false },
                         { name: 'Category', index: 'Category', width: 120, align: 'center', sortable: true, editable: true, edittype: 'select', style: 'select', editoptions: { dataUrl: "<%=Url.Action("GetSelectStatus", "Banner" )%>"}, hidden: false },
@@ -117,9 +120,8 @@ $(document).ready(function () {
                                     var edit = '<a  class="Edit" rel="' +cl + '" href="<%=Url.Action("Edit","Content")%>/' + cl +'" ><img src="<%=Url.Content("~/Images/edit_medium.png") %>" /></a>';
                                     jQuery("#grid").setRowData(ids[i],{Options:edit}) ;
                             } 
-                    }, 
-                })
-        .navGrid('#pager', { edit: true, add: true, del: true, search: true, view: true }, {},{},{url:'<%=Url.Action("JsonDelete", "Content" )%>'}).navButtonAdd('#pager',{
+                    } 
+                }).navGrid('#pager', { edit: true, add: true, del: true, search: true, view: true }, {},{},{url:'<%=Url.Action("JsonDelete", "Content" )%>'}).navButtonAdd('#pager',{
                            caption:"Active/Inactive", 
                            buttonicon:"ui-icon-power", 
                            onClickButton: function(){ 
@@ -144,7 +146,32 @@ $(document).ready(function () {
                                  } 
                              } ,
                            position:"last"
-            });;
+            }).navButtonAdd('#pager',{
+                           caption:"Show/Unshow on HP", 
+                           buttonicon:"ui-icon-power", 
+                           onClickButton: function(){ 
+                             
+                                 var myid = jQuery("#grid").jqGrid('getGridParam','selrow'); 
+                                 
+                                 if (myid) { 
+                                        
+                                         var ret = jQuery("#grid").getRowData(myid); 
+                                         $.ajax({
+                                                  type: 'POST',
+                                                  url: "<%=Url.Action("ToggleOnHP", "Content" )%>",
+                                                  data: {Id : ret["Id"]},
+                                                  success: function() {
+                                                    $("#grid").trigger("reloadGrid")
+                                                  },
+                                                  dataType: 'json'
+                                                });
+
+                                 } else { 
+                                 alert("Bạn phải chọn một dòng để thực hiện thao tác này.");
+                                 } 
+                             } ,
+                           position:"last"
+            });
             }
         };
 </script>

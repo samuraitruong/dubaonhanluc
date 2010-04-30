@@ -80,7 +80,7 @@ $(document).ready(function () {
                     autowidth: true,
                     rownumbers: true,
                     caption: 'Nhóm người dùng',
-                    postData: {abc:'cucu'},
+                    postData: {},
                     subGrid: true,
                     subGridRowExpanded: function(subgrid_id, row_id) { 
                     // we pass two parameters // subgrid_id is a id of the div tag created whitin a table data 
@@ -133,32 +133,7 @@ $(document).ready(function () {
                      subgrid_table_id = subgrid_id+"_t"; //
                      jQuery("#"+subgrid_table_id).remove(); 
                  } 
-                }).navGrid('#pager', { edit: true, add: true, del: true, search: true, view: true }).navButtonAdd('#pager',{
-                           caption:"Public", 
-                           buttonicon:"ui-icon-add", 
-                           onClickButton: function(){ 
-                             
-                                 var id = jQuery("#grid").jqGrid('getGridParam','selrow'); 
-                                 
-                                 if (id) { 
-                                         var ret = jQuery("#grid").getRowData(id); 
-                                         $.ajax({
-                                                  type: 'POST',
-                                                  url: "<%=Url.Action("Public", "Poll" )%>",
-                                                  data: {Id : ret["EntityId"]},
-                                                  success: function() {
-                                                    $("#grid").trigger("reloadGrid")
-                                                  },
-                                                  dataType: 'json'
-                                                });
-
-                                 } else { 
-                                 alert("Please select row");
-                                 } 
-                             } ,
-                            
-                           position:"last"
-            });
+                }).navGrid('#pager', { edit: true, add: true, del: true, search: true, view: true },{},{},{url:"<%=Url.Action("JsonDelete", "Roles" )%>"})
             }}
         
 </script>

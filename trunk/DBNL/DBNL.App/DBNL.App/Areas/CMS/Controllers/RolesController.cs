@@ -186,5 +186,22 @@ namespace DBNL.App.Areas.CMS.Controllers
                 return View();
             }
         }
+
+        [AcceptVerbs(HttpVerbs.Post)]
+        public ActionResult JsonDelete(int id)
+        {
+            try
+            {
+                RoleService.Delete(id);
+                // TODO: Add update logic here
+
+                return Json(true);
+            }
+            catch
+            {
+                return Json(false);
+            }
+        }
+
     }
 }

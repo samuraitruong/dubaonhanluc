@@ -15,6 +15,12 @@ namespace DBNL.App.Models.Helpers
 			Initialize(source.AsQueryable(), index, pageSize, totalCount);
 		}
 
+        public  PagedList(IEnumerable<T> source, int index, int pageSize, int? totalCount, bool special)
+        {
+            InitializeEx(source, index, pageSize, totalCount);
+        }
+
+
 		public PagedList(IQueryable<T> source, int index, int pageSize) : this(source, index, pageSize, null)
 		{
 		}
@@ -80,6 +86,50 @@ namespace DBNL.App.Models.Helpers
 			if (TotalItemCount > 0)
 			{
 				AddRange(source.Skip((index) * pageSize).Take(pageSize).ToList());
+			}
+		}
+        protected void InitializeEx(IEnumerable<T> source, int index, int pageSize, int? totalCount)
+		{
+			//### argument checking
+			if (index < 0)
+			{
+				throw new ArgumentOutOfRangeException("PageIndex cannot be below 0.");
+			}
+			if (pageSize < 1)
+			{
+				throw new ArgumentOutOfRangeException("PageSize cannot be less than 1.");
+			}
+
+			//### set source to blank list if source is null to prevent exceptions
+			if (source == null)
+			{
+				source = new List<T>().AsEnumerable();
+			}
+
+			//### set properties
+			if (totalCount.HasValue)
+			{
+				TotalItemCount = totalCount.Value;
+			}
+			PageSize = pageSize;
+			PageIndex = index;
+			if (TotalItemCount > 0)
+			{
+				PageCount = (int)Math.Ceiling(TotalItemCount / (double)PageSize);
+			}
+			else
+			{
+				PageCount = 0;
+			}
+			HasPreviousPage = (PageIndex > 0);
+			HasNextPage = (PageIndex < (PageCount - 1));
+			IsFirstPage = (PageIndex <= 0);
+			IsLastPage = (PageIndex >= (PageCount - 1));
+
+			//### add items to internal list
+			if (TotalItemCount > 0)
+			{
+				AddRange(source.ToList());
 			}
 		}
 	}

@@ -51,18 +51,9 @@ namespace DBNL.App.Models
     partial void InsertSupporter(Supporter instance);
     partial void UpdateSupporter(Supporter instance);
     partial void DeleteSupporter(Supporter instance);
-    partial void InsertUser(User instance);
-    partial void UpdateUser(User instance);
-    partial void DeleteUser(User instance);
-    partial void InsertRole(Role instance);
-    partial void UpdateRole(Role instance);
-    partial void DeleteRole(Role instance);
     partial void InsertBanner(Banner instance);
     partial void UpdateBanner(Banner instance);
     partial void DeleteBanner(Banner instance);
-    partial void InsertContent(Content instance);
-    partial void UpdateContent(Content instance);
-    partial void DeleteContent(Content instance);
     partial void InsertJob(Job instance);
     partial void UpdateJob(Job instance);
     partial void DeleteJob(Job instance);
@@ -72,10 +63,19 @@ namespace DBNL.App.Models
     partial void InsertNavigation(Navigation instance);
     partial void UpdateNavigation(Navigation instance);
     partial void DeleteNavigation(Navigation instance);
+    partial void InsertContent(Content instance);
+    partial void UpdateContent(Content instance);
+    partial void DeleteContent(Content instance);
+    partial void InsertUser(User instance);
+    partial void UpdateUser(User instance);
+    partial void DeleteUser(User instance);
+    partial void InsertRole(Role instance);
+    partial void UpdateRole(Role instance);
+    partial void DeleteRole(Role instance);
     #endregion
 		
 		public DBNLDataContext() : 
-				base(global::DBNL.App.Models.Properties.Settings.Default.dbnlConnectionString, mappingSource)
+				base(global::DBNL.App.Models.Properties.Settings.Default.dbnlConnectionString1, mappingSource)
 		{
 			OnCreated();
 		}
@@ -160,35 +160,11 @@ namespace DBNL.App.Models
 			}
 		}
 		
-		public System.Data.Linq.Table<User> Users
-		{
-			get
-			{
-				return this.GetTable<User>();
-			}
-		}
-		
-		public System.Data.Linq.Table<Role> Roles
-		{
-			get
-			{
-				return this.GetTable<Role>();
-			}
-		}
-		
 		public System.Data.Linq.Table<Banner> Banners
 		{
 			get
 			{
 				return this.GetTable<Banner>();
-			}
-		}
-		
-		public System.Data.Linq.Table<Content> Contents
-		{
-			get
-			{
-				return this.GetTable<Content>();
 			}
 		}
 		
@@ -213,6 +189,30 @@ namespace DBNL.App.Models
 			get
 			{
 				return this.GetTable<Navigation>();
+			}
+		}
+		
+		public System.Data.Linq.Table<Content> Contents
+		{
+			get
+			{
+				return this.GetTable<Content>();
+			}
+		}
+		
+		public System.Data.Linq.Table<User> Users
+		{
+			get
+			{
+				return this.GetTable<User>();
+			}
+		}
+		
+		public System.Data.Linq.Table<Role> Roles
+		{
+			get
+			{
+				return this.GetTable<Role>();
 			}
 		}
 	}
@@ -1388,642 +1388,6 @@ namespace DBNL.App.Models
 		}
 	}
 	
-	[global::System.Data.Linq.Mapping.TableAttribute(Name="artseed.[User]")]
-	public partial class User : INotifyPropertyChanging, INotifyPropertyChanged
-	{
-		
-		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
-		
-		private int _Id;
-		
-		private string _Username;
-		
-		private string _Name;
-		
-		private string _Password;
-		
-		private string _Status;
-		
-		private System.DateTime _CreatedDate;
-		
-		private System.DateTime _UpdatedDate;
-		
-		private EntitySet<UserInRole> _UserInRoles;
-		
-    #region Extensibility Method Definitions
-    partial void OnLoaded();
-    partial void OnValidate(System.Data.Linq.ChangeAction action);
-    partial void OnCreated();
-    partial void OnIdChanging(int value);
-    partial void OnIdChanged();
-    partial void OnUsernameChanging(string value);
-    partial void OnUsernameChanged();
-    partial void OnNameChanging(string value);
-    partial void OnNameChanged();
-    partial void OnPasswordChanging(string value);
-    partial void OnPasswordChanged();
-    partial void OnStatusChanging(string value);
-    partial void OnStatusChanged();
-    partial void OnCreatedDateChanging(System.DateTime value);
-    partial void OnCreatedDateChanged();
-    partial void OnUpdatedDateChanging(System.DateTime value);
-    partial void OnUpdatedDateChanged();
-    #endregion
-		
-		public User()
-		{
-			this._UserInRoles = new EntitySet<UserInRole>(new Action<UserInRole>(this.attach_UserInRoles), new Action<UserInRole>(this.detach_UserInRoles));
-			OnCreated();
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Id", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
-		public int Id
-		{
-			get
-			{
-				return this._Id;
-			}
-			set
-			{
-				if ((this._Id != value))
-				{
-					this.OnIdChanging(value);
-					this.SendPropertyChanging();
-					this._Id = value;
-					this.SendPropertyChanged("Id");
-					this.OnIdChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Username", DbType="NVarChar(50) NOT NULL", CanBeNull=false)]
-		public string Username
-		{
-			get
-			{
-				return this._Username;
-			}
-			set
-			{
-				if ((this._Username != value))
-				{
-					this.OnUsernameChanging(value);
-					this.SendPropertyChanging();
-					this._Username = value;
-					this.SendPropertyChanged("Username");
-					this.OnUsernameChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Name", DbType="NChar(10) NOT NULL", CanBeNull=false)]
-		public string Name
-		{
-			get
-			{
-				return this._Name;
-			}
-			set
-			{
-				if ((this._Name != value))
-				{
-					this.OnNameChanging(value);
-					this.SendPropertyChanging();
-					this._Name = value;
-					this.SendPropertyChanged("Name");
-					this.OnNameChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Password", DbType="NVarChar(32) NOT NULL", CanBeNull=false)]
-		public string Password
-		{
-			get
-			{
-				return this._Password;
-			}
-			set
-			{
-				if ((this._Password != value))
-				{
-					this.OnPasswordChanging(value);
-					this.SendPropertyChanging();
-					this._Password = value;
-					this.SendPropertyChanged("Password");
-					this.OnPasswordChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Status", DbType="NVarChar(50) NOT NULL", CanBeNull=false)]
-		public string Status
-		{
-			get
-			{
-				return this._Status;
-			}
-			set
-			{
-				if ((this._Status != value))
-				{
-					this.OnStatusChanging(value);
-					this.SendPropertyChanging();
-					this._Status = value;
-					this.SendPropertyChanged("Status");
-					this.OnStatusChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CreatedDate", DbType="DateTime NOT NULL")]
-		public System.DateTime CreatedDate
-		{
-			get
-			{
-				return this._CreatedDate;
-			}
-			set
-			{
-				if ((this._CreatedDate != value))
-				{
-					this.OnCreatedDateChanging(value);
-					this.SendPropertyChanging();
-					this._CreatedDate = value;
-					this.SendPropertyChanged("CreatedDate");
-					this.OnCreatedDateChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_UpdatedDate", DbType="DateTime NOT NULL")]
-		public System.DateTime UpdatedDate
-		{
-			get
-			{
-				return this._UpdatedDate;
-			}
-			set
-			{
-				if ((this._UpdatedDate != value))
-				{
-					this.OnUpdatedDateChanging(value);
-					this.SendPropertyChanging();
-					this._UpdatedDate = value;
-					this.SendPropertyChanged("UpdatedDate");
-					this.OnUpdatedDateChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="User_UserInRole", Storage="_UserInRoles", ThisKey="Id", OtherKey="UserId")]
-		public EntitySet<UserInRole> UserInRoles
-		{
-			get
-			{
-				return this._UserInRoles;
-			}
-			set
-			{
-				this._UserInRoles.Assign(value);
-			}
-		}
-		
-		public event PropertyChangingEventHandler PropertyChanging;
-		
-		public event PropertyChangedEventHandler PropertyChanged;
-		
-		protected virtual void SendPropertyChanging()
-		{
-			if ((this.PropertyChanging != null))
-			{
-				this.PropertyChanging(this, emptyChangingEventArgs);
-			}
-		}
-		
-		protected virtual void SendPropertyChanged(String propertyName)
-		{
-			if ((this.PropertyChanged != null))
-			{
-				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-			}
-		}
-		
-		private void attach_UserInRoles(UserInRole entity)
-		{
-			this.SendPropertyChanging();
-			entity.User = this;
-		}
-		
-		private void detach_UserInRoles(UserInRole entity)
-		{
-			this.SendPropertyChanging();
-			entity.User = null;
-		}
-	}
-	
-	[global::System.Data.Linq.Mapping.TableAttribute(Name="artseed.Role")]
-	public partial class Role : INotifyPropertyChanging, INotifyPropertyChanged
-	{
-		
-		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
-		
-		private int _Id;
-		
-		private string _RoleName;
-		
-		private string _ContentPermission;
-		
-		private string _ComponentPermission;
-		
-		private bool _AllowManageUser;
-		
-		private bool _AllowManagePoll;
-		
-		private bool _AllowManageContact;
-		
-		private bool _AllowManageLink;
-		
-		private bool _AllowManageOnlineSupporter;
-		
-		private bool _IsFullPermission;
-		
-		private bool _AllowManageAllContent;
-		
-		private bool _AllowManageBanner;
-		
-		private bool _AllowManageMenu;
-		
-		private bool _AllowManageRole;
-		
-		private EntitySet<UserInRole> _UserInRoles;
-		
-    #region Extensibility Method Definitions
-    partial void OnLoaded();
-    partial void OnValidate(System.Data.Linq.ChangeAction action);
-    partial void OnCreated();
-    partial void OnIdChanging(int value);
-    partial void OnIdChanged();
-    partial void OnRoleNameChanging(string value);
-    partial void OnRoleNameChanged();
-    partial void OnContentPermissionChanging(string value);
-    partial void OnContentPermissionChanged();
-    partial void OnComponentPermissionChanging(string value);
-    partial void OnComponentPermissionChanged();
-    partial void OnAllowManageUserChanging(bool value);
-    partial void OnAllowManageUserChanged();
-    partial void OnAllowManagePollChanging(bool value);
-    partial void OnAllowManagePollChanged();
-    partial void OnAllowManageContactChanging(bool value);
-    partial void OnAllowManageContactChanged();
-    partial void OnAllowManageLinkChanging(bool value);
-    partial void OnAllowManageLinkChanged();
-    partial void OnAllowManageOnlineSupporterChanging(bool value);
-    partial void OnAllowManageOnlineSupporterChanged();
-    partial void OnIsFullPermissionChanging(bool value);
-    partial void OnIsFullPermissionChanged();
-    partial void OnAllowManageAllContentChanging(bool value);
-    partial void OnAllowManageAllContentChanged();
-    partial void OnAllowManageBannerChanging(bool value);
-    partial void OnAllowManageBannerChanged();
-    partial void OnAllowManageMenuChanging(bool value);
-    partial void OnAllowManageMenuChanged();
-    partial void OnAllowManageRoleChanging(bool value);
-    partial void OnAllowManageRoleChanged();
-    #endregion
-		
-		public Role()
-		{
-			this._UserInRoles = new EntitySet<UserInRole>(new Action<UserInRole>(this.attach_UserInRoles), new Action<UserInRole>(this.detach_UserInRoles));
-			OnCreated();
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Id", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
-		public int Id
-		{
-			get
-			{
-				return this._Id;
-			}
-			set
-			{
-				if ((this._Id != value))
-				{
-					this.OnIdChanging(value);
-					this.SendPropertyChanging();
-					this._Id = value;
-					this.SendPropertyChanged("Id");
-					this.OnIdChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_RoleName", DbType="NVarChar(250) NOT NULL", CanBeNull=false)]
-		public string RoleName
-		{
-			get
-			{
-				return this._RoleName;
-			}
-			set
-			{
-				if ((this._RoleName != value))
-				{
-					this.OnRoleNameChanging(value);
-					this.SendPropertyChanging();
-					this._RoleName = value;
-					this.SendPropertyChanged("RoleName");
-					this.OnRoleNameChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ContentPermission", DbType="NVarChar(250)")]
-		public string ContentPermission
-		{
-			get
-			{
-				return this._ContentPermission;
-			}
-			set
-			{
-				if ((this._ContentPermission != value))
-				{
-					this.OnContentPermissionChanging(value);
-					this.SendPropertyChanging();
-					this._ContentPermission = value;
-					this.SendPropertyChanged("ContentPermission");
-					this.OnContentPermissionChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ComponentPermission", DbType="NVarChar(250)")]
-		public string ComponentPermission
-		{
-			get
-			{
-				return this._ComponentPermission;
-			}
-			set
-			{
-				if ((this._ComponentPermission != value))
-				{
-					this.OnComponentPermissionChanging(value);
-					this.SendPropertyChanging();
-					this._ComponentPermission = value;
-					this.SendPropertyChanged("ComponentPermission");
-					this.OnComponentPermissionChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_AllowManageUser", DbType="Bit NOT NULL")]
-		public bool AllowManageUser
-		{
-			get
-			{
-				return this._AllowManageUser;
-			}
-			set
-			{
-				if ((this._AllowManageUser != value))
-				{
-					this.OnAllowManageUserChanging(value);
-					this.SendPropertyChanging();
-					this._AllowManageUser = value;
-					this.SendPropertyChanged("AllowManageUser");
-					this.OnAllowManageUserChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_AllowManagePoll", DbType="Bit NOT NULL")]
-		public bool AllowManagePoll
-		{
-			get
-			{
-				return this._AllowManagePoll;
-			}
-			set
-			{
-				if ((this._AllowManagePoll != value))
-				{
-					this.OnAllowManagePollChanging(value);
-					this.SendPropertyChanging();
-					this._AllowManagePoll = value;
-					this.SendPropertyChanged("AllowManagePoll");
-					this.OnAllowManagePollChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_AllowManageContact", DbType="Bit NOT NULL")]
-		public bool AllowManageContact
-		{
-			get
-			{
-				return this._AllowManageContact;
-			}
-			set
-			{
-				if ((this._AllowManageContact != value))
-				{
-					this.OnAllowManageContactChanging(value);
-					this.SendPropertyChanging();
-					this._AllowManageContact = value;
-					this.SendPropertyChanged("AllowManageContact");
-					this.OnAllowManageContactChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_AllowManageLink", DbType="Bit NOT NULL")]
-		public bool AllowManageLink
-		{
-			get
-			{
-				return this._AllowManageLink;
-			}
-			set
-			{
-				if ((this._AllowManageLink != value))
-				{
-					this.OnAllowManageLinkChanging(value);
-					this.SendPropertyChanging();
-					this._AllowManageLink = value;
-					this.SendPropertyChanged("AllowManageLink");
-					this.OnAllowManageLinkChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_AllowManageOnlineSupporter", DbType="Bit NOT NULL")]
-		public bool AllowManageOnlineSupporter
-		{
-			get
-			{
-				return this._AllowManageOnlineSupporter;
-			}
-			set
-			{
-				if ((this._AllowManageOnlineSupporter != value))
-				{
-					this.OnAllowManageOnlineSupporterChanging(value);
-					this.SendPropertyChanging();
-					this._AllowManageOnlineSupporter = value;
-					this.SendPropertyChanged("AllowManageOnlineSupporter");
-					this.OnAllowManageOnlineSupporterChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_IsFullPermission", DbType="Bit NOT NULL")]
-		public bool IsFullPermission
-		{
-			get
-			{
-				return this._IsFullPermission;
-			}
-			set
-			{
-				if ((this._IsFullPermission != value))
-				{
-					this.OnIsFullPermissionChanging(value);
-					this.SendPropertyChanging();
-					this._IsFullPermission = value;
-					this.SendPropertyChanged("IsFullPermission");
-					this.OnIsFullPermissionChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_AllowManageAllContent", DbType="Bit NOT NULL")]
-		public bool AllowManageAllContent
-		{
-			get
-			{
-				return this._AllowManageAllContent;
-			}
-			set
-			{
-				if ((this._AllowManageAllContent != value))
-				{
-					this.OnAllowManageAllContentChanging(value);
-					this.SendPropertyChanging();
-					this._AllowManageAllContent = value;
-					this.SendPropertyChanged("AllowManageAllContent");
-					this.OnAllowManageAllContentChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_AllowManageBanner", DbType="Bit NOT NULL")]
-		public bool AllowManageBanner
-		{
-			get
-			{
-				return this._AllowManageBanner;
-			}
-			set
-			{
-				if ((this._AllowManageBanner != value))
-				{
-					this.OnAllowManageBannerChanging(value);
-					this.SendPropertyChanging();
-					this._AllowManageBanner = value;
-					this.SendPropertyChanged("AllowManageBanner");
-					this.OnAllowManageBannerChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_AllowManageMenu", DbType="Bit NOT NULL")]
-		public bool AllowManageMenu
-		{
-			get
-			{
-				return this._AllowManageMenu;
-			}
-			set
-			{
-				if ((this._AllowManageMenu != value))
-				{
-					this.OnAllowManageMenuChanging(value);
-					this.SendPropertyChanging();
-					this._AllowManageMenu = value;
-					this.SendPropertyChanged("AllowManageMenu");
-					this.OnAllowManageMenuChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_AllowManageRole", DbType="Bit NOT NULL")]
-		public bool AllowManageRole
-		{
-			get
-			{
-				return this._AllowManageRole;
-			}
-			set
-			{
-				if ((this._AllowManageRole != value))
-				{
-					this.OnAllowManageRoleChanging(value);
-					this.SendPropertyChanging();
-					this._AllowManageRole = value;
-					this.SendPropertyChanged("AllowManageRole");
-					this.OnAllowManageRoleChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Role_UserInRole", Storage="_UserInRoles", ThisKey="Id", OtherKey="RoleId")]
-		public EntitySet<UserInRole> UserInRoles
-		{
-			get
-			{
-				return this._UserInRoles;
-			}
-			set
-			{
-				this._UserInRoles.Assign(value);
-			}
-		}
-		
-		public event PropertyChangingEventHandler PropertyChanging;
-		
-		public event PropertyChangedEventHandler PropertyChanged;
-		
-		protected virtual void SendPropertyChanging()
-		{
-			if ((this.PropertyChanging != null))
-			{
-				this.PropertyChanging(this, emptyChangingEventArgs);
-			}
-		}
-		
-		protected virtual void SendPropertyChanged(String propertyName)
-		{
-			if ((this.PropertyChanged != null))
-			{
-				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-			}
-		}
-		
-		private void attach_UserInRoles(UserInRole entity)
-		{
-			this.SendPropertyChanging();
-			entity.Role = this;
-		}
-		
-		private void detach_UserInRoles(UserInRole entity)
-		{
-			this.SendPropertyChanging();
-			entity.Role = null;
-		}
-	}
-	
 	[global::System.Data.Linq.Mapping.TableAttribute(Name="artseed.Banner")]
 	public partial class Banner : INotifyPropertyChanging, INotifyPropertyChanged
 	{
@@ -2251,457 +1615,6 @@ namespace DBNL.App.Models
 			{
 				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
 			}
-		}
-	}
-	
-	[global::System.Data.Linq.Mapping.TableAttribute(Name="artseed.Content")]
-	public partial class Content : INotifyPropertyChanging, INotifyPropertyChanged
-	{
-		
-		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
-		
-		private int _ContentId;
-		
-		private string _Title;
-		
-		private string _Content1;
-		
-		private int _CategoryId;
-		
-		private System.DateTime _CreatedDate;
-		
-		private System.DateTime _UpdatedDate;
-		
-		private bool _IsFeatured;
-		
-		private string _Status;
-		
-		private int _Count;
-		
-		private string _UniqueKey;
-		
-		private string _Description;
-		
-		private string _Picture;
-		
-		private EntitySet<ContentRelation> _ContentRelations;
-		
-		private EntitySet<ContentRelation> _ContentRelations1;
-		
-		private EntitySet<Navigation> _Navigations;
-		
-		private EntityRef<ContentCategory> _ContentCategory;
-		
-    #region Extensibility Method Definitions
-    partial void OnLoaded();
-    partial void OnValidate(System.Data.Linq.ChangeAction action);
-    partial void OnCreated();
-    partial void OnContentIdChanging(int value);
-    partial void OnContentIdChanged();
-    partial void OnTitleChanging(string value);
-    partial void OnTitleChanged();
-    partial void OnContent1Changing(string value);
-    partial void OnContent1Changed();
-    partial void OnCategoryIdChanging(int value);
-    partial void OnCategoryIdChanged();
-    partial void OnCreatedDateChanging(System.DateTime value);
-    partial void OnCreatedDateChanged();
-    partial void OnUpdatedDateChanging(System.DateTime value);
-    partial void OnUpdatedDateChanged();
-    partial void OnIsFeaturedChanging(bool value);
-    partial void OnIsFeaturedChanged();
-    partial void OnStatusChanging(string value);
-    partial void OnStatusChanged();
-    partial void OnCountChanging(int value);
-    partial void OnCountChanged();
-    partial void OnUniqueKeyChanging(string value);
-    partial void OnUniqueKeyChanged();
-    partial void OnDescriptionChanging(string value);
-    partial void OnDescriptionChanged();
-    partial void OnPictureChanging(string value);
-    partial void OnPictureChanged();
-    #endregion
-		
-		public Content()
-		{
-			this._ContentRelations = new EntitySet<ContentRelation>(new Action<ContentRelation>(this.attach_ContentRelations), new Action<ContentRelation>(this.detach_ContentRelations));
-			this._ContentRelations1 = new EntitySet<ContentRelation>(new Action<ContentRelation>(this.attach_ContentRelations1), new Action<ContentRelation>(this.detach_ContentRelations1));
-			this._Navigations = new EntitySet<Navigation>(new Action<Navigation>(this.attach_Navigations), new Action<Navigation>(this.detach_Navigations));
-			this._ContentCategory = default(EntityRef<ContentCategory>);
-			OnCreated();
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ContentId", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
-		public int ContentId
-		{
-			get
-			{
-				return this._ContentId;
-			}
-			set
-			{
-				if ((this._ContentId != value))
-				{
-					this.OnContentIdChanging(value);
-					this.SendPropertyChanging();
-					this._ContentId = value;
-					this.SendPropertyChanged("ContentId");
-					this.OnContentIdChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Title", DbType="NVarChar(255) NOT NULL", CanBeNull=false)]
-		public string Title
-		{
-			get
-			{
-				return this._Title;
-			}
-			set
-			{
-				if ((this._Title != value))
-				{
-					this.OnTitleChanging(value);
-					this.SendPropertyChanging();
-					this._Title = value;
-					this.SendPropertyChanged("Title");
-					this.OnTitleChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Name="Content", Storage="_Content1", DbType="NText", UpdateCheck=UpdateCheck.Never)]
-		public string Content1
-		{
-			get
-			{
-				return this._Content1;
-			}
-			set
-			{
-				if ((this._Content1 != value))
-				{
-					this.OnContent1Changing(value);
-					this.SendPropertyChanging();
-					this._Content1 = value;
-					this.SendPropertyChanged("Content1");
-					this.OnContent1Changed();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CategoryId", DbType="Int NOT NULL")]
-		public int CategoryId
-		{
-			get
-			{
-				return this._CategoryId;
-			}
-			set
-			{
-				if ((this._CategoryId != value))
-				{
-					if (this._ContentCategory.HasLoadedOrAssignedValue)
-					{
-						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
-					}
-					this.OnCategoryIdChanging(value);
-					this.SendPropertyChanging();
-					this._CategoryId = value;
-					this.SendPropertyChanged("CategoryId");
-					this.OnCategoryIdChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CreatedDate", DbType="DateTime NOT NULL")]
-		public System.DateTime CreatedDate
-		{
-			get
-			{
-				return this._CreatedDate;
-			}
-			set
-			{
-				if ((this._CreatedDate != value))
-				{
-					this.OnCreatedDateChanging(value);
-					this.SendPropertyChanging();
-					this._CreatedDate = value;
-					this.SendPropertyChanged("CreatedDate");
-					this.OnCreatedDateChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_UpdatedDate", DbType="DateTime NOT NULL")]
-		public System.DateTime UpdatedDate
-		{
-			get
-			{
-				return this._UpdatedDate;
-			}
-			set
-			{
-				if ((this._UpdatedDate != value))
-				{
-					this.OnUpdatedDateChanging(value);
-					this.SendPropertyChanging();
-					this._UpdatedDate = value;
-					this.SendPropertyChanged("UpdatedDate");
-					this.OnUpdatedDateChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_IsFeatured", DbType="Bit NOT NULL")]
-		public bool IsFeatured
-		{
-			get
-			{
-				return this._IsFeatured;
-			}
-			set
-			{
-				if ((this._IsFeatured != value))
-				{
-					this.OnIsFeaturedChanging(value);
-					this.SendPropertyChanging();
-					this._IsFeatured = value;
-					this.SendPropertyChanged("IsFeatured");
-					this.OnIsFeaturedChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Status", DbType="NVarChar(50) NOT NULL", CanBeNull=false)]
-		public string Status
-		{
-			get
-			{
-				return this._Status;
-			}
-			set
-			{
-				if ((this._Status != value))
-				{
-					this.OnStatusChanging(value);
-					this.SendPropertyChanging();
-					this._Status = value;
-					this.SendPropertyChanged("Status");
-					this.OnStatusChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Count", DbType="Int NOT NULL")]
-		public int Count
-		{
-			get
-			{
-				return this._Count;
-			}
-			set
-			{
-				if ((this._Count != value))
-				{
-					this.OnCountChanging(value);
-					this.SendPropertyChanging();
-					this._Count = value;
-					this.SendPropertyChanged("Count");
-					this.OnCountChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_UniqueKey", DbType="NVarChar(250) NOT NULL", CanBeNull=false)]
-		public string UniqueKey
-		{
-			get
-			{
-				return this._UniqueKey;
-			}
-			set
-			{
-				if ((this._UniqueKey != value))
-				{
-					this.OnUniqueKeyChanging(value);
-					this.SendPropertyChanging();
-					this._UniqueKey = value;
-					this.SendPropertyChanged("UniqueKey");
-					this.OnUniqueKeyChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Description", DbType="NText", UpdateCheck=UpdateCheck.Never)]
-		public string Description
-		{
-			get
-			{
-				return this._Description;
-			}
-			set
-			{
-				if ((this._Description != value))
-				{
-					this.OnDescriptionChanging(value);
-					this.SendPropertyChanging();
-					this._Description = value;
-					this.SendPropertyChanged("Description");
-					this.OnDescriptionChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Picture", DbType="VarChar(255)")]
-		public string Picture
-		{
-			get
-			{
-				return this._Picture;
-			}
-			set
-			{
-				if ((this._Picture != value))
-				{
-					this.OnPictureChanging(value);
-					this.SendPropertyChanging();
-					this._Picture = value;
-					this.SendPropertyChanged("Picture");
-					this.OnPictureChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Content_ContentRelation", Storage="_ContentRelations", ThisKey="ContentId", OtherKey="ContentId")]
-		public EntitySet<ContentRelation> ContentRelations
-		{
-			get
-			{
-				return this._ContentRelations;
-			}
-			set
-			{
-				this._ContentRelations.Assign(value);
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Content_ContentRelation1", Storage="_ContentRelations1", ThisKey="ContentId", OtherKey="RelatedId")]
-		public EntitySet<ContentRelation> ContentRelations1
-		{
-			get
-			{
-				return this._ContentRelations1;
-			}
-			set
-			{
-				this._ContentRelations1.Assign(value);
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Content_Navigation", Storage="_Navigations", ThisKey="ContentId", OtherKey="ContentId")]
-		public EntitySet<Navigation> Navigations
-		{
-			get
-			{
-				return this._Navigations;
-			}
-			set
-			{
-				this._Navigations.Assign(value);
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="ContentCategory_Content", Storage="_ContentCategory", ThisKey="CategoryId", OtherKey="ID", IsForeignKey=true)]
-		public ContentCategory ContentCategory
-		{
-			get
-			{
-				return this._ContentCategory.Entity;
-			}
-			set
-			{
-				ContentCategory previousValue = this._ContentCategory.Entity;
-				if (((previousValue != value) 
-							|| (this._ContentCategory.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._ContentCategory.Entity = null;
-						previousValue.Contents.Remove(this);
-					}
-					this._ContentCategory.Entity = value;
-					if ((value != null))
-					{
-						value.Contents.Add(this);
-						this._CategoryId = value.ID;
-					}
-					else
-					{
-						this._CategoryId = default(int);
-					}
-					this.SendPropertyChanged("ContentCategory");
-				}
-			}
-		}
-		
-		public event PropertyChangingEventHandler PropertyChanging;
-		
-		public event PropertyChangedEventHandler PropertyChanged;
-		
-		protected virtual void SendPropertyChanging()
-		{
-			if ((this.PropertyChanging != null))
-			{
-				this.PropertyChanging(this, emptyChangingEventArgs);
-			}
-		}
-		
-		protected virtual void SendPropertyChanged(String propertyName)
-		{
-			if ((this.PropertyChanged != null))
-			{
-				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-			}
-		}
-		
-		private void attach_ContentRelations(ContentRelation entity)
-		{
-			this.SendPropertyChanging();
-			entity.Content = this;
-		}
-		
-		private void detach_ContentRelations(ContentRelation entity)
-		{
-			this.SendPropertyChanging();
-			entity.Content = null;
-		}
-		
-		private void attach_ContentRelations1(ContentRelation entity)
-		{
-			this.SendPropertyChanging();
-			entity.Content1 = this;
-		}
-		
-		private void detach_ContentRelations1(ContentRelation entity)
-		{
-			this.SendPropertyChanging();
-			entity.Content1 = null;
-		}
-		
-		private void attach_Navigations(Navigation entity)
-		{
-			this.SendPropertyChanging();
-			entity.Content = this;
-		}
-		
-		private void detach_Navigations(Navigation entity)
-		{
-			this.SendPropertyChanging();
-			entity.Content = null;
 		}
 	}
 	
@@ -3033,11 +1946,11 @@ namespace DBNL.App.Models
 		
 		private bool _Invisible;
 		
-		private EntitySet<Content> _Contents;
-		
 		private EntitySet<ContentCategory> _ContentCategories;
 		
 		private EntitySet<Navigation> _Navigations;
+		
+		private EntitySet<Content> _Contents;
 		
 		private EntityRef<ContentCategory> _ContentCategory1;
 		
@@ -3069,9 +1982,9 @@ namespace DBNL.App.Models
 		
 		public ContentCategory()
 		{
-			this._Contents = new EntitySet<Content>(new Action<Content>(this.attach_Contents), new Action<Content>(this.detach_Contents));
 			this._ContentCategories = new EntitySet<ContentCategory>(new Action<ContentCategory>(this.attach_ContentCategories), new Action<ContentCategory>(this.detach_ContentCategories));
 			this._Navigations = new EntitySet<Navigation>(new Action<Navigation>(this.attach_Navigations), new Action<Navigation>(this.detach_Navigations));
+			this._Contents = new EntitySet<Content>(new Action<Content>(this.attach_Contents), new Action<Content>(this.detach_Contents));
 			this._ContentCategory1 = default(EntityRef<ContentCategory>);
 			OnCreated();
 		}
@@ -3280,19 +2193,6 @@ namespace DBNL.App.Models
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="ContentCategory_Content", Storage="_Contents", ThisKey="ID", OtherKey="CategoryId")]
-		public EntitySet<Content> Contents
-		{
-			get
-			{
-				return this._Contents;
-			}
-			set
-			{
-				this._Contents.Assign(value);
-			}
-		}
-		
 		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="ContentCategory_ContentCategory", Storage="_ContentCategories", ThisKey="ID", OtherKey="ParentCategoryId")]
 		public EntitySet<ContentCategory> ContentCategories
 		{
@@ -3316,6 +2216,19 @@ namespace DBNL.App.Models
 			set
 			{
 				this._Navigations.Assign(value);
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="ContentCategory_Content", Storage="_Contents", ThisKey="ID", OtherKey="CategoryId")]
+		public EntitySet<Content> Contents
+		{
+			get
+			{
+				return this._Contents;
+			}
+			set
+			{
+				this._Contents.Assign(value);
 			}
 		}
 		
@@ -3373,18 +2286,6 @@ namespace DBNL.App.Models
 			}
 		}
 		
-		private void attach_Contents(Content entity)
-		{
-			this.SendPropertyChanging();
-			entity.ContentCategory = this;
-		}
-		
-		private void detach_Contents(Content entity)
-		{
-			this.SendPropertyChanging();
-			entity.ContentCategory = null;
-		}
-		
 		private void attach_ContentCategories(ContentCategory entity)
 		{
 			this.SendPropertyChanging();
@@ -3404,6 +2305,18 @@ namespace DBNL.App.Models
 		}
 		
 		private void detach_Navigations(Navigation entity)
+		{
+			this.SendPropertyChanging();
+			entity.ContentCategory = null;
+		}
+		
+		private void attach_Contents(Content entity)
+		{
+			this.SendPropertyChanging();
+			entity.ContentCategory = this;
+		}
+		
+		private void detach_Contents(Content entity)
 		{
 			this.SendPropertyChanging();
 			entity.ContentCategory = null;
@@ -3452,11 +2365,11 @@ namespace DBNL.App.Models
 		
 		private EntitySet<Navigation> _Navigations;
 		
-		private EntityRef<Content> _Content;
-		
 		private EntityRef<ContentCategory> _ContentCategory;
 		
 		private EntityRef<Navigation> _Navigation1;
+		
+		private EntityRef<Content> _Content;
 		
     #region Extensibility Method Definitions
     partial void OnLoaded();
@@ -3501,9 +2414,9 @@ namespace DBNL.App.Models
 		public Navigation()
 		{
 			this._Navigations = new EntitySet<Navigation>(new Action<Navigation>(this.attach_Navigations), new Action<Navigation>(this.detach_Navigations));
-			this._Content = default(EntityRef<Content>);
 			this._ContentCategory = default(EntityRef<ContentCategory>);
 			this._Navigation1 = default(EntityRef<Navigation>);
+			this._Content = default(EntityRef<Content>);
 			OnCreated();
 		}
 		
@@ -3872,40 +2785,6 @@ namespace DBNL.App.Models
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Content_Navigation", Storage="_Content", ThisKey="ContentId", OtherKey="ContentId", IsForeignKey=true)]
-		public Content Content
-		{
-			get
-			{
-				return this._Content.Entity;
-			}
-			set
-			{
-				Content previousValue = this._Content.Entity;
-				if (((previousValue != value) 
-							|| (this._Content.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._Content.Entity = null;
-						previousValue.Navigations.Remove(this);
-					}
-					this._Content.Entity = value;
-					if ((value != null))
-					{
-						value.Navigations.Add(this);
-						this._ContentId = value.ContentId;
-					}
-					else
-					{
-						this._ContentId = default(Nullable<int>);
-					}
-					this.SendPropertyChanged("Content");
-				}
-			}
-		}
-		
 		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="ContentCategory_Navigation", Storage="_ContentCategory", ThisKey="CategoryId", OtherKey="ID", IsForeignKey=true)]
 		public ContentCategory ContentCategory
 		{
@@ -3974,6 +2853,40 @@ namespace DBNL.App.Models
 			}
 		}
 		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Content_Navigation", Storage="_Content", ThisKey="ContentId", OtherKey="ContentId", IsForeignKey=true)]
+		public Content Content
+		{
+			get
+			{
+				return this._Content.Entity;
+			}
+			set
+			{
+				Content previousValue = this._Content.Entity;
+				if (((previousValue != value) 
+							|| (this._Content.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._Content.Entity = null;
+						previousValue.Navigations.Remove(this);
+					}
+					this._Content.Entity = value;
+					if ((value != null))
+					{
+						value.Navigations.Add(this);
+						this._ContentId = value.ContentId;
+					}
+					else
+					{
+						this._ContentId = default(Nullable<int>);
+					}
+					this.SendPropertyChanged("Content");
+				}
+			}
+		}
+		
 		public event PropertyChangingEventHandler PropertyChanging;
 		
 		public event PropertyChangedEventHandler PropertyChanged;
@@ -4004,6 +2917,1165 @@ namespace DBNL.App.Models
 		{
 			this.SendPropertyChanging();
 			entity.Navigation1 = null;
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="artseed.Content")]
+	public partial class Content : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _ContentId;
+		
+		private string _Title;
+		
+		private string _Content1;
+		
+		private int _CategoryId;
+		
+		private System.DateTime _CreatedDate;
+		
+		private System.DateTime _UpdatedDate;
+		
+		private bool _IsFocusing;
+		
+		private bool _IsFeatured;
+		
+		private string _Status;
+		
+		private int _Count;
+		
+		private string _UniqueKey;
+		
+		private string _Description;
+		
+		private string _Picture;
+		
+		private EntitySet<ContentRelation> _ContentRelations;
+		
+		private EntitySet<ContentRelation> _ContentRelations1;
+		
+		private EntitySet<Navigation> _Navigations;
+		
+		private EntityRef<ContentCategory> _ContentCategory;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnContentIdChanging(int value);
+    partial void OnContentIdChanged();
+    partial void OnTitleChanging(string value);
+    partial void OnTitleChanged();
+    partial void OnContent1Changing(string value);
+    partial void OnContent1Changed();
+    partial void OnCategoryIdChanging(int value);
+    partial void OnCategoryIdChanged();
+    partial void OnCreatedDateChanging(System.DateTime value);
+    partial void OnCreatedDateChanged();
+    partial void OnUpdatedDateChanging(System.DateTime value);
+    partial void OnUpdatedDateChanged();
+    partial void OnIsFocusingChanging(bool value);
+    partial void OnIsFocusingChanged();
+    partial void OnIsFeaturedChanging(bool value);
+    partial void OnIsFeaturedChanged();
+    partial void OnStatusChanging(string value);
+    partial void OnStatusChanged();
+    partial void OnCountChanging(int value);
+    partial void OnCountChanged();
+    partial void OnUniqueKeyChanging(string value);
+    partial void OnUniqueKeyChanged();
+    partial void OnDescriptionChanging(string value);
+    partial void OnDescriptionChanged();
+    partial void OnPictureChanging(string value);
+    partial void OnPictureChanged();
+    #endregion
+		
+		public Content()
+		{
+			this._ContentRelations = new EntitySet<ContentRelation>(new Action<ContentRelation>(this.attach_ContentRelations), new Action<ContentRelation>(this.detach_ContentRelations));
+			this._ContentRelations1 = new EntitySet<ContentRelation>(new Action<ContentRelation>(this.attach_ContentRelations1), new Action<ContentRelation>(this.detach_ContentRelations1));
+			this._Navigations = new EntitySet<Navigation>(new Action<Navigation>(this.attach_Navigations), new Action<Navigation>(this.detach_Navigations));
+			this._ContentCategory = default(EntityRef<ContentCategory>);
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ContentId", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public int ContentId
+		{
+			get
+			{
+				return this._ContentId;
+			}
+			set
+			{
+				if ((this._ContentId != value))
+				{
+					this.OnContentIdChanging(value);
+					this.SendPropertyChanging();
+					this._ContentId = value;
+					this.SendPropertyChanged("ContentId");
+					this.OnContentIdChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Title", DbType="NVarChar(255) NOT NULL", CanBeNull=false)]
+		public string Title
+		{
+			get
+			{
+				return this._Title;
+			}
+			set
+			{
+				if ((this._Title != value))
+				{
+					this.OnTitleChanging(value);
+					this.SendPropertyChanging();
+					this._Title = value;
+					this.SendPropertyChanged("Title");
+					this.OnTitleChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Name="Content", Storage="_Content1", DbType="NText NOT NULL", CanBeNull=false, UpdateCheck=UpdateCheck.Never)]
+		public string Content1
+		{
+			get
+			{
+				return this._Content1;
+			}
+			set
+			{
+				if ((this._Content1 != value))
+				{
+					this.OnContent1Changing(value);
+					this.SendPropertyChanging();
+					this._Content1 = value;
+					this.SendPropertyChanged("Content1");
+					this.OnContent1Changed();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CategoryId", DbType="Int NOT NULL")]
+		public int CategoryId
+		{
+			get
+			{
+				return this._CategoryId;
+			}
+			set
+			{
+				if ((this._CategoryId != value))
+				{
+					if (this._ContentCategory.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnCategoryIdChanging(value);
+					this.SendPropertyChanging();
+					this._CategoryId = value;
+					this.SendPropertyChanged("CategoryId");
+					this.OnCategoryIdChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CreatedDate", DbType="DateTime NOT NULL")]
+		public System.DateTime CreatedDate
+		{
+			get
+			{
+				return this._CreatedDate;
+			}
+			set
+			{
+				if ((this._CreatedDate != value))
+				{
+					this.OnCreatedDateChanging(value);
+					this.SendPropertyChanging();
+					this._CreatedDate = value;
+					this.SendPropertyChanged("CreatedDate");
+					this.OnCreatedDateChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_UpdatedDate", DbType="DateTime NOT NULL")]
+		public System.DateTime UpdatedDate
+		{
+			get
+			{
+				return this._UpdatedDate;
+			}
+			set
+			{
+				if ((this._UpdatedDate != value))
+				{
+					this.OnUpdatedDateChanging(value);
+					this.SendPropertyChanging();
+					this._UpdatedDate = value;
+					this.SendPropertyChanged("UpdatedDate");
+					this.OnUpdatedDateChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_IsFocusing", DbType="Bit NOT NULL")]
+		public bool IsFocusing
+		{
+			get
+			{
+				return this._IsFocusing;
+			}
+			set
+			{
+				if ((this._IsFocusing != value))
+				{
+					this.OnIsFocusingChanging(value);
+					this.SendPropertyChanging();
+					this._IsFocusing = value;
+					this.SendPropertyChanged("IsFocusing");
+					this.OnIsFocusingChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_IsFeatured", DbType="Bit NOT NULL")]
+		public bool IsFeatured
+		{
+			get
+			{
+				return this._IsFeatured;
+			}
+			set
+			{
+				if ((this._IsFeatured != value))
+				{
+					this.OnIsFeaturedChanging(value);
+					this.SendPropertyChanging();
+					this._IsFeatured = value;
+					this.SendPropertyChanged("IsFeatured");
+					this.OnIsFeaturedChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Status", DbType="NVarChar(50) NOT NULL", CanBeNull=false)]
+		public string Status
+		{
+			get
+			{
+				return this._Status;
+			}
+			set
+			{
+				if ((this._Status != value))
+				{
+					this.OnStatusChanging(value);
+					this.SendPropertyChanging();
+					this._Status = value;
+					this.SendPropertyChanged("Status");
+					this.OnStatusChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Count", DbType="Int NOT NULL")]
+		public int Count
+		{
+			get
+			{
+				return this._Count;
+			}
+			set
+			{
+				if ((this._Count != value))
+				{
+					this.OnCountChanging(value);
+					this.SendPropertyChanging();
+					this._Count = value;
+					this.SendPropertyChanged("Count");
+					this.OnCountChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_UniqueKey", DbType="NVarChar(255) NOT NULL", CanBeNull=false)]
+		public string UniqueKey
+		{
+			get
+			{
+				return this._UniqueKey;
+			}
+			set
+			{
+				if ((this._UniqueKey != value))
+				{
+					this.OnUniqueKeyChanging(value);
+					this.SendPropertyChanging();
+					this._UniqueKey = value;
+					this.SendPropertyChanged("UniqueKey");
+					this.OnUniqueKeyChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Description", DbType="NText", UpdateCheck=UpdateCheck.Never)]
+		public string Description
+		{
+			get
+			{
+				return this._Description;
+			}
+			set
+			{
+				if ((this._Description != value))
+				{
+					this.OnDescriptionChanging(value);
+					this.SendPropertyChanging();
+					this._Description = value;
+					this.SendPropertyChanged("Description");
+					this.OnDescriptionChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Picture", DbType="VarChar(255)")]
+		public string Picture
+		{
+			get
+			{
+				return this._Picture;
+			}
+			set
+			{
+				if ((this._Picture != value))
+				{
+					this.OnPictureChanging(value);
+					this.SendPropertyChanging();
+					this._Picture = value;
+					this.SendPropertyChanged("Picture");
+					this.OnPictureChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Content_ContentRelation", Storage="_ContentRelations", ThisKey="ContentId", OtherKey="ContentId")]
+		public EntitySet<ContentRelation> ContentRelations
+		{
+			get
+			{
+				return this._ContentRelations;
+			}
+			set
+			{
+				this._ContentRelations.Assign(value);
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Content_ContentRelation1", Storage="_ContentRelations1", ThisKey="ContentId", OtherKey="RelatedId")]
+		public EntitySet<ContentRelation> ContentRelations1
+		{
+			get
+			{
+				return this._ContentRelations1;
+			}
+			set
+			{
+				this._ContentRelations1.Assign(value);
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Content_Navigation", Storage="_Navigations", ThisKey="ContentId", OtherKey="ContentId")]
+		public EntitySet<Navigation> Navigations
+		{
+			get
+			{
+				return this._Navigations;
+			}
+			set
+			{
+				this._Navigations.Assign(value);
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="ContentCategory_Content", Storage="_ContentCategory", ThisKey="CategoryId", OtherKey="ID", IsForeignKey=true)]
+		public ContentCategory ContentCategory
+		{
+			get
+			{
+				return this._ContentCategory.Entity;
+			}
+			set
+			{
+				ContentCategory previousValue = this._ContentCategory.Entity;
+				if (((previousValue != value) 
+							|| (this._ContentCategory.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._ContentCategory.Entity = null;
+						previousValue.Contents.Remove(this);
+					}
+					this._ContentCategory.Entity = value;
+					if ((value != null))
+					{
+						value.Contents.Add(this);
+						this._CategoryId = value.ID;
+					}
+					else
+					{
+						this._CategoryId = default(int);
+					}
+					this.SendPropertyChanged("ContentCategory");
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+		
+		private void attach_ContentRelations(ContentRelation entity)
+		{
+			this.SendPropertyChanging();
+			entity.Content = this;
+		}
+		
+		private void detach_ContentRelations(ContentRelation entity)
+		{
+			this.SendPropertyChanging();
+			entity.Content = null;
+		}
+		
+		private void attach_ContentRelations1(ContentRelation entity)
+		{
+			this.SendPropertyChanging();
+			entity.Content1 = this;
+		}
+		
+		private void detach_ContentRelations1(ContentRelation entity)
+		{
+			this.SendPropertyChanging();
+			entity.Content1 = null;
+		}
+		
+		private void attach_Navigations(Navigation entity)
+		{
+			this.SendPropertyChanging();
+			entity.Content = this;
+		}
+		
+		private void detach_Navigations(Navigation entity)
+		{
+			this.SendPropertyChanging();
+			entity.Content = null;
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="artseed.[User]")]
+	public partial class User : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _Id;
+		
+		private string _Username;
+		
+		private string _Name;
+		
+		private string _Password;
+		
+		private string _Status;
+		
+		private System.DateTime _CreatedDate;
+		
+		private System.DateTime _UpdatedDate;
+		
+		private bool _IsReadOnly;
+		
+		private EntitySet<UserInRole> _UserInRoles;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnIdChanging(int value);
+    partial void OnIdChanged();
+    partial void OnUsernameChanging(string value);
+    partial void OnUsernameChanged();
+    partial void OnNameChanging(string value);
+    partial void OnNameChanged();
+    partial void OnPasswordChanging(string value);
+    partial void OnPasswordChanged();
+    partial void OnStatusChanging(string value);
+    partial void OnStatusChanged();
+    partial void OnCreatedDateChanging(System.DateTime value);
+    partial void OnCreatedDateChanged();
+    partial void OnUpdatedDateChanging(System.DateTime value);
+    partial void OnUpdatedDateChanged();
+    partial void OnIsReadOnlyChanging(bool value);
+    partial void OnIsReadOnlyChanged();
+    #endregion
+		
+		public User()
+		{
+			this._UserInRoles = new EntitySet<UserInRole>(new Action<UserInRole>(this.attach_UserInRoles), new Action<UserInRole>(this.detach_UserInRoles));
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Id", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public int Id
+		{
+			get
+			{
+				return this._Id;
+			}
+			set
+			{
+				if ((this._Id != value))
+				{
+					this.OnIdChanging(value);
+					this.SendPropertyChanging();
+					this._Id = value;
+					this.SendPropertyChanged("Id");
+					this.OnIdChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Username", DbType="NVarChar(50) NOT NULL", CanBeNull=false)]
+		public string Username
+		{
+			get
+			{
+				return this._Username;
+			}
+			set
+			{
+				if ((this._Username != value))
+				{
+					this.OnUsernameChanging(value);
+					this.SendPropertyChanging();
+					this._Username = value;
+					this.SendPropertyChanged("Username");
+					this.OnUsernameChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Name", DbType="NVarChar(150) NOT NULL", CanBeNull=false)]
+		public string Name
+		{
+			get
+			{
+				return this._Name;
+			}
+			set
+			{
+				if ((this._Name != value))
+				{
+					this.OnNameChanging(value);
+					this.SendPropertyChanging();
+					this._Name = value;
+					this.SendPropertyChanged("Name");
+					this.OnNameChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Password", DbType="NVarChar(32) NOT NULL", CanBeNull=false)]
+		public string Password
+		{
+			get
+			{
+				return this._Password;
+			}
+			set
+			{
+				if ((this._Password != value))
+				{
+					this.OnPasswordChanging(value);
+					this.SendPropertyChanging();
+					this._Password = value;
+					this.SendPropertyChanged("Password");
+					this.OnPasswordChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Status", DbType="NVarChar(50) NOT NULL", CanBeNull=false)]
+		public string Status
+		{
+			get
+			{
+				return this._Status;
+			}
+			set
+			{
+				if ((this._Status != value))
+				{
+					this.OnStatusChanging(value);
+					this.SendPropertyChanging();
+					this._Status = value;
+					this.SendPropertyChanged("Status");
+					this.OnStatusChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CreatedDate", DbType="DateTime NOT NULL")]
+		public System.DateTime CreatedDate
+		{
+			get
+			{
+				return this._CreatedDate;
+			}
+			set
+			{
+				if ((this._CreatedDate != value))
+				{
+					this.OnCreatedDateChanging(value);
+					this.SendPropertyChanging();
+					this._CreatedDate = value;
+					this.SendPropertyChanged("CreatedDate");
+					this.OnCreatedDateChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_UpdatedDate", DbType="DateTime NOT NULL")]
+		public System.DateTime UpdatedDate
+		{
+			get
+			{
+				return this._UpdatedDate;
+			}
+			set
+			{
+				if ((this._UpdatedDate != value))
+				{
+					this.OnUpdatedDateChanging(value);
+					this.SendPropertyChanging();
+					this._UpdatedDate = value;
+					this.SendPropertyChanged("UpdatedDate");
+					this.OnUpdatedDateChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_IsReadOnly", DbType="Bit NOT NULL")]
+		public bool IsReadOnly
+		{
+			get
+			{
+				return this._IsReadOnly;
+			}
+			set
+			{
+				if ((this._IsReadOnly != value))
+				{
+					this.OnIsReadOnlyChanging(value);
+					this.SendPropertyChanging();
+					this._IsReadOnly = value;
+					this.SendPropertyChanged("IsReadOnly");
+					this.OnIsReadOnlyChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="User_UserInRole", Storage="_UserInRoles", ThisKey="Id", OtherKey="UserId")]
+		public EntitySet<UserInRole> UserInRoles
+		{
+			get
+			{
+				return this._UserInRoles;
+			}
+			set
+			{
+				this._UserInRoles.Assign(value);
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+		
+		private void attach_UserInRoles(UserInRole entity)
+		{
+			this.SendPropertyChanging();
+			entity.User = this;
+		}
+		
+		private void detach_UserInRoles(UserInRole entity)
+		{
+			this.SendPropertyChanging();
+			entity.User = null;
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="artseed.Role")]
+	public partial class Role : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _Id;
+		
+		private string _RoleName;
+		
+		private string _ContentPermission;
+		
+		private string _ComponentPermission;
+		
+		private bool _AllowManageUser;
+		
+		private bool _AllowManagePoll;
+		
+		private bool _AllowManageContact;
+		
+		private bool _AllowManageLink;
+		
+		private bool _AllowManageOnlineSupporter;
+		
+		private bool _IsFullPermission;
+		
+		private bool _AllowManageAllContent;
+		
+		private bool _AllowManageBanner;
+		
+		private bool _AllowManageMenu;
+		
+		private bool _AllowManageRole;
+		
+		private bool _IsReadOnly;
+		
+		private EntitySet<UserInRole> _UserInRoles;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnIdChanging(int value);
+    partial void OnIdChanged();
+    partial void OnRoleNameChanging(string value);
+    partial void OnRoleNameChanged();
+    partial void OnContentPermissionChanging(string value);
+    partial void OnContentPermissionChanged();
+    partial void OnComponentPermissionChanging(string value);
+    partial void OnComponentPermissionChanged();
+    partial void OnAllowManageUserChanging(bool value);
+    partial void OnAllowManageUserChanged();
+    partial void OnAllowManagePollChanging(bool value);
+    partial void OnAllowManagePollChanged();
+    partial void OnAllowManageContactChanging(bool value);
+    partial void OnAllowManageContactChanged();
+    partial void OnAllowManageLinkChanging(bool value);
+    partial void OnAllowManageLinkChanged();
+    partial void OnAllowManageOnlineSupporterChanging(bool value);
+    partial void OnAllowManageOnlineSupporterChanged();
+    partial void OnIsFullPermissionChanging(bool value);
+    partial void OnIsFullPermissionChanged();
+    partial void OnAllowManageAllContentChanging(bool value);
+    partial void OnAllowManageAllContentChanged();
+    partial void OnAllowManageBannerChanging(bool value);
+    partial void OnAllowManageBannerChanged();
+    partial void OnAllowManageMenuChanging(bool value);
+    partial void OnAllowManageMenuChanged();
+    partial void OnAllowManageRoleChanging(bool value);
+    partial void OnAllowManageRoleChanged();
+    partial void OnIsReadOnlyChanging(bool value);
+    partial void OnIsReadOnlyChanged();
+    #endregion
+		
+		public Role()
+		{
+			this._UserInRoles = new EntitySet<UserInRole>(new Action<UserInRole>(this.attach_UserInRoles), new Action<UserInRole>(this.detach_UserInRoles));
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Id", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public int Id
+		{
+			get
+			{
+				return this._Id;
+			}
+			set
+			{
+				if ((this._Id != value))
+				{
+					this.OnIdChanging(value);
+					this.SendPropertyChanging();
+					this._Id = value;
+					this.SendPropertyChanged("Id");
+					this.OnIdChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_RoleName", DbType="NVarChar(250) NOT NULL", CanBeNull=false)]
+		public string RoleName
+		{
+			get
+			{
+				return this._RoleName;
+			}
+			set
+			{
+				if ((this._RoleName != value))
+				{
+					this.OnRoleNameChanging(value);
+					this.SendPropertyChanging();
+					this._RoleName = value;
+					this.SendPropertyChanged("RoleName");
+					this.OnRoleNameChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ContentPermission", DbType="NVarChar(250)")]
+		public string ContentPermission
+		{
+			get
+			{
+				return this._ContentPermission;
+			}
+			set
+			{
+				if ((this._ContentPermission != value))
+				{
+					this.OnContentPermissionChanging(value);
+					this.SendPropertyChanging();
+					this._ContentPermission = value;
+					this.SendPropertyChanged("ContentPermission");
+					this.OnContentPermissionChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ComponentPermission", DbType="NVarChar(250)")]
+		public string ComponentPermission
+		{
+			get
+			{
+				return this._ComponentPermission;
+			}
+			set
+			{
+				if ((this._ComponentPermission != value))
+				{
+					this.OnComponentPermissionChanging(value);
+					this.SendPropertyChanging();
+					this._ComponentPermission = value;
+					this.SendPropertyChanged("ComponentPermission");
+					this.OnComponentPermissionChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_AllowManageUser", DbType="Bit NOT NULL")]
+		public bool AllowManageUser
+		{
+			get
+			{
+				return this._AllowManageUser;
+			}
+			set
+			{
+				if ((this._AllowManageUser != value))
+				{
+					this.OnAllowManageUserChanging(value);
+					this.SendPropertyChanging();
+					this._AllowManageUser = value;
+					this.SendPropertyChanged("AllowManageUser");
+					this.OnAllowManageUserChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_AllowManagePoll", DbType="Bit NOT NULL")]
+		public bool AllowManagePoll
+		{
+			get
+			{
+				return this._AllowManagePoll;
+			}
+			set
+			{
+				if ((this._AllowManagePoll != value))
+				{
+					this.OnAllowManagePollChanging(value);
+					this.SendPropertyChanging();
+					this._AllowManagePoll = value;
+					this.SendPropertyChanged("AllowManagePoll");
+					this.OnAllowManagePollChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_AllowManageContact", DbType="Bit NOT NULL")]
+		public bool AllowManageContact
+		{
+			get
+			{
+				return this._AllowManageContact;
+			}
+			set
+			{
+				if ((this._AllowManageContact != value))
+				{
+					this.OnAllowManageContactChanging(value);
+					this.SendPropertyChanging();
+					this._AllowManageContact = value;
+					this.SendPropertyChanged("AllowManageContact");
+					this.OnAllowManageContactChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_AllowManageLink", DbType="Bit NOT NULL")]
+		public bool AllowManageLink
+		{
+			get
+			{
+				return this._AllowManageLink;
+			}
+			set
+			{
+				if ((this._AllowManageLink != value))
+				{
+					this.OnAllowManageLinkChanging(value);
+					this.SendPropertyChanging();
+					this._AllowManageLink = value;
+					this.SendPropertyChanged("AllowManageLink");
+					this.OnAllowManageLinkChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_AllowManageOnlineSupporter", DbType="Bit NOT NULL")]
+		public bool AllowManageOnlineSupporter
+		{
+			get
+			{
+				return this._AllowManageOnlineSupporter;
+			}
+			set
+			{
+				if ((this._AllowManageOnlineSupporter != value))
+				{
+					this.OnAllowManageOnlineSupporterChanging(value);
+					this.SendPropertyChanging();
+					this._AllowManageOnlineSupporter = value;
+					this.SendPropertyChanged("AllowManageOnlineSupporter");
+					this.OnAllowManageOnlineSupporterChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_IsFullPermission", DbType="Bit NOT NULL")]
+		public bool IsFullPermission
+		{
+			get
+			{
+				return this._IsFullPermission;
+			}
+			set
+			{
+				if ((this._IsFullPermission != value))
+				{
+					this.OnIsFullPermissionChanging(value);
+					this.SendPropertyChanging();
+					this._IsFullPermission = value;
+					this.SendPropertyChanged("IsFullPermission");
+					this.OnIsFullPermissionChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_AllowManageAllContent", DbType="Bit NOT NULL")]
+		public bool AllowManageAllContent
+		{
+			get
+			{
+				return this._AllowManageAllContent;
+			}
+			set
+			{
+				if ((this._AllowManageAllContent != value))
+				{
+					this.OnAllowManageAllContentChanging(value);
+					this.SendPropertyChanging();
+					this._AllowManageAllContent = value;
+					this.SendPropertyChanged("AllowManageAllContent");
+					this.OnAllowManageAllContentChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_AllowManageBanner", DbType="Bit NOT NULL")]
+		public bool AllowManageBanner
+		{
+			get
+			{
+				return this._AllowManageBanner;
+			}
+			set
+			{
+				if ((this._AllowManageBanner != value))
+				{
+					this.OnAllowManageBannerChanging(value);
+					this.SendPropertyChanging();
+					this._AllowManageBanner = value;
+					this.SendPropertyChanged("AllowManageBanner");
+					this.OnAllowManageBannerChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_AllowManageMenu", DbType="Bit NOT NULL")]
+		public bool AllowManageMenu
+		{
+			get
+			{
+				return this._AllowManageMenu;
+			}
+			set
+			{
+				if ((this._AllowManageMenu != value))
+				{
+					this.OnAllowManageMenuChanging(value);
+					this.SendPropertyChanging();
+					this._AllowManageMenu = value;
+					this.SendPropertyChanged("AllowManageMenu");
+					this.OnAllowManageMenuChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_AllowManageRole", DbType="Bit NOT NULL")]
+		public bool AllowManageRole
+		{
+			get
+			{
+				return this._AllowManageRole;
+			}
+			set
+			{
+				if ((this._AllowManageRole != value))
+				{
+					this.OnAllowManageRoleChanging(value);
+					this.SendPropertyChanging();
+					this._AllowManageRole = value;
+					this.SendPropertyChanged("AllowManageRole");
+					this.OnAllowManageRoleChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_IsReadOnly", DbType="Bit NOT NULL")]
+		public bool IsReadOnly
+		{
+			get
+			{
+				return this._IsReadOnly;
+			}
+			set
+			{
+				if ((this._IsReadOnly != value))
+				{
+					this.OnIsReadOnlyChanging(value);
+					this.SendPropertyChanging();
+					this._IsReadOnly = value;
+					this.SendPropertyChanged("IsReadOnly");
+					this.OnIsReadOnlyChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Role_UserInRole", Storage="_UserInRoles", ThisKey="Id", OtherKey="RoleId")]
+		public EntitySet<UserInRole> UserInRoles
+		{
+			get
+			{
+				return this._UserInRoles;
+			}
+			set
+			{
+				this._UserInRoles.Assign(value);
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+		
+		private void attach_UserInRoles(UserInRole entity)
+		{
+			this.SendPropertyChanging();
+			entity.Role = this;
+		}
+		
+		private void detach_UserInRoles(UserInRole entity)
+		{
+			this.SendPropertyChanging();
+			entity.Role = null;
 		}
 	}
 }

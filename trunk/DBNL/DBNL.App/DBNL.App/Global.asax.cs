@@ -20,6 +20,7 @@ namespace DBNL.App
         public static void RegisterRoutes(RouteCollection routes)
         {
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
+            routes.IgnoreRoute("elmah.axd");
             AreaRegistration.RegisterAllAreas();
             routes.MapRoute(
                 "Category-View-Route",
@@ -46,15 +47,12 @@ namespace DBNL.App
                 new { controller = "Home", action = "Index", id = "" }  // Parameter defaults
                 //new string[] { "DBNL.App.Controllers" }
             );
-
-            
-
-          
         }
 
         protected void Application_Start()
         {
-            
+            LuceneHelper.BuildingIndex(this.Application);
+
             RegisterRoutes(RouteTable.Routes);
             
         }

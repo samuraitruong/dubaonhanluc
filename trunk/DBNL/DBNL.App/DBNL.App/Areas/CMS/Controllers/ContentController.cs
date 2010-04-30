@@ -21,6 +21,12 @@ namespace DBNL.App.Areas.CMS.Controllers
             return Json(true);
         }
         [HttpPost]
+        public ActionResult ToggleOnHP(int id)
+        {
+            ContentService.ToggleOnHP(id);
+            return Json(true);
+        }
+        [HttpPost]
         public ActionResult GetList(int page, int rows, string sidx, string sord, int? CategoryId)
         {
             IQueryable<Models.Content> contents ;
@@ -44,6 +50,8 @@ namespace DBNL.App.Areas.CMS.Controllers
                             Title = entity.Title,
                             Thumbnail = entity.ThumbnailUrl,
                             Category= entity.ContentCategory.CategoryName,
+                            Featured = entity.IsFeatured,
+                            IsForcusing = entity.IsFocusing,
                             PostedDate = entity.CreatedDate.ToShortDateString(),
                             Status = entity.Status,
                             Url = this.Url.Action("View",Models.Statics.Controllers.Article.ToString(), new {Area="", id=entity.ContentId})
@@ -93,6 +101,8 @@ namespace DBNL.App.Areas.CMS.Controllers
                             Title = entity.Title,
                             Thumbnail = entity.ThumbnailUrl,
                             Status = entity.Status,
+                            Featured = entity.IsFeatured,
+                            IsForcusing = entity.IsFocusing,
                             PostedDate = entity.CreatedDate.ToShortDateString(),
                             Url= this.Url.Action("View",Models.Statics.Controllers.Article.ToString(), new {Area="", id=entity.ContentId})
                         };
@@ -154,7 +164,7 @@ namespace DBNL.App.Areas.CMS.Controllers
 
                 ContentService.Create(content, picture);
 
-                return RedirectToAction("Index", "Administrations");
+                return RedirectToAction("Index", "Content");
             }
             catch
             {
@@ -165,7 +175,6 @@ namespace DBNL.App.Areas.CMS.Controllers
         public ActionResult CreateIn(int id)
         {
             ViewData["Category"] = CategoryService.GetById(id);
-
             return View(new Models.Content() {CategoryId =  id});
         } 
 

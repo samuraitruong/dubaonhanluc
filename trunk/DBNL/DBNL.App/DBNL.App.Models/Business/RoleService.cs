@@ -23,5 +23,23 @@ namespace DBNL.App.Models.Business
         {
             return RoleService.Roles.OrderBy(p=>p.RoleName).AsQueryable();
         }
+
+        public static void Delete(int id)
+        {
+            var item = GetItem(id);
+            if (item == null || item.IsReadOnly) return;
+            
+            var allUserAssigned = UserInRoles.Where(role => role.RoleId == id);
+
+            UserInRoles.DeleteAllOnSubmit(allUserAssigned.AsEnumerable());
+            Commit();
+            Roles.DeleteOnSubmit(item);
+            Commit();
+        }
+
+        private static Role GetItem(int id)
+        {
+            return Roles.Where(p => p.Id == id).SingleOrDefault();
+        }
     }
 }

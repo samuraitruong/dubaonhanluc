@@ -8,12 +8,23 @@
 
     <h2>Danh Mục</h2>
 
+    <ul class="topnav">
+            <li><%=Html.ActionLink("Thêm danh mục", "Create","Categories") %></li>
+            <li>
+                <%=Html.ActionLink("Xem tất cả bài viết", "Index","Content") %>
+            </li>
+            <li>
+                <%=Html.ActionLink("Thêm bài viết mới", "Create","Content") %>
+                
+            </li>
+            <li><%=Html.ActionLink("Thêm bài viết vào danh mục đang chọn", "Create","Content") %></li>
+
+        </ul>
+    <div style="clear:both"/>
      <div>
         <table id="grid" cellpadding="0" cellspacing="0">
         </table>
         <div id="pager" style="text-align: center;"></div>
-        
-        
         <p><%=Html.ActionLink("Thêm danh mục", "Create","Categories") %></p>
     </div>
     
@@ -61,6 +72,8 @@
         $("#dynamicLink").empty();
         var a = $("<a/>", {href:createInAction +id, text:'Thêm bài viết vào mục này.' });
         $("#dynamicLink").append(a);
+
+        $(".topnav >li:last a").attr("href", createInAction +id);
     }
 
     function afterShowFormEdit(form) {
@@ -96,7 +109,7 @@ $(document).ready(function () {
                     colModel: [
                         { name: 'Id', index: 'Id', width: 40, align: 'left', editable: false, key: true, editoptions: {readonly:'readonly'},editrules: { edithidden: true }, hidden: true },
                         { name: 'Name', index: 'CategoryName', width: 200, sortable: true, editable: true, edittype: 'text', editoptions: { size: 20, maxlength:100} , hidden: false },
-                        { name: 'Url', index: 'Url', width: 120, sortable: false, editable: false, formatter: 'link', formatoptions: {target : '_blank'}},
+                        { name: 'Url', index: 'Id', width: 120, sortable: true, editable: false, formatter: 'link', formatoptions: {target : '_blank'}},
                         { name: 'Articles', index: 'Artiles', width:60, align:'center', formatter:'integer',sortable: true, editable: false, edittype: 'text', editoptions: { size: 20, maxlength:100} , hidden: false },
                         { name: 'IsFeatured', index: 'IsFeatured', align:'center', width: 80, formatter:statiCheckboxFormater, sortable: true, editable: true, edittype: 'checkbox', editoptions: {value:'True:False',dataInit: InitCheckBox} , hidden: false },
                         { name: 'ShowOnHP', index: 'ShowOnHP', align:'center', width: 80,sortable:true, formatter:statiCheckboxFormater, editable: true, edittype: 'checkbox', editoptions: {value:'True:False',dataInit: InitCheckBox} , hidden: false },
@@ -113,16 +126,40 @@ $(document).ready(function () {
                     autowidth: true,
                     rownumbers: true,
                     caption: 'Các chủ đề',
-                    loadComplete: function(){ 
+                    loadComplete: function(xhr){ 
+                            
                             var ids = jQuery("#grid").getDataIDs(); 
                             for(var i=0;i<ids.length;i++){ 
                                     var cl = ids[i];
                                     var edit = '<a  class="Edit" rel="' +cl + '" href="<%=Url.Action("Edit","Categories")%>/' + cl +'" ><img src="<%=Url.Content("~/Images/edit_medium.png") %>" /></a>';
-                                    jQuery("#grid").setRowData(ids[i],{Options: edit}) ;
+
+                                    var tool = '<a  id="grid_tool_' + cl+'" onclick="return false" class="Lightning" rel="' +cl + '" href="<%=Url.Action("Edit","Categories")%>/' + cl +'" ><img src="<%=Url.Content("~/Images/lightning.png") %>" /></a>';
+                                    //var dmenu= $("#myMenu").clone();
+                                    
+                                    var dmenu=$("<p/>")
+                                    
+                                    var ul = $("<ul/>" , {'id': 'contextmn_'+cl, 'class':'contextMenu'});
+                                     //dmenu.append(ul);
+                                    
+                                    var li = $("<li>" ,{});
+                                    
+                                    var a = $("<a/>", {'text':'Add new content', 'href' :'#add', 'class': 'add'});
+                                    li.append(a);
+                                    ul.append(li);
+                                    dmenu.append(ul)
+                                   
+
+                                    jQuery("#grid").setRowData(ids[i],{Options: edit +tool+dmenu.html()}) ;
+
+                                    $("#grid_tool_" + cl).contextMenu({ menu: 'contextmn_'+cl, leftButton: true }, function(action, el, pos) { alert(action) });
+
                             } 
                     }, 
                     onRightClickRow  : function () {
-                            //alert('click');
+                            alert('click');
+                    },
+                    loadError : function (xhr,status,error) { 
+                        window.location.reload(true);
                     },
                     subGrid: true,
                     subGridRowExpanded: function(subgrid_id, row_id) { 
@@ -148,7 +185,7 @@ $(document).ready(function () {
                             colModel: [
                                 { name: 'Id', index: 'Id', width: 40, align: 'left', editable: false, key: true, editoptions: {readonly:'readonly'},editrules: { edithidden: true }, hidden: true },
                                 { name: 'Name', index: 'CategoryName', width: 200, sortable: true, editable: true, edittype: 'text', editoptions: { size: 50, maxlength:200} , hidden: false },
-                                { name: 'Url', index: 'Url', width: 120, sortable: false, editable: false, formatter: 'link', formatoptions: {target : '_blank'}},
+                                { name: 'Url', index: 'Id', width: 120, sortable: true, editable: false, formatter: 'link', formatoptions: {target : '_blank'}},
                                 { name: 'Articles', index: 'Artiles', width:60, align:'center', formatter:'integer',sortable: true, editable: false, edittype: 'text', editoptions: { size: 20, maxlength:100} , hidden: false },
                                 { name: 'IsFeatured', index: 'IsFeatured', align:'center', formatter:statiCheckboxFormater,width: 80, sortable: true, editable: true, edittype: 'checkbox', editoptions: {value:'True:False',dataInit: InitCheckBox} , hidden: false },
                                 { name: 'ShowOnHP', index: 'ShowOnHP', align:'center',formatter:statiCheckboxFormater,width: 80, sortable:true, editable: true, edittype: 'checkbox', editoptions: {value:'True:False',dataInit: InitCheckBox},hidden: false },
@@ -165,7 +202,6 @@ $(document).ready(function () {
                              autowidth: true,
                             rownumbers: true,
                             caption: 'Danh sách  chủ đề con trong mục này',
-                             userdata: {PollId:$("#grid").getRowData(row_id)["id"]},
                              postData: {ParentId:eid},
                             onSelectRow: function(ids) {  
                                 if (ids != null) {  
@@ -177,13 +213,17 @@ $(document).ready(function () {
                                        UpdateCreateInLink(data["Id"]) 
                                     } 
                             },
+                            loadError : function (xhr,status,error) { 
+                                alert(error);
+                                window.location.reload(true);
+                            },
                             loadComplete: function(){ 
-
+                            
                             $("tr[role='row']").contextMenu({
                                     menu: 'myMenu'
                                 },
                                  function(action, el, pos) {
-                                  alert(action);
+                                  //alert(action);
                                 });
 
                             var ids = jQuery("#grid").getDataIDs(); 
@@ -206,7 +246,6 @@ $(document).ready(function () {
                  onSelectRow: function(ids) { 
                   
                     if (ids != null) {  
-                        alert(ids);
                            var data = $("#grid").getRowData(ids);  
                            jQuery("#article_grid").setGridParam({ postData: {CategoryId: data["Id"]}, page: 1 })  
                            .setCaption("<b>Danh sách các bài viết trong mục : " + data["Name"]+"</b>")  
@@ -252,13 +291,15 @@ $(document).ready(function () {
                         type: "POST"
                     },
                     datatype: "json",
-                    colNames: [ 'Id','Tiêu đề', 'Hình','Ngày đăng', 'Url','Trạng Thái',''],
+                    colNames: [ 'Id','Tiêu đề', 'Hình','Ngày đăng', 'Url','Featured' ,'Forcusing','Trạng Thái',''],
                     colModel: [
                         { name: 'Id', index: 'Id', width: 40, align: 'left', sortable: false,editable: false, key: true, editoptions: {readonly:'readonly'},editrules: { edithidden: true }, hidden: true },
                         { name: 'Title', index: 'Title', width: 250, sortable: true, editable: true, edittype: 'text', editoptions: { size: 20, maxlength:100} , hidden: false },
                         { name: 'Thumbnail', index: 'Thumbnail', align:'center', formatter:imageFormater,width: 60, sortable: false, editable: false, edittype: 'text', editoptions: { size: 20, maxlength:100} , hidden: false },
-                        { name: 'PostedDate', index: 'PostedDate', align:'center',width: 60, sortable: true, editable: false, edittype: 'text', editoptions: { size: 20, maxlength:100} , hidden: false },
+                        { name: 'PostedDate', index: 'CreatedDate', align:'center',width: 60, sortable: true, editable: false, edittype: 'text', editoptions: { size: 20, maxlength:100} , hidden: false },
                         { name: 'Url', index: 'Url', align:'left', formatter:'link', formatoptions: {target:'_blank'},width: 80, sortable: false, editable: false, edittype: 'text', editoptions: { size: 20, maxlength:100} , hidden: false },
+                        { name: 'Featured', index: 'Featured', align:'center', formatter:'checkbox', formatoptions: {disabled:true},width: 80, sortable: false, editable: false, edittype: 'text', editoptions: { size: 20, maxlength:100} , hidden: false },
+                        { name: 'IsForcusing', index: 'IsForcusing', align:'center', formatter:'checkbox', formatoptions: {disabled:true},width: 80, sortable: false, editable: false, edittype: 'text', editoptions: { size: 20, maxlength:100} , hidden: false },
                         { name: 'Status', index: 'Status', align:'center', formatter:'text',width: 50, sortable: true, editable: false, edittype: 'text', editoptions: { size: 20, maxlength:100} , hidden: false },
                         { name: 'Options', index: 'Options', align:'center', formatter:'text',width: 50, sortable: false, editable: false, edittype: 'text', editoptions: { size: 20, maxlength:100} , hidden: false }
                       ],
@@ -311,6 +352,31 @@ $(document).ready(function () {
 
                                  } else { 
                                  alert("Chưa chọn dòng nào");
+                                 } 
+                             } ,
+                           position:"last"
+            }).navButtonAdd('#article_grid_pager',{
+                           caption:"Show/Unshow on HP", 
+                           buttonicon:"ui-icon-power", 
+                           onClickButton: function(){ 
+                             
+                                 var myid = jQuery("#article_grid").jqGrid('getGridParam','selrow'); 
+                                 
+                                 if (myid) { 
+                                        
+                                         var ret = jQuery("#article_grid").getRowData(myid); 
+                                         $.ajax({
+                                                  type: 'POST',
+                                                  url: "<%=Url.Action("ToggleOnHP", "Content" )%>",
+                                                  data: {Id : ret["Id"]},
+                                                  success: function() {
+                                                    $("#article_grid").trigger("reloadGrid")
+                                                  },
+                                                  dataType: 'json'
+                                                });
+
+                                 } else { 
+                                 alert("Bạn phải chọn một dòng để thực hiện thao tác này.");
                                  } 
                              } ,
                            position:"last"

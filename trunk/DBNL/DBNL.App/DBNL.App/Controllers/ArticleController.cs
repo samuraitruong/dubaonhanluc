@@ -20,6 +20,9 @@ namespace DBNL.App.Controllers
 
         public ActionResult Category(int id, int? page)
         {
+            Models.ContentCategory Cat = CategoryService.GetById(id);
+            if (Cat == null) return RedirectToAction("Index", "Http404");
+
             ViewData.Model = new CategoryViewData() {
                 Category = CategoryService.GetById(id),
                 Articles = ContentService.GetContentByCategoryId(id),
@@ -37,6 +40,7 @@ namespace DBNL.App.Controllers
             //return RedirectToAction("Category", new { id = 1, page = page });
             Models.ContentCategory Cat = CategoryService.GetByKey(category);
 
+            if (Cat == null) return RedirectToAction("Index", "Http404");
             ViewData.Model = new CategoryViewData()
             {
                 Category = Cat,
@@ -64,7 +68,7 @@ namespace DBNL.App.Controllers
         public ActionResult ViewContent(string contentkey)
         {
             DBNL.App.Models.Content content = ContentService.GetContentByKey(contentkey);
-
+            if (content == null) return RedirectToAction("Index", "Http404");
             ViewData.Model = new ViewContentDataView()
             {
                 Content = content,
@@ -76,7 +80,7 @@ namespace DBNL.App.Controllers
         public ActionResult View(int id)
         {
             DBNL.App.Models.Content content = ContentService.GetContentById(id);
-
+            if (content == null) return RedirectToAction("Index", "Http404");
             ViewData.Model = new ViewContentDataView() { Content = content,
             FeaturedContents = ContentService.GetFeaturedArtileByCategoryId(content.CategoryId),
             OtherNewses = ContentService.GetOlderNews(content)

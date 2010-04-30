@@ -16,6 +16,12 @@ namespace DBNL.App.Config
             get { return (FileResponsityElement)this["FileResponsity"]; }
 
         }
+        [ConfigurationProperty("lucene")]
+        public LuceneElement LuceneElement
+        {
+            get { return (LuceneElement)this["lucene"]; }
+
+        }
         [ConfigurationProperty("WebUIElement")]
         public WebUIElement WebUIElement
         {

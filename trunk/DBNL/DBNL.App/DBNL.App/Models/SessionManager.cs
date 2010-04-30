@@ -20,10 +20,10 @@ namespace DBNL.App.Models
 
                     //Sets default culture to english invariant
 
-                    string langName = "en";
+                    string langName = "vi";
                     if (HttpContext.Current.Request.UserLanguages != null && HttpContext.Current.Request.UserLanguages.Length != 0)
                     {
-                        langName = HttpContext.Current.Request.UserLanguages[0].Substring(0, 2);
+                        //langName = HttpContext.Current.Request.UserLanguages[0].Substring(0, 2);
                     }
                     ci = new CultureInfo(langName);
                     session["Culture"] = ci;

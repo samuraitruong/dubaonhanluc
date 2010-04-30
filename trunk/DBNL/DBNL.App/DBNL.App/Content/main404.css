@@ -1,0 +1,673 @@
+* {
+  margin:		0px;
+  padding:		0px;
+  border:		0px;
+  outline:		0px;
+}
+body {
+  font:			14px trebuchet ms, tahoma, arial;
+  color:		#ADADAD;
+  background:		#EBEBEB;
+}
+h1 span,
+h2 span,
+h3 span,
+h4 span,
+label span,
+a span {
+  display:		none;
+}
+h1 {
+  font-size:		18px;
+  color:		#A3A1A1;
+  text-transform:	uppercase;
+}
+h2 {
+  font-size:		18px;
+  font-weight:		normal;
+  color:		#C6C6C6;
+  margin-bottom:	10px;
+}
+h3 {
+  font-size:		13px;
+  color:		#8F8D8D;
+  text-transform:	uppercase;
+  margin-bottom:	10px;
+}
+p {
+  line-height:		1.7em;
+  margin-bottom:	2em;
+}
+hr {
+  display:		none;
+}
+/*----------------------------------------------------------------------*/
+/*----------------------------------------------------------------------*/
+.content {
+  position:		relative;
+  width:		900px;
+  margin:		0px auto;
+}
+/*----------------------------------------------------------------------*/
+/*----------------------------------------------------------------------*/
+#header {
+  position:		relative;
+  width:		900px;
+  height:		110px;
+  margin:		40px auto 0px auto;
+  background:		url(../images/404/bg-shadow.gif) no-repeat left bottom;
+}
+/*----------------------------------------------------------------------*/
+#header #logo {
+  width:		210px;
+  height:		70px;
+  float:		left;
+}
+/*----------------------------------------------------------------------*/
+#header #menu {
+  position:		relative;
+  height:		45px;
+  margin-top:		27px;
+  float:		right;
+}
+#header #menu ul {
+  list-style:		none;
+}
+#header #menu ul li {
+  float:		left;
+  padding-left:		20px;
+}
+#header #menu ul li a {
+  height:		45px;
+  display:		block;
+}
+#header #menu:hover .works,
+#header #menu:hover .services,
+#header #menu:hover .about,
+#header #menu:hover .contact {
+  background-position:	left -90px;
+}
+#header #menu:hover .works:hover,
+#header #menu:hover .services:hover,
+#header #menu:hover .about:hover,
+#header #menu:hover .contact:hover {
+  background-position:	left 0px;
+}
+#header #menu:hover .worksOn,
+#header #menu:hover .servicesOn,
+#header #menu:hover .aboutOn,
+#header #menu:hover .contactOn {
+  background-position:	left -135px;
+}
+#header #menu:hover .worksOn:hover,
+#header #menu:hover .servicesOn:hover,
+#header #menu:hover .aboutOn:hover,
+#header #menu:hover .contactOn:hover {
+  background-position:	left -45px;
+}
+/*----------------------------------------------------------------------*/
+/*----------------------------------------------------------------------*/
+#error404 {
+}
+#error404 .block {
+  width:		820px;
+  padding:		40px;
+  height:		280px;
+}
+#error404 h1 {
+  position:		absolute;
+  bottom:		0px;
+  right:		30px;
+  width:		248px;
+  height:		248px;
+  background:		url(../images/404/error404.gif) no-repeat left bottom;
+}
+#error404 h2 {
+  width:		220px;
+  height:		105px;
+  background:		url(../images/404/oops!.gif) no-repeat left top;
+}
+#error404 .dontWorry {
+  position:		relative;
+  width:		400px;
+  top:			-27px;
+  left:			160px;
+  font-size:		15px;
+}
+/*----------------------------------------------------------------------*/
+#error404 #innerMenu {
+}
+#error404 #innerMenu ul {
+  list-style:		none;
+}
+#error404 #innerMenu ul li {
+  float:		left;
+  padding-right:	30px;
+}
+#error404 #innerMenu ul li a {
+  height:		17px;
+  display:		block;
+}
+/*----------------------------------------------------------------------*/
+#underConstruction {
+}
+#underConstruction .block {
+  width:		895px;
+  height:		492px;
+  padding:		0px;
+}
+#underConstruction .block h1 {
+  display:		none;
+}
+/*----------------------------------------------------------------------*/
+/*----------------------------------------------------------------------*/
+#footer {
+  clear:		both;
+}
+/*----------------------------------------------------------------------*/
+#footer #reel {
+  margin-top:		35px;
+}
+#footer #reel a {
+  width:		235px;
+  height:		50px;
+  display:		block;
+  margin-bottom:	35px;
+}
+/*----------------------------------------------------------------------*/
+#footer #areas {
+  height:		340px;
+  font-size:		12px;
+  color:		#FFFFFF;
+  padding-top:		50px;
+  background:		#606060;
+  border-bottom:	1px solid #8F8F8F;
+}
+#footer h3 {
+  width:		100%;
+  height:		32px;
+  border-bottom:	1px solid #7C7C7C;
+}
+#footer #areas a {
+  color:		#FFFFFF;
+  text-decoration:	none;
+  font-weight:		bold;
+  float:		left;
+  border-bottom:	1px dotted #FFFFFF;
+}
+#footer #areas a:hover {
+  color:		#000000;
+  border-bottom:	1px dotted #000000;
+}
+/*----------------------------------------------------------------------*/
+#footer #areas #aboutUs {
+  width:		240px;
+  float:		left;
+}
+/*----------------------------------------------------------------------*/
+#footer #areas #ourServices {
+  width:		220px;
+  margin-left:		100px;
+  float:		left;
+}
+#footer #areas #ourServices ul {
+  list-style:		none;
+  margin-bottom:	40px;
+}
+#footer #areas #ourServices ul li {
+  padding:		2px 0px 2px 15px;
+  background:		url(../images/404/bullet-areas.gif) no-repeat left 6px;
+  border-bottom:	1px dotted #BFBFBF;
+}
+/*----------------------------------------------------------------------*/
+#footer #areas #getInTouch {
+  width:		230px;
+  margin-left:		100px;
+  float:		left;
+}
+/*----------------------------------------------------------------------*/
+#footer #areas .cartoon {
+  position:		absolute;
+  right:		-20px;
+  top:			155px;
+  width:		370px;
+  height:		310px;
+  background:		url(../images/404/cartoon-footer.gif) no-repeat left top;
+}
+/*----------------------------------------------------------------------*/
+#footer #miniMenu {
+  background:		#231F20;
+  height:		28px;
+  padding-top:		9px;
+  border-bottom:	1px solid #3B3A3A;
+}
+#footer #miniMenu ul {
+  list-style:		none;
+}
+#footer #miniMenu ul li {
+  margin-right:		30px;
+  display:		inline;
+}
+#footer #miniMenu ul li a {
+  color:		#7D7D7D;
+  text-decoration:	none;
+}
+#footer #miniMenu ul li a:hover {
+  color:		#FF2E00;
+}
+/*----------------------------------------------------------------------*/
+#footer #relatedInfo {
+  font-size:		12px;
+  color:		#7C7B7B;
+  padding:		25px 0px 36px 0px;
+  height:		180px;
+  background:		#323232 url(../images/404/bg-footer-related.gif) repeat-x left top;
+}
+#footer #relatedInfo strong {
+  font-size:		13px;
+}
+#footer #relatedInfo .copyright {
+  color:		#555555;
+}
+#footer #relatedInfo span {
+  color:		#202020;
+}
+#footer #relatedInfo #validations {
+  margin-top:		15px;
+  background:		#414141;
+  padding:		10px 17px;
+  float:		left;
+}
+#footer #relatedInfo #validations a,
+#footer #relatedInfo #validations span {
+  color:		#313131;
+  text-decoration:	none;
+}
+#footer #relatedInfo #validations a:hover {
+  color:		#000000;
+}
+#footer #relatedInfo .links {
+  margin:		25px 0px 0px 15px;
+  float:		left;
+}
+#footer #relatedInfo .links a {
+  color:		#7C7B7B;
+  text-decoration:	none;
+}
+#footer #relatedInfo .links a:hover {
+  color:		#000000;
+}
+/*----------------------------------------------------------------------*/
+/*----------------------------------------------------------------------*/
+#lastNews {
+  position:		relative;
+}
+#lastNewsColumn ul {
+  width:		250px;
+  margin:		-30px 0px 12px 25px;
+}
+#lastNewsColumn ul li {
+  margin-bottom:	6px;
+}
+.textList li a,
+#lastNews li a,
+#lastNewsColumn li a {
+  color:		#666666;
+  text-decoration:	none;
+  border-bottom:	1px dotted #AAAAAA;
+  line-height:		1.5em;
+}
+.textList li a:hover,
+#lastNews li a:hover,
+#lastNewsColumn li a:hover {
+  color:		#000000;
+  border-bottom:	1px dotted #000000;
+}
+/*----------------------------------------------------------------------*/
+/*----------------------------------------------------------------------*/
+#featuredProjects {
+}
+#featuredProjects ul {
+  list-style:		none;
+  line-height:		0px;
+  margin-bottom:	2em;
+  float:		left;
+}
+#featuredProjects ul li {
+  position:		relative;
+  float:		left;
+}
+#featuredProjects ul li a {
+  width:		120px;
+  height:		80px;
+  padding:		6px;
+  margin:		0px 8px 8px 0px;
+  background:		#EEEEEE;
+  border:		1px solid #DEDEDE;
+  text-decoration:	none;
+  display:		block;
+}
+#featuredProjects ul li a img {
+  width:		120px;
+  height:		80px;
+}
+#featuredProjects ul li a:hover {
+  background:		#DEDEDE;
+}
+#featuredProjects .shadow {
+  position:		absolute;
+  top:			7px;
+  left:			7px;
+  width:		120px;
+  height:		80px;
+  display:		block;
+  background:		url(../images/404/bg-featured-mini.png) no-repeat left top;
+}
+/*----------------------------------------------------------------------*/
+#newsletter {
+  position:		absolute;
+  bottom:		20px;
+  left:			0px;
+  width:		265px;
+  height:		245px;
+  padding:		10px 10px 30px 10px;
+  margin-bottom:	20px;
+  z-index:		10;
+}
+#newsletter .btnClose {
+  right:		0px;
+}
+#newsletter p {
+  clear:		both;
+  font-size:		11px;
+  color:		#666666;
+  margin-bottom:	1em;
+  width:		265px;
+}
+#newsletter .field,
+#newsletter .textarea {
+  width:		250px;
+  font-size:		12px;
+  padding:		5px;
+  margin-bottom:	0px;
+}
+#newsletter .error {
+  position:		relative;
+  top:			0px;
+  right:		2px;
+  padding-right:	3px;
+  height:		20px;
+  float:		right;
+}
+#newsletter #cartoon {
+  position:		absolute;
+  left:			10px;
+  bottom:		0px;
+  width:		300px;
+  height:		415px;
+  background:		url(../images/404/cartoon-newsletter.gif) no-repeat left top;
+}
+#newsletter #thanks {
+  position:		absolute;
+  top:			130px;
+  left:			80px;
+  width:		270px;
+  height:		26px;
+}
+#newsletter #thanksText {
+  position:		absolute;
+  bottom:		15px;
+  left:			80px;
+  width:		217px;
+  height:		44px;
+}
+#newsletter #thanks span,
+#newsletter #thanksText span {
+  display:		none;
+}
+/*----------------------------------------------------------------------*/
+/*----------------------------------------------------------------------*/
+.block {
+  position:		relative;
+  width:		860px;
+  padding:		30px 19px 20px 19px;
+  margin-bottom:	40px;
+  background:		#FFFFFF;
+  border:		1px solid #D5D5D5;
+  float:		left;
+}
+.block p a {
+  color:		#666666;
+  text-decoration:	none;
+  border-bottom:	1px dotted #AAAAAA;
+}
+.block p a:hover {
+  color:		#000000;
+  border-bottom:	1px dotted #000000;
+}
+.block .info {
+  position:		relative;
+  width:		510px;
+  float:		left;
+}
+.block .column {
+  position:		relative;
+  width:		285px;
+  font-size:		12px;
+  padding-top:		6px;
+  float:		right;
+}
+.block .column p {
+  clear:		both;
+  color:		#ADADAD;
+  margin-bottom:	3em;
+}
+.block .column br {
+  clear:		both;
+  display:		block;
+  height:		0px;
+  line-height:		0px;
+}
+.block .column h3 {
+  clear:		both;
+  width:		100%;
+  height:		15px;
+}
+.block .column .textContainer {
+  position:		relative;
+  background:		#FFFFFF;
+  z-index:		20;
+}
+/*----------------------------------------------------------------------*/
+/*----------------------------------------------------------------------*/
+.form {
+  position:		relative;
+  font-size:		12px;
+  color:		#9A9A9A;
+  padding:		25px 15px 50px 15px;
+  background:		#DADADA;
+}
+.form label {
+  width:		100%;
+  height:		25px;
+  display:		block;
+}
+.form .inline {
+  display:		inline;
+}
+.form a {
+  color:		#666666;
+}
+.form a:hover {
+  color:		#000000;
+}
+.form .field,
+.form .textarea {
+  width:		462px;
+  font:			14px trebuchet ms, tahoma, arial;
+  color:		#999999;
+  padding:		8px;
+  border:		1px solid #D0CECE;
+  margin-bottom:	20px;
+}
+.form .field:hover,
+.form .textarea:hover,
+.form .field:focus,
+.form .textarea:focus {
+  background:		#FFEDAE;
+  color:		#777777;
+}
+.form .checkbox {
+  position:		relative;
+  top:			-2px;
+  margin:		10px 5px 0px 0px;
+}
+.form .error {
+  position:		relative;
+  top:			-18px;
+  padding-right:	3px;
+  height:		8px;
+  color:		#FF0000;
+  float:		right;
+}
+.form .notice {
+  position:		absolute;
+  bottom:		15px;
+  right:		55px;
+  color:		#009933;
+}
+
+/*----------------------------------------------------------------------*/
+/*----------------------------------------------------------------------*/
+.innerBlock {
+  position:		relative;
+  width:		490px;
+  margin-bottom:	3em;
+  padding:		20px 15px;
+  background:		#EBEBEB;
+}
+.innerBlock p {
+  color:		#999999;
+}
+.innerBlock ul li {
+  color:		#999999;
+}
+.innerBlock p strong {
+  text-transform:	uppercase;
+}
+/*----------------------------------------------------------------------*/
+/*----------------------------------------------------------------------*/
+.btnSubmit,
+.btnSubmitBig,
+.btnViewAll,
+.btnViewMore,
+.btnViewLess,
+.btnMoreInfo {
+  position:		absolute;
+  right:		0px;
+  bottom:		0px;
+  width:		48px;
+  height:		48px;
+  font-size:		0px;
+  color:		#9A9A9A;
+  cursor:		pointer;
+  display:		block;
+  border:		0px;
+}
+.btnSubmitBig {
+  width:		60px;
+  height:		60px;
+}
+.btnSubmit:hover,
+.btnSubmitBig:hover,
+.btnViewAll:hover,
+.btnViewMore:hover,
+.btnViewLess:hover,
+.btnMoreInfo:hover {
+  border:		0px;
+}
+/*----------------------------------------------------------------------*/
+.btnTop,
+.btnBack,
+.btnClose {
+  clear:		both;
+  width:		40px;
+  height:		14px;
+  float:		right;
+  border:		0px;
+}
+.btnTop {
+  height:		16px;
+}
+.btnClose {
+  height:		13px;
+}
+.btnTop:hover,
+.btnBack:hover,
+.btnClose:hover {
+  border:		0px;
+}
+/*----------------------------------------------------------------------*/
+/*----------------------------------------------------------------------*/
+.briefLink {
+  width:		290px;
+  height:		70px;
+  margin:		25px 0px;
+  float:		right;
+  display:		block;
+}
+.btnBrowse {
+  width:		60px;
+  height:		36px;
+}
+.btnBrowse span {
+  display:		none;
+}
+/*----------------------------------------------------------------------*/
+.titContact,
+.titProposal,
+.titAbout,
+.titNewsletter,
+.titNewsletter1,
+.titNewsletter2,
+.titNewsletter3,
+.titNewsletter4,
+.titiPhone,
+.titiPhone1,
+.titiPhone2,
+.titiPhone3,
+.titServices {
+  width:		100%;
+  height:		30px;
+}
+.titHello,
+.titOurServices,
+.titLastNews,
+.titFeaturedProject,
+.titWorks_identity,
+.titWorks_web,
+.titWorks_print,
+.titWorks_video,
+.subtitleWorks_identity,
+.subtitleWorks_web,
+.subtitleWorks_print,
+.subtitleWorks_video,
+.titAdvertising,
+.titBranding,
+.titPrint,
+.titEditorial,
+.titWebdesign,
+.titFilms,
+.titMobile,
+.titSignage,
+.titCreatividadReal,
+.subtitleServices {
+  width:		100%;
+  height:		20px;
+}
+.titWorks_identity,
+.titWorks_web,
+.titWorks_print,
+.titWorks_video {
+  margin-bottom:	20px;
+}
