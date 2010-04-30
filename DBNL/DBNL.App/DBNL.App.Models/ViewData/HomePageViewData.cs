@@ -30,21 +30,25 @@ namespace DBNL.App.Models.ViewData
         public IEnumerable<Content>  HostestArticle { get; set; }
         public FeatureCategoryViewData()
         {
-            Category = CategoryService.GetFeatureCategory();
-            if (Category == null)
-                Category = CategoryService.GetRandomCategory();
-            HostestArticle = Category.Contents
-                .OrderByDescending(p => p.IsFeatured)
-                .OrderByDescending(p1 => p1.UpdatedDate)
-                .Skip(0).Take(DBNL.App.Config.DBNLConfigurationManager.WebUI.HotestNewsCount)
-                .AsEnumerable();
+            var query = CategoryService.GetForcusingContents(DBNLConfigurationManager.WebUI.HotestNewsCount + DBNLConfigurationManager.WebUI.OtherFeaturesNews);
 
-            Articles = Category.Contents
-                .OrderByDescending(p => p.IsFeatured)
-                .OrderByDescending(p1 => p1.UpdatedDate)
-                .Skip(DBNLConfigurationManager.WebUI.HotestNewsCount)
-                .Take(DBNLConfigurationManager.WebUI.OtherFeaturesNews)
-                .AsEnumerable();
+            HostestArticle = query.Skip(0).Take(DBNLConfigurationManager.WebUI.HotestNewsCount).AsEnumerable();
+            Articles = query.Skip(DBNLConfigurationManager.WebUI.HotestNewsCount).AsEnumerable();
+            //Category = CategoryService.GetFeatureCategory();
+            //if (Category == null)
+            //    Category = CategoryService.GetRandomCategory();
+            //HostestArticle = Category.Contents
+            //    .OrderByDescending(p => p.IsFeatured)
+            //    .OrderByDescending(p1 => p1.UpdatedDate)
+            //    .Skip(0).Take(DBNL.App.Config.DBNLConfigurationManager.WebUI.HotestNewsCount)
+            //    .AsEnumerable();
+
+            //Articles = Category.Contents
+            //    .OrderByDescending(p => p.IsFeatured)
+            //    .OrderByDescending(p1 => p1.UpdatedDate)
+            //    .Skip(DBNLConfigurationManager.WebUI.HotestNewsCount)
+            //    .Take(DBNLConfigurationManager.WebUI.OtherFeaturesNews)
+            //    .AsEnumerable();
         }
 
     }
@@ -52,15 +56,35 @@ namespace DBNL.App.Models.ViewData
     {
         public Poll ActivePoll { get; set; }
         public IEnumerable<PollQuestion> Questions { get; set; }
+        public int TotalResponses { get; set; }
         public PublicPollViewData()
         {
             ActivePoll = PollService.GetActivePoll();
             Questions = PollQuestionService.GetQuestionByPoll(ActivePoll);
+            Calculate();
+        }
+
+        private void Calculate()
+        {
+            TotalResponses =0;
+            foreach (var item in this.Questions)
+            {
+                TotalResponses += item.Responses;
+
+            }
+
+            foreach (var item in this.Questions)
+            {
+                item.Percent = ((float)item.Responses) / this.TotalResponses;
+
+            }
+
         }
         public PublicPollViewData(int id)
         {
             ActivePoll = PollService.GetItem(id);
             Questions = PollQuestionService.GetQuestionByPoll(ActivePoll);
+            Calculate();
         }
     }
 

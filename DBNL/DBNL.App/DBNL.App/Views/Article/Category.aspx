@@ -32,10 +32,12 @@
                 </div>
 			</div>
 			<!--top page-->
+            <% bool IsFirstItem = true; %>
             <% foreach (var item in Model.ArticlesPagedList)
                {
-                   if (item.IsFeatured)
+                   if(IsFirstItem) //if (item.IsFeatured)
                    {
+                       IsFirstItem = !IsFirstItem;
                    %>
                     <div class="im_news clearfix">
         				<div class="pic"> <a href="<%=Url.ContentLink(Model.Category.Key,item) %>"><img width="140" height="110" alt="nguonnhanluc" src="<%=item.ThumbnailUrl %>"/></a> </div>
@@ -43,7 +45,7 @@
         					<h3><%=Html.ContentLink(Model.Category.Key,item) %>
                                 
                              <small>(<%=item.UpdatedDate.ToVNString() %>)</small></h3>
-        					<p><% = Html.Encode(item.Description.TrimmedWord(115)) %></p>
+        					<p><% = Html.Encode(item.Description.TrimmedWord(115).StripHTML().ReplaceHtmlEntities())%></p>
         				</div>
 		        	</div>
                    <% }
@@ -54,7 +56,7 @@
                     	<h3>
                             <%=Html.ContentLink(Model.Category.Key,item) %>
                         <small>(<%=item.UpdatedDate.ToVNString() %>)</small></h3>
-                    	<p><% = Html.Encode(item.Description.TrimmedWord(115))%></p>
+                    	<p><% = Html.Encode(item.Description.TrimmedWord(115).StripHTML().ReplaceHtmlEntities())%></p>
                   </div>
             <%}
                }%>
@@ -67,14 +69,14 @@
 				<% Html.RenderPartial("ControlBar"); %>
 
 				<div class="PagerContainer">
-                     <%Html.RenderPartial("~/Views/Shared/Pagination.ascx", new PaginationViewData()
+                    <%Html.RenderPartial("~/Views/Shared/Pagination.ascx", new PaginationViewData()
                     {
-                        PageIndex = Model.ArticlesPagedList.PageIndex,
+                        PageIndex = Model.ArticlesPagedList.PageNumber,
+                        DisplayItems = 5,
                         TotalPages = Model.ArticlesPagedList.PageCount,
-                        PageActionLink = Url.Action("Category", "Article", new { id = Model.Category.ID, page = "{page}" }),
+                        PageActionLink = Url.RouteUrl("Category-View-Route" , new { category = Model.Category.Key, page = "{page}" }),
                         TotalCount = Model.ArticlesPagedList.TotalItemCount,
-                        PageSize = Model.ArticlesPagedList.PageSize,
-                        DisplayItems =5
+                        PageSize = Model.ArticlesPagedList.PageSize
                     }); %>  
                 </div>
 			</div>

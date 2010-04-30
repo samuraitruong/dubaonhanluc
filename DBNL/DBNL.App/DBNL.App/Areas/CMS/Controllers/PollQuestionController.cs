@@ -52,14 +52,15 @@ namespace DBNL.App.Areas.CMS.Controllers
         {
 
             var polls = PollQuestionService.List(PollId.Value);
-            
+            var totalResponse = PollQuestionService.CountResponses(PollId.Value);
             var model = from entity in polls.OrderBy(sidx + " " + sord)
                         select new
                         {
                             Id = entity.Id,
                             Question = entity.Question,
                             Responses = entity.Responses,
-                            PollId = entity.PollId
+                            PollId = entity.PollId,
+                            Percent = string.Format("{0:#.00%}",((float) entity.Responses)/totalResponse)
                         };
             return Json(model.ToJqGridData(page, rows, null, "", new[] { "Question", "Responses" }), JsonRequestBehavior.AllowGet);
 

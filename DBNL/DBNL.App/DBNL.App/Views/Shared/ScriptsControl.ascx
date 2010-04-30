@@ -18,9 +18,11 @@
 <script src="<%= Url.Content("~/Content/Sidebar/sidebar.js")%>" type="text/javascript"></script>
 
 
-<script src="<%= Url.Content("~/Content/jquery.cookie.js")%>" type="text/javascript"></script>
+<script src="<%= Url.Content("~/Scripts/jquery.cookie.js")%>" type="text/javascript"></script>
 <script src="<%= Url.Content("~/Scripts/jquery.treeview.js")%>" type="text/javascript"></script>
 <script src="<%= Url.Content("~/Scripts/jquery.treeview.async.post.js")%>" type="text/javascript"></script>
 <link href="<%= Url.Content("~/Content/jquery.treeview.css") %>" rel="stylesheet" type="text/css" />
 <script src="<%= Url.Content("~/Scripts/jquery.contextmenu.js")%>" type="text/javascript"></script>
 <link href="<%= Url.Content("~/Content/jquery.contextmenu.css") %>" rel="stylesheet" type="text/css" />
+<link href="<%= Url.Content("~/Content/topmenu.css") %>" rel="stylesheet" type="text/css" />
+<script src="<%= Url.Content("~/Scripts/menu.js")%>" type="text/javascript"></script>

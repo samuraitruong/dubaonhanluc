@@ -42,6 +42,19 @@
     <Reference Include="Accessibility">
       <EmbedInteropTypes>True</EmbedInteropTypes>
     </Reference>
+    <Reference Include="Elmah">
+      <HintPath>..\..\Components\ELMAH-1.1-bin\bin\net-3.5\Release\Elmah.dll</HintPath>
+    </Reference>
+    <Reference Include="Highlighter.Net">
+      <HintPath>..\..\Components\Lucene.NET\contrib\Highlighter.Net\bin\Release\Highlighter.Net.dll</HintPath>
+    </Reference>
+    <Reference Include="Lucene.Net">
+      <HintPath>..\..\Components\Lucene.NET\src\Lucene.Net\bin\Release\Lucene.Net.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Practices.ServiceLocation, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\Components\SolrNet-0.2.3-net-2.0\Microsoft.Practices.ServiceLocation.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Data.Linq">
@@ -107,16 +120,19 @@
     <Compile Include="Areas\CMS\Controllers\FileManagerController.cs" />
     <Compile Include="Controllers\FOController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\SolnetWrapper.cs" />
     <Compile Include="Controllers\WebContactController.cs" />
     <Compile Include="Controllers\WebJobController.cs" />
     <Compile Include="Controllers\WebLinkController.cs" />
     <Compile Include="Controllers\WebPollController.cs" />
+    <Compile Include="Controllers\Http404Controller.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\Extensions.cs" />
     <Compile Include="Models\FileManager\FileManager.cs" />
     <Compile Include="Models\FileManager\FileManagerOperations.cs" />
+    <Compile Include="Models\Lucene\LuceneHelper.cs" />
     <Compile Include="Models\Profile.cs" />
     <Compile Include="Models\SessionManager.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -127,6 +143,7 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="animated_favicon1.gif" />
     <Content Include="Areas\CMS\Views\Administrations\Index.aspx" />
     <Content Include="Areas\CMS\Views\Administrations\Sample.aspx" />
     <Content Include="Areas\CMS\Views\Banner\Create.aspx" />
@@ -187,7 +204,11 @@
     <Content Include="Areas\CMS\Views\User\List.aspx" />
     <Content Include="Content\calendar.css" />
     <Content Include="Content\job.css" />
+    <Content Include="Content\jquery.contextMenu.css" />
     <Content Include="Content\jquery.treeview.css" />
+    <Content Include="Content\main404en.css" />
+    <Content Include="Content\main404fix.css" />
+    <Content Include="Content\main404.css" />
     <Content Include="Content\reset.css" />
     <Content Include="Content\table.css" />
     <Content Include="Content\editor.css" />
@@ -982,14 +1003,48 @@
     <Content Include="Content\jqueryUI1.8a\js\jquery-1.4.2.min.js" />
     <Content Include="Content\jqueryUI1.8a\js\jquery-ui-1.8.min.js" />
     <Content Include="Content\styles_v1.css" />
+    <Content Include="Content\topmenu.css" />
     <Content Include="Content\wysiwyg.css" />
+    <Content Include="favicon.ico" />
     <Content Include="images\16m.png" />
     <Content Include="images\16s.png" />
     <Content Include="images\16t.png" />
+    <Content Include="images\404\bg-footer-related.gif" />
+    <Content Include="images\404\bg-shadow.gif" />
+    <Content Include="images\404\btn-download_creative_brief-en.gif" />
+    <Content Include="images\404\btn-inner_menu-about-en.gif" />
+    <Content Include="images\404\btn-inner_menu-blog-en.gif" />
+    <Content Include="images\404\btn-inner_menu-contact-en.gif" />
+    <Content Include="images\404\btn-inner_menu-home-en.gif" />
+    <Content Include="images\404\btn-inner_menu-services-en.gif" />
+    <Content Include="images\404\btn-inner_menu-works-en.gif" />
+    <Content Include="images\404\btn-menu-about-en.gif" />
+    <Content Include="images\404\btn-menu-contact-en.gif" />
+    <Content Include="images\404\btn-menu-services-en.gif" />
+    <Content Include="images\404\btn-menu-works-en.gif" />
+    <Content Include="images\404\btn-more_info-en.gif" />
+    <Content Include="images\404\btn-next-en.gif" />
+    <Content Include="images\404\btn-previous-en.gif" />
+    <Content Include="images\404\btn-watch_our_reel-en.gif" />
+    <Content Include="images\404\error404.gif" />
+    <Content Include="images\404\oops!.gif" />
     <Content Include="images\arrow_down.png" />
     <Content Include="images\arrow_up.png" />
     <Content Include="images\edit-small.png" />
     <Content Include="images\edit_medium.png" />
+    <Content Include="images\ico\cut.png" />
+    <Content Include="images\ico\delete.png" />
+    <Content Include="images\ico\door.png" />
+    <Content Include="images\ico\edit.png" />
+    <Content Include="images\ico\information.png" />
+    <Content Include="images\ico\lightning.png" />
+    <Content Include="images\ico\page_white_copy.png" />
+    <Content Include="images\ico\page_white_delete.png" />
+    <Content Include="images\ico\page_white_edit.png" />
+    <Content Include="images\ico\page_white_paste.png" />
+    <Content Include="images\ico\plus.png" />
+    <Content Include="images\ico\sprite.png" />
+    <Content Include="images\ico\x.png" />
     <Content Include="images\jtreeview\file.gif" />
     <Content Include="images\jtreeview\folder-closed.gif" />
     <Content Include="images\jtreeview\folder.gif" />
@@ -1005,6 +1060,7 @@
     <Content Include="images\jtreeview\treeview-gray.gif" />
     <Content Include="images\jtreeview\treeview-red-line.gif" />
     <Content Include="images\jtreeview\treeview-red.gif" />
+    <Content Include="images\lightning.png" />
     <Content Include="images\lock.png" />
     <Content Include="images\ns_footer_bg.gif" />
     <Content Include="images\ns_header_bg.gif" />
@@ -1013,8 +1069,10 @@
     <Content Include="images\ns_temp_top_BG.gif" />
     <Content Include="images\ns_temp_top_L.gif" />
     <Content Include="images\ns_temp_top_R.gif" />
+    <Content Include="images\subnav_btn.gif" />
     <Content Include="Resources\Pictures\-SAN--NGHE-NGAN-HAN.jpg" />
     <Content Include="Resources\Pictures\CONG-NGHE-THONG-TIN-THIEU-HON-200-000-NHAN-LUC.jpg" />
+    <Content Include="Resources\Pictures\Default.jpg" />
     <Content Include="Resources\Pictures\DIEN-DAN-GIAI-BAI-TOAN-LAO-DONG-CHO-TP-HCM--TRACH-NHIEM-CUA-CA-3-PHIA.jpg" />
     <Content Include="Resources\Pictures\Gioi-thieu-Trung-tam.jpg" />
     <Content Include="Resources\Pictures\HOI-NGHI-CONG-DONG-VAN-HOA---XA-HOI-ASEAN--ASCC--LAN-3.jpg" />
@@ -1023,6 +1081,8 @@
     <Content Include="Resources\Pictures\So-do-vi-tri-Trung-tam.jpg" />
     <Content Include="Resources\Pictures\TINH-HINH-KINH-TE---XA-HOI-VIET-NAM-QUY-I-NAM-2010.jpg" />
     <Content Include="Resources\Pictures\XUAT-KHAU-DET-MAY--NOI-BUON-QUAN-QUAN---BAI-1--CO-TIENG--CHUA-CO-MIENG-.jpg" />
+    <Content Include="Scripts\menu.js" />
+    <Content Include="Scripts\jquery.contextMenu.js" />
     <Content Include="Scripts\jquery.cookie.js" />
     <Content Include="Scripts\jquery.treeview.async.js" />
     <Content Include="Scripts\jquery.treeview.async.post.js" />
@@ -1786,8 +1846,11 @@
     <Content Include="Scripts\Site.Master.js" />
     <Content Include="Views\Article\Category.aspx" />
     <Content Include="Views\Article\View.aspx" />
+    <Content Include="Views\Home\Http404.aspx" />
     <Content Include="Views\Home\NewestJobControl.ascx" />
     <Content Include="Views\Home\PublicPollControl.ascx" />
+    <Content Include="Views\Home\Query.aspx" />
+    <Content Include="Views\HttpError\404.aspx" />
     <Content Include="Views\Shared\CategoriesOnHPView.ascx" />
     <Content Include="Views\Shared\ControlBar.ascx" />
     <Content Include="Views\Shared\FeatureCategoryView.ascx" />
@@ -2086,6 +2149,7 @@
     <None Include="Content\jqueryUI1.8a\development-bundle\external\bgiframe\META.json" />
     <Content Include="Content\jqueryUI1.8a\development-bundle\external\cookie\jquery.cookie.zip" />
     <Content Include="Scripts\FileManager\connectors\aspx\filemanager.aspx" />
+    <None Include="images\ico\Thumbs.db" />
     <None Include="Scripts\FileManager\connectors\lasso\filemanager.config.inc.default" />
     <None Include="Scripts\FileManager\connectors\lasso\filemanager.lasso" />
     <None Include="Scripts\FileManager\connectors\php\filemanager.class.php" />
@@ -2125,6 +2189,7 @@
     <None Include="Scripts\ckeditor\_samples\php\standalone.php" />
     <None Include="Scripts\ckeditor\_samples\sample_posteddata.php" />
     <Content Include="Views\Shared\BO.Master" />
+    <Content Include="Views\Shared\Site.Backup.Master" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -2132,6 +2197,7 @@
     <Folder Include="Areas\CMS\Models\" />
     <Folder Include="Areas\CMS\Scripts\" />
     <Folder Include="Areas\CMS\Views\Shared\" />
+    <Folder Include="Logs\" />
     <Folder Include="Resources\Galleries\" />
     <Folder Include="Scripts\FileManager\trunk\" />
   </ItemGroup>

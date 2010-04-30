@@ -33,6 +33,10 @@ namespace DBNL.App.Models.Helpers
 		{
 			return new PagedList<T>(source, pageIndex, pageSize, totalCount);
 		}
+        public static IPagedList<T> ToPagedListEx<T>(this IEnumerable<T> source, int pageIndex, int pageSize, int totalCount)
+        {
+            return new PagedList<T>(source, pageIndex, pageSize, totalCount, true);
+        }
 
 		#endregion
 	}

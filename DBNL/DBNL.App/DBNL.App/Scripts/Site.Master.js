@@ -10,8 +10,8 @@ var DBNL = {
         Poll: {},
         Categories: { Articles: {} },
         Articles: {},
-        Navigations :{},
-        Supporters:{}
+        Navigations: {},
+        Supporters: {}
     },
     SiteMaster: {
         setDefaults: function () {
@@ -27,6 +27,9 @@ var DBNL = {
                     repeatitems: false,
                     userdata: "UserData",
                     id: "Id"
+                },
+                loadComplete: function (xhr) { 
+                    alert(xhr.status);
                 },
                 loadui: "block",
                 mtype: 'POST',

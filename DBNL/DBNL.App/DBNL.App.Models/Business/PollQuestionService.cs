@@ -77,10 +77,12 @@ namespace DBNL.App.Models.Business
             return pollQuestion;
         }
 
-        internal static IEnumerable<PollQuestion> GetQuestionByPoll(Poll ActivePoll)
+        public static IEnumerable<PollQuestion> GetQuestionByPoll(Poll ActivePoll)
         {
             if (ActivePoll == null) return null;
-            return ActivePoll.PollQuestions.Where(p => p.Status == DBNL.App.Models.Statics.EntityStatuses.Actived.ToString()).AsEnumerable();
+            return ActivePoll.PollQuestions.Where(p => p.Status == DBNL.App.Models.Statics.EntityStatuses.Actived.ToString())
+                .OrderByDescending(p=>p.Responses)
+                .AsEnumerable();
         }
 
         public static PollQuestion Edit(int id, string Question, string Status)
@@ -118,6 +120,11 @@ namespace DBNL.App.Models.Business
             PollQuestions.InsertOnSubmit(q);
             Commit();
 
+        }
+
+        public static int CountResponses(int PollId)
+        {
+            return PollQuestions.Where(p => p.PollId == PollId).Sum(p => p.Responses);
         }
     }
 }

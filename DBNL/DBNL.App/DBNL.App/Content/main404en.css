@@ -1,0 +1,465 @@
+/*----------------------------------------------------------------------*/
+#header #menu .works {
+  width:		115px;
+  background:		url(../images/404/btn-menu-works-en.gif) no-repeat left 0px;
+}
+#header #menu .works:hover {
+  background:		url(../images/404/btn-menu-works-en.gif) no-repeat left -45px;
+}
+#header #menu .worksOn {
+  width:		115px;
+  background:		url(../images/404/btn-menu-works-en.gif) no-repeat left -45px;
+}
+#header #menu .services {
+  width:		135px;
+  background:		url(../images/404/btn-menu-services-en.gif) no-repeat left 0px;
+}
+#header #menu .services:hover {
+  background:		url(../images/404/btn-menu-services-en.gif) no-repeat left -45px;
+}
+#header #menu .servicesOn {
+  width:		135px;
+  background:		url(../images/404/btn-menu-services-en.gif) no-repeat left -45px;
+}
+#header #menu .about {
+  width:		75px;
+  background:		url(../images/404/btn-menu-about-en.gif) no-repeat left 0px;
+}
+#header #menu .about:hover {
+  background:		url(../images/404/btn-menu-about-en.gif) no-repeat left -45px;
+}
+#header #menu .aboutOn {
+  width:		75px;
+  background:		url(../images/404/btn-menu-about-en.gif) no-repeat left -45px;
+}
+#header #menu .contact {
+  width:		115px;
+  background:		url(../images/404/btn-menu-contact-en.gif) no-repeat left 0px;
+}
+#header #menu .contact:hover {
+  background:		url(../images/404/btn-menu-contact-en.gif) no-repeat left -45px;
+}
+#header #menu .contactOn {
+  width:		115px;
+  background:		url(../images/404/btn-menu-contact-en.gif) no-repeat left -45px;
+}
+/*----------------------------------------------------------------------*/
+#header #submenuWorks {
+  right:		291px;
+}
+#header #submenuWorks .identity {
+  width:		65px;
+  background:		url(../images/404/btn-works-identity-en.gif) no-repeat left top;
+}
+#header #submenuWorks .identity:hover {
+  background:		url(../images/404/btn-works-identity-en.gif) no-repeat left 50%;
+}
+#header #submenuWorks .identityOn {
+  width:		65px;
+  background:		url(../images/404/btn-works-identity-en.gif) no-repeat left 100%;
+}
+#header #submenuWorks .web {
+  width:		47px;
+  background:		url(../images/404/btn-works-web-en.gif) no-repeat left top;
+}
+#header #submenuWorks .web:hover {
+  background:		url(../images/404/btn-works-web-en.gif) no-repeat left 50%;
+}
+#header #submenuWorks .webOn {
+  width:		47px;
+  background:		url(../images/404/btn-works-web-en.gif) no-repeat left 100%;
+}
+#header #submenuWorks .print {
+  width:		48px;
+  background:		url(../images/404/btn-works-print-en.gif) no-repeat left top;
+}
+#header #submenuWorks .print:hover {
+  background:		url(../images/404/btn-works-print-en.gif) no-repeat left 50%;
+}
+#header #submenuWorks .printOn {
+  width:		48px;
+  background:		url(../images/404/btn-works-print-en.gif) no-repeat left 100%;
+}
+#header #submenuWorks .video {
+  width:		54px;
+  background:		url(../images/404/btn-works-video-en.gif) no-repeat left top;
+}
+#header #submenuWorks .video:hover {
+  background:		url(../images/404/btn-works-video-en.gif) no-repeat left 50%;
+}
+#header #submenuWorks .videoOn {
+  width:		54px;
+  background:		url(../images/404/btn-works-video-en.gif) no-repeat left 100%;
+}
+/*----------------------------------------------------------------------*/
+#home .info .homeText {
+  background:		url(../images/404/text-home-en.gif) no-repeat left top;
+}
+/*----------------------------------------------------------------------*/
+#miniSubmenu .identity {
+  width:		42px;
+  background:		url(../images/404/btn-works-identity-mini-en.gif) no-repeat left top;
+}
+#miniSubmenu .identity:hover,
+#miniSubmenu .identityOn {
+  width:		42px;
+  background:		url(../images/404/btn-works-identity-mini-en.gif) no-repeat left bottom;
+}
+#miniSubmenu .web {
+  width:		26px;
+  background:		url(../images/404/btn-works-web-mini-en.gif) no-repeat left top;
+}
+#miniSubmenu .web:hover,
+#miniSubmenu .webOn {
+  width:		26px;
+  background:		url(../images/404/btn-works-web-mini-en.gif) no-repeat left bottom;
+}
+#miniSubmenu .print {
+  width:		29px;
+  background:		url(../images/404/btn-works-print-mini-en.gif) no-repeat left top;
+}
+#miniSubmenu .print:hover,
+#miniSubmenu .printOn {
+  width:		29px;
+  background:		url(../images/404/btn-works-print-mini-en.gif) no-repeat left bottom;
+}
+#miniSubmenu .video {
+  width:		32px;
+  background:		url(../images/404/btn-works-video-mini-en.gif) no-repeat left top;
+}
+#miniSubmenu .video:hover,
+#miniSubmenu .videoOn {
+  width:		32px;
+  background:		url(../images/404/btn-works-video-mini-en.gif) no-repeat left bottom;
+}
+/*----------------------------------------------------------------------*/
+/*----------------------------------------------------------------------*/
+#error404 #innerMenu .home {
+  width:		44px;
+  background:		url(../images/404/btn-inner_menu-home-en.gif) no-repeat left top;
+}
+#error404 #innerMenu .home:hover {
+  background:		url(../images/404/btn-inner_menu-home-en.gif) no-repeat left bottom;
+}
+#error404 #innerMenu .works {
+  width:		57px;
+  background:		url(../images/404/btn-inner_menu-works-en.gif) no-repeat left top;
+}
+#error404 #innerMenu .works:hover {
+  background:		url(../images/404/btn-inner_menu-works-en.gif) no-repeat left bottom;
+}
+#error404 #innerMenu .services {
+  width:		69px;
+  background:		url(../images/404/btn-inner_menu-services-en.gif) no-repeat left top;
+}
+#error404 #innerMenu .services:hover {
+  background:		url(../images/404/btn-inner_menu-services-en.gif) no-repeat left bottom;
+}
+#error404 #innerMenu .about {
+  width:		51px;
+  background:		url(../images/404/btn-inner_menu-about-en.gif) no-repeat left top;
+}
+#error404 #innerMenu .about:hover {
+  background:		url(../images/404/btn-inner_menu-about-en.gif) no-repeat left bottom;
+}
+#error404 #innerMenu .contact {
+  width:		67px;
+  background:		url(../images/404/btn-inner_menu-contact-en.gif) no-repeat left top;
+}
+#error404 #innerMenu .contact:hover {
+  background:		url(../images/404/btn-inner_menu-contact-en.gif) no-repeat left bottom;
+}
+#error404 #innerMenu .blog {
+  width:		39px;
+  background:		url(../images/404/btn-inner_menu-blog-en.gif) no-repeat left top;
+}
+#error404 #innerMenu .blog:hover {
+  background:		url(../images/404/btn-inner_menu-blog-en.gif) no-repeat left bottom;
+}
+/*----------------------------------------------------------------------*/
+.titContact {
+  background:		url(../images/404/title-contact-en.gif) no-repeat left top;
+}
+.titProposal {
+  background:		url(../images/404/title-request_for_proposal-en.gif) no-repeat left top;
+}
+.titServices {
+  background:		url(../images/404/title-services-en.gif) no-repeat left top;
+}
+.titAbout {
+  background:		url(../images/404/title-about-en.gif) no-repeat left top;
+}
+.titNewsletter {
+  background:		url(../images/404/title-newsletter-en.gif) no-repeat left top;
+}
+.titNewsletter1 {
+  background:		url(../images/404/title-newsletter-en-1.gif) no-repeat left top;
+}
+.titNewsletter2 {
+  background:		url(../images/404/title-newsletter-en-2.gif) no-repeat left top;
+}
+.titNewsletter3 {
+  background:		url(../images/404/title-newsletter-en-3.gif) no-repeat left top;
+}
+.titNewsletter4 {
+  background:		url(../images/404/title-newsletter-en-4.gif) no-repeat left top;
+}
+.titiPhone {
+  background:		url(../images/404/title-iphone-en-ppal.gif) no-repeat left top;
+  height: 120px;
+}
+.titiPhone1 {
+  background:		url(../images/404/title-iphone-en-1.gif) no-repeat left top;
+}
+.titiPhone2 {
+  background:		url(../images/404/title-iphone-en-2.gif) no-repeat left top;
+}
+.titiPhone3 {
+  background:		url(../images/404/title-iphone-en-3.gif) no-repeat left top;
+}
+/*----------------------------------------------------------------------*/
+.titHello {
+  background:		url(../images/404/title-hello_there-en.gif) no-repeat left top;
+}
+.titOurServices {
+  background:		url(../images/404/title-our_services-en.gif) no-repeat left top;
+}
+.titLastNews {
+  background:		url(../images/404/title-last_news-en.gif) no-repeat left top;
+}
+.titFeaturedProject {
+  background:		url(../images/404/title-featured_project-en.gif) no-repeat left top;
+}
+.titWorks_identity {
+  background:		url(../images/404/title-works-identity-en.gif) no-repeat left top;
+}
+.titWorks_web {
+  background:		url(../images/404/title-works-web-en.gif) no-repeat left top;
+}
+.titWorks_print {
+  background:		url(../images/404/title-works-print-en.gif) no-repeat left top;
+}
+.titWorks_video {
+  background:		url(../images/404/title-works-video-en.gif) no-repeat left top;
+}
+.titAdvertising {
+  background:		url(../images/404/title-advertising-en.gif) no-repeat left top;
+}
+.titBranding {
+  background:		url(../images/404/title-branding-en.gif) no-repeat left top;
+}
+.titPrint {
+  background:		url(../images/404/title-print-en.gif) no-repeat left top;
+}
+.titEditorial {
+  background:		url(../images/404/title-editorial-en.gif) no-repeat left top;
+}
+.titWebdesign {
+  background:		url(../images/404/title-website_design-en.gif) no-repeat left top;
+}
+.titFilms {
+  background:		url(../images/404/title-ad_films-en.gif) no-repeat left top;
+}
+.titMobile {
+  background:		url(../images/404/title-mobile-en.gif) no-repeat left top;
+}
+.titSignage {
+  background:		url(../images/404/title-signage-en.gif) no-repeat left top;
+}
+.titCreatividadReal {
+  background:		url(../images/404/title-creatividad_real.gif) no-repeat left top;
+}
+.titFeaturedProject {
+  width:		700px;
+  padding-left:		116px;
+  background:		url(../images/404/title-featured_project-en.gif) no-repeat left 5px;
+}
+/*----------------------------------------------------------------------*/
+.subtitleServices {
+  background:		url(../images/404/subtitle-services-en.gif) no-repeat left top;
+}
+.subtitleRelatedPics {
+  background:		url(../images/404/subtitle-related_pics-en.gif) no-repeat left top;
+}
+.subtitleLearnMore {
+  background:		url(../images/404/subtitle-learn_more-en.gif) no-repeat left top;
+}
+.subtitleFeaturedProjects {
+  background:		url(../images/404/subtitle-featured_projects-en.gif) no-repeat left top;
+}
+.subtitleSignupNewsletter {
+  background:		url(../images/404/subtitle-signup_newsletter-en.gif) no-repeat left top;
+}
+.subtitleRequestBudget {
+  background:		url(../images/404/subtitle-request_budget-en.gif) no-repeat left top;
+}
+.subtitleRequestProposal {
+  background:		url(../images/404/subtitle-request_proposal-en.gif) no-repeat left top;
+}
+.subtitleJoinUs {
+  background:		url(../images/404/subtitle-join_us-en.gif) no-repeat left top;
+}
+.subtitleWhereAreWe {
+  background:		url(../images/404/subtitle-where_are_we-en.gif) no-repeat left top;
+}
+.subtitleLastNews {
+  background:		url(../images/404/subtitle-last_news-en.gif) no-repeat left top;
+}
+.subtitleWorks_identity {
+  background:		url(../images/404/subtitle-works-identity-en.gif) no-repeat left top;
+}
+.subtitleWorks_web {
+  background:		url(../images/404/subtitle-works-web-en.gif) no-repeat left top;
+}
+.subtitleWorks_print {
+  background:		url(../images/404/subtitle-works-print-en.gif) no-repeat left top;
+}
+.subtitleWorks_video {
+  background:		url(../images/404/subtitle-works-video-en.gif) no-repeat left top;
+}
+/*----------------------------------------------------------------------*/
+.footerSubtitleAboutUs {
+  background:		url(../images/404/subtitle-footer-about_us-en.gif) no-repeat left top;
+}
+.footerSubtitleOurServices {
+  background:		url(../images/404/subtitle-footer-our_services-en.gif) no-repeat left top;
+}
+.footerSubtitleOurClients {
+  background:		url(../images/404/subtitle-footer-our_clients-en.gif) no-repeat left top;
+}
+.footerSubtitleGetInTouch {
+  background:		url(../images/404/subtitle-footer-get_in_touch-en.gif) no-repeat left top;
+}
+#footer #reel a {
+  background:		url(../images/404/btn-watch_our_reel-en.gif) no-repeat left top;
+}
+#footer #reel a:hover {
+  background:		url(../images/404/btn-watch_our_reel-en.gif) no-repeat left bottom;
+}
+/*----------------------------------------------------------------------*/
+.form .labelFullName {
+  background:		url(../images/404/label-full_name-en.gif) no-repeat left top;
+}
+.form .labelEmailAddress {
+  background:		url(../images/404/label-email_address-en.gif) no-repeat left top;
+}
+.form .labelCompany {
+  background:		url(../images/404/label-company-en.gif) no-repeat left top;
+}
+.form .labelAttachBrief {
+  background:		url(../images/404/label-attach_brief-en.gif) no-repeat left top;
+}
+.form .labelYourMessage {
+  background:		url(../images/404/label-your_message-en.gif) no-repeat left top;
+}
+/*----------------------------------------------------------------------*/
+#newsletter .labelFullName {
+  height:		18px;
+  background:		url(../images/404/label-full_name-small-en.gif) no-repeat left top;
+}
+#newsletter .labelEmailAddress {
+  height:		18px;
+  background:		url(../images/404/label-email_address-small-en.gif) no-repeat left top;
+}
+/*----------------------------------------------------------------------*/
+/*----------------------------------------------------------------------*/
+.btnSubmit {
+  background:		url(../images/404/btn-submit-small-en.gif) no-repeat left top;
+}
+.btnSubmit:hover {
+  background:		url(../images/404/btn-submit-small-en.gif) no-repeat left bottom;
+}
+/*----------------------------------------------------------------------*/
+.btnSubmitBig {
+  background:		url(../images/404/btn-submit-en.gif) no-repeat left top;
+}
+.btnSubmitBig:hover {
+  background:		url(../images/404/btn-submit-en.gif) no-repeat left bottom;
+}
+/*----------------------------------------------------------------------*/
+.btnMoreInfo {
+  background:		url(../images/404/btn-more_info-en.gif) no-repeat left top;
+}
+.btnMoreInfo:hover {
+  background:		url(../images/404/btn-more_info-en.gif) no-repeat left bottom;
+}
+/*----------------------------------------------------------------------*/
+.btnBack {
+  background:		url(../images/404/btn-back-en.gif) no-repeat right top;
+}
+.btnBack:hover {
+  background:		url(../images/404/btn-back-en.gif) no-repeat right bottom;
+}
+/*----------------------------------------------------------------------*/
+.btnTop {
+  background:		url(../images/404/btn-top-en.gif) no-repeat right top;
+}
+.btnTop:hover {
+  background:		url(../images/404/btn-top-en.gif) no-repeat right bottom;
+}
+/*----------------------------------------------------------------------*/
+.btnClose {
+  background:		url(../images/404/btn-close-en.gif) no-repeat right top;
+}
+.btnClose:hover {
+  background:		url(../images/404/btn-close-en.gif) no-repeat right bottom;
+}
+/*----------------------------------------------------------------------*/
+.btnViewMore {
+  background:		url(../images/404/btn-view_more-en.gif) no-repeat left top;
+}
+.btnViewMore:hover {
+  background:		url(../images/404/btn-view_more-en.gif) no-repeat left bottom;
+}
+/*----------------------------------------------------------------------*/
+.btnViewLess {
+  background:		url(../images/404/btn-view_less-en.gif) no-repeat left top;
+}
+.btnViewLess:hover {
+  background:		url(../images/404/btn-view_less-en.gif) no-repeat left bottom;
+}
+/*----------------------------------------------------------------------*/
+.btnViewAll {
+  background:		url(../images/404/btn-view_all_entries-en.gif) no-repeat left top;
+}
+.btnViewAll:hover {
+  background:		url(../images/404/btn-view_all_entries-en.gif) no-repeat left bottom;
+}
+/*----------------------------------------------------------------------*/
+.briefLink {
+  background:		url(../images/404/btn-download_creative_brief-en.gif) no-repeat left top;
+}
+.briefLink:hover {
+  background:		url(../images/404/btn-download_creative_brief-en.gif) no-repeat left bottom;
+}
+.btnBrowse {
+  background:		url(../images/404/btn-browse-en.gif) no-repeat left top;
+}
+.btnBrowse:hover {
+  background:		url(../images/404/btn-browse-en.gif) no-repeat left bottom;
+}
+/*----------------------------------------------------------------------*/
+/*----------------------------------------------------------------------*/
+#contact #thanks {
+  background:		url(../images/404/cartoon-contact-en.jpg) no-repeat left top;
+}
+/*----------------------------------------------------------------------*/
+#newsletter #thanks {
+  background:		url(../images/404/title-newsletter-thanks-en.gif) no-repeat left top;
+}
+#newsletter #thanksText {
+  background:		url(../images/404/title-newsletter-thanks_text-en.gif) no-repeat left top;
+}
+/*----------------------------------------------------------------------*/
+#proposal #thanks {
+  background:		url(../images/404/cartoon-contact-en.jpg) no-repeat left 80px;
+}
+/*----------------------------------------------------------------------*/
+/*----------------------------------------------------------------------*/
+#underConstruction .block {
+  background:		url(../images/404/under_construction-en.gif) no-repeat left top;
+}
+
+
+
+

@@ -12,17 +12,19 @@ namespace DBNL.App.Models
     [MetadataType(typeof(ContentMetaData))]
     public partial class Content
     {
+        public string HighlightText { get; set; }
         public string ThumbnailUrl { 
         
         get {
-            
-            if (string.IsNullOrEmpty(Picture)) return string.Empty;
+
+            if (string.IsNullOrEmpty(Picture)) return DBNLConfigurationManager.FileResponsity.PictureRelativeUrl + "/Default.jpg";
             return DBNLConfigurationManager.FileResponsity.PictureRelativeUrl + "/"+this.Picture;
             
         } }
 
         public class ContentMetaData
         {
+            public int Id { get; set; }
             [Required(ErrorMessageResourceName="Content_Title", ErrorMessageResourceType= typeof(DataAnnotations))]
             [DisplayName("Tựa đề bài viết")]
             public string Title { get; set; }

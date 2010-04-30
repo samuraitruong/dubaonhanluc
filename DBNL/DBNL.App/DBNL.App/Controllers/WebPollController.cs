@@ -28,9 +28,20 @@ namespace DBNL.App.Controllers
         [HttpPost]
         public ActionResult DoPoll(int id, FormCollection collection)
         {
-            int questionId = int.Parse(collection["QuestionId"]);
-            PollQuestionService.Response(questionId, 1);
+            try
+            {
+                int questionId = int.Parse(collection["QuestionId"]);
+                PollQuestionService.Response(questionId, 1);
+            }
+            catch (Exception ex)
+            {
+                
+            }
+            finally {
+            
+            }
             return RedirectToAction("View");
+            
         }
 
 

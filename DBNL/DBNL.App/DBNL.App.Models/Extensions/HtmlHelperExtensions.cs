@@ -51,8 +51,16 @@ namespace DBNL.App.Models.Extensions
         }
         public static MvcHtmlString ContentLink(this HtmlHelper helper,Content content, int Word)
         {
+            return helper.RouteLink(content.Title.Capatilized(Word), "Content-View-Route", new { category = content.ContentCategory.Key, contentkey = content.UniqueKey });
+        }
+        public static MvcHtmlString ContentLink(this HtmlHelper helper, Content content, int Word, bool isCapatilized)
+        {
+            if(isCapatilized)
+            return helper.RouteLink(content.Title.Capatilized(Word), "Content-View-Route", new { category = content.ContentCategory.Key, contentkey = content.UniqueKey });
+
             return helper.RouteLink(content.Title.TrimmedWord(Word), "Content-View-Route", new { category = content.ContentCategory.Key, contentkey = content.UniqueKey });
         }
+
         public static string NavigationLink(this UrlHelper helper, Navigation navigation)
         {
             if (navigation.Component == SiteModules.Article.ToString())

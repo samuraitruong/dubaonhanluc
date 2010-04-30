@@ -48,7 +48,11 @@ namespace DBNL.App.Models.Business
 
         public static IQueryable<Content> All(int id)
         {
-            return Contents.Where(p => p.CategoryId == id).OrderBy(o => o.IsFeatured).AsQueryable();
+            return Contents.Where(p => p.CategoryId == id && p.Status == EntityStatuses.Actived.ToString())
+                //.OrderByDescending(o => o.IsFeatured)
+                .OrderByDescending(p=>p.UpdatedDate)
+                
+                .AsQueryable();
         }
 
         public static IEnumerable<Content> GetContentByCategoryId(int id)
@@ -169,6 +173,32 @@ namespace DBNL.App.Models.Business
                         select p;
             return query.AsQueryable();
 
+        }
+
+        public static void ToggleOnHP(int id)
+        {
+            var item = GetItem(id);
+            if (item == null) return;
+
+            item.IsFocusing = !item.IsFocusing;
+            item.UpdatedDate = DateTime.Now;
+
+            Commit();
+            UpdateForcusingItem();
+        }
+
+        public static void UpdateForcusingItem()
+        {
+            var query = Contents.Where(p => p.IsFocusing == true)
+                                .OrderByDescending(p => p.UpdatedDate)
+                                .Skip(DBNLConfigurationManager.WebUI.HotestNewsCount + DBNLConfigurationManager.WebUI.OtherFeaturesNews)
+                                .AsEnumerable();
+
+            foreach (var item in query)
+            {
+                item.IsFocusing = false;
+                Commit();
+            }
         }
     }
 }

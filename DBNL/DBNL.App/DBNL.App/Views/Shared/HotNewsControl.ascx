@@ -3,6 +3,6 @@
      <%foreach (var item in Model)
        { %>
 
-       <li><%=Html.ContentLink(item, 14)%></li>
+       <li><%=Html.ContentLink(item, 12)%></li>
      <%} %>
     </ul>

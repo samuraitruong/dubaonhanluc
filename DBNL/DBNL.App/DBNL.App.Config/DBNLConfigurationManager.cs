@@ -25,6 +25,13 @@ namespace DBNL.App.Config
                 return GetInsance().FileResponsityElement;
             }
         }
+        public static LuceneElement LuceneElement
+        {
+            get
+            {
+                return GetInsance().LuceneElement;
+            }
+        }
         public static WebUIElement WebUI{
             get{
                 return GetInsance().WebUIElement;

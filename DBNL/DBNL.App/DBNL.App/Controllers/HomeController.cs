@@ -8,19 +8,47 @@ using DBNL.App.Models.Business;
 using DBNL.App.Models.Helpers;
 using System.Text.RegularExpressions;
 using System.Text;
+using DBNL.App.Models;
 
 namespace DBNL.App.Controllers
 {
     [HandleError]
     public class HomeController : FOController
     {
+        public ActionResult Search(string q, int? page)
+        {
+            //string query = LuceneHelper.Query("content:" +q);
+            int totals = 0;
+            int cpage = page.HasValue ? page.Value : 1;
+            var items = LuceneHelper.Search(q.ToLower(), cpage, DBNL.App.Config.DBNLConfigurationManager.WebUI.ArticlePagingItem, out totals);
+            IPagedList<Content> pagedList = items.ToPagedListEx(cpage, DBNL.App.Config.DBNLConfigurationManager.WebUI.ArticlePagingItem, totals);
+            
+            ViewData["keyword"] = q;
+            return View("~/Views/Home/Query.aspx", pagedList);
+        }
+
+        public ActionResult Query(string q, int page)
+        {
+            //string query = LuceneHelper.Query("content:" +q);
+            int totals = 0;
+            ViewData.Model= LuceneHelper.Search(q, page, 10, out totals);
+            ViewData["keyword"] = q;
+            return View();
+        }
         public ActionResult Admin()
         {
             ViewData["Message"] = "Welcome to ASP.NET MVC!";
             
             return View();
         }
-
+        public ActionResult Http404(string url)
+        {
+            return View();
+        }
+        public ActionResult Http501(string url)
+        {
+            return View();
+        }
 
         public ActionResult About()
         {

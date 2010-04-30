@@ -15,8 +15,8 @@
 						<a href="<%= Url.ContentLink(item)%>"><img width="115" alt="nguonnhanluc" src="<% =item.ThumbnailUrl %>"/></a>
 					</div>
 					<div class="des">
-						<h3><%= Html.ContentLink(item)%> <small><%= item.UpdatedDate.ToString("dd/MM/yyyy") %></small></h3>
-						<p>&nbsp;&nbsp; <%=item.Description.Substring(0,Math.Min(150, item.Description.Length)) %> </p>
+						<h3><%= Html.ContentLink(item, 12, false)%> <small><%= item.UpdatedDate.ToString("dd/MM/yyyy") %></small></h3>
+						<p>&nbsp;&nbsp; <%=item.Description.TrimmedWord(24) %> </p>
 					</div>	
 				</div>
             <% } %>
@@ -27,7 +27,7 @@
                 <% foreach (var item1 in Model.Articles)
                     { %>
                        
-                          <li><%= Html.ContentLink(item1)%></li> 
+                          <li><%= Html.ContentLink(item1,16)%></li> 
                        
                    <%} %>
 				</ul>

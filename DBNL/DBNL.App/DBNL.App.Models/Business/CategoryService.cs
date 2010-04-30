@@ -188,5 +188,27 @@ namespace DBNL.App.Models.Business
         {
             return Categories.Where(p => p.Invisible == true).SingleOrDefault();
         }
+
+        public static IEnumerable<Content> GetForcusingContents(int count)
+        {
+            var list = Contents.Where(p => p.IsFocusing == true)
+                                .OrderByDescending(p => p.CreatedDate)
+                                .Skip(0)
+                                .Take(count)
+                                .ToList();
+            int remain = count - list.Count;
+
+
+            if (remain > 0)
+            {
+                var query1 = Contents.Where(p => p.IsFocusing == false)
+                                .OrderByDescending(p => p.CreatedDate)
+                                .Skip(0)
+                                .Take(remain).AsEnumerable();
+                list.AddRange(query1.ToList());
+            }
+            return list;
+
+        }
     }
 }

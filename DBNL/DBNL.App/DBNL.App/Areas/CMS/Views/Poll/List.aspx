@@ -76,16 +76,17 @@ $(document).ready(function () {
                             ajaxGridOptions: {
                                                     type: "POST"
                                                 },
-                            colNames: ['Id','Câu hỏi','Số lần chọn'], 
+                            colNames: ['Id','Câu hỏi','Số lần chọn', '%'], 
                             colModel: [ 
                                         {name:"Id", index:"Id", width:100, sortable: false, editable: false, editoptions: {readonly:'readonly'}, editrules: { edithidden: true }, key:true, hidden:true},
                                         {name:"Question", index:"Question", width:625, sortable: true, editable: true}, 
-                                        {name:"Responses", index:"Responses", width:150, align: 'center'}                                 
+                                        {name:"Responses", index:"Responses", width:150, align: 'center', editable:true, sortable:true} ,                                
+                                        {name:"Percent", index:"Responses", width:150, align: 'center', sortable:true}     
                                       ],
                              rowNum:20, 
                              rowList: [10, 20, 30],
                              pager: pager_id, 
-                             sortname: 'Question', 
+                             sortname: 'Responses', 
                              sortorder: "asc", 
                              height: '100%' ,
                              width:'100%',

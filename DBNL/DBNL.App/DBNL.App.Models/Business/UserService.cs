@@ -68,6 +68,13 @@ namespace DBNL.App.Models.Business
         public static void Delete(int id)
         {
             User user = GetInstance().Users.Where(p => p.Id == id).SingleOrDefault();
+            if (user == null || user.IsReadOnly) return;
+
+            var allUserAssigned = UserInRoles.Where(role => role.UserId == id);
+
+            UserInRoles.DeleteAllOnSubmit(allUserAssigned.AsEnumerable());
+            Commit();
+
             GetInstance().Users.DeleteOnSubmit(user);
             Commit();
         }
