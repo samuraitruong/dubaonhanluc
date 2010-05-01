@@ -118,6 +118,7 @@
     <Compile Include="Controllers\AdminController.cs" />
     <Compile Include="Controllers\ArticleController.cs" />
     <Compile Include="Areas\CMS\Controllers\FileManagerController.cs" />
+    <Compile Include="Controllers\DummyController.cs" />
     <Compile Include="Controllers\FOController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\SolnetWrapper.cs" />
@@ -129,6 +130,10 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\ApplicationManager.cs" />
+    <Compile Include="Models\CronJob\CronJobBase.cs" />
+    <Compile Include="Models\CronJob\IndexingJob.cs" />
+    <Compile Include="Models\CronJob\JobScheduler.cs" />
     <Compile Include="Models\Extensions.cs" />
     <Compile Include="Models\FileManager\FileManager.cs" />
     <Compile Include="Models\FileManager\FileManagerOperations.cs" />
