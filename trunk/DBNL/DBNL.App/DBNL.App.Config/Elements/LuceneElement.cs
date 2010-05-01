@@ -20,6 +20,18 @@ namespace DBNL.App.Config
         {
             get { return GetFullPath((string)this["indexingFolder"]); }
         }
+
+           [ConfigurationProperty("interval")]
+        public int Interval
+        {
+            get { return ((int)this["interval"]); }
+        }
+
+        [ConfigurationProperty("indexingServiceUrl")]
+        public string IndexingServiceUrl
+        {
+            get { return ((string)this["indexingServiceUrl"]); }
+        }
        
     }
 }
