@@ -8,6 +8,9 @@ using System.Web.Security;
 using System.Globalization;
 using System.Threading;
 using DBNL.App.Models;
+using DBNL.App.Models.CronJob;
+using System.Diagnostics;
+using DBNL.App.Config;
 
 namespace DBNL.App
 {
@@ -51,10 +54,17 @@ namespace DBNL.App
 
         protected void Application_Start()
         {
-            LuceneHelper.BuildingIndex(this.Application);
-
             RegisterRoutes(RouteTable.Routes);
-            
+            try
+            {
+                JobScheduler jobScheduler = ApplicationManager.JobScheduler;
+                jobScheduler.Add(new IndexingJob(JobKeys.Indexing) { MinuesToRun = DBNLConfigurationManager.LuceneElement.Interval});
+                ApplicationManager.JobScheduler = jobScheduler;
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine(ex.Message);
+            }
         }
         void Session_Start(object sender, EventArgs e)
         {
@@ -66,6 +76,12 @@ namespace DBNL.App
         {
             // Code that runs when a new session is started
             FormsAuthentication.SignOut();
+        }
+
+        protected void Application_BeginRequest(Object sender, EventArgs e)
+        {
+            JobScheduler jobScheduler = ApplicationManager.JobScheduler;
+            jobScheduler.Update(HttpContext.Current.Request.Url.ToString());
         }
 
         protected void Application_AcquireRequestState(object sender, EventArgs e)

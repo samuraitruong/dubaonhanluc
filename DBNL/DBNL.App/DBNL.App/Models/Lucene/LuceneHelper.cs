@@ -17,18 +17,21 @@ using Lucene.Net.QueryParsers;
 
 namespace DBNL.App.Models
 {
+    public delegate void AfterIndexingCoplete();
+
     public class LuceneHelper
     {
         static object locker = new object();
+        static public AfterIndexingCoplete IndexingAfterComplete;
 
-        
-        static Lucene.Net.Analysis.Analyzer analyzer = new Lucene.Net.Analysis.SimpleAnalyzer();
 
-        public static void BuildingIndex(HttpApplicationState app)
+        static Lucene.Net.Analysis.Analyzer analyzer = new Lucene.Net.Analysis.Standard.StandardAnalyzer();
+
+        public static void BuildingIndex()
         {
 
             System.Threading.Thread thread = new System.Threading.Thread(BuildingIndex_Thread);
-            thread.Start(app);
+            thread.Start();
         }
 
         static Lucene.Net.Documents.Document create_doc(int id, string content)
@@ -109,7 +112,7 @@ namespace DBNL.App.Models
 
 
 
-        public static void BuildingIndex_Thread(object obj)
+        public static void BuildingIndex_Thread()
         {
             lock (locker)
             {
@@ -135,6 +138,10 @@ namespace DBNL.App.Models
                 {
                     throw e;
                 }
+                finally
+                {
+                    IndexingAfterComplete();
+                }
             }
         }
 
@@ -152,10 +159,27 @@ namespace DBNL.App.Models
             TopDocCollector collector = new TopDocCollector((page + 1) * pageSize);
 
             PhraseQuery pquery = new PhraseQuery();
-            foreach (string srt in keyword.Split(new char[] {' '}))
+            BooleanQuery myquery = new BooleanQuery();
+            PhraseQuery q2 = new PhraseQuery();
+            //grab the search terms from the query string
+            string[] str = keyword.Split(' ');
+            //build the query
+            foreach (string word in str)
             {
-                pquery.Add(new Term("content", srt));
+                //brand is the field I'm searching in
+                q2.Add(new Term("content", word.ToLower()));
             }
+
+            //finally, add it to the BooleanQuery object
+            myquery.Add(q2, BooleanClause.Occur.MUST);
+
+
+            //foreach (string srt in keyword.Split(new char[] {' '}))
+            //{
+            //    pquery.Add(new Term("content", srt.ToLower()));
+            //}
+            //pquery.Add(q2, BooleanClause.Occur.MUST);
+
             TermQuery query = new TermQuery(new Term("content", keyword));
 //            TopDocs topDocs = searcher.Search(query, collector);
             //searcher.Search(query, collector);
@@ -165,7 +189,8 @@ namespace DBNL.App.Models
             //Contains a phrase such as "this is a phrase" 
             Query q = qp.Parse(keyword);
             //Hits hits = searcher.Search(q);
-            Hits hits = searcher.Search(query);
+            //Hits hits = searcher.Search(query);
+            Hits hits = searcher.Search(myquery);
 
             //ScoreDoc[] hits = collector.TopDocs().scoreDocs;
             totals = hits.Length();
@@ -174,7 +199,7 @@ namespace DBNL.App.Models
     "</span>");
 
             Lucene.Net.Highlight.SimpleFragmenter fragmenter = new Lucene.Net.Highlight.SimpleFragmenter(400);
-            Lucene.Net.Highlight.QueryScorer scorer = new Lucene.Net.Highlight.QueryScorer(query);
+            Lucene.Net.Highlight.QueryScorer scorer = new Lucene.Net.Highlight.QueryScorer(myquery);
             Lucene.Net.Highlight.Highlighter highlighter = new Lucene.Net.Highlight.Highlighter(formatter, scorer);
             highlighter.SetTextFragmenter(fragmenter);
             
@@ -202,6 +227,7 @@ namespace DBNL.App.Models
                 content.HighlightText = highlighted_text;
                 result.Add(content);
             }
+            reader.Close();
 
             searcher.Close();
             return result.AsEnumerable();
