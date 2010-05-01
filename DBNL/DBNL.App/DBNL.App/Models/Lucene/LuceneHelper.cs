@@ -14,6 +14,7 @@ using Lucene.Net.Documents;
 using Lucene.Net.Analysis;
 using Lucene.Net.Analysis.Standard;
 using Lucene.Net.QueryParsers;
+using System.Threading;
 
 namespace DBNL.App.Models
 {
@@ -114,11 +115,12 @@ namespace DBNL.App.Models
 
         public static void BuildingIndex_Thread()
         {
-            lock (locker)
-            {
+            string tempdir = DBNLConfigurationManager.LuceneElement.IndexingFolder + ".temp";
+            bool hasError = false;
+            
                 try
                 {
-                    Lucene.Net.Index.IndexWriter writer = new Lucene.Net.Index.IndexWriter(DBNLConfigurationManager.LuceneElement.IndexingFolder, analyzer, true);
+                    Lucene.Net.Index.IndexWriter writer = new Lucene.Net.Index.IndexWriter(tempdir, analyzer, true);
 
                     int totalRecords = ContentService.All().Count();
                     for (int i = 0; i < totalRecords; i = i + 100)
@@ -130,108 +132,123 @@ namespace DBNL.App.Models
                             writer.AddDocument(create_doc(
                                     item.ContentId, item.Content1));
                         }
+                        Thread.Sleep(1000);
                     }
                     writer.Optimize();
                     writer.Close();
                 }
                 catch (Exception e)
                 {
+                    hasError = true;
                     throw e;
                 }
                 finally
                 {
+                    
+                    if (!hasError)
+                    {
+                        lock (locker)
+                        {
+                                string[] files = System.IO.Directory.GetFiles(tempdir);
+                                foreach (string s in files)
+                                {
+                                    string fileName = System.IO.Path.GetFileName(s);
+                                    string destFile = System.IO.Path.Combine(DBNLConfigurationManager.LuceneElement.IndexingFolder, fileName);
+                                    System.IO.File.Copy(s, destFile, true);
+                                }
+                        }
+                    }
                     IndexingAfterComplete();
                 }
-            }
         }
 
         public static IEnumerable<Content>
             Search(string keyword, int page, int pageSize, out int totals)
         {
-            List<Content> result = new List<Content>();
-
-
-            IndexReader reader = IndexReader.Open(DBNLConfigurationManager.LuceneElement.IndexingFolder);
-
-            IndexSearcher searcher = new IndexSearcher(reader);
-
- 
-            TopDocCollector collector = new TopDocCollector((page + 1) * pageSize);
-
-            PhraseQuery pquery = new PhraseQuery();
-            BooleanQuery myquery = new BooleanQuery();
-            PhraseQuery q2 = new PhraseQuery();
-            //grab the search terms from the query string
-            string[] str = keyword.Split(' ');
-            //build the query
-            foreach (string word in str)
+            lock (locker)
             {
-                //brand is the field I'm searching in
-                q2.Add(new Term("content", word.ToLower()));
-            }
+                List<Content> result = new List<Content>();
+                IndexReader reader = IndexReader.Open(DBNLConfigurationManager.LuceneElement.IndexingFolder);
 
-            //finally, add it to the BooleanQuery object
-            myquery.Add(q2, BooleanClause.Occur.MUST);
+                IndexSearcher searcher = new IndexSearcher(reader);
 
 
-            //foreach (string srt in keyword.Split(new char[] {' '}))
-            //{
-            //    pquery.Add(new Term("content", srt.ToLower()));
-            //}
-            //pquery.Add(q2, BooleanClause.Occur.MUST);
+                TopDocCollector collector = new TopDocCollector((page + 1) * pageSize);
 
-            TermQuery query = new TermQuery(new Term("content", keyword));
-//            TopDocs topDocs = searcher.Search(query, collector);
-            //searcher.Search(query, collector);
-
-            QueryParser qp = new QueryParser("content", new StandardAnalyzer());
-
-            //Contains a phrase such as "this is a phrase" 
-            Query q = qp.Parse(keyword);
-            //Hits hits = searcher.Search(q);
-            //Hits hits = searcher.Search(query);
-            Hits hits = searcher.Search(myquery);
-
-            //ScoreDoc[] hits = collector.TopDocs().scoreDocs;
-            totals = hits.Length();
-            Lucene.Net.Highlight.Formatter formatter = new Lucene.Net.Highlight.SimpleHTMLFormatter(
-    "<span style=\"background:yellow;color:red;\">",
-    "</span>");
-
-            Lucene.Net.Highlight.SimpleFragmenter fragmenter = new Lucene.Net.Highlight.SimpleFragmenter(400);
-            Lucene.Net.Highlight.QueryScorer scorer = new Lucene.Net.Highlight.QueryScorer(myquery);
-            Lucene.Net.Highlight.Highlighter highlighter = new Lucene.Net.Highlight.Highlighter(formatter, scorer);
-            highlighter.SetTextFragmenter(fragmenter);
-            
-            for (int i = (page - 1) * pageSize; i < Math.Min(page * pageSize, hits.Length()); i++)
-            {
-
-                Document doc = hits.Doc(i);
-                string raw_text = doc.Get("content");
-
-
-                Lucene.Net.Analysis.TokenStream stream = analyzer.TokenStream("", new System.IO.StringReader(raw_text));
-                string highlighted_text = highlighter.GetBestFragments(stream, raw_text, 1, "...").Replace("'", "''");
-
-
-                if (highlighted_text == "") // someties the highlighter fails to emit text...
+                PhraseQuery pquery = new PhraseQuery();
+                BooleanQuery myquery = new BooleanQuery();
+                PhraseQuery q2 = new PhraseQuery();
+                //grab the search terms from the query string
+                string[] str = keyword.Split(' ');
+                //build the query
+                foreach (string word in str)
                 {
-                    highlighted_text = raw_text.Replace("'", "''");
-                }
-                if (highlighted_text.Length > 500)
-                {
-                    highlighted_text = highlighted_text.Substring(0, 500);
+                    //brand is the field I'm searching in
+                    q2.Add(new Term("content", word.ToLower()));
                 }
 
-                Content content = ContentService.GetItem(int.Parse(doc.Get("id")));
-                content.HighlightText = highlighted_text;
-                result.Add(content);
+                //finally, add it to the BooleanQuery object
+                myquery.Add(q2, BooleanClause.Occur.MUST);
+
+
+                //foreach (string srt in keyword.Split(new char[] {' '}))
+                //{
+                //    pquery.Add(new Term("content", srt.ToLower()));
+                //}
+                //pquery.Add(q2, BooleanClause.Occur.MUST);
+
+                TermQuery query = new TermQuery(new Term("content", keyword));
+                //            TopDocs topDocs = searcher.Search(query, collector);
+                //searcher.Search(query, collector);
+
+                QueryParser qp = new QueryParser("content", new StandardAnalyzer());
+
+                //Contains a phrase such as "this is a phrase" 
+                Query q = qp.Parse(keyword);
+                //Hits hits = searcher.Search(q);
+                //Hits hits = searcher.Search(query);
+                Hits hits = searcher.Search(myquery);
+
+                //ScoreDoc[] hits = collector.TopDocs().scoreDocs;
+                totals = hits.Length();
+                Lucene.Net.Highlight.Formatter formatter = new Lucene.Net.Highlight.SimpleHTMLFormatter(
+        "<span class=\"Highlight\">",
+        "</span>");
+
+                Lucene.Net.Highlight.SimpleFragmenter fragmenter = new Lucene.Net.Highlight.SimpleFragmenter(400);
+                Lucene.Net.Highlight.QueryScorer scorer = new Lucene.Net.Highlight.QueryScorer(myquery);
+                Lucene.Net.Highlight.Highlighter highlighter = new Lucene.Net.Highlight.Highlighter(formatter, scorer);
+                highlighter.SetTextFragmenter(fragmenter);
+
+                for (int i = (page - 1) * pageSize; i < Math.Min(page * pageSize, hits.Length()); i++)
+                {
+
+                    Document doc = hits.Doc(i);
+                    string raw_text = doc.Get("content");
+
+
+                    Lucene.Net.Analysis.TokenStream stream = analyzer.TokenStream("", new System.IO.StringReader(raw_text));
+                    string highlighted_text = highlighter.GetBestFragments(stream, raw_text, 1, "...").Replace("'", "''");
+
+
+                    if (highlighted_text == "") // someties the highlighter fails to emit text...
+                    {
+                        highlighted_text = raw_text.Replace("'", "''");
+                    }
+                    if (highlighted_text.Length > 500)
+                    {
+                        highlighted_text = highlighted_text.Substring(0, 500);
+                    }
+
+                    Content content = ContentService.GetItem(int.Parse(doc.Get("id")));
+                    content.HighlightText = highlighted_text;
+                    result.Add(content);
+                }
+                reader.Close();
+
+                searcher.Close();
+                return result.AsEnumerable();
             }
-            reader.Close();
-
-            searcher.Close();
-            return result.AsEnumerable();
-
 
         }
     

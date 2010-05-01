@@ -178,3 +178,11 @@ background:url("../images/icon_a_title.jpg") no-repeat scroll 5px center transpa
 color:#FFFFFF;
 padding-left:20px;
 }
+
+.Highlight
+{
+    background-color:Yellow;
+    color:Red;
+    font-weight:bolder;
+    font-style:italic;
+}
