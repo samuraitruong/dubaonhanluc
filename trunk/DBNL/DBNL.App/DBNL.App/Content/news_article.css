@@ -52,7 +52,7 @@
 
 /*ss_im_news*/
 .ss_im_news { width:654px; overflow:hidden;}
-ul.k_ss_im_news { width:700px;}
+ul.k_ss_im_news { width:700px; float:left;}
 ul.k_ss_im_news li { display:inline; float:left; width:300px; min-height:140px; height:auto !important; height:150px; margin-right:50px;}
 
 /*r_module*/
@@ -185,4 +185,8 @@ padding-left:20px;
     color:Red;
     font-weight:bolder;
     font-style:italic;
+}
+#datepicker 
+{
+    xposition:absolute;
 }

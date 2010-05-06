@@ -28,6 +28,12 @@ namespace DBNL.App.Models.Extensions
             return helper.RouteLink(category.CategoryName, "Category-View-Route", new { category = category.Key});
         }
 
+        public static MvcHtmlString CategoryLink(this HtmlHelper helper, string name, ContentCategory category)
+        {
+
+            return helper.RouteLink(name, "Category-View-Route", new { category = category.Key });
+        }
+
         public static string ContentLink(this UrlHelper helper, Content content)
         {
 

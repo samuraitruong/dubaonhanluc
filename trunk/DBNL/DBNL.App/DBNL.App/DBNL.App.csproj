@@ -131,6 +131,8 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\ApplicationManager.cs" />
+    <Compile Include="Models\CacheFilter.cs" />
+    <Compile Include="Models\CompressFilter.cs" />
     <Compile Include="Models\CronJob\CronJobBase.cs" />
     <Compile Include="Models\CronJob\IndexingJob.cs" />
     <Compile Include="Models\CronJob\JobScheduler.cs" />
@@ -1850,6 +1852,7 @@
     <Content Include="Content\jqueryUI1.8a\css\redmond\jquery-ui-1.8.css" />
     <Content Include="Scripts\Site.Master.js" />
     <Content Include="Views\Article\Category.aspx" />
+    <Content Include="Views\Article\CategoryByDate.aspx" />
     <Content Include="Views\Article\View.aspx" />
     <Content Include="Views\Home\Http404.aspx" />
     <Content Include="Views\Home\NewestJobControl.ascx" />
@@ -1858,6 +1861,7 @@
     <Content Include="Views\HttpError\404.aspx" />
     <Content Include="Views\Shared\CategoriesOnHPView.ascx" />
     <Content Include="Views\Shared\ControlBar.ascx" />
+    <Content Include="Views\Shared\ControlBarEx.ascx" />
     <Content Include="Views\Shared\FeatureCategoryView.ascx" />
     <Content Include="Views\Shared\HitStats.ascx" />
     <Content Include="Views\Shared\HotNewsControl.ascx" />

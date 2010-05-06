@@ -12,5 +12,6 @@ namespace DBNL.App.Models.ViewData
         public IEnumerable<Content> Articles { get; set; }
         public IEnumerable<Content> FeaturedArticles { get; set; }
         public IPagedList<Content> ArticlesPagedList { get; set; }
+        public DateTime FilterDate { get; set; }
     }
 }

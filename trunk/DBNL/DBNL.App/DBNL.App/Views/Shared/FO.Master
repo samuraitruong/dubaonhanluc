@@ -10,9 +10,10 @@
     <script type="text/javascript" src="supersleight-min.js"></script>
     <![endif]-->
 
-    <script type="text/javascript" src="<%=Url.Content("~/Scripts")%>/jquery-1.2.6.pack.js"></script>
+    <script type="text/javascript" src="<%=Url.Content("~/Content")%>/jqueryUI1.8a/js/jquery-1.4.2.min.js"></script>
 
     <script type="text/javascript" src="<%=Url.Content("~/Scripts")%>/jquery.droppy.js"></script>
+    <script type="text/javascript" src="<%=Url.Content("~/Scripts")%>/jquery.cookie.js"></script>
     <script type="text/javascript" src="<%=Url.Content("~/Scripts")%>/main.js"></script>
     <asp:ContentPlaceHolder ID="headerPlaceHolder" runat="server"></asp:ContentPlaceHolder>
     <link href="<%=Url.Content("~/Content")%>/slideshow.css" rel="stylesheet" type="text/css" />
@@ -213,5 +214,6 @@ $(document).ready(function(){
         </div>
     </div>
     <!--Page-->
+
 </body>
 </html>
