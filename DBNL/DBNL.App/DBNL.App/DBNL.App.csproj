@@ -1853,6 +1853,7 @@
     <Content Include="Scripts\Site.Master.js" />
     <Content Include="Views\Article\Category.aspx" />
     <Content Include="Views\Article\CategoryByDate.aspx" />
+    <Content Include="Views\Article\CategoryByMonth.aspx" />
     <Content Include="Views\Article\View.aspx" />
     <Content Include="Views\Home\Http404.aspx" />
     <Content Include="Views\Home\NewestJobControl.ascx" />

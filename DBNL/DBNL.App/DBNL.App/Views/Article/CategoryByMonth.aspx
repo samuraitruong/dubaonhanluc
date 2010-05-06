@@ -21,13 +21,13 @@
     <div class="ex" id="hot_news">
 		<div class="top_hot_news">
       
-			<h2><% =Html.Label(Model.Category.ContentCategory1!= null ?Model.Category.ContentCategory1.CategoryName:"")%> <%=Html.CategoryLink(Model.Category )%> (<small> <% =Model.FilterDate.ToVNString() %> </small>)</h2>
+			<h2><% =Html.Label(Model.Category.ContentCategory1!= null ?Model.Category.ContentCategory1.CategoryName:"")%> <%=Html.CategoryLink(Model.Category )%> (<small> <% =Model.FilterDate.ToString("MM/yyyy") %> </small>)</h2>
 		</div>
 		<div class="news_article">
 			<div class="top_page clearfix">
 				<% Html.RenderPartial("ControlBarEx", Model.Category); %>
 				<div class="PagerContainer">
-                      <%Html.RenderPartial("~/Views/Shared/Pagination.ascx", new PaginationViewData()
+                    <%Html.RenderPartial("~/Views/Shared/Pagination.ascx", new PaginationViewData()
                     {
                         PageIndex = Model.ArticlesPagedList.PageNumber,
                         DisplayItems = 5,
@@ -78,7 +78,7 @@
             </div>
             <div class="ExtendLink">
                 <p>
-                    <%=Html.RouteLink("Click vào đây", "Category-View-Route-By-Month", new { month = Model.FilterDate.Month, year = Model.FilterDate.Year, category = Model.Category.Key })%> Để xem tất cả những tin đăng vào <%=Model.FilterDate.ToString("MM/yyyy") %>.
+                    <%=Html.RouteLink("Click vào đây", "Category-View-Route-By-Date", new { month = Model.FilterDate.Month, year = Model.FilterDate.Year, category = Model.Category.Key })%> Để xem tất cả nhưng tin đăng vào <%=Model.FilterDate.ToString("MM/yyyy") %>.
                 </p>
             </div>
 		</div>
@@ -87,7 +87,7 @@
 				<% Html.RenderPartial("ControlBarEx", Model.Category); %>
 
 				<div class="PagerContainer">
-                    <%Html.RenderPartial("~/Views/Shared/Pagination.ascx", new PaginationViewData()
+                   <%Html.RenderPartial("~/Views/Shared/Pagination.ascx", new PaginationViewData()
                     {
                         PageIndex = Model.ArticlesPagedList.PageNumber,
                         DisplayItems = 5,
