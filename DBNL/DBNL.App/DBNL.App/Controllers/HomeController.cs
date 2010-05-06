@@ -58,6 +58,8 @@ namespace DBNL.App.Controllers
         {
             return View();
         }
+        [CompressFilter]
+        [CacheFilter]
         public ActionResult Index()
         {
             ViewData.Model = new HomePageViewData();

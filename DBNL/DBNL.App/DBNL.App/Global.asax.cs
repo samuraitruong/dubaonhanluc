@@ -26,6 +26,19 @@ namespace DBNL.App
             routes.IgnoreRoute("elmah.axd");
             AreaRegistration.RegisterAllAreas();
             routes.MapRoute(
+                "Category-View-Route-By-Date",
+                "{day}/{month}/{year}/{category}_{page}.aspx",
+                new
+                {
+                    controller = "Article",
+                    action = "ViewCategoryByDate",
+                    page = 1,
+                    day = DateTime.Today.Day,
+                    month = DateTime.Today.Month,
+                    year = DateTime.Today.Year
+                });
+
+            routes.MapRoute(
                 "Category-View-Route",
                 "{category}_{page}.aspx",
                 new

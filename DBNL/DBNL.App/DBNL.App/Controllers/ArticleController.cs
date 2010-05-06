@@ -8,6 +8,7 @@ using DBNL.App.Models.Business;
 using DBNL.App.Models.ViewData;
 using DBNL.App.Models.Helpers;
 using DBNL.App.Config;
+using DBNL.App.Models;
 namespace DBNL.App.Controllers
 {
     public class ArticleController : FOController
@@ -16,8 +17,46 @@ namespace DBNL.App.Controllers
         // GET: /Content/
 
 
-       
+        [CompressFilter]
+        [CacheFilter]
+        public ActionResult ViewCategoryByDate(string category, int? page, int day, int month, int year)
+        {
+            Models.ContentCategory Cat = CategoryService.GetByKey(category);
 
+            if (Cat == null) return RedirectToAction("Index", "Http404");
+
+            DateTime filterDate = DateTime.Now;
+            try
+            {
+                filterDate = new DateTime(year, month, day);
+            }
+            catch (Exception ex)
+            {
+                return RedirectToAction("Index", "Http404");
+            }
+
+            var data = new CategoryViewData()
+            {
+                FilterDate = filterDate,
+                Category = Cat,
+                Articles = ContentService.GetContentByCategoryId(Cat.ID),
+                FeaturedArticles = ContentService.GetFeaturedArtileByCategoryId(Cat.ID),
+                ArticlesPagedList = ContentService.All(Cat.ID)
+                                                    .Where(p => p.UpdatedDate.Year == year)
+                                                    .Where(p => p.UpdatedDate.Month == month)
+                                                    .Where(p => p.UpdatedDate.Day == day)
+                                                    .ToPagedList(page.HasValue ? page.Value - 1 : 0, DBNLConfigurationManager.WebUI.ArticlePagingItem)
+
+            };
+            if (page.HasValue && data.ArticlesPagedList.PageCount >0 && page.Value > data.ArticlesPagedList.PageCount)
+            {
+                return RedirectToAction("ViewCategoryByDate", new { category = category, day = day, month = month, year = year });
+            }
+            return View("~/Views/Article/CategoryByDate.aspx", data);
+
+        }
+        [CompressFilter]
+        [CacheFilter]
         public ActionResult Category(int id, int? page)
         {
             Models.ContentCategory Cat = CategoryService.GetById(id);
@@ -33,7 +72,8 @@ namespace DBNL.App.Controllers
             return View();
         }
 
-       
+        [CompressFilter]
+        [CacheFilter]
         public ActionResult ViewCategory(string category, int? page)
         {
             int id = 1;
@@ -64,7 +104,8 @@ namespace DBNL.App.Controllers
         {
             return View();
         }
-
+        [CompressFilter]
+        [CacheFilter]
         public ActionResult ViewContent(string contentkey)
         {
             DBNL.App.Models.Content content = ContentService.GetContentByKey(contentkey);
@@ -77,6 +118,8 @@ namespace DBNL.App.Controllers
             };
             return View("~/Views/Article/View.aspx");
         }
+        [CompressFilter]
+        [CacheFilter]
         public ActionResult View(int id)
         {
             DBNL.App.Models.Content content = ContentService.GetContentById(id);
