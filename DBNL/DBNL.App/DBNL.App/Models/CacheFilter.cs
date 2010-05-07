@@ -18,7 +18,7 @@
 
         public CacheFilterAttribute()
         {
-            Duration = 300;
+            Duration = 60;
         }
        
         public override void OnActionExecuted(ActionExecutedContext filterContext)
