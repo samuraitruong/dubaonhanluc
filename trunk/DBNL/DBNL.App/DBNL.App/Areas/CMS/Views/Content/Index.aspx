@@ -51,6 +51,7 @@
 $(document).ready(function () {
 
             DBNL.Admin.Contents.setupGrid($("#grid"), $("#pager"));
+
               $("#Category").bind("change", function() {
                 UpdateCreateInLink($(this).val());
                 jQuery("#grid").setGridParam({ postData: {CategoryId:  $(this).val()}})  
@@ -66,10 +67,9 @@ $(document).ready(function () {
 
                 nodeClick : function () {
                     var id = this.id;
-                    jQuery("#grid").setGridParam({ postData: {CategoryId:  id}}).trigger('reloadGrid');  
-                    
-                    UpdateCreateInLink(id);
                     $("#Category").val(id);
+                    jQuery("#grid").setGridParam({ postData: {CategoryId:  id}}).trigger('reloadGrid');  
+                    UpdateCreateInLink(id);
                 }
 		    })
             
