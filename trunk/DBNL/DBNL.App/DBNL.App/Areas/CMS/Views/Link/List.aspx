@@ -40,8 +40,8 @@ $(document).ready(function () {
                     {
                         name: 'EntityId',key:true, index: 'EntityId', width: 40, align: 'left',editable: false, editoptions: {readonly:'readonly'},editrules: { edithidden: true }, hidden: true },
 
-                        { name: 'Title', index: 'Title', sortable: true, editable: true, edittype: 'text',editrules :{required:true}, editoptions: { size: 100, maxlength:100} , hidden: false },
-                        { name: 'Url', index: 'Url', width: 150, align: 'left', formatter: 'link', formatoptions: { prefix: "$" }, sortable: true, editable: true, edittype: 'text', editoptions: { size:100, maxlength:100}, hidden: false },
+                        { name: 'Title', index: 'Title', sortable: true, editable: true, edittype: 'text', editrules : {required:true}, editoptions: { size: 60, maxlength:100} , hidden: false },
+                        { name: 'Url', index: 'Url', width: 150, align: 'left', formatter: 'link', formatoptions: { prefix: "$" }, sortable: true, editable: true, edittype: 'text', editrules : {required:true}, editoptions: { size: 60, maxlength:100} , hidden: false },
                       ],
                     rowNum: 10,
                     rowList: [10, 20, 30],
@@ -64,7 +64,7 @@ $(document).ready(function () {
 //                                 rulesText: " rules"
 //                               }
                 })
-        .navGrid('#pager', { edit: true, add: true, del: true, search: true, view: true }, { width: 700}, {}, {url: "Delete"});
+        .navGrid('#pager', { edit: true, add: true, del: true, search: true, view: true }, {width:'450'}, {}, {url: "Delete"});
             }
         };
 </script>

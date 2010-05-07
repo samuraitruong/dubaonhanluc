@@ -35,13 +35,13 @@ $(document).ready(function () {
                         type: "POST"
                     },
                     datatype: "json",
-                    colNames: [ 'EntityId','Name', 'Email', 'Status'],
+                    colNames: [ 'Id','Tên phòng ban', 'địa chỉ email', 'Status'],
                     colModel: [
                     {
-                        name: 'EntityId', key:true, index: 'EntityId', width: 40, align: 'left',editable: false, editoptions: {readonly:'readonly'}, editrules: { edithidden: true }, hidden: true },
+                        name: 'Id', key:true, index: 'Id', width: 40, align: 'left',editable: false, editoptions: {readonly:'readonly'}, editrules: { edithidden: true }, hidden: true },
 
-                        { name: 'Name', index: 'Name', sortable: true, editable: true, edittype: 'text', editoptions: { size: 20, maxlength:100} , hidden: false },
-                        { name: 'Email', index: 'Email', width: 150, align: 'left', sortable: true, editable: true, edittype: 'text', editoptions: { size: 20, maxlength:100}, hidden: false },
+                        { name: 'Name', index: 'Name', sortable: true, editable: true, edittype: 'text', editrules: {required:true}, editoptions: { size: 72, maxlength:100} , hidden: false },
+                        { name: 'Email', index: 'Email', width: 150, align: 'left', sortable: true, editable: true, editrules: {required:true},edittype: 'text', editoptions: { size: 72, maxlength:100}, hidden: false },
                         { name: 'Status', index: 'Status', width: 150, align: 'center', sortable: true, editable: true, edittype: 'select', style: 'select', editoptions: { dataUrl: "<%=Url.Action("GetSelectStatus", "Contact" )%>"}, hidden: false },
                       ],
                     rowNum: 10,
@@ -57,7 +57,12 @@ $(document).ready(function () {
                     caption: 'DANH SÁCH EMAIL TRUNG TÂM TRUNG TÂM DỰ BÁO NHU CẦU NHÂN LỰC VÀ THÔNG TIN THỊ TRƯỜNG LAO ĐỘNG TP.HCM'
                     
                 })
-        .navGrid('#pager', { edit: true, add: true, del: true, search: true, view: true },{},{},{url:'<%=Url.Action("JsonDelete", "Contact" )%>'});
+        .navGrid('#pager', { edit: true, add: true, del: true, search: true, view: true },
+                {
+                    width: '540'
+                },
+                {},
+                {url:'<%=Url.Action("JsonDelete", "Contact" )%>'});
             }
         };
 </script>

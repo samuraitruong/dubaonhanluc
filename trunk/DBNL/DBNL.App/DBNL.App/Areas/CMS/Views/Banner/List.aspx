@@ -62,13 +62,13 @@ $(document).ready(function () {
                         type: "POST"
                     },
                     datatype: "json",
-                    colNames: [ 'Id','Name', 'Url', 'Image', 'Position', 'Status'],
+                    colNames: [ 'Id','Tên', 'Đường dẫn', 'Hình', 'Vị trí', 'Tình trạng'],
                     colModel: [
                     {
                         name: 'Id',index: 'Id',key:true, width: 40, align: 'left',editable: false, editoptions: {readonly:'readonly'},editrules: { edithidden: true }, hidden: true },
 
-                        { name: 'Name', index: 'Name', sortable: true, editable: true, edittype: 'text', editoptions: { size: 20, maxlength:100} , hidden: false },
-                        { name: 'Url', index: 'Url', width: 150, align: 'left', formatter: 'link', sortable: true, editable: true, edittype: 'text', editoptions: { size: 20, maxlength:100}, hidden: false },
+                        { name: 'Name', index: 'Name', sortable: true, editable: true, edittype: 'text', editrules : {required:true}, editoptions: { size: 60, maxlength:100} , hidden: false },
+                        { name: 'Url', index: 'Url', width: 150, align: 'left', formatter: 'link', editrules : {required:true},sortable: true, editable: true, edittype: 'text', editoptions: { size: 60, maxlength:100}, hidden: false },
                         { name: 'Image', index: 'Image', width: 80,formatter:imageFormater , align: 'center', editable: true, edittype: 'custom',editoptions:{custom_element: bannerImageElem, custom_value:bannerImageVal}, hidden: false },
                         { name: 'Position', index: 'Position', width: 40, align: 'center', sortable: true, editable: true, edittype: 'select', style: 'select', editoptions: { dataUrl: "<%=Url.Action("GetSelectPosition", "Banner" )%>"}, hidden: false },
                         { name: 'Status', index: 'Status', width: 50, align: 'center', sortable: true, editable: true, edittype: 'select', style: 'select', editoptions: { dataUrl: "<%=Url.Action("GetSelectStatus", "Banner" )%>"}, hidden: false },
@@ -92,7 +92,7 @@ $(document).ready(function () {
 
                     
                 })
-        .navGrid('#pager', { edit: true, add: true, del: true, search: true, view: true },{},{},{url:'JsonDelete'}).navButtonAdd('#pager',{
+        .navGrid('#pager', { edit: true, add: true, del: true, search: true, view: true },{width:'450'},{},{url:'JsonDelete'}).navButtonAdd('#pager',{
                            caption:"Active/Inactive", 
                            title:'Active or Inactive',
                            buttonicon:"ui-icon-power", 

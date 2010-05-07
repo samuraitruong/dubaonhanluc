@@ -8,11 +8,16 @@ namespace DBNL.App.Models.Business
 {
     public class BaseService
     {
+        static Object locker = new Object();
         public static DBNLDataContext instance;
         public static DBNLDataContext GetInstance()
         {
-            if (instance == null) instance = new DBNLDataContext();
-            return instance;
+            //return new DBNLDataContext();
+            lock (locker)
+            {
+                if (instance == null) instance = new DBNLDataContext();
+                return instance;
+            }
         }
         
         public static Table<UserInRole> UserInRoles

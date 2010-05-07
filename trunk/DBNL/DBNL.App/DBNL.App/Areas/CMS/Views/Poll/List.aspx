@@ -40,7 +40,7 @@ $(document).ready(function () {
                     {
                         name: 'Id', index: 'Id', width: 40, align: 'left', editable: false, key: true, editoptions: {readonly:'readonly'},editrules: { edithidden: true }, hidden: true },
 
-                        { name: 'PollName', index: 'PollName', width: 250, sortable: true, editable: true, edittype: 'text', editoptions: { size: 20, maxlength:100} , hidden: false },
+                        { name: 'PollName', index: 'PollName', width: 250, sortable: true, editable: true, edittype: 'text', editrules : {required:true}, editoptions: { size: 60, maxlength:100} , hidden: false },
                         { name: 'Status', index: 'Status', width: 35, align: 'center', sortable: true, editable: true, edittype: 'select', style: 'select', editoptions: { dataUrl: "<%=Url.Action("GetSelectStatus", "Poll" )%>"}, hidden: false },
                       ],
                     rowNum: 10,
@@ -79,8 +79,8 @@ $(document).ready(function () {
                             colNames: ['Id','Câu hỏi','Số lần chọn', '%'], 
                             colModel: [ 
                                         {name:"Id", index:"Id", width:100, sortable: false, editable: false, editoptions: {readonly:'readonly'}, editrules: { edithidden: true }, key:true, hidden:true},
-                                        {name:"Question", index:"Question", width:625, sortable: true, editable: true}, 
-                                        {name:"Responses", index:"Responses", width:150, align: 'center', editable:true, sortable:true} ,                                
+                                        {name:"Question", index:"Question", width:625, sortable: true, editable: true, editrules : {required:true}, editoptions: { size: 60, maxlength:100}}, 
+                                        {name:"Responses", index:"Responses", width:150, align: 'center',editrules : {readonly:true}, editable:true, sortable:true} ,                                
                                         {name:"Percent", index:"Responses", width:150, align: 'center', sortable:true}     
                                       ],
                              rowNum:20, 
@@ -98,7 +98,7 @@ $(document).ready(function () {
                              postData: {PollId:eid}
                              
                     }); 
-                    jQuery("#"+subgrid_table_id).jqGrid('navGrid',"#"+pager_id,{edit:true,add:true,del:true,search: true, view: true}, {},{},{url:'<%=Url.Action("JsonDelete", "PollQuestion" )%>'})
+                    jQuery("#"+subgrid_table_id).jqGrid('navGrid',"#"+pager_id,{edit:true,add:true,del:true,search: true, view: true}, {width:'450'},{},{url:'<%=Url.Action("JsonDelete", "PollQuestion" )%>'})
 
                },
                 subGridRowColapsed: function(subgrid_id, row_id) {
@@ -106,7 +106,7 @@ $(document).ready(function () {
                      subgrid_table_id = subgrid_id+"_t"; //
                      jQuery("#"+subgrid_table_id).remove(); 
                  } 
-                }).navGrid('#pager', { edit: true, add: true, del: true, search: true, view: true }, {},{},{url:'JsonDelete'}).navButtonAdd('#pager',{
+                }).navGrid('#pager', { edit: true, add: true, del: true, search: true, view: true }, {width:'450'},{},{url:'JsonDelete'}).navButtonAdd('#pager',{
                            caption:"Public", 
                            buttonicon:"ui-icon-add", 
                            onClickButton: function(){ 
