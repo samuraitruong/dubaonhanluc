@@ -11,10 +11,6 @@
     <link rel="Stylesheet" type="text/css" href="<%=Url.Content("~/Content/jqueryUI1.8a/css/redmond/jquery.ui.theme.css")%>" />
     <script type="text/javascript" src="<%=Url.Content("~/Content/jqueryUI1.8a/js/jquery-ui-1.8.min.js")%>" ></script>
     <script type="text/javascript" src="<%=Url.Content("~/Content/jqueryUI1.8a/development-bundle/ui/jquery.ui.datepicker.js")%>" ></script>
-
-    
-
-    
 </asp:Content>
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
 

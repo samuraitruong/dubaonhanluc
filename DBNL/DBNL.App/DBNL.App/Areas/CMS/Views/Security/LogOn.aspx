@@ -4,6 +4,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
     <title>LogOn</title>
+    <%--<link href="<% = Url.Content("~/Content/Site.css") %>" rel="Stylesheet" type="text/css" />--%>
     <style type="text/css">
     border:1px dashed #CCCCCC;
 margin-bottom:20px;
@@ -170,6 +171,14 @@ legend {
     padding:2px 6px;
 }
 
+.validation-summary-errors
+{
+    font-weight: bold;
+    color: #ff0000;
+}
+.validation-summary-errors li {
+    
+}
     </style>
 </head>
 <body>
@@ -180,7 +189,7 @@ legend {
             <legend>Content Management System</legend>
             <%using (Html.BeginForm())
               {  %>
-            <%= Html.ValidationSummary(true) %>
+            <%= Html.ValidationSummary() %>
           
                 <label>Tên Đăng nhập</label>
                 <div class="div_texbox">

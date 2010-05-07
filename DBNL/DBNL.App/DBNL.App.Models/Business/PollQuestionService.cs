@@ -23,7 +23,7 @@ namespace DBNL.App.Models.Business
         }
         public static PollQuestion GetItem(int id)
         {
-            return GetInstance().PollQuestions.Where(p => p.Id == id).SingleOrDefault();
+            return PollQuestions.Where(p => p.Id == id).SingleOrDefault();
         }
 
         public static PollQuestion Add(string question, int pollId, string status, int responses)

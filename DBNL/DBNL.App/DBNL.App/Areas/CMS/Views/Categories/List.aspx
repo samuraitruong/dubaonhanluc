@@ -149,9 +149,9 @@ $(document).ready(function () {
                                     dmenu.append(ul)
                                    
 
-                                    jQuery("#grid").setRowData(ids[i],{Options: edit +tool+dmenu.html()}) ;
-
-                                    $("#grid_tool_" + cl).contextMenu({ menu: 'contextmn_'+cl, leftButton: true }, function(action, el, pos) { alert(action) });
+                                    //jQuery("#grid").setRowData(ids[i],{Options: edit +tool+dmenu.html()}) ;
+                                    jQuery("#grid").setRowData(ids[i],{Options: edit});
+                                    //$("#grid_tool_" + cl).contextMenu({ menu: 'contextmn_'+cl, leftButton: true }, function(action, el, pos) { alert(action) });
 
                             } 
                     }, 

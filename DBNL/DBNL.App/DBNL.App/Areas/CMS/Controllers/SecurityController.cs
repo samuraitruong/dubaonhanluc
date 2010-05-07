@@ -44,7 +44,7 @@ namespace DBNL.App.Areas.CMS.Controllers
             Models.User u = UserService.GetValidateUser(Username, FormsAuthentication.HashPasswordForStoringInConfigFile(Password, "MD5"));
             if (u == null)
             {
-                ViewData.ModelState.AddModelError("Username", "Incorect username or password");
+                ViewData.ModelState.AddModelError("Username", "Tên đăng nhập hoặc mật khẩu không đúng. vui lòng kiểm tra và nhập lại");
                 return View();
             }
 

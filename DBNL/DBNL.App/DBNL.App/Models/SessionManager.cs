@@ -59,5 +59,25 @@ namespace DBNL.App.Models
             }
 
         }
+        public static UserClientInfo SecurityPollData {
+            get
+            {
+                HttpSessionState session = HttpContext.Current.Session;
+                Profile profile = new Profile.Anonymos();
+
+                if (session["SecurityPollData"] != null)
+                {
+                    return (UserClientInfo)session["SecurityPollData"];
+                }
+                return null;
+
+            }
+            set
+            {
+                HttpSessionState session = HttpContext.Current.Session;
+
+                session["SecurityPollData"] = value;
+            }
+        }
     }
 }

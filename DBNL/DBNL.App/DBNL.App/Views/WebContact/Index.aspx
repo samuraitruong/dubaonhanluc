@@ -36,6 +36,9 @@
                 </tbody>
                 </table>
 			<div class="clear"></div>
+            <p>
+                <%=Html.ActionLink("Download PDF", "Pdf", null, new {target = "_blank" })%>
+            </p>
 		</div>
 	</div>
 </asp:Content>

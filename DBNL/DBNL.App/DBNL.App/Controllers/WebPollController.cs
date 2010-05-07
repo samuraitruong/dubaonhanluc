@@ -6,6 +6,7 @@ using System.Web.Mvc;
 using System.Web.Mvc.Ajax;
 using DBNL.App.Models.Business;
 using DBNL.App.Models.ViewData;
+using DBNL.App.Models;
 
 namespace DBNL.App.Controllers
 {
@@ -30,8 +31,11 @@ namespace DBNL.App.Controllers
         {
             try
             {
-                int questionId = int.Parse(collection["QuestionId"]);
-                PollQuestionService.Response(questionId, 1);
+                    int questionId = int.Parse(collection["QuestionId"]);
+                    using ( PollManager mgr = new PollManager()) {
+                        mgr.DoPoll(questionId);
+                    };
+                
             }
             catch (Exception ex)
             {
