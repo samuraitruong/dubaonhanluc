@@ -87,7 +87,7 @@ $(document).ready(function () {
                              rowList: [10, 20, 30],
                              pager: pager_id, 
                              sortname: 'Responses', 
-                             sortorder: "asc", 
+                             sortorder: "desc", 
                              height: '100%' ,
                              width:'100%',
                              viewrecords: true,
