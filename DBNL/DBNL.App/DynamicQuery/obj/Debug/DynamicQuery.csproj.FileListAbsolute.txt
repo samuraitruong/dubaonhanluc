@@ -28,3 +28,8 @@ D:\Projects\My Projects\dubaonhanluc\DBNL\DBNL.App\DynamicQuery\bin\Debug\Dynami
 D:\Projects\My Projects\dubaonhanluc\DBNL\DBNL.App\DynamicQuery\obj\Debug\ResolveAssemblyReference.cache
 D:\Projects\My Projects\dubaonhanluc\DBNL\DBNL.App\DynamicQuery\obj\Debug\DynamicQuery.dll
 D:\Projects\My Projects\dubaonhanluc\DBNL\DBNL.App\DynamicQuery\obj\Debug\DynamicQuery.pdb
+D:\Projects\My Projects\DBNL\DBNL\DBNL.App\DynamicQuery\bin\Debug\DynamicQuery.dll
+D:\Projects\My Projects\DBNL\DBNL\DBNL.App\DynamicQuery\bin\Debug\DynamicQuery.pdb
+D:\Projects\My Projects\DBNL\DBNL\DBNL.App\DynamicQuery\obj\Debug\ResolveAssemblyReference.cache
+D:\Projects\My Projects\DBNL\DBNL\DBNL.App\DynamicQuery\obj\Debug\DynamicQuery.dll
+D:\Projects\My Projects\DBNL\DBNL\DBNL.App\DynamicQuery\obj\Debug\DynamicQuery.pdb

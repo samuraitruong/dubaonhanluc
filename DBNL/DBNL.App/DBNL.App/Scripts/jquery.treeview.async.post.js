@@ -47,7 +47,10 @@ function load(settings, root, child, container) {
                     var url = this.url;
                     
                     var current = (url != null && url!= "")?$("<li/>").attr("id", this.id || "").html("<a target='_blank' href='" + url + "'>" + this.text + "</a>").appendTo(parent):$("<li/>").attr("id", this.id || "").html("<span>" + this.text + "</span>").appendTo(parent);
-                    current.bind('click', settings.nodeClick);
+
+                    if (!this.hasChildren) {
+                            current.unbind("click").bind('click', settings.nodeClick);
+                            }
         			if (this.classes) {
         				current.children("span").addClass(this.classes);
                         current.children("a").addClass(this.classes);
