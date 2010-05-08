@@ -55,7 +55,7 @@
                   <div id="innerMenu">
             <p>Bạn có thể chọn một trong số những liên kết dưới đây để tiếp tục duyệt web.</p>
             <ul>
-              <li><a href="/" class="home"><span>Go to Home</span></a></li>
+              <li><a href="<%=Url.Action("Index", "Home") %>" class="home"><span>Go to Home</span></a></li>
                               <%--<li><a href="/works" class="works" title="Works: Clients &amp; Projects"><span>Works</span></a></li>
                                 <li><a href="/services" class="services" title="Services: For All Your Needs"><span>Services</span></a></li>
                                 <li><a href="/about" class="about" title="About: Our Story"><span>About</span></a></li>--%>
