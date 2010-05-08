@@ -138,6 +138,7 @@
     <Compile Include="Models\ApplicationManager.cs" />
     <Compile Include="Models\CacheFilter.cs" />
     <Compile Include="Models\CompressFilter.cs" />
+    <Compile Include="Models\Counter.cs" />
     <Compile Include="Models\CronJob\CronJobBase.cs" />
     <Compile Include="Models\CronJob\IndexingJob.cs" />
     <Compile Include="Models\CronJob\JobScheduler.cs" />

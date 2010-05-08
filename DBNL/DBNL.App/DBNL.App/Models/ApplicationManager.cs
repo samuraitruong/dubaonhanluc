@@ -24,5 +24,29 @@ namespace DBNL.App.Models
             }
 
         }
+
+        public static Counter Counter
+        {
+            get
+            {
+                HttpApplicationState session = HttpContext.Current.Application;
+                if (session["Counter"] == null)
+                {
+                    Counter counter = Counter.Load();
+                    session["Counter"] = counter;
+                    return counter;
+                }
+
+                return (Counter)session["Counter"];
+                
+            }
+            set
+            {
+                HttpApplicationState session = HttpContext.Current.Application;
+                session["Counter"] = value;
+            }
+
+        }
+
     }
 }
