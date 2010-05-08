@@ -189,7 +189,7 @@ $(document).ready(function(){
                        </div>
                     <div class="s3 fr">
                         <a href="#TOP" ><img  src="<%=Url.Content("~/images")%>/top.jpg" alt="top" /></a>
-                        <a href="<%= Url.Action("Index", "Home") %>"><img src="<%=Url.Content("~/images")%>/icon_home.jpg" alt="home" /></a>
+                        <a href="<%= Url.Action("Index", "Home") %>" onclick="this.style.behavior='url(#default#homepage)';this.setHomePage(document.location.href);return false"><img src="<%=Url.Content("~/images")%>/icon_home.jpg" alt="home" /></a>
                         <a href="javascript:void(0)" id="saveBookmark" ><img src="<%=Url.Content("~/images")%>/savebookmark.jpg" alt="bookmark" /></a>
                         <a href="#" onclick="return addthis_sendto('email');"><img onclick="return addthis_sendto('email');" src="<%=Url.Content("~/images")%>/ico_email.jpg" alt="bookmark" /></a></div>
                 </div>

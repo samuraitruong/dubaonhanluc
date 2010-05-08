@@ -3,6 +3,7 @@ function toListView() {
     $.cookie('view', 'list')
     return true;
 }
+function onSelectDate() { }
 function toColumnView() {
     var div = $("<div/>", { class: "ss_im_news" });
     div.addClass("ss_im_news");
@@ -25,6 +26,16 @@ function toColumnView() {
     $("#contentholder").append(div);
     $.cookie('view', 'column')
     return false;
+}
+function makeBookmark() {
+    if (window.sidebar) { // Mozilla Firefox Bookmark
+        window.sidebar.addPanel(document.title, document.location.href, "");
+    } else if (window.external) { // IE Favorite
+        window.external.AddFavorite(document.location.href, document.title);
+    }
+    else if (window.opera && window.print) { // Opera Hotlist
+        return true;
+    }
 }
 
 $(document).ready(function () {
@@ -57,11 +68,7 @@ $(document).ready(function () {
     });
 
     $("#saveBookmark").click(function () {
-        if (document.all)
-            window.external.AddFavorite(document.location.href, document.title)//IE
-        window.sidebar.addPanel(document.location.href, document.title, ''); //Moz
-
-
+        makeBookmark();
         return false;
 
     });
@@ -69,23 +76,23 @@ $(document).ready(function () {
     var cookie = $.cookie('view');
     if (cookie != null && cookie == 'column')
         toColumnView();
-
-    $("#datepicker").attr("style", "");
-    $("#datepicker").datepicker({
-        changeMonth: true,
-        changeYear: true,
-        dateFormat : 'dd/mm/yy',
-        onSelect: onSelectDate
-    }
+    if ($("#datepicker").html() != null) {
+        $("#datepicker").attr("style", "");
+        $("#datepicker").datepicker({
+            changeMonth: true,
+            changeYear: true,
+            dateFormat: 'dd/mm/yy',
+            onSelect: onSelectDate
+        }
     )
     .hide()
     .click(function () {
         //$(this).hide();
     });
-    $("#showPicker").bind("click", function () {
-        $("#datepicker").show();
-    });
-
+        $("#showPicker").bind("click", function () {
+            $("#datepicker").show();
+        });
+    }
 });
 
 
