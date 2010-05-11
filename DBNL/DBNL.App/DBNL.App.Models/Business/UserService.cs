@@ -10,20 +10,20 @@ namespace DBNL.App.Models.Business
 {
     public class UserService:BaseService
     {
-        public static User GetValidateUser(string Username, string Password)
+        public  User GetValidateUser(string Username, string Password)
         {
             return Users.Where(p => p.Username == Username && p.Password == Password && p.Status == EntityStatuses.Actived.ToString()).SingleOrDefault();
         }
-        public static IEnumerable<User> GetAllItems()
+        public  IEnumerable<User> GetAllItems()
         {
-            return GetInstance().Users.AsEnumerable();
+            return this.Users.AsEnumerable();
         }
 
-        public static IQueryable<User> List()
+        public  IQueryable<User> List()
         {
-            return GetInstance().Users.AsQueryable();
+            return this.Users.AsQueryable();
         }
-        public static IQueryable<User> List(int roleId)
+        public  IQueryable<User> List(int roleId)
         {
 
             var query = from p in Users
@@ -34,12 +34,12 @@ namespace DBNL.App.Models.Business
             return query;
         }
 
-        public static User GetItem(int id)
+        public  User GetItem(int id)
         {
-            return GetInstance().Users.Where(p => p.Id == id).SingleOrDefault();
+            return this.Users.Where(p => p.Id == id).SingleOrDefault();
         }
 
-        public static User Add(string username, string name, string password, string status)
+        public  User Add(string username, string name, string password, string status)
         {
             User user = new User();
             user.Username = username.Trim();
@@ -48,14 +48,14 @@ namespace DBNL.App.Models.Business
             user.Status = status.Trim();
             user.CreatedDate = DateTime.Today;
             user.UpdatedDate = DateTime.Today;
-            GetInstance().Users.InsertOnSubmit(user);
+            this.Users.InsertOnSubmit(user);
             Commit();
             return user;
         }
 
-        public static User Edit(int id, string username, string name, string password, string status)
+        public  User Edit(int id, string username, string name, string password, string status)
         {
-            User user = GetInstance().Users.Where(p => p.Id == id).SingleOrDefault();
+            User user = this.Users.Where(p => p.Id == id).SingleOrDefault();
             user.Username = username.Trim();
             user.Name = name.Trim();
             user.Password = FormsAuthentication.HashPasswordForStoringInConfigFile(password, "SHA1");
@@ -65,9 +65,9 @@ namespace DBNL.App.Models.Business
             return user;
         }
 
-        public static void Delete(int id)
+        public  void Delete(int id)
         {
-            User user = GetInstance().Users.Where(p => p.Id == id).SingleOrDefault();
+            User user = this.Users.Where(p => p.Id == id).SingleOrDefault();
             if (user == null || user.IsReadOnly) return;
 
             var allUserAssigned = UserInRoles.Where(role => role.UserId == id);
@@ -75,18 +75,18 @@ namespace DBNL.App.Models.Business
             UserInRoles.DeleteAllOnSubmit(allUserAssigned.AsEnumerable());
             Commit();
 
-            GetInstance().Users.DeleteOnSubmit(user);
+            this.Users.DeleteOnSubmit(user);
             Commit();
         }
 
-        public static void Add(User user, List<int> Roles)
+        public  void Add(User user, List<int> Roles)
         {
-            GetInstance().Users.InsertOnSubmit(user);
+            this.Users.InsertOnSubmit(user);
             
             Commit();
             foreach (int i in Roles)
             {
-                GetInstance().UserInRoles.InsertOnSubmit(new UserInRole() {
+                this.UserInRoles.InsertOnSubmit(new UserInRole() {
                     RoleId = i,
                     UserId = user.Id
                 });
@@ -94,7 +94,7 @@ namespace DBNL.App.Models.Business
             Commit();
         }
 
-        public static void Active(int id)
+        public  void Active(int id)
         {
             User   user = GetItem(id);
             if (user.Status == EntityStatuses.Actived.ToString())
@@ -108,12 +108,12 @@ namespace DBNL.App.Models.Business
             Commit();
         }
 
-        public static User GetItem(int? id)
+        public  User GetItem(int? id)
         {
             return GetItem(id.Value);
         }
 
-        public static void UpdateUser(User user)
+        public  void UpdateUser(User user)
         {
             try
             {

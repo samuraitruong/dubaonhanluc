@@ -8,28 +8,28 @@ namespace DBNL.App.Models.Business
 {
     public class BannerService:BaseService
     {
-        public static IEnumerable<Banner> GetAllItems()
+        public  IEnumerable<Banner> GetAllItems()
         {
-            return GetInstance().Banners.AsEnumerable();
+            return this.Banners.AsEnumerable();
         }
 
-        public static IQueryable<Banner> List()
+        public  IQueryable<Banner> List()
         {
-            return GetInstance().Banners.AsQueryable();
+            return this.Banners.AsQueryable();
         }
 
-        public static IQueryable<Banner> List(string pos)
+        public  IQueryable<Banner> List(string pos)
         {
             if (string.IsNullOrEmpty(pos)) return List();
 
-            return GetInstance().Banners.Where(p=>p.BannerPosition == pos).AsQueryable();
+            return this.Banners.Where(p=>p.BannerPosition == pos).AsQueryable();
         }
-        public static Banner GetItem(int id)
+        public  Banner GetItem(int id)
         {
-            return GetInstance().Banners.Where(p => p.Id == id).SingleOrDefault();
+            return this.Banners.Where(p => p.Id == id).SingleOrDefault();
         }
 
-        public static Banner Add(string name, string url, string bannerImage, string bannerPosition)
+        public  Banner Add(string name, string url, string bannerImage, string bannerPosition)
         {
             Banner banner = new Banner();
             banner.Name = name.Trim();
@@ -39,19 +39,19 @@ namespace DBNL.App.Models.Business
             banner.CreatedDate = DateTime.Now;
             banner.UpdatedDate = DateTime.Now;
             banner.BannerPosition = bannerPosition;
-            GetInstance().Banners.InsertOnSubmit(banner);
+            this.Banners.InsertOnSubmit(banner);
             Commit();
             return banner;
         }
 
-        public static void Delete(int id)
+        public  void Delete(int id)
         {
             Banner banner = GetItem(id);
-            GetInstance().Banners.DeleteOnSubmit(banner);
+            this.Banners.DeleteOnSubmit(banner);
             Commit();
         }
 
-        public static Banner Edit(int id, string name, string url, string bannerImage, string status, string bannerPosition)
+        public  Banner Edit(int id, string name, string url, string bannerImage, string status, string bannerPosition)
         {
             Banner banner = GetItem(id);
             banner.Name = name.Trim();
@@ -64,19 +64,19 @@ namespace DBNL.App.Models.Business
             return banner;
         }
 
-        public static IEnumerable<Banner> GetItems(BannerPositions bannerPositions)
+        public  IEnumerable<Banner> GetItems(BannerPositions bannerPositions)
         {
             return Banners.Where(p=>p.Status == EntityStatuses.Actived.ToString() &&  p.BannerPosition == bannerPositions.ToString()).AsEnumerable();
         }
 
 
-        public static void Add(Banner banner)
+        public  void Add(Banner banner)
         {
             Banners.InsertOnSubmit(banner);
             Commit();
         }
 
-        public static void Public(int id)
+        public  void Public(int id)
         {
             Banner banner = GetItem(id);
             if (banner.Status == EntityStatuses.Actived.ToString())
@@ -96,6 +96,6 @@ namespace DBNL.App.Models.Business
             //Commit();
         }
 
-        public static string EntitiStatuses { get; set; }
+        public  string EntitiStatuses { get; set; }
     }
 }

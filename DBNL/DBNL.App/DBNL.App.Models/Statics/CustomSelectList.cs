@@ -32,6 +32,7 @@ namespace DBNL.App.Models.Statics
            posList.Add(new SelectListItem() { Text = "Bên Trái", Value = BannerPositions.Left.ToString() });
            posList.Add(new SelectListItem() { Text = "Bên Phải", Value = BannerPositions.Right.ToString() });
            posList.Add(new SelectListItem() { Text = "Bên Dưới", Value = BannerPositions.Bottom.ToString() });
+           posList.Add(new SelectListItem() { Text = "Trang chủ", Value = BannerPositions.Main.ToString() });
            return posList.AsEnumerable();
        }
 
@@ -63,7 +64,7 @@ namespace DBNL.App.Models.Statics
        {
            List<SelectListItem> list = new List<SelectListItem>();
            if(insertEmptyItem) list.Add(new SelectListItem() { Text = "Chọn danh mục", Value = "" });
-           foreach( var item in CategoryService.GetAllCategories())
+           foreach( var item in new CategoryService().GetAllCategories())
            list.Add(new SelectListItem() { Text = item.CategoryName, Value = item.ID.ToString() });
            
            return list.AsEnumerable();
@@ -73,7 +74,7 @@ namespace DBNL.App.Models.Statics
        {
            List<SelectListItem> list = new List<SelectListItem>();
            if (insertEmptyItem) list.Add(new SelectListItem() { Text = "Chọn menu cha", Value = "" });
-           foreach (var item in NavigationService.GetItems()){
+           foreach (var item in new NavigationService().GetItems()){
                list.Add(new SelectListItem() {
                 Text = item.Name,
                 Value = item.Id.ToString()
@@ -136,7 +137,7 @@ namespace DBNL.App.Models.Statics
        public static IEnumerable<SelectListItem>  CreateListOphanArticles()
        {
            List<SelectListItem> list = new List<SelectListItem>();
-           foreach (var item in ContentService.AllOrhanArticles())
+           foreach (var item in new ContentService().AllOrhanArticles())
            {
                list.Add(new SelectListItem() { Text = item.Title, Value = item.ContentId.ToString() });
            }

@@ -17,13 +17,13 @@ namespace DBNL.App.Areas.CMS.Controllers
         // GET: /Content/
         [HttpPost]
         public ActionResult ToggleActive(int id) {
-            ContentService.ToggleActive(id);
+            new ContentService().ToggleActive(id);
             return Json(true);
         }
         [HttpPost]
         public ActionResult ToggleOnHP(int id)
         {
-            ContentService.ToggleOnHP(id);
+            new ContentService().ToggleOnHP(id);
             return Json(true);
         }
         [HttpPost]
@@ -31,10 +31,10 @@ namespace DBNL.App.Areas.CMS.Controllers
         {
             IQueryable<Models.Content> contents ;
 
-            if (!CategoryId.HasValue) contents = ContentService.All();
+            if (!CategoryId.HasValue) contents = new ContentService().All();
             else
 
-                contents = ContentService.List(CategoryId.Value);
+                contents = new ContentService().List(CategoryId.Value);
 
             bool searchOn = bool.Parse(Request.Form["_search"]);
             string searchExp = "";
@@ -62,7 +62,7 @@ namespace DBNL.App.Areas.CMS.Controllers
             [HttpPost]
         public ActionResult GetOrphanArticles(int page, int rows, string sidx, string sord)
         {
-            var contents = ContentService.AllOrhanArticles();
+            var contents = new ContentService().AllOrhanArticles();
             bool searchOn = bool.Parse(Request.Form["_search"]);
             string searchExp = "";
             if (searchOn)
@@ -86,7 +86,7 @@ namespace DBNL.App.Areas.CMS.Controllers
         [HttpPost]
         public ActionResult List(int page, int rows, string sidx, string sord, int CategoryId)
         {
-            var contents = ContentService.List(CategoryId);
+            var contents = new ContentService().List(CategoryId);
             bool searchOn = bool.Parse(Request.Form["_search"]);
             string searchExp = "";
             if (searchOn)
@@ -123,7 +123,7 @@ namespace DBNL.App.Areas.CMS.Controllers
         {
             ViewData["Categories"] = CustomSelectList.CreateListCategories(false);
 
-            //ViewData.Model = ContentService.GetItems();
+            //ViewData.Model = new ContentService().GetItems();
             return View();
         }
 
@@ -158,23 +158,23 @@ namespace DBNL.App.Areas.CMS.Controllers
 
                 if (!ModelState.IsValid)
                 {
-                    ViewData["Category"] = CategoryService.GetById(content.CategoryId);
+                    ViewData["Category"] = new CategoryService().GetById(content.CategoryId);
                     return View(content);
                 }
 
-                ContentService.Create(content, picture);
+                new ContentService().Create(content, picture);
 
                 return RedirectToAction("Index", "Content");
             }
             catch
             {
-                ViewData["Category"] = CategoryService.GetById(content.CategoryId);
+                ViewData["Category"] = new CategoryService().GetById(content.CategoryId);
                 return View(content);
             }
         }
         public ActionResult CreateIn(int id)
         {
-            ViewData["Category"] = CategoryService.GetById(id);
+            ViewData["Category"] = new CategoryService().GetById(id);
             return View(new Models.Content() {CategoryId =  id});
         } 
 
@@ -209,7 +209,7 @@ namespace DBNL.App.Areas.CMS.Controllers
                     return View(content);
                 }
 
-                ContentService.Create(content, picture);
+                new ContentService().Create(content, picture);
 
                 return RedirectToAction("Index");
             }
@@ -225,7 +225,7 @@ namespace DBNL.App.Areas.CMS.Controllers
         public ActionResult Edit(int id)
         {
 
-            var item = ContentService.GetItem(id);
+            var item = new ContentService().GetItem(id);
             if (item == null) return RedirectToAction("Index");
             ViewData["Categories"] = CustomSelectList.CreateListCategories(false).SetSelectedValue(item.CategoryId.ToString());
 
@@ -234,7 +234,7 @@ namespace DBNL.App.Areas.CMS.Controllers
         public ActionResult EditContent(int id)
         {
 
-            var item = ContentService.GetItem(id);
+            var item = new ContentService().GetItem(id);
             if (item == null) return RedirectToAction("Index");
 
             return View(item);
@@ -245,7 +245,7 @@ namespace DBNL.App.Areas.CMS.Controllers
 
         public ActionResult JsonDelete(int id)
         {
-            ContentService.Delete(id);
+            new ContentService().Delete(id);
             return Json(true);
         }
         [AcceptVerbs(HttpVerbs.Post)]
@@ -258,7 +258,7 @@ namespace DBNL.App.Areas.CMS.Controllers
                     ViewData["Categories"] = CustomSelectList.CreateListCategories(false).SetSelectedValue(content.CategoryId.ToString());
                     return View(content); }
                 HttpPostedFileBase picture = (HttpPostedFileBase)Request.Files["Picture"];
-                ContentService.Update(content, picture);
+                new ContentService().Update(content, picture);
  
                 return RedirectToAction("Index");
             }
@@ -278,7 +278,7 @@ namespace DBNL.App.Areas.CMS.Controllers
                     return View(content);
                 }
                 HttpPostedFileBase picture = (HttpPostedFileBase)Request.Files["Picture"];
-                ContentService.Update(content, picture);
+                new ContentService().Update(content, picture);
 
                 return RedirectToAction("Index","Administrations");
             }

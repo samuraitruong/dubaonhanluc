@@ -20,7 +20,7 @@ namespace DBNL.App.Areas.CMS.Controllers
         // GET: /Categories/
         public ActionResult JsonDelete(int id)
         {
-            CategoryService.Delete(id);
+            new CategoryService().Delete(id);
             return Json(true);
         }
         public ActionResult Index()
@@ -40,14 +40,14 @@ namespace DBNL.App.Areas.CMS.Controllers
         // GET: /Categories/Create
         public ActionResult List()
         {
-            ViewData.Model = CategoryService.GetAllCategories();
+            ViewData.Model = new CategoryService().GetAllCategories();
             return View();
         }
 
         [HttpPost]
         public ActionResult List(int page, int rows, string sidx, string sord, int? ParentId)
         {
-            var categories = CategoryService.List(ParentId);
+            var categories = new CategoryService().List(ParentId);
             bool searchOn = bool.Parse(Request.Form["_search"]);
             string searchExp = "";
             
@@ -71,11 +71,11 @@ namespace DBNL.App.Areas.CMS.Controllers
             IEnumerable<ContentCategory> categories =null;
             if (Node == null)
             {
-                categories = CategoryService.GetItems(new Nullable<int>());
+                categories = new CategoryService().GetItems(new Nullable<int>());
             }
             else
             {
-                categories = CategoryService.GetItems(Node.Value);
+                categories = new CategoryService().GetItems(Node.Value);
             }
             var query = from p in categories
                         select new {
@@ -91,7 +91,7 @@ namespace DBNL.App.Areas.CMS.Controllers
         [HttpPost]
         public ActionResult FullList(int page, int rows, string sidx, string sord)
         {
-            var categories = CategoryService.List();
+            var categories = new CategoryService().List();
             bool searchOn = bool.Parse(Request.Form["_search"]);
             string searchExp = "";
 
@@ -115,7 +115,7 @@ namespace DBNL.App.Areas.CMS.Controllers
                     return View(category);
                 }
 
-                CategoryService.Create(category);
+                new CategoryService().Create(category);
 
                
                 return RedirectToAction("List");
@@ -139,7 +139,7 @@ namespace DBNL.App.Areas.CMS.Controllers
         // GET: /Categories/Edit/5
  
         public ActionResult Edit(int id)
-        {var item = CategoryService.GetItem(id);
+        {var item = new CategoryService().GetItem(id);
             ViewData["Categories"] = CustomSelectList.CreateListCategories(false);
             ViewData["Status"] = CustomSelectList.CreateEntityStatus().SetSelectedValue(item.Status);
             
@@ -161,7 +161,7 @@ namespace DBNL.App.Areas.CMS.Controllers
 
                 };
                 // TODO: Add update logic here
-                CategoryService.Update(id, category);
+                new CategoryService().Update(id, category);
                 return RedirectToAction("Index");
             }
             catch
@@ -175,11 +175,11 @@ namespace DBNL.App.Areas.CMS.Controllers
         {
             if (oper == JqGridOperations.edit.ToString())
             {
-                CategoryService.Edit(id.Value, Name, ParentCateId, IsFeatured, ShowOnHP);
+                new CategoryService().Edit(id.Value, Name, ParentCateId, IsFeatured, ShowOnHP);
             }
             if (oper == JqGridOperations.add.ToString())
             {
-                CategoryService.AddCategory(Name, ParentCateId);
+                new CategoryService().AddCategory(Name, ParentCateId);
             }
             //int? pCate = null;
             //if (String.IsNullOrEmpty(collection["ParentCateId"]) == false)
@@ -188,11 +188,11 @@ namespace DBNL.App.Areas.CMS.Controllers
             //}
             //if (IsNumeric(collection["Id"]))
             //{
-            //    CategoryService.Edit(Convert.ToInt32(collection["Id"]), collection["Name"], pCate, Convert.ToBoolean(collection["IsFeatured"]), Convert.ToBoolean(collection["ShowOnHP"]));
+            //    new CategoryService().Edit(Convert.ToInt32(collection["Id"]), collection["Name"], pCate, Convert.ToBoolean(collection["IsFeatured"]), Convert.ToBoolean(collection["ShowOnHP"]));
             //}
             //else
             //{
-            //    CategoryService.AddCategory(collection["Name"], pCate);
+            //    new CategoryService().AddCategory(collection["Name"], pCate);
             //}
             return Content("true");
         }

@@ -22,7 +22,7 @@ namespace DBNL.App.Controllers
 
         public ActionResult Details(int id)
         {
-            var item = JobService.GetItem(id);
+            var item = new JobService().GetItem(id);
             if (item == null) return Redirect("Index");
             return View(item);
         }

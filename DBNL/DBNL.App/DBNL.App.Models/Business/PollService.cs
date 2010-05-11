@@ -8,32 +8,32 @@ namespace DBNL.App.Models.Business
 {
     public class PollService:BaseService
     {
-        public static IEnumerable<Poll> GetAllItems()
+        public  IEnumerable<Poll> GetAllItems()
         {
-            return GetInstance().Polls.AsEnumerable();
+            return this.Polls.AsEnumerable();
         }
 
-        public static IQueryable<Poll> List()
+        public  IQueryable<Poll> List()
         {
-            return GetInstance().Polls.AsQueryable();
+            return this.Polls.AsQueryable();
         }
 
-        public static Poll GetItem(int id)
+        public  Poll GetItem(int id)
         {
-            return GetInstance().Polls.Where(p => p.Id == id).SingleOrDefault();
+            return this.Polls.Where(p => p.Id == id).SingleOrDefault();
         }
 
-        public static Poll Add(string name, string status)
+        public  Poll Add(string name, string status)
         {
             Poll poll = new Poll();
             poll.PollName = name.Trim();
             poll.Status = status.Trim();
-            GetInstance().Polls.InsertOnSubmit(poll);
+            this.Polls.InsertOnSubmit(poll);
             Commit();
             return poll;
         }
 
-        public static void Delete(int id)
+        public  void Delete(int id)
         {
             Poll poll = GetItem(id);
             if (poll == null) return;
@@ -42,7 +42,7 @@ namespace DBNL.App.Models.Business
             Commit();
         }
 
-        public static Poll Edit(int id, string name, string status)
+        public  Poll Edit(int id, string name, string status)
         {
             Poll poll = GetItem(id);
             poll.PollName = name.Trim();
@@ -51,12 +51,12 @@ namespace DBNL.App.Models.Business
             return poll;
         }
 
-        public static Poll GetActivePoll()
+        public  Poll GetActivePoll()
         {
             return Polls.Where(p => p.Status == EntityStatuses.Public.ToString()).FirstOrDefault();
         }
 
-        public static void Public(int id)
+        public  void Public(int id)
         {
             foreach (var item in Polls)
             {

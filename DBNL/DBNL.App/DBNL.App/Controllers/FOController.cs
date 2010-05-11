@@ -18,15 +18,16 @@ namespace DBNL.App.Controllers
         {
             ViewData["FOMasterViewData"] = new FOMasterViewData()
             {
-                Supporters = SupporterService.GetItems(EntityStatuses.Actived),
-                MainNavigationItems = NavigationService.GetItems(NavigationPositions.Main, true),
-                TopNavigationItems = NavigationService.GetItems(NavigationPositions.Top, true),
-                LeftNavigationItems = NavigationService.GetItems(NavigationPositions.Left, true),
-                BottomBanners = BannerService.GetItems(BannerPositions.Bottom),
-                LeftBanners = BannerService.GetItems(BannerPositions.Left),
-                RightBanners = BannerService.GetItems(BannerPositions.Right),
-                TopBanners = BannerService.GetItems(BannerPositions.Top),
-                HotNews = ContentService.GetHostNewsList(DBNL.App.Config.DBNLConfigurationManager.WebUI.MarqueeItemCount)
+                Supporters = new SupporterService().GetItems(EntityStatuses.Actived),
+                MainNavigationItems = new NavigationService().GetItems(NavigationPositions.Main, true),
+                TopNavigationItems = new NavigationService().GetItems(NavigationPositions.Top, true),
+                LeftNavigationItems = new NavigationService().GetItems(NavigationPositions.Left, true),
+                BottomBanners =  new BannerService().GetItems(BannerPositions.Bottom),
+                LeftBanners =  new BannerService().GetItems(BannerPositions.Left),
+                RightBanners =  new BannerService().GetItems(BannerPositions.Right),
+                TopBanners =  new BannerService().GetItems(BannerPositions.Top),
+                SlideShowBanners =  new BannerService().GetItems(BannerPositions.Main),
+                HotNews = new ContentService().GetHostNewsList(DBNL.App.Config.DBNLConfigurationManager.WebUI.MarqueeItemCount)
                 
             };
         }

@@ -15,6 +15,8 @@ using Lucene.Net.Analysis;
 using Lucene.Net.Analysis.Standard;
 using Lucene.Net.QueryParsers;
 using System.Threading;
+using System.IO;
+using System.Diagnostics;
 
 namespace DBNL.App.Models
 {
@@ -23,6 +25,7 @@ namespace DBNL.App.Models
     public class LuceneHelper
     {
         static object locker = new object();
+        static object indexing_locker = new object();
         static public AfterIndexingCoplete IndexingAfterComplete;
 
 
@@ -32,6 +35,7 @@ namespace DBNL.App.Models
         {
 
             System.Threading.Thread thread = new System.Threading.Thread(BuildingIndex_Thread);
+            thread.Priority = ThreadPriority.Highest;
             thread.Start();
         }
 
@@ -95,7 +99,7 @@ namespace DBNL.App.Models
                     int id = (int)obj;
 
                     modifier.DeleteDocuments(new Lucene.Net.Index.Term("id", Convert.ToString(id)));
-                    var item = ContentService.GetContentById(id);
+                    var item = new ContentService().GetContentById(id);
                     modifier.AddDocument(create_doc(
                         item.ContentId, item.Content1));
 
@@ -112,54 +116,92 @@ namespace DBNL.App.Models
 
 
 
+        public static bool DeleteDirectory(string target_dir)
+        {
+            bool result = false;
+
+            string[] files = Directory.GetFiles(target_dir);
+            string[] dirs = Directory.GetDirectories(target_dir);
+
+            foreach (string file in files)
+            {
+                File.SetAttributes(file, FileAttributes.Normal);
+                File.Delete(file);
+            }
+
+            foreach (string dir in dirs)
+            {
+                DeleteDirectory(dir);
+            }
+
+            Directory.Delete(target_dir, false);
+
+            return result;
+        }
 
         public static void BuildingIndex_Thread()
         {
-            string tempdir = DBNLConfigurationManager.LuceneElement.IndexingFolder + ".temp";
-            bool hasError = false;
-            
-                try
-                {
-                    Lucene.Net.Index.IndexWriter writer = new Lucene.Net.Index.IndexWriter(tempdir, analyzer, true);
+            lock (indexing_locker)
+            {
+                string tempdir = DBNLConfigurationManager.LuceneElement.IndexingFolder + ".tempx";
+                if (Directory.Exists(tempdir)) Directory.Delete(tempdir, true);
+                bool hasError = false;
 
-                    int totalRecords = ContentService.All().Count();
-                    for (int i = 0; i < totalRecords; i = i + 100)
-                    {
-                        // DataSet ds = btnet.DbUtil.get_dataset("select bug_id, bug_text from bugs")
-                        var items = ContentService.All().Skip(i).Take(100).AsEnumerable();
-                        foreach (var item in items)
-                        {
-                            writer.AddDocument(create_doc(
-                                    item.ContentId, item.Content1));
-                        }
-                        Thread.Sleep(1000);
-                    }
-                    writer.Optimize();
-                    writer.Close();
-                }
-                catch (Exception e)
+                //try
+                //{
+                Lucene.Net.Index.IndexWriter writer = new Lucene.Net.Index.IndexWriter(tempdir, analyzer, true);
+
+                //int totalRecords = new ContentService().All().Count();
+                int offset = 0;
+                ContentService service = new ContentService();
+                
+                var items = service.All().Skip(offset).Take(50).AsEnumerable();
+                int itemcount = items.Count();
+                Debug.WriteLine(itemcount.ToString());
+                Debug.Flush();
+                while (itemcount > 0)
                 {
-                    hasError = true;
-                    throw e;
-                }
-                finally
-                {
+                
                     
-                    if (!hasError)
+                    foreach (var item in items)
                     {
-                        lock (locker)
+                        writer.AddDocument(create_doc(
+                                item.ContentId, item.Content1));
+
+                        Debug.WriteLine(item.ContentId.ToString());
+                        Debug.Flush();
+                    }
+                    items = service.All().Skip(offset).Take(50).AsEnumerable();
+                    itemcount = items.Count();
+                    offset += 50;
+                }
+                writer.Optimize();
+                writer.Close();
+                //}
+                //catch (Exception e)
+                //{
+                //      hasError = true;
+                //      throw e;
+                //}
+                //finally
+                //{
+
+                if (!hasError)
+                {
+                    lock (locker)
+                    {
+                        string[] files = System.IO.Directory.GetFiles(tempdir);
+                        foreach (string s in files)
                         {
-                                string[] files = System.IO.Directory.GetFiles(tempdir);
-                                foreach (string s in files)
-                                {
-                                    string fileName = System.IO.Path.GetFileName(s);
-                                    string destFile = System.IO.Path.Combine(DBNLConfigurationManager.LuceneElement.IndexingFolder, fileName);
-                                    System.IO.File.Copy(s, destFile, true);
-                                }
+                            string fileName = System.IO.Path.GetFileName(s);
+                            string destFile = System.IO.Path.Combine(DBNLConfigurationManager.LuceneElement.IndexingFolder, fileName);
+                            System.IO.File.Copy(s, destFile, true);
                         }
                     }
-                    IndexingAfterComplete();
                 }
+                IndexingAfterComplete();
+                //}
+            }
         }
 
         public static IEnumerable<Content>
@@ -240,7 +282,7 @@ namespace DBNL.App.Models
                         highlighted_text = highlighted_text.Substring(0, 500);
                     }
 
-                    Content content = ContentService.GetItem(int.Parse(doc.Get("id")));
+                    Content content = new ContentService().GetItem(int.Parse(doc.Get("id")));
                     content.HighlightText = highlighted_text;
                     result.Add(content);
                 }

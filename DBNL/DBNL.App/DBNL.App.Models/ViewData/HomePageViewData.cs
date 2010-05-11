@@ -17,8 +17,8 @@ namespace DBNL.App.Models.ViewData
         {
             PublicPoll = new PublicPollViewData();
             FeaturedCategory = new FeatureCategoryViewData();
-            CategoriesOnHP = CategoryService.GetCategoriesShowOnHP();
-            JobsList = JobService.GetNewestJob(DBNLConfigurationManager.WebUI.JobDisplayOnHP);
+            CategoriesOnHP = CategoryService.GetCategoriesShowOnHPEx();
+            JobsList = new JobService().GetNewestJob(DBNLConfigurationManager.WebUI.JobDisplayOnHP);
 
 
         }
@@ -30,7 +30,7 @@ namespace DBNL.App.Models.ViewData
         public IEnumerable<Content>  HostestArticle { get; set; }
         public FeatureCategoryViewData()
         {
-            var query = CategoryService.GetForcusingContents(DBNLConfigurationManager.WebUI.HotestNewsCount + DBNLConfigurationManager.WebUI.OtherFeaturesNews);
+            var query = (new CategoryService()).GetForcusingContents(DBNLConfigurationManager.WebUI.HotestNewsCount + DBNLConfigurationManager.WebUI.OtherFeaturesNews);
 
             HostestArticle = query.Skip(0).Take(DBNLConfigurationManager.WebUI.HotestNewsCount).AsEnumerable();
             Articles = query.Skip(DBNLConfigurationManager.WebUI.HotestNewsCount).AsEnumerable();
@@ -59,8 +59,8 @@ namespace DBNL.App.Models.ViewData
         public int TotalResponses { get; set; }
         public PublicPollViewData()
         {
-            ActivePoll = PollService.GetActivePoll();
-            Questions = PollQuestionService.GetQuestionByPoll(ActivePoll);
+            ActivePoll = new PollService().GetActivePoll();
+            Questions = new PollQuestionService().GetQuestionByPoll(ActivePoll);
             Calculate();
         }
 
@@ -82,8 +82,8 @@ namespace DBNL.App.Models.ViewData
         }
         public PublicPollViewData(int id)
         {
-            ActivePoll = PollService.GetItem(id);
-            Questions = PollQuestionService.GetQuestionByPoll(ActivePoll);
+            ActivePoll = new PollService().GetItem(id);
+            Questions = new PollQuestionService().GetQuestionByPoll(ActivePoll);
             Calculate();
         }
     }

@@ -9,22 +9,22 @@ namespace DBNL.App.Models.Business
 {
     public class CategoryService: BaseService
     {
-        public static ContentCategory GetFeatureCategory() {
+        public  ContentCategory GetFeatureCategory() {
 
             return Categories.Where(p => p.IsFeatured == true).FirstOrDefault();
         }
 
-        public static IEnumerable<ContentCategory> GetAllCategories()
+        public  IEnumerable<ContentCategory> GetAllCategories()
         {
-            return GetInstance().ContentCategories.Where(p=>p.Status != EntityStatuses.Deleted.ToString() && p.Invisible == false).AsEnumerable();
+            return this.Categories.Where(p=>p.Status != EntityStatuses.Deleted.ToString() && p.Invisible == false).AsEnumerable();
         }
 
-        public static IQueryable<ContentCategory> List()
+        public  IQueryable<ContentCategory> List()
         {
-            return GetInstance().ContentCategories.Where(p => p.Status != EntityStatuses.Deleted.ToString() && p.Invisible == false).AsQueryable();
+            return this.Categories.Where(p => p.Status != EntityStatuses.Deleted.ToString() && p.Invisible == false).AsQueryable();
         }
 
-        public static ContentCategory AddCategory(string name, int? parentCategoryId)
+        public  ContentCategory AddCategory(string name, int? parentCategoryId)
         {
             ContentCategory category = new ContentCategory
             {
@@ -35,17 +35,17 @@ namespace DBNL.App.Models.Business
                 UpdatedDate = DateTime.Now,
                 Status = EntityStatuses.Actived.ToString()
             };
-            GetInstance().ContentCategories.InsertOnSubmit(category);
+            this.Categories.InsertOnSubmit(category);
             Commit();
             return category;
         }
 
-        public static ContentCategory GetById(int id)
+        public  ContentCategory GetById(int id)
         {
             return Categories.Where(p => p.ID == id).SingleOrDefault();
         }
 
-        public static IQueryable<ContentCategory> List(int? ParentId)
+        public  IQueryable<ContentCategory> List(int? ParentId)
         {
             var query = Categories.Where(p => p.Status != EntityStatuses.Deleted.ToString() && p.Invisible == false);
 
@@ -55,7 +55,7 @@ namespace DBNL.App.Models.Business
             return query.Where(p => p.ParentCategoryId.Value == ParentId.Value).AsQueryable();
         }
 
-        public static ContentCategory Edit(int id, string name, int? parentId, bool isFeatured, bool showOnHP)
+        public  ContentCategory Edit(int id, string name, int? parentId, bool isFeatured, bool showOnHP)
         {
             ContentCategory updCate = GetById(id);
             updCate.CategoryName = name.Trim();
@@ -75,7 +75,7 @@ namespace DBNL.App.Models.Business
             return updCate;
         }
 
-        public static ContentCategory GetRandomCategory()
+        public  ContentCategory GetRandomCategory()
         {
             int Count = Categories.Count();
 
@@ -85,19 +85,24 @@ namespace DBNL.App.Models.Business
             return Categories.Skip(idnex).Take(1).FirstOrDefault();
 
         }
+        public static IEnumerable<ContentCategory> GetCategoriesShowOnHPEx()
+        {
+            CategoryService service = new CategoryService();
 
-        internal static IEnumerable<ContentCategory> GetCategoriesShowOnHP()
+            return service.GetCategoriesShowOnHP();
+        }
+        public IEnumerable<ContentCategory> GetCategoriesShowOnHP()
         {
             return Categories.Where(p => p.ShowOnHP == true).AsEnumerable();
         }
 
-        public static void Delete(int id)
+        public  void Delete(int id)
         {
             ContentCategory cat = GetItem(id);
             Delete(cat);
         }
 
-        private static void Delete(ContentCategory cat)
+        private  void Delete(ContentCategory cat)
         {
             if (cat.Status == EntityStatuses.Deleted.ToString()) return;
             foreach (var item in cat.ContentCategories)
@@ -123,22 +128,22 @@ namespace DBNL.App.Models.Business
 
         }
 
-        public static ContentCategory GetItem(int id, EntityStatuses status, bool isExclude)
+        public  ContentCategory GetItem(int id, EntityStatuses status, bool isExclude)
         {
             return Categories.Where(p => p.ID == id && (isExclude ? p.Status != status.ToString() : p.Status == status.ToString())).SingleOrDefault();
 
         }
-        public static ContentCategory GetItem(int id)
+        public  ContentCategory GetItem(int id)
         {
             return Categories.Where(p => p.ID == id).SingleOrDefault();
         }
 
-        public static ContentCategory GetByKey(string category)
+        public  ContentCategory GetByKey(string category)
         {
             return Categories.Where(p => p.Key == category).SingleOrDefault();
         }
 
-        public static IEnumerable<ContentCategory> GetItems(int? ParentId)
+        public  IEnumerable<ContentCategory> GetItems(int? ParentId)
         {
             if(!ParentId.HasValue) return Categories.Where(p=>p.ParentCategoryId == null &&  p.Invisible == false).OrderBy(p => p.CategoryName).AsEnumerable();
 
@@ -146,7 +151,7 @@ namespace DBNL.App.Models.Business
 
         }
 
-        public static void Update(int id, ContentCategory category)
+        public  void Update(int id, ContentCategory category)
         {
             var original = GetById(id);
             original.CategoryName = category.CategoryName;
@@ -161,7 +166,7 @@ namespace DBNL.App.Models.Business
             UpdateFeaturedCategory();
         }
 
-        public static void Create(ContentCategory category)
+        public  void Create(ContentCategory category)
         {
             string key = category.CategoryName.ToUrlKey();
             var item = GetByKey(key);
@@ -179,17 +184,17 @@ namespace DBNL.App.Models.Business
             UpdateFeaturedCategory();
         }
 
-        private static void UpdateFeaturedCategory()
+        private  void UpdateFeaturedCategory()
         {
             
         }
 
-        public static ContentCategory GetInvisibleCategory()
+        public  ContentCategory GetInvisibleCategory()
         {
             return Categories.Where(p => p.Invisible == true).SingleOrDefault();
         }
 
-        public static IEnumerable<Content> GetForcusingContents(int count)
+        public  IEnumerable<Content> GetForcusingContents(int count)
         {
             var list = Contents.Where(p => p.IsFocusing == true)
                                 .OrderByDescending(p => p.CreatedDate)

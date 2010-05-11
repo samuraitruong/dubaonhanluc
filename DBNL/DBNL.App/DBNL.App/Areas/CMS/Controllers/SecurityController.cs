@@ -41,7 +41,7 @@ namespace DBNL.App.Areas.CMS.Controllers
         [HttpPost]
         public ActionResult LogOn(string Username, string Password, string ReturnUrl)
         {
-            Models.User u = UserService.GetValidateUser(Username, FormsAuthentication.HashPasswordForStoringInConfigFile(Password, "MD5"));
+            Models.User u = new UserService().GetValidateUser(Username, FormsAuthentication.HashPasswordForStoringInConfigFile(Password, "MD5"));
             if (u == null)
             {
                 ViewData.ModelState.AddModelError("Username", "Tên đăng nhập hoặc mật khẩu không đúng. vui lòng kiểm tra và nhập lại");

@@ -7,25 +7,26 @@ using System.Web;
 using System.IO;
 using System.Drawing;
 using System.Drawing.Imaging;
-using DBNL.App.Models.Statics;
+
 using DBNL.App.Models.Extensions;
+using DBNL.App.Models.Statics;
 
 namespace DBNL.App.Models.Business
 {
     public class ContentService: BaseService
     {
-        public static Content GetContentById(int id)
+        public ContentService() : base() { }
+        public  Content GetContentById(int id)
         {
-            DBNLDataContext db = new DBNLDataContext();
-            Content content = db.Contents.Where(p => p.ContentId == id).SingleOrDefault();
+            Content content = Contents.Where(p => p.ContentId == id).SingleOrDefault();
             return content;
 
         }
-        public static IEnumerable<Content> GetItems(){
+        public  IEnumerable<Content> GetItems(){
             return Contents.AsEnumerable();
         }
 
-        public static Content Create(Content content, HttpPostedFileBase picture)
+        public  Content Create(Content content, HttpPostedFileBase picture)
         {
             if(picture != null && picture.ContentLength>0) {
                 string ext = VirtualPathUtility.GetExtension(picture.FileName);
@@ -46,7 +47,7 @@ namespace DBNL.App.Models.Business
             return content;
         }
 
-        public static IQueryable<Content> All(int id)
+        public  IQueryable<Content> All(int id)
         {
             return Contents.Where(p => p.CategoryId == id && p.Status == EntityStatuses.Actived.ToString())
                 //.OrderByDescending(o => o.IsFeatured)
@@ -55,17 +56,17 @@ namespace DBNL.App.Models.Business
                 .AsQueryable();
         }
 
-        public static IEnumerable<Content> GetContentByCategoryId(int id)
+        public  IEnumerable<Content> GetContentByCategoryId(int id)
         {
             return Contents.Where(p => p.CategoryId == id).OrderBy(o => o.IsFeatured).AsEnumerable();
         }
 
-        public static IQueryable<Content> List(int CategoryId)
+        public  IQueryable<Content> List(int CategoryId)
         {
             return Contents.Where(p => p.CategoryId == CategoryId).AsQueryable();
         }
 
-        public static IEnumerable<Content> GetFeaturedArtileByCategoryId(int id)
+        public  IEnumerable<Content> GetFeaturedArtileByCategoryId(int id)
         {
             return Contents.Where(p => p.CategoryId == id && p.IsFeatured == true).
                 OrderByDescending(o => o.UpdatedDate).
@@ -74,7 +75,7 @@ namespace DBNL.App.Models.Business
                 AsEnumerable();
         }
 
-        public static IEnumerable<Content> GetOlderNews(Content content)
+        public  IEnumerable<Content> GetOlderNews(Content content)
         {
             return Contents.Where(p => p.CategoryId == content.CategoryId  && p.UpdatedDate < content.UpdatedDate).
                 OrderByDescending(o => o.UpdatedDate).
@@ -83,12 +84,12 @@ namespace DBNL.App.Models.Business
                 AsEnumerable();
         }
 
-        public static IQueryable<Content> All()
+        public  IQueryable<Content> All()
         {
             return Contents.AsQueryable();
         }
 
-        public static void ToggleActive(int id)
+        public  void ToggleActive(int id)
         {
             Content item = GetItem(id);
             if (item == null) return;
@@ -97,24 +98,24 @@ namespace DBNL.App.Models.Business
             Commit();
         }
 
-        private static Content GetItems(int id)
+        private  Content GetItems(int id)
         {
             return Contents.Where(p => p.CategoryId == id).SingleOrDefault();
         }
 
-        public static void Delete(int id)
+        public  void Delete(int id)
         {
             Content item = GetItem(id);
             Contents.DeleteOnSubmit(item);
             Commit();
         }
 
-        public static Content GetItem(int id)
+        public  Content GetItem(int id)
         {
             return Contents.Where(p => p.ContentId == id).SingleOrDefault();
         }
 
-        public static void Update(Content content, HttpPostedFileBase picture)
+        public  void Update(Content content, HttpPostedFileBase picture)
         {
             Content original = GetItem(content.ContentId);
 
@@ -123,7 +124,7 @@ namespace DBNL.App.Models.Business
             original.Description = content.Description;
             original.IsFeatured = content.IsFeatured;
             original.UniqueKey = content.Title.ToUrlKey();
-            original.ContentCategory = CategoryService.GetById(content.CategoryId);
+            original.ContentCategory = new CategoryService().GetById(content.CategoryId);
 
 
             Commit();
@@ -153,18 +154,18 @@ namespace DBNL.App.Models.Business
 
         }
 
-        public static IEnumerable<Content> GetHostNewsList(int item)
+        public  IEnumerable<Content> GetHostNewsList(int item)
         {
             return Contents.Where(p=>p.IsFeatured ==true).OrderByDescending(p => p.UpdatedDate).Skip(0).Take(item).AsEnumerable();
 
         }
 
-        public static Content GetContentByKey(string content)
+        public  Content GetContentByKey(string content)
         {
             return Contents.Where(p => p.UniqueKey == content).FirstOrDefault();
         }
 
-        public static IQueryable<Models.Content> AllOrhanArticles()
+        public  IQueryable<Models.Content> AllOrhanArticles()
         {
             var query = from p in Contents
                         join p2 in Categories on p.CategoryId equals p2.ID
@@ -175,7 +176,7 @@ namespace DBNL.App.Models.Business
 
         }
 
-        public static void ToggleOnHP(int id)
+        public  void ToggleOnHP(int id)
         {
             var item = GetItem(id);
             if (item == null) return;
@@ -187,7 +188,7 @@ namespace DBNL.App.Models.Business
             UpdateForcusingItem();
         }
 
-        public static void UpdateForcusingItem()
+        public  void UpdateForcusingItem()
         {
             var query = Contents.Where(p => p.IsFocusing == true)
                                 .OrderByDescending(p => p.UpdatedDate)

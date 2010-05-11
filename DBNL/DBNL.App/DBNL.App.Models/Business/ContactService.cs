@@ -7,33 +7,33 @@ namespace DBNL.App.Models.Business
 {
     public class ContactService:BaseService
     {
-        public static IEnumerable<Contact> GetAllItems()
+        public  IEnumerable<Contact> GetAllItems()
         {
-            return GetInstance().Contacts.AsEnumerable();
+            return this.Contacts.AsEnumerable();
         }
 
-        public static Contact GetItem(int id)
+        public  Contact GetItem(int id)
         {
-            return GetInstance().Contacts.Where(p => p.Id == id).SingleOrDefault();
+            return this.Contacts.Where(p => p.Id == id).SingleOrDefault();
         }
 
-        public static IQueryable<Contact> List()
+        public  IQueryable<Contact> List()
         {
-            return GetInstance().Contacts.AsQueryable();
+            return this.Contacts.AsQueryable();
         }
 
-        public static Contact Add(string name, string email, string status)
+        public  Contact Add(string name, string email, string status)
         {
             Contact contact = new Contact();
             contact.Name = name.Trim();
             contact.Email = email.Trim();
             contact.Status = status.Trim();
-            GetInstance().Contacts.InsertOnSubmit(contact);
+            this.Contacts.InsertOnSubmit(contact);
             Commit();
             return contact;
         }
 
-        public static Contact Edit(int id, string name, string email, string status)
+        public  Contact Edit(int id, string name, string email, string status)
         {
             Contact contact = GetItem(id);
             contact.Name = name.Trim();
@@ -43,10 +43,10 @@ namespace DBNL.App.Models.Business
             return contact;
         }
 
-        public static void Delete(int id)
+        public  void Delete(int id)
         {
             Contact contact = GetItem(id);
-            GetInstance().Contacts.DeleteOnSubmit(contact);
+            this.Contacts.DeleteOnSubmit(contact);
             Commit();
         }
     }

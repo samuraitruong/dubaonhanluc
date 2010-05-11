@@ -27,7 +27,7 @@ namespace DBNL.App.Areas.CMS.Controllers
 
         public ActionResult List()
         {
-            ViewData.Model = BannerService.GetAllItems();
+            ViewData.Model = new BannerService().GetAllItems();
             return View();
         }
 
@@ -36,7 +36,7 @@ namespace DBNL.App.Areas.CMS.Controllers
 
         public ActionResult Details(int id)
         {
-            ViewData.Model = BannerService.GetItem(id);
+            ViewData.Model = new BannerService().GetItem(id);
             return View();
         }
 
@@ -83,7 +83,7 @@ namespace DBNL.App.Areas.CMS.Controllers
                 banner.CreatedDate = DateTime.Now;
                 banner.UpdatedDate = DateTime.Now;
 
-                BannerService.Add(banner);
+                new BannerService().Add(banner);
                 return RedirectToAction("List");
             }
             catch (Exception ex)
@@ -98,7 +98,7 @@ namespace DBNL.App.Areas.CMS.Controllers
  
         public ActionResult Delete(int id)
         {
-            ViewData.Model = BannerService.GetItem(id);
+            ViewData.Model = new BannerService().GetItem(id);
             return View();
         }
 
@@ -112,7 +112,7 @@ namespace DBNL.App.Areas.CMS.Controllers
             try
             {
                 // TODO: Add delete logic here
-                BannerService.Delete(id);
+                new BannerService().Delete(id);
                 return Json(true);
             }
             catch
@@ -127,7 +127,7 @@ namespace DBNL.App.Areas.CMS.Controllers
             try
             {
                 // TODO: Add delete logic here
-                BannerService.Delete(id);
+                new BannerService().Delete(id);
                 return RedirectToAction("List");
             }
             catch
@@ -143,7 +143,7 @@ namespace DBNL.App.Areas.CMS.Controllers
         {
             ViewData.Model = new BannerViewData()
             {
-                banner = BannerService.GetItem(id),
+                banner = new BannerService().GetItem(id),
                 BannerPositions = CustomSelectList.CreateBannerPosition(),
                 BannerStatus = CustomSelectList.CreateBannerStatus()
             };
@@ -161,17 +161,17 @@ namespace DBNL.App.Areas.CMS.Controllers
                 // TODO: Add update logic here
                 ViewData.Model = new BannerViewData()
                 {
-                    banner = BannerService.GetItem(id),
+                    banner = new BannerService().GetItem(id),
                     BannerPositions = CustomSelectList.CreateBannerPosition(),
                     BannerStatus = CustomSelectList.CreateBannerStatus()
                 };
-                string fileName = BannerService.GetItem(id).BannerImage;
+                string fileName = new BannerService().GetItem(id).BannerImage;
                 if (String.IsNullOrEmpty(Request.Files["banimg"].FileName) == false)
                 {
                     fileName = Request.Files[0].FileName;
                     Request.Files[0].SaveAs(Path.Combine(DBNLConfigurationManager.FileResponsity.BannerFolder, fileName));
                 }
-                BannerService.Edit(id, collection["banner.Name"], collection["banner.Url"], fileName, collection["BannerStatus"], collection["BannerPosition"]);
+                new BannerService().Edit(id, collection["banner.Name"], collection["banner.Url"], fileName, collection["BannerStatus"], collection["BannerPosition"]);
                 return RedirectToAction("List");
             }
             catch
@@ -206,13 +206,13 @@ namespace DBNL.App.Areas.CMS.Controllers
 
         public ActionResult Public(int id)
         {
-            BannerService.Public(id);
+            new BannerService().Public(id);
             return Json(true);
         }
         [HttpPost]
         public ActionResult List(int page, int rows, string sidx, string sord, string Position)
         {
-            var bann = BannerService.List(Position);
+            var bann = new BannerService().List(Position);
             bool searchOn = bool.Parse(Request.Form["_search"]);
             string searchExp = "";
             if (searchOn)
@@ -239,11 +239,11 @@ namespace DBNL.App.Areas.CMS.Controllers
         {
             if (id.HasValue)
             {
-                BannerService.Edit(id.Value, name, Url, image, status, position);
+                new BannerService().Edit(id.Value, name, Url, image, status, position);
             }
             else
             {
-                BannerService.Add(name, Url, image, position);
+                new BannerService().Add(name, Url, image, position);
             }
             return Content("true");
         }

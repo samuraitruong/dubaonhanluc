@@ -28,7 +28,7 @@ namespace DBNL.App.Areas.CMS.Controllers
 
         public ActionResult Details(int id)
         {
-            ViewData.Model = ContactService.GetItem(id);
+            ViewData.Model = new ContactService().GetItem(id);
             return View();
         }
 
@@ -49,7 +49,7 @@ namespace DBNL.App.Areas.CMS.Controllers
             try
             {
                 // TODO: Add insert logic here
-                ContactService.Add(contact.Name, contact.Email, contact.Status);
+                new ContactService().Add(contact.Name, contact.Email, contact.Status);
                 return RedirectToAction("List");
             }
             catch
@@ -60,7 +60,7 @@ namespace DBNL.App.Areas.CMS.Controllers
 
         public ActionResult List()
         {
-            ViewData.Model = ContactService.GetAllItems();
+            ViewData.Model = new ContactService().GetAllItems();
             return View();
         }
 
@@ -69,7 +69,7 @@ namespace DBNL.App.Areas.CMS.Controllers
  
         public ActionResult Delete(int id)
         {
-            ViewData.Model = ContactService.GetItem(id);
+            ViewData.Model = new ContactService().GetItem(id);
             return View();
         }
 
@@ -82,7 +82,7 @@ namespace DBNL.App.Areas.CMS.Controllers
             try
             {
                 // TODO: Add delete logic here
-                ContactService.Delete(id);
+                new ContactService().Delete(id);
                 return RedirectToAction("List");
             }
             catch
@@ -97,7 +97,7 @@ namespace DBNL.App.Areas.CMS.Controllers
             try
             {
                 // TODO: Add delete logic here
-                ContactService.Delete(id);
+                new ContactService().Delete(id);
                 return Json(true, JsonRequestBehavior.AllowGet);
             }
             catch
@@ -111,7 +111,7 @@ namespace DBNL.App.Areas.CMS.Controllers
  
         public ActionResult Edit(int id)
         {
-            ViewData.Model = ContactService.GetItem(id);
+            ViewData.Model = new ContactService().GetItem(id);
             return View();
         }
 
@@ -124,7 +124,7 @@ namespace DBNL.App.Areas.CMS.Controllers
             try
             {
                 // TODO: Add update logic here
-                ContactService.Edit(id, name, email, status);
+                new ContactService().Edit(id, name, email, status);
                 return RedirectToAction("Index");
             }
             catch
@@ -148,7 +148,7 @@ namespace DBNL.App.Areas.CMS.Controllers
         [HttpPost]
         public ActionResult List(int page, int rows, string sidx, string sord)
         {
-            var contact = ContactService.List();
+            var contact = new ContactService().List();
             bool searchOn = bool.Parse(Request.Form["_search"]);
             string searchExp = "";
             if (searchOn)
@@ -172,11 +172,11 @@ namespace DBNL.App.Areas.CMS.Controllers
         {
             if (id.HasValue)
             {
-                ContactService.Edit(id.Value, name, email, status);
+                new ContactService().Edit(id.Value, name, email, status);
             }
             else
             {
-                ContactService.Add(name, email, status);
+                new ContactService().Add(name, email, status);
             }
             return Content("true");
         }

@@ -21,7 +21,7 @@ namespace DBNL.App.Controllers
         [CacheFilter]
         public ActionResult ViewCategoryByDate(string category, int? page, int day, int month, int year)
         {
-            Models.ContentCategory Cat = CategoryService.GetByKey(category);
+            Models.ContentCategory Cat = new CategoryService().GetByKey(category);
 
             if (Cat == null) return RedirectToAction("Index", "Http404");
 
@@ -39,9 +39,9 @@ namespace DBNL.App.Controllers
             {
                 FilterDate = filterDate,
                 Category = Cat,
-                Articles = ContentService.GetContentByCategoryId(Cat.ID),
-                FeaturedArticles = ContentService.GetFeaturedArtileByCategoryId(Cat.ID),
-                ArticlesPagedList = ContentService.All(Cat.ID)
+                Articles = new ContentService().GetContentByCategoryId(Cat.ID),
+                FeaturedArticles = new ContentService().GetFeaturedArtileByCategoryId(Cat.ID),
+                ArticlesPagedList = new ContentService().All(Cat.ID)
                                                     .Where(p => p.UpdatedDate.Year == year)
                                                     .Where(p => p.UpdatedDate.Month == month)
                                                     .Where(p => p.UpdatedDate.Day == day)
@@ -60,7 +60,7 @@ namespace DBNL.App.Controllers
         [CacheFilter]
         public ActionResult ViewCategoryByMonth(string category, int? page,  int month, int year)
         {
-            Models.ContentCategory Cat = CategoryService.GetByKey(category);
+            Models.ContentCategory Cat = new CategoryService().GetByKey(category);
 
             if (Cat == null) return RedirectToAction("Index", "Http404");
 
@@ -78,9 +78,9 @@ namespace DBNL.App.Controllers
             {
                 FilterDate = filterDate,
                 Category = Cat,
-                Articles = ContentService.GetContentByCategoryId(Cat.ID),
-                FeaturedArticles = ContentService.GetFeaturedArtileByCategoryId(Cat.ID),
-                ArticlesPagedList = ContentService.All(Cat.ID)
+                Articles = new ContentService().GetContentByCategoryId(Cat.ID),
+                FeaturedArticles = new ContentService().GetFeaturedArtileByCategoryId(Cat.ID),
+                ArticlesPagedList = new ContentService().All(Cat.ID)
                                                     .Where(p => p.UpdatedDate.Year == year)
                                                     .Where(p => p.UpdatedDate.Month == month)
                                                     
@@ -99,14 +99,14 @@ namespace DBNL.App.Controllers
         [CacheFilter]
         public ActionResult Category(int id, int? page)
         {
-            Models.ContentCategory Cat = CategoryService.GetById(id);
+            Models.ContentCategory Cat = new CategoryService().GetById(id);
             if (Cat == null) return RedirectToAction("Index", "Http404");
 
             ViewData.Model = new CategoryViewData() {
-                Category = CategoryService.GetById(id),
-                Articles = ContentService.GetContentByCategoryId(id),
-                FeaturedArticles = ContentService.GetFeaturedArtileByCategoryId(id),
-                ArticlesPagedList = ContentService.All(id).ToPagedList(page.HasValue?page.Value-1:0, DBNLConfigurationManager.WebUI.ArticlePagingItem)
+                Category = new CategoryService().GetById(id),
+                Articles = new ContentService().GetContentByCategoryId(id),
+                FeaturedArticles = new ContentService().GetFeaturedArtileByCategoryId(id),
+                ArticlesPagedList = new ContentService().All(id).ToPagedList(page.HasValue?page.Value-1:0, DBNLConfigurationManager.WebUI.ArticlePagingItem)
             
             };
             return View();
@@ -118,15 +118,15 @@ namespace DBNL.App.Controllers
         {
             int id = 1;
             //return RedirectToAction("Category", new { id = 1, page = page });
-            Models.ContentCategory Cat = CategoryService.GetByKey(category);
+            Models.ContentCategory Cat = new CategoryService().GetByKey(category);
 
             if (Cat == null) return RedirectToAction("Index", "Http404");
             ViewData.Model = new CategoryViewData()
             {
                 Category = Cat,
-                Articles = ContentService.GetContentByCategoryId(Cat.ID),
-                FeaturedArticles = ContentService.GetFeaturedArtileByCategoryId(Cat.ID),
-                ArticlesPagedList = ContentService.All(Cat.ID).ToPagedList(page.HasValue ? page.Value - 1 : 0, DBNLConfigurationManager.WebUI.ArticlePagingItem)
+                Articles = new ContentService().GetContentByCategoryId(Cat.ID),
+                FeaturedArticles = new ContentService().GetFeaturedArtileByCategoryId(Cat.ID),
+                ArticlesPagedList = new ContentService().All(Cat.ID).ToPagedList(page.HasValue ? page.Value - 1 : 0, DBNLConfigurationManager.WebUI.ArticlePagingItem)
 
             };
             return View("~/Views/Article/Category.aspx");
@@ -148,13 +148,13 @@ namespace DBNL.App.Controllers
         [CacheFilter]
         public ActionResult ViewContent(string contentkey)
         {
-            DBNL.App.Models.Content content = ContentService.GetContentByKey(contentkey);
+            DBNL.App.Models.Content content = new ContentService().GetContentByKey(contentkey);
             if (content == null) return RedirectToAction("Index", "Http404");
             ViewData.Model = new ViewContentDataView()
             {
                 Content = content,
-                FeaturedContents = ContentService.GetFeaturedArtileByCategoryId(content.CategoryId),
-                OtherNewses = ContentService.GetOlderNews(content)
+                FeaturedContents = new ContentService().GetFeaturedArtileByCategoryId(content.CategoryId),
+                OtherNewses = new ContentService().GetOlderNews(content)
             };
             return View("~/Views/Article/View.aspx");
         }
@@ -162,11 +162,11 @@ namespace DBNL.App.Controllers
         [CacheFilter]
         public ActionResult View(int id)
         {
-            DBNL.App.Models.Content content = ContentService.GetContentById(id);
+            DBNL.App.Models.Content content = new ContentService().GetContentById(id);
             if (content == null) return RedirectToAction("Index", "Http404");
             ViewData.Model = new ViewContentDataView() { Content = content,
-            FeaturedContents = ContentService.GetFeaturedArtileByCategoryId(content.CategoryId),
-            OtherNewses = ContentService.GetOlderNews(content)
+            FeaturedContents = new ContentService().GetFeaturedArtileByCategoryId(content.CategoryId),
+            OtherNewses = new ContentService().GetOlderNews(content)
             };
             return View();
         }

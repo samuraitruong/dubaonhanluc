@@ -1870,6 +1870,7 @@
     <Content Include="Views\Shared\CategoriesOnHPView.ascx" />
     <Content Include="Views\Shared\ControlBar.ascx" />
     <Content Include="Views\Shared\ControlBarEx.ascx" />
+    <Content Include="Views\Shared\Pagination.Bak.ascx" />
     <Content Include="Views\Shared\FeatureCategoryView.ascx" />
     <Content Include="Views\Shared\HitStats.ascx" />
     <Content Include="Views\Shared\HotNewsControl.ascx" />
@@ -1879,13 +1880,13 @@
     <Content Include="Views\Shared\Sample.aspx" />
     <Content Include="Views\Shared\ScriptsControl.ascx" />
     <Content Include="Views\Shared\Sidebar.ascx" />
+    <Content Include="Views\Shared\SlideShowBanners.ascx" />
     <Content Include="Views\WebContact\Index.aspx" />
     <Content Include="Views\Home\Index.aspx" />
     <Content Include="Views\Shared\LeftNavigationControl.ascx" />
     <Content Include="Views\Shared\MainNavigationControl.ascx" />
     <Content Include="Views\Shared\SupportersControl.ascx" />
     <Content Include="Views\Shared\TopNavigationControl.ascx" />
-    <Content Include="Views\WebContact\PdfView.aspx" />
     <Content Include="Views\WebJob\Details.aspx" />
     <Content Include="Views\WebLink\Index.aspx" />
     <Content Include="Views\WebPoll\View.aspx" />

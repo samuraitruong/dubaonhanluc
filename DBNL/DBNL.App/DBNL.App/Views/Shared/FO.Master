@@ -130,8 +130,7 @@ $(document).ready(function(){
                     </form>
                 </div>
             </div>
-            <div id="slideshow" class="clear">
-                <img src="<%=Url.Content("~/images")%>/1.jpg" alt="Slideshow Image 1" class="active" /></div>
+            <%  Html.RenderPartial("SlideShowBanners", Data.SlideShowBanners); %>
         </div>
         <a name="neo_content"></a>
         <!--Top Content-->

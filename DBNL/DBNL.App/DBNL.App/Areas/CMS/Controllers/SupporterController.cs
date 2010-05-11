@@ -35,16 +35,16 @@ namespace DBNL.App.Areas.CMS.Controllers
                     Status = EntityStatuses.Actived.ToString(),
                     Type = string.IsNullOrEmpty(Type)? SupportTypes.Yahoo.ToString() : Type,
                     };
-                SupporterService.Add(sp);
+                new SupporterService().Add(sp);
                 return Content("true");
             }
             if (oper == JqGridOperations.edit.ToString())
             {
-                SupporterService.Edit(id.Value, NickName, Name);
+                new SupporterService().Edit(id.Value, NickName, Name);
             }
 
             if(oper == JqGridOperations.del.ToString()){
-                SupporterService.Delete(id.Value);
+                new SupporterService().Delete(id.Value);
             }
 
             return Content("true");
@@ -66,7 +66,7 @@ namespace DBNL.App.Areas.CMS.Controllers
         [AcceptVerbs(HttpVerbs.Post)]
         public ActionResult Create(Supporter supporter)
         {
-            SupporterService.Create(supporter);
+            new SupporterService().Create(supporter);
             return RedirectToAction("Index");
         }
         //
@@ -76,7 +76,7 @@ namespace DBNL.App.Areas.CMS.Controllers
 
         public ActionResult Public(int id)
         {
-            SupporterService.Public(id);
+            new SupporterService().Public(id);
             return Json(true);
         }
 
@@ -99,7 +99,7 @@ namespace DBNL.App.Areas.CMS.Controllers
         public ActionResult List(int page, int rows, string sidx, string sord)
         {
 
-            var links = SupporterService.List();
+            var links = new SupporterService().List();
 
             bool searchOn = bool.Parse(Request.Form["_search"]);
             string searchExp = "";

@@ -22,7 +22,7 @@ namespace DBNL.App.Areas.CMS.Controllers
 
         public ActionResult Index()
         {
-            ViewData.Model = NavigationService.GetItems();
+            ViewData.Model = new NavigationService().GetItems();
             return View();
         }
 
@@ -36,7 +36,7 @@ namespace DBNL.App.Areas.CMS.Controllers
         [HttpPost]
         public ActionResult Reorder(int Id, string Method)
         {
-            NavigationService.Reorder(Id, Method);
+            new NavigationService().Reorder(Id, Method);
             return Json(true);
         }
         //
@@ -58,7 +58,7 @@ namespace DBNL.App.Areas.CMS.Controllers
         [HttpPost]
         public ActionResult List(int page, int rows, string sidx, string sord, int? ParentId, string Position)
         {
-            var navigations = NavigationService.List(ParentId, Position);
+            var navigations = new NavigationService().List(ParentId, Position);
             bool searchOn = bool.Parse(Request.Form["_search"]);
             string searchExp = "";
 
@@ -162,7 +162,7 @@ namespace DBNL.App.Areas.CMS.Controllers
                     navigation.ExternalUrl = collection["ExternalUrl"];
                 }
                 
-                NavigationService.Create(navigation);
+                new NavigationService().Create(navigation);
                 return RedirectToAction("Index");
             }
             catch
@@ -184,7 +184,7 @@ namespace DBNL.App.Areas.CMS.Controllers
  
         public ActionResult Edit(int id)
         {
-            Navigation nav = NavigationService.GetItem(id);
+            Navigation nav = new NavigationService().GetItem(id);
             ViewData["ExtraData"] = new NavigationDataView()
             {
                 Categories = CustomSelectList.CreateListCategories(true, nav.CategoryId),
@@ -192,13 +192,13 @@ namespace DBNL.App.Areas.CMS.Controllers
                 RootNavigations = CustomSelectList.CreateListNavigations(true, nav.ParentId),
                 SiteModules = CustomSelectList.CreateModuleList(nav.Component)
             };
-            NavigationService service = new NavigationService();
+            
             return View(nav);
         }
         [HttpPost]
         public ActionResult JsonDelete(int id)
         {
-            NavigationService.Delete(id);
+            new NavigationService().Delete(id);
             return Json(true);
         }
         //
@@ -265,7 +265,7 @@ namespace DBNL.App.Areas.CMS.Controllers
 
                 
 
-                NavigationService.UpdateMenuItem(navigation);
+                new NavigationService().UpdateMenuItem(navigation);
  
                 return RedirectToAction("Index");
             }

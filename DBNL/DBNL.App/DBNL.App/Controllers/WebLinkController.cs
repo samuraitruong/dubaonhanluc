@@ -15,7 +15,7 @@ namespace DBNL.App.Controllers
 
         public ActionResult Index()
         {
-            ViewData.Model = LinkService.GetAllItems();
+            ViewData.Model = new LinkService().GetAllItems();
             return View();
         }
 

@@ -22,7 +22,7 @@ namespace DBNL.App.Controllers
 
         public ActionResult Index()
         {
-            ViewData.Model = ContactService.GetAllItems();
+            ViewData.Model = new ContactService().GetAllItems();
             return View();
         }
 
@@ -145,7 +145,7 @@ namespace DBNL.App.Controllers
 
         public ActionResult Pdf()
         {
-            var data = ContactService.GetAllItems();
+            var data = new ContactService().GetAllItems();
 
             return new BinaryContentResult(CreatePdf(data), "application/pdf");
         }

@@ -16,5 +16,7 @@ namespace DBNL.App.Models.ViewData
         public IEnumerable<Banner> LeftBanners { get; set; }
         public IEnumerable<Banner> RightBanners { get; set; }
         public IEnumerable<Content> HotNews { get; set; }
+
+        public IEnumerable<Banner> SlideShowBanners { get; set; }
     }
 }

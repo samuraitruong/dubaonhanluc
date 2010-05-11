@@ -9,30 +9,30 @@ namespace DBNL.App.Models.Business
 {
     public class NavigationService : BaseService
     {
-        public static IEnumerable<Navigation> GetItems()
+        public  IEnumerable<Navigation> GetItems()
         {
             return Navigations.AsEnumerable();
         }
-        public static IEnumerable<Navigation> GetItems(NavigationPositions pos)
+        public  IEnumerable<Navigation> GetItems(NavigationPositions pos)
         {
             return Navigations.Where(p => p.Position == pos.ToString()).OrderBy(p=>p.DisplayOrder).AsEnumerable();
         }
-        public static IEnumerable<Navigation> GetItems(string pos)
+        public  IEnumerable<Navigation> GetItems(string pos)
         {
             return Navigations.Where(p => p.Position == pos && p.ParentId ==null).OrderBy(p=>p.DisplayOrder).AsEnumerable();
         }
 
-        private static IEnumerable<Navigation> GetItems(int parentId)
+        private  IEnumerable<Navigation> GetItems(int parentId)
         {
             return Navigations.Where(p => p.ParentId == parentId).OrderBy(p=>p.DisplayOrder).AsEnumerable();
         }
-        public static IEnumerable<Navigation> GetItems(NavigationPositions pos, bool rootOnly)
+        public  IEnumerable<Navigation> GetItems(NavigationPositions pos, bool rootOnly)
         {
             if (rootOnly)
                 return Navigations.Where(p => p.Position == pos.ToString() && p.ParentId == null).OrderBy(p=>p.DisplayOrder).AsEnumerable();
             return GetItems(pos);
         }
-        public static Navigation Create(Navigation nv)
+        public  Navigation Create(Navigation nv)
         {
             nv.CreatedDate = DateTime.Now;
             nv.UpdatedDate = DateTime.Now;
@@ -77,7 +77,7 @@ namespace DBNL.App.Models.Business
             return nv;
         }
 
-        public static IQueryable<Navigation> List(int? ParentId, string Position)
+        public  IQueryable<Navigation> List(int? ParentId, string Position)
         {
             var query = Navigations.Where(p=>p.Status != EntityStatuses.Deleted.ToString());
 
@@ -91,7 +91,7 @@ namespace DBNL.App.Models.Business
 
         }
 
-        public static void Reorder(int Id, string Method)
+        public  void Reorder(int Id, string Method)
         {
             Navigation nav = GetItem(Id);
             List<Navigation> navigations;
@@ -142,12 +142,12 @@ namespace DBNL.App.Models.Business
         }
 
 
-        public static Navigation GetItem(int Id)
+        public  Navigation GetItem(int Id)
         {
             return Navigations.Where(p => p.Id == Id).SingleOrDefault();
         }
 
-        public static void UpdateMenuItem(Navigation navigation)
+        public  void UpdateMenuItem(Navigation navigation)
         {
             Navigation original = GetItem(navigation.Id);
             original.Action     = navigation.Action;
@@ -166,13 +166,13 @@ namespace DBNL.App.Models.Business
             Commit();
         }
 
-        public static void Delete(int id)
+        public  void Delete(int id)
         {
             Navigation item = GetItem(id);
             Delete(item);
         }
 
-        public static void Delete(Navigation nav)
+        public  void Delete(Navigation nav)
         {
             if (nav == null) return;
 

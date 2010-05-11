@@ -7,34 +7,34 @@ namespace DBNL.App.Models.Business
 {
     public class LinkService:BaseService
     {
-        public static IEnumerable<Link> GetAllItems()
+        public  IEnumerable<Link> GetAllItems()
         {
-            return GetInstance().Links.AsEnumerable();
+            return this.Links.AsEnumerable();
         }
-        public static IQueryable<Link> List()
+        public  IQueryable<Link> List()
         {
-            return GetInstance().Links.AsQueryable();
+            return this.Links.AsQueryable();
         }
-        public static Link GetItem(int id)
+        public  Link GetItem(int id)
         {
-            return GetInstance().Links.Where(p => p.Id == id).SingleOrDefault();
+            return this.Links.Where(p => p.Id == id).SingleOrDefault();
         }
 
-        public static Link Add(string title, string url)
+        public  Link Add(string title, string url)
         {
             Link link = new Link();
             link.Title = title.Trim();
             link.Url = url.Trim();
             link.UpdatedDate = DateTime.Today;
             link.CreatedDate = DateTime.Today;
-            GetInstance().Links.InsertOnSubmit(link);
+            this.Links.InsertOnSubmit(link);
             Commit();
             return link;
         }
 
-        public static Link Edit(int id, string title, string url)
+        public  Link Edit(int id, string title, string url)
         {
-            Link updLink = GetInstance().Links.Where(p => p.Id == id).SingleOrDefault();
+            Link updLink = this.Links.Where(p => p.Id == id).SingleOrDefault();
             updLink.Title = title;
             updLink.Url = url;
             updLink.UpdatedDate = DateTime.Today;
@@ -42,14 +42,14 @@ namespace DBNL.App.Models.Business
             return updLink;
         }
 
-        public static void Delete(int id)
+        public  void Delete(int id)
         {
-            Link link = GetInstance().Links.Where(p => p.Id == id).SingleOrDefault();
-            GetInstance().Links.DeleteOnSubmit(link);
+            Link link = this.Links.Where(p => p.Id == id).SingleOrDefault();
+            this.Links.DeleteOnSubmit(link);
             Commit();
         }
 
-        public static Link Update(int EntityId, string Title, string Url)
+        public  Link Update(int EntityId, string Title, string Url)
         {
             Link entity = GetItem(EntityId);
             entity.Url = Url;

@@ -27,7 +27,7 @@ namespace DBNL.App.Areas.CMS.Controllers
 
         public ActionResult Details(int id)
         {
-            ViewData.Model = LinkService.GetItem(id);
+            ViewData.Model = new LinkService().GetItem(id);
             return View();
         }
 
@@ -48,7 +48,7 @@ namespace DBNL.App.Areas.CMS.Controllers
             try
             {
                 // TODO: Add insert logic here
-                LinkService.Add(link.Title, link.Url);
+                new LinkService().Add(link.Title, link.Url);
 
                 return RedirectToAction("List");
             }
@@ -60,7 +60,7 @@ namespace DBNL.App.Areas.CMS.Controllers
 
         public ActionResult List()
         {
-            ViewData.Model = LinkService.GetAllItems();
+            ViewData.Model = new LinkService().GetAllItems();
             return View();
 
         }
@@ -70,11 +70,11 @@ namespace DBNL.App.Areas.CMS.Controllers
 
             if (id.HasValue)
             {
-                LinkService.Update(id.Value, Title, Url);
+                new LinkService().Update(id.Value, Title, Url);
             }
             else
             {
-                LinkService.Add(Title, Url);
+                new LinkService().Add(Title, Url);
             }
             return Content("true");
         }
@@ -84,7 +84,7 @@ namespace DBNL.App.Areas.CMS.Controllers
         public ActionResult List(int page, int rows, string sidx, string sord)
         {
 
-            var links = LinkService.List();
+            var links = new LinkService().List();
             
             bool searchOn = bool.Parse(Request.Form["_search"]);
             string searchExp = "";
@@ -120,7 +120,7 @@ namespace DBNL.App.Areas.CMS.Controllers
  
         public ActionResult Delete(int id)
         {
-            ViewData.Model = LinkService.GetItem(id);
+            ViewData.Model = new LinkService().GetItem(id);
             return View();
         }
 
@@ -133,7 +133,7 @@ namespace DBNL.App.Areas.CMS.Controllers
             try
             {
                 // TODO: Add delete logic here
-                LinkService.Delete(id);
+                new LinkService().Delete(id);
                 return RedirectToAction("List");
             }
             catch
@@ -147,7 +147,7 @@ namespace DBNL.App.Areas.CMS.Controllers
  
         public ActionResult Edit(int id)
         {
-            ViewData.Model = LinkService.GetItem(id);
+            ViewData.Model = new LinkService().GetItem(id);
             return View();
         }
 
@@ -160,7 +160,7 @@ namespace DBNL.App.Areas.CMS.Controllers
             try
             {
                 // TODO: Add update logic here
-                LinkService.Edit(id, title, url);
+                new LinkService().Edit(id, title, url);
                 return RedirectToAction("List");
             }
             catch
