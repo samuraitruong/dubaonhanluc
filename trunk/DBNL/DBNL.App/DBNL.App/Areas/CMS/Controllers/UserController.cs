@@ -28,7 +28,7 @@ namespace DBNL.App.Areas.CMS.Controllers
 
         public ActionResult Details(int id)
         {
-            ViewData.Model = UserService.GetItem(id);
+            ViewData.Model = new UserService().GetItem(id);
             return View();
         }
 
@@ -68,7 +68,7 @@ namespace DBNL.App.Areas.CMS.Controllers
                     }
                 }
 
-                UserService.Add(user, Roles);
+                new UserService().Add(user, Roles);
                 return RedirectToAction("List");
             }
             catch
@@ -79,7 +79,7 @@ namespace DBNL.App.Areas.CMS.Controllers
 
         public ActionResult List()
         {
-            ViewData.Model = UserService.GetAllItems();
+            ViewData.Model = new UserService().GetAllItems();
             return View();
         }
 
@@ -88,20 +88,20 @@ namespace DBNL.App.Areas.CMS.Controllers
         [HttpPost]
         public ActionResult JsonDelete(int id)
         {
-             UserService.Delete(id);
+             new UserService().Delete(id);
             return Json(true);
         }
 
         [HttpPost]
         public ActionResult Active(int id)
         {
-            UserService.Active(id);
+            new UserService().Active(id);
             return Json(true);
         }
 
         public ActionResult Delete(int id)
         {
-            ViewData.Model = UserService.GetItem(id);
+            ViewData.Model = new UserService().GetItem(id);
             return View();
         }
 
@@ -114,7 +114,7 @@ namespace DBNL.App.Areas.CMS.Controllers
             try
             {
                 // TODO: Add delete logic here
-                UserService.Delete(id);
+                new UserService().Delete(id);
                 return RedirectToAction("List");
             }
             catch
@@ -129,7 +129,7 @@ namespace DBNL.App.Areas.CMS.Controllers
         public ActionResult Edit(int? id)
         {
 
-            Models.User user =  UserService.GetItem(id);
+            Models.User user =  new UserService().GetItem(id);
             if (user == null) return RedirectToAction("List");
             ViewData["RoleIds"] = (from u in user.UserInRoles select u.RoleId).ToList();
             ViewData.Model = user;
@@ -165,7 +165,7 @@ namespace DBNL.App.Areas.CMS.Controllers
 
 
                 
-                UserService.UpdateUser(user);
+                new UserService().UpdateUser(user);
 
                 return RedirectToAction("List");
             }
@@ -178,7 +178,7 @@ namespace DBNL.App.Areas.CMS.Controllers
         [HttpPost]
         public ActionResult List(int page, int rows, string sidx, string sord)
         {
-            var users = UserService.List();
+            var users = new UserService().List();
             bool searchOn = bool.Parse(Request.Form["_search"]);
             string searchExp = "";
             if (searchOn)
@@ -201,7 +201,7 @@ namespace DBNL.App.Areas.CMS.Controllers
         [HttpPost]
         public ActionResult ListByRole(int page, int rows, string sidx, string sord, int RoleId)
         {
-            var users = UserService.List(RoleId);
+            var users = new UserService().List(RoleId);
             bool searchOn = bool.Parse(Request.Form["_search"]);
             string searchExp = "";
             if (searchOn)
@@ -237,7 +237,7 @@ namespace DBNL.App.Areas.CMS.Controllers
         [HttpPost]
         public ActionResult List(int page, int rows, string sidx, string sord)
         {
-            var user = UserService.List();
+            var user = new UserService().List();
             bool searchOn = bool.Parse(Request.Form["_search"]);
             string searchExp = "";
             if (searchOn)
@@ -261,7 +261,7 @@ namespace DBNL.App.Areas.CMS.Controllers
         {
             if (id.HasValue)
             {
-                //UserService.Edit(id.Value, 
+                //new UserService().Edit(id.Value, 
             }
             else
             {

@@ -79,5 +79,10 @@ namespace DBNL.App.Models
                 session["SecurityPollData"] = value;
             }
         }
+
+        public static DateTime TimeStamp { set {
+            HttpSessionState session = HttpContext.Current.Session;
+            session["TimeStamp"] = value;
+        } }
     }
 }

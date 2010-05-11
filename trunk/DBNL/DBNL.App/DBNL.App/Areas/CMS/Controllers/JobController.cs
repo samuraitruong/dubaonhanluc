@@ -44,7 +44,7 @@ namespace DBNL.App.Areas.CMS.Controllers
         [HttpPost]
         public ActionResult Public(int id)
         {
-            JobService.Public(id);
+            new JobService().Public(id);
             return Json(true);
         }
         //
@@ -57,7 +57,7 @@ namespace DBNL.App.Areas.CMS.Controllers
             try
             {
                 if (!ModelState.IsValid) return View(job);
-                JobService.Add(job);
+                new JobService().Add(job);
                 return RedirectToAction("Index");
             }
             catch
@@ -75,14 +75,14 @@ namespace DBNL.App.Areas.CMS.Controllers
 
             if (Oper == JqGridOperations.edit)
             {
-                var item = JobService.EditItem(id, Title, Company, Deadline, Status);
+                var item = new JobService().EditItem(id, Title, Company, Deadline, Status);
                 
             }
             return Json(true);
         }
         public ActionResult Edit(int id)
         {
-            var item = JobService.GetItem(id);
+            var item = new JobService().GetItem(id);
             if (item == null) return RedirectToAction("Index");
             return View(item);
         }
@@ -96,7 +96,7 @@ namespace DBNL.App.Areas.CMS.Controllers
         {
             try
             {
-                JobService.Update(id, job);
+                new JobService().Update(id, job);
                 // TODO: Add update logic here
  
                 return RedirectToAction("Index");
@@ -146,7 +146,7 @@ namespace DBNL.App.Areas.CMS.Controllers
         [HttpPost]
         public ActionResult List(int page, int rows, string sidx, string sord, string Position)
         {
-            var jobs = JobService.List();
+            var jobs = new JobService().List();
             bool searchOn = bool.Parse(Request.Form["_search"]);
             string searchExp = "";
             if (searchOn)

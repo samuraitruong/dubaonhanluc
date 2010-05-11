@@ -56,7 +56,8 @@ namespace DBNL.App.Models.Statics
         Top,
         Left,
         Right,
-        Bottom
+        Bottom,
+        Main
     }
 
     public enum BannerStatus

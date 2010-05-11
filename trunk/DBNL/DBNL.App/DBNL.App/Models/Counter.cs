@@ -13,7 +13,19 @@ namespace DBNL.App.Models
     public class Counter : ISerializable 
     {
         public int OnlineUsers { get; set; }
+        private object locker = new object();
         public long Visits { get; set; }
+
+         protected Counter(SerializationInfo info, StreamingContext context) {
+             this.OnlineUsers = info.GetInt32("OnlineUsers");
+             this.Visits = info.GetInt64("Visits");
+            }
+
+         protected Counter()
+         {
+             this.OnlineUsers = 0;
+             this.Visits = 0;
+         }
         public void Visit()
         {
             OnlineUsers++;
@@ -25,12 +37,15 @@ namespace DBNL.App.Models
             OnlineUsers--;
             Save();
         }
-        public void Save()
+        private void Save()
         {
-            Stream stream = File.Open(HttpContext.Current.Server.MapPath("~/App_Data/counter"), FileMode.Open);
-            BinaryFormatter bformatter = new BinaryFormatter();
-            bformatter.Serialize(stream, this);
-            stream.Close();
+            lock (locker)
+            {
+                Stream stream = File.Open(HttpContext.Current.Server.MapPath("~/App_Data/counter"), FileMode.Open);
+                BinaryFormatter bformatter = new BinaryFormatter();
+                bformatter.Serialize(stream, this);
+                stream.Close();
+            }
         }
         public static Counter Load() {
             string path = HttpContext.Current.Server.MapPath("~/App_Data/counter");
@@ -41,7 +56,7 @@ namespace DBNL.App.Models
                 c.Save();
                 return c;
             }
-            Stream stream = File.Open(path, FileMode.OpenOrCreate);
+            Stream stream = File.Open(path, FileMode.OpenOrCreate, FileAccess.ReadWrite, FileShare.ReadWrite);
             BinaryFormatter bformatter = new BinaryFormatter();
             Counter counter = (Counter)bformatter.Deserialize(stream);
             stream.Close();
@@ -53,6 +68,12 @@ namespace DBNL.App.Models
             info.AddValue("OnlineUsers", this.OnlineUsers);
             info.AddValue("Visits", this.Visits);
 
+        }
+
+        public void Reset()
+        {
+            this.OnlineUsers = 0;
+            Save();
         }
     }
 }

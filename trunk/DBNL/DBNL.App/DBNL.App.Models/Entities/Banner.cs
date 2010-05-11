@@ -11,6 +11,10 @@ namespace DBNL.App.Models
     [MetadataType(typeof(BannerMetaData))]
     public partial class Banner
     {
+        public string BannerImageUrl { get {
+
+            return string.Format("{0}/{1}", DBNLConfigurationManager.FileResponsity.BannerRelativeUrl, this.BannerImage);
+        } }
         public class BannerMetaData
         {
             [Required(ErrorMessageResourceName = "Banner_Name", ErrorMessageResourceType = typeof(DataAnnotations))]

@@ -2,17 +2,18 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using DBNL.App.Models.Statics;
 
 namespace DBNL.App.Models.Business
 {
     public class PollQuestionService:BaseService
     {
-        public static IEnumerable<PollQuestion> GetAllItems()
+        public  IEnumerable<PollQuestion> GetAllItems()
         {
-            return GetInstance().PollQuestions.AsEnumerable();
+            return this.PollQuestions.AsEnumerable();
         }
 
-        public static void Response(int id, int responses)
+        public  void Response(int id, int responses)
         {
             PollQuestion q = GetItem(id);
             if (q != null)
@@ -21,12 +22,12 @@ namespace DBNL.App.Models.Business
                 Commit();
             }
         }
-        public static PollQuestion GetItem(int id)
+        public  PollQuestion GetItem(int id)
         {
             return PollQuestions.Where(p => p.Id == id).SingleOrDefault();
         }
 
-        public static PollQuestion Add(string question, int pollId, string status, int responses)
+        public  PollQuestion Add(string question, int pollId, string status, int responses)
         {
             PollQuestion pollQuestion = new PollQuestion();
             pollQuestion.Question = question.Trim();
@@ -35,12 +36,12 @@ namespace DBNL.App.Models.Business
             pollQuestion.CreatedDate = DateTime.Now;
             pollQuestion.UpdatedDate = DateTime.Now;
             pollQuestion.Responses = responses;
-            GetInstance().PollQuestions.InsertOnSubmit(pollQuestion);
+            this.PollQuestions.InsertOnSubmit(pollQuestion);
             Commit();
             return pollQuestion;
         }
 
-        public static PollQuestion Add(string question, int pollId, string status)
+        public  PollQuestion Add(string question, int pollId, string status)
         {
             PollQuestion pollQuestion = new PollQuestion();
             pollQuestion.Question = question.Trim();
@@ -48,24 +49,24 @@ namespace DBNL.App.Models.Business
             pollQuestion.Status = status.Trim();
             pollQuestion.CreatedDate = DateTime.Now;
             pollQuestion.UpdatedDate = DateTime.Now;
-            GetInstance().PollQuestions.InsertOnSubmit(pollQuestion);
+            this.PollQuestions.InsertOnSubmit(pollQuestion);
             Commit();
             return pollQuestion;
         }
 
-        public static void Delete(int id)
+        public  void Delete(int id)
         {
             PollQuestion pollQuestion = GetItem(id);
-            GetInstance().PollQuestions.DeleteOnSubmit(pollQuestion);
+            this.PollQuestions.DeleteOnSubmit(pollQuestion);
             Commit();
         }
 
-        public static IQueryable<PollQuestion> List(int id)
+        public  IQueryable<PollQuestion> List(int id)
         {
-            return GetInstance().PollQuestions.Where(p => p.PollId == id).AsQueryable();
+            return this.PollQuestions.Where(p => p.PollId == id).AsQueryable();
         }
 
-        public static PollQuestion Edit(int id, string question, int pollId, string status, int responses)
+        public  PollQuestion Edit(int id, string question, int pollId, string status, int responses)
         {
             PollQuestion pollQuestion = GetItem(id);
             pollQuestion.Question = question.Trim();
@@ -77,15 +78,15 @@ namespace DBNL.App.Models.Business
             return pollQuestion;
         }
 
-        public static IEnumerable<PollQuestion> GetQuestionByPoll(Poll ActivePoll)
+        public  IEnumerable<PollQuestion> GetQuestionByPoll(Poll ActivePoll)
         {
             if (ActivePoll == null) return null;
-            return ActivePoll.PollQuestions.Where(p => p.Status == DBNL.App.Models.Statics.EntityStatuses.Actived.ToString())
+            return ActivePoll.PollQuestions.Where(p => p.Status == EntityStatuses.Actived.ToString())
                 .OrderByDescending(p=>p.Responses)
                 .AsEnumerable();
         }
 
-        public static PollQuestion Edit(int id, string Question, string Status)
+        public  PollQuestion Edit(int id, string Question, string Status)
         {
             PollQuestion pollQuestion = GetItem(id);
             pollQuestion.Question = Question.Trim();
@@ -96,7 +97,7 @@ namespace DBNL.App.Models.Business
             return pollQuestion;
         }
 
-        public static PollQuestion Edit(int id, string Question, int PollId, string Status)
+        public  PollQuestion Edit(int id, string Question, int PollId, string Status)
         {
             PollQuestion pollQuestion = GetItem(id);
             pollQuestion.Question = Question.Trim();
@@ -107,7 +108,7 @@ namespace DBNL.App.Models.Business
             return pollQuestion;
         }
 
-        public static void Edit(string Question, int PollId, string Status)
+        public  void Edit(string Question, int PollId, string Status)
         {
             PollQuestion q = new PollQuestion() { 
             PollId = PollId,
@@ -122,7 +123,7 @@ namespace DBNL.App.Models.Business
 
         }
 
-        public static int CountResponses(int PollId)
+        public  int CountResponses(int PollId)
         {
             return PollQuestions.Where(p => p.PollId == PollId).Sum(p => p.Responses);
         }

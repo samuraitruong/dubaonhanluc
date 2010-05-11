@@ -9,25 +9,25 @@ namespace DBNL.App.Models.Business
 {
     public class JobService:BaseService
     {
-        public static IEnumerable<Job> GetAllItems()
+        public  IEnumerable<Job> GetAllItems()
         {
             return Jobs.AsEnumerable();
         }
 
-        public static IQueryable<Job> List()
+        public  IQueryable<Job> List()
         {
             return Jobs.AsQueryable();
         }
 
       
-        public static Job GetItem(int id)
+        public  Job GetItem(int id)
         {
             return Jobs.Where(p => p.Id == id).SingleOrDefault();
         }
 
        
 
-        public static void Delete(int id)
+        public  void Delete(int id)
         {
             Job job = GetItem(id);
             Jobs.DeleteOnSubmit(job);
@@ -35,7 +35,7 @@ namespace DBNL.App.Models.Business
         }
 
 
-        public static void Add(Job job)
+        public  void Add(Job job)
         {
             job.CreatedDate = DateTime.Now;
             job.UpdatedDate = DateTime.Now;
@@ -45,7 +45,7 @@ namespace DBNL.App.Models.Business
             Commit();
         }
 
-        public static void Public(int id)
+        public  void Public(int id)
         {
             var item = GetItem(id);
             if (item == null) return;
@@ -54,7 +54,7 @@ namespace DBNL.App.Models.Business
 
         }
 
-        public static void Update(int id, Job job)
+        public  void Update(int id, Job job)
         {
             var item = GetItem(id);
             item.UpdatedDate = DateTime.Now;
@@ -68,7 +68,7 @@ namespace DBNL.App.Models.Business
             Commit();
         }
 
-        public static Job EditItem(int id, string Title, string Company, DateTime Deadline, string Status)
+        public  Job EditItem(int id, string Title, string Company, DateTime Deadline, string Status)
         {
             var item = GetItem(id);
             item.UpdatedDate = DateTime.Now;
@@ -80,9 +80,9 @@ namespace DBNL.App.Models.Business
             return item;
         }
 
-        public static IEnumerable<Job> GetNewestJob(int itemCount)
+        public  IEnumerable<Job> GetNewestJob(int itemCount)
         {
-            return Jobs.OrderByDescending(p => p.CreatedDate).Skip(0).Take(itemCount).AsEnumerable();
+            return Jobs.Where(P=>P.Status == EntityStatuses.Actived.ToString()).OrderByDescending(p => p.CreatedDate).Skip(0).Take(itemCount).AsEnumerable();
 
         }
     }

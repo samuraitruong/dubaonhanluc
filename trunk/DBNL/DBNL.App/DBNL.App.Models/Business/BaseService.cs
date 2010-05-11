@@ -8,103 +8,114 @@ namespace DBNL.App.Models.Business
 {
     public class BaseService
     {
-        static Object locker = new Object();
-        public static DBNLDataContext instance;
-        public static DBNLDataContext GetInstance()
+         Object locker = new Object();
+        private DBNLDataContext instance;
+
+        public BaseService()
         {
-            //return new DBNLDataContext();
-            lock (locker)
-            {
-                if (instance == null) instance = new DBNLDataContext();
-                return instance;
-            }
+            instance = new DBNLDataContext();
         }
         
-        public static Table<UserInRole> UserInRoles
+        public  Table<UserInRole> UserInRoles
         {
             get{
-                return GetInstance().UserInRoles;
+                return  instance.UserInRoles;
             }
         }
-        public static Table<Navigation> Navigations
+        public  Table<Navigation> Navigations
         {
             get{
-                return GetInstance().Navigations;
+                return   instance.Navigations;
             }
         }
 
-        public static Table<Job> Jobs
+        public  Table<Job> Jobs
         {
             get
             {
-                return GetInstance().Jobs;
+                return   instance.Jobs;
             }
         }
-        public static Table<User> Users
+        public  Table<User> Users
         {
             get
             {
-                return GetInstance().Users;
-            }
-        }
-
-        public static Table<Role> Roles
-        {
-            get
-            {
-                return GetInstance().Roles;
+                return   instance.Users;
             }
         }
 
-        public static Table<Banner> Banners
+        public  Table<Role> Roles
         {
             get
             {
-                return GetInstance().Banners;
+                return   instance.Roles;
             }
         }
 
-        public static Table<Poll> Polls
+        public  Table<Banner> Banners
         {
             get
             {
-                return GetInstance().Polls;
+                return   instance.Banners;
             }
         }
-        public static Table<PollQuestion> PollQuestions
+        public Table<Link> Links
         {
             get
             {
-                return GetInstance().PollQuestions;
+                return instance.Links;
+            }
+        }
+        public Table<Contact> Contacts
+        {
+            get
+            {
+                return instance.Contacts;
+            }
+        }
+        public  Table<Poll> Polls
+        {
+            get
+            {
+                return   instance.Polls;
+            }
+        }
+        public  Table<PollQuestion> PollQuestions
+        {
+            get
+            {
+                return   instance.PollQuestions;
             }
         }
 
-        public static Table<ContentCategory> Categories
+        public  Table<ContentCategory> Categories
         {
             get
             {
-                return GetInstance().ContentCategories;
+                return   instance.ContentCategories;
             }
         }
        
-        public static Table<Content> Contents
+        public  Table<Content> Contents
         {
             get
             {
-                return GetInstance().Contents;
+                return   instance.Contents;
             }
         }
 
-        public static Table<Supporter> Supporters
+        public  Table<Supporter> Supporters
         {
             get
             {
-                return GetInstance().Supporters;
+                return   instance.Supporters;
             }
         }
-        public static void Commit(){
+        public  void Commit(){
             if(instance == null) return;
             instance.SubmitChanges();
         }
+
+       
     }
 }

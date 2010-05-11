@@ -16,7 +16,7 @@ namespace DBNL.App.Areas.CMS.Controllers
         [HttpPost]
         public ActionResult JsonDelete(int id)
         {
-            PollQuestionService.Delete(id);
+            new PollQuestionService().Delete(id);
             return Json(true);
         }
 
@@ -27,11 +27,11 @@ namespace DBNL.App.Areas.CMS.Controllers
         {
             if (id.HasValue)
             {
-                PollQuestionService.Edit(id.Value, Question, Status);
+                new PollQuestionService().Edit(id.Value, Question, Status);
             }
             else
             {
-                PollQuestionService.Add( Question, PollId.Value, EntityStatuses.Actived.ToString()                   );
+                new PollQuestionService().Add( Question, PollId.Value, EntityStatuses.Actived.ToString()                   );
             }
             return Content("true");
         }
@@ -43,7 +43,7 @@ namespace DBNL.App.Areas.CMS.Controllers
 
         public ActionResult List()
         {
-            ViewData.Model = PollQuestionService.GetAllItems();
+            ViewData.Model = new PollQuestionService().GetAllItems();
             return View();
         }
 
@@ -51,8 +51,8 @@ namespace DBNL.App.Areas.CMS.Controllers
         public ActionResult GetQuestions(int page, int rows, string sidx, string sord, int? PollId)
         {
 
-            var polls = PollQuestionService.List(PollId.Value);
-            var totalResponse = PollQuestionService.CountResponses(PollId.Value);
+            var polls = new PollQuestionService().List(PollId.Value);
+            var totalResponse = new PollQuestionService().CountResponses(PollId.Value);
             var model = from entity in polls.OrderBy(sidx + " " + sord)
                         select new
                         {
@@ -70,7 +70,7 @@ namespace DBNL.App.Areas.CMS.Controllers
 
         public ActionResult Details(int id)
         {
-            ViewData.Model = PollQuestionService.GetItem(id);
+            ViewData.Model = new PollQuestionService().GetItem(id);
             return View();
         }
 
@@ -91,7 +91,7 @@ namespace DBNL.App.Areas.CMS.Controllers
             try
             {
                 // TODO: Add insert logic here
-                PollQuestionService.Add(collection["Question"], Int32.Parse(collection["PollId"]), collection["Status"], Int32.Parse(collection["Responses"]));
+                new PollQuestionService().Add(collection["Question"], Int32.Parse(collection["PollId"]), collection["Status"], Int32.Parse(collection["Responses"]));
                 return RedirectToAction("Index");
             }
             catch
@@ -105,7 +105,7 @@ namespace DBNL.App.Areas.CMS.Controllers
  
         public ActionResult Delete(int id)
         {
-            ViewData.Model = PollQuestionService.GetItem(id);
+            ViewData.Model = new PollQuestionService().GetItem(id);
             return View();
         }
 
@@ -118,7 +118,7 @@ namespace DBNL.App.Areas.CMS.Controllers
             try
             {
                 // TODO: Add delete logic here
-                PollQuestionService.Delete(id);
+                new PollQuestionService().Delete(id);
                 return RedirectToAction("List");
             }
             catch
@@ -132,7 +132,7 @@ namespace DBNL.App.Areas.CMS.Controllers
  
         public ActionResult Edit(int id)
         {
-            ViewData.Model = PollQuestionService.GetItem(id);
+            ViewData.Model = new PollQuestionService().GetItem(id);
             return View();
         }
 
@@ -145,7 +145,7 @@ namespace DBNL.App.Areas.CMS.Controllers
             try
             {
                 // TODO: Add update logic here
-                PollQuestionService.Edit(id, collection["Question"], Int32.Parse(collection["PollId"]), collection["Status"], Int32.Parse(collection["Responses"]));
+                new PollQuestionService().Edit(id, collection["Question"], Int32.Parse(collection["PollId"]), collection["Status"], Int32.Parse(collection["Responses"]));
                 return RedirectToAction("Index");
             }
             catch

@@ -17,7 +17,7 @@ namespace DBNL.App.Models
         public  void DoPoll(int id) {
             if (!CanMakePoll) return;
 
-            PollQuestionService.Response(id, 1);
+            new PollQuestionService().Response(id, 1);
             SessionManager.SecurityPollData = new UserClientInfo()
             {
                 UserHostAddress = HttpContext.Current.Request.UserHostAddress,

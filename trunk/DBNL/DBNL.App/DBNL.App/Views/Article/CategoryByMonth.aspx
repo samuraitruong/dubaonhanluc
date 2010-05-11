@@ -26,7 +26,7 @@
                     <%Html.RenderPartial("~/Views/Shared/Pagination.ascx", new PaginationViewData()
                     {
                         PageIndex = Model.ArticlesPagedList.PageNumber,
-                        DisplayItems = 5,
+                        DisplayItems = 10,
                         TotalPages = Model.ArticlesPagedList.PageCount,
                         PageActionLink = Url.RouteUrl("Category-View-Route-By-Month" , new {month=Model.FilterDate.Month, year = Model.FilterDate.Year, category = Model.Category.Key, page = "{page}" }),
                         TotalCount = Model.ArticlesPagedList.TotalItemCount,
@@ -86,7 +86,7 @@
                    <%Html.RenderPartial("~/Views/Shared/Pagination.ascx", new PaginationViewData()
                     {
                         PageIndex = Model.ArticlesPagedList.PageNumber,
-                        DisplayItems = 5,
+                        DisplayItems = 10,
                         TotalPages = Model.ArticlesPagedList.PageCount,
                         PageActionLink = Url.RouteUrl("Category-View-Route-By-Month" , new {month=Model.FilterDate.Month, year = Model.FilterDate.Year, category = Model.Category.Key, page = "{page}" }),
                         TotalCount = Model.ArticlesPagedList.TotalItemCount,

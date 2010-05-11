@@ -21,7 +21,7 @@ namespace DBNL.App.Areas.CMS.Controllers
 
         public ActionResult Index()
         {
-            ViewData.Model = RoleService.GetRoles();
+            ViewData.Model = new RoleService().GetRoles();
             return View();
         }
 
@@ -44,7 +44,7 @@ namespace DBNL.App.Areas.CMS.Controllers
         [HttpPost]
         public ActionResult FullList(int page, int rows, string sidx, string sord)
         {
-            var roles = RoleService.List();
+            var roles = new RoleService().List();
             bool searchOn = bool.Parse(Request.Form["_search"]);
             string searchExp = "";
 
@@ -75,7 +75,7 @@ namespace DBNL.App.Areas.CMS.Controllers
         [HttpPost]
         public ActionResult List(int page, int rows, string sidx, string sord)
         {
-            var roles = RoleService.List();
+            var roles = new RoleService().List();
             bool searchOn = bool.Parse(Request.Form["_search"]);
             string searchExp = "";
             if (searchOn)
@@ -152,7 +152,7 @@ namespace DBNL.App.Areas.CMS.Controllers
                 role.AllowManagePoll = !string.IsNullOrEmpty(collection["Poll"]) && collection["Poll"] == "on";
                 role.AllowManageBanner = !string.IsNullOrEmpty(collection["Banner"]) && collection["Banner"] == "on";
 
-                RoleService.AddRole(role);
+                new RoleService().AddRole(role);
                 return RedirectToAction("Index");
             }
             catch
@@ -192,7 +192,7 @@ namespace DBNL.App.Areas.CMS.Controllers
         {
             try
             {
-                RoleService.Delete(id);
+                new RoleService().Delete(id);
                 // TODO: Add update logic here
 
                 return Json(true);

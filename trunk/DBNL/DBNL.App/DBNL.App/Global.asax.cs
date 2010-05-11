@@ -85,7 +85,7 @@ namespace DBNL.App
                 JobScheduler jobScheduler = ApplicationManager.JobScheduler;
                 jobScheduler.Add(new IndexingJob(JobKeys.Indexing) { MinuesToRun = DBNLConfigurationManager.LuceneElement.Interval});
                 ApplicationManager.JobScheduler = jobScheduler;
-
+                ApplicationManager.Counter.Reset();
                 //ApplicationManager.Counter = Counter.Load();
             }
             catch (Exception ex)
@@ -96,6 +96,7 @@ namespace DBNL.App
         void Session_Start(object sender, EventArgs e)
         {
             // Code that runs when a new session is started
+            SessionManager.TimeStamp = DateTime.Now;
             FormsAuthentication.SignOut();
             string sessionId = Session.SessionID;
 
@@ -104,7 +105,8 @@ namespace DBNL.App
         void Session_End(object sender, EventArgs e)
         {
             // Code that runs when a new session is started
-            ApplicationManager.Counter.Leave();
+            Counter counter = (Counter)this.Application["Counter"];
+            counter.Leave();
             FormsAuthentication.SignOut();
         }
 

@@ -7,24 +7,24 @@ namespace DBNL.App.Models.Business
 {
     public class RoleService : BaseService
     {
-        public static Role AddRole(Role role)
+        public  Role AddRole(Role role)
         {
-            GetInstance().Roles.InsertOnSubmit(role);
+            this.Roles.InsertOnSubmit(role);
             Commit();
             return role;
         }
 
-        public static IEnumerable<Role> GetRoles()
+        public  IEnumerable<Role> GetRoles()
         {
-            return GetInstance().Roles.OrderBy(p=>p.RoleName).AsEnumerable();
+            return this.Roles.OrderBy(p=>p.RoleName).AsEnumerable();
         }
 
-        public static IQueryable<Role> List()
+        public  IQueryable<Role> List()
         {
-            return RoleService.Roles.OrderBy(p=>p.RoleName).AsQueryable();
+            return Roles.OrderBy(p=>p.RoleName).AsQueryable();
         }
 
-        public static void Delete(int id)
+        public  void Delete(int id)
         {
             var item = GetItem(id);
             if (item == null || item.IsReadOnly) return;
@@ -37,7 +37,7 @@ namespace DBNL.App.Models.Business
             Commit();
         }
 
-        private static Role GetItem(int id)
+        private  Role GetItem(int id)
         {
             return Roles.Where(p => p.Id == id).SingleOrDefault();
         }

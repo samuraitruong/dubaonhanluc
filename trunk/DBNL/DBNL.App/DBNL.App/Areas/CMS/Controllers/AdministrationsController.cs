@@ -18,7 +18,7 @@ namespace DBNL.App.Areas.CMS.Controllers
         {
             ViewData.Model = new BOHomeViewData()
             {
-                CommonCategory = CategoryService.GetInvisibleCategory()
+                CommonCategory = new CategoryService().GetInvisibleCategory()
             };
             return View();
         }

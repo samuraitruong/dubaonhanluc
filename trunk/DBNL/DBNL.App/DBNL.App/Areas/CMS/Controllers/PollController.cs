@@ -24,12 +24,12 @@ namespace DBNL.App.Areas.CMS.Controllers
         [HttpPost]
         public ActionResult Public(int id)
         {
-            PollService.Public(id);
+            new PollService().Public(id);
             return Json(true);
         }
         public ActionResult List()
         {
-            ViewData.Model = PollService.GetAllItems();
+            ViewData.Model = new PollService().GetAllItems();
             return View();
         }
 
@@ -38,7 +38,7 @@ namespace DBNL.App.Areas.CMS.Controllers
 
         public ActionResult Details(int id)
         {
-            ViewData.Model = PollService.GetItem(id);
+            ViewData.Model = new PollService().GetItem(id);
             return View();
         }
 
@@ -59,7 +59,7 @@ namespace DBNL.App.Areas.CMS.Controllers
             try
             {
                 // TODO: Add insert logic here
-                PollService.Add(collection["PollName"], collection["Status"]);
+                new PollService().Add(collection["PollName"], collection["Status"]);
                 return RedirectToAction("List");
             }
             catch
@@ -73,13 +73,13 @@ namespace DBNL.App.Areas.CMS.Controllers
  
         public ActionResult Delete(int id)
         {
-            ViewData.Model = PollService.GetItem(id);
+            ViewData.Model = new PollService().GetItem(id);
             return View();
         }
         [HttpPost]
         public ActionResult JsonDelete(int id)
         {
-            PollService.Delete(id);
+            new PollService().Delete(id);
             return Json(true);
         }
         //
@@ -91,7 +91,7 @@ namespace DBNL.App.Areas.CMS.Controllers
             try
             {
                 // TODO: Add delete logic here
-                PollService.Delete(id);
+                new PollService().Delete(id);
                 return RedirectToAction("List");
             }
             catch
@@ -105,7 +105,7 @@ namespace DBNL.App.Areas.CMS.Controllers
  
         public ActionResult Edit(int id)
         {
-            ViewData.Model = PollService.GetItem(id);
+            ViewData.Model = new PollService().GetItem(id);
             return View();
         }
 
@@ -118,7 +118,7 @@ namespace DBNL.App.Areas.CMS.Controllers
             try
             {
                 // TODO: Add update logic here
-                PollService.Edit(id, collection["PollName"], collection["Status"]);
+                new PollService().Edit(id, collection["PollName"], collection["Status"]);
                 return RedirectToAction("Index");
             }
             catch
@@ -148,7 +148,7 @@ namespace DBNL.App.Areas.CMS.Controllers
         [HttpPost]
         public ActionResult List(int page, int rows, string sidx, string sord)
         {
-            var poll = PollService.List();
+            var poll = new PollService().List();
             bool searchOn = bool.Parse(Request.Form["_search"]);
             string searchExp = "";
             if (searchOn)
@@ -174,13 +174,13 @@ namespace DBNL.App.Areas.CMS.Controllers
             {
                 if (oper == JqGridOperations.del.ToString())
                 {
-                    PollService.Delete(id.Value);
+                    new PollService().Delete(id.Value);
                 }
-                PollService.Edit(id.Value, PollName, Status);
+                new PollService().Edit(id.Value, PollName, Status);
             }
             else
             {
-                PollService.Add(PollName, Status);
+                new PollService().Add(PollName, Status);
             }
             return Content("true");
         }

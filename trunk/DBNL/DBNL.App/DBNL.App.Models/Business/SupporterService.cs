@@ -8,43 +8,43 @@ namespace DBNL.App.Models.Business
 {
     public class SupporterService: BaseService
     {
-        public static Supporter Create(Supporter sp){
+        public  Supporter Create(Supporter sp){
             sp.Status = EntityStatuses.Actived.ToString();
-            Supporters.InsertOnSubmit(sp);
+            this.Supporters.InsertOnSubmit(sp);
             Commit();
             return sp;
         }
-        public static IEnumerable<Supporter> GetItems()
+        public  IEnumerable<Supporter> GetItems()
         {
             return Supporters.AsEnumerable();
         }
-        public static IEnumerable<Supporter> GetItems(EntityStatuses status)
+        public  IEnumerable<Supporter> GetItems(EntityStatuses status)
         {
             return Supporters.Where(p=>p.Status == status.ToString()).AsEnumerable();
         }
 
-        public static IQueryable<Supporter> List()
+        public  IQueryable<Supporter> List()
         {
             return Supporters.AsQueryable();
         }
-        public static Supporter GetItem(int id) {
+        public  Supporter GetItem(int id) {
             return Supporters.Where(p => p.Id == id).SingleOrDefault();
         }
-        public static Supporter Add(Supporter sp)
+        public  Supporter Add(Supporter sp)
         {
             Supporters.InsertOnSubmit(sp);
             Commit();
             return sp;
         }
 
-        public static void Delete(int id)
+        public  void Delete(int id)
         {
             Supporter sp = GetItem(id);
             Supporters.DeleteOnSubmit(sp);
             Commit();
         }
 
-        public static void Public(int id)
+        public  void Public(int id)
         {
             Supporter sp = GetItem(id);
             if (sp.Status == EntityStatuses.Actived.ToString())
@@ -56,7 +56,7 @@ namespace DBNL.App.Models.Business
             Commit();
         }
 
-        public static void Edit(int id, string NickName, string Name)
+        public  void Edit(int id, string NickName, string Name)
         {
             Supporter sp = GetItem(id);
             sp.NickName = NickName;

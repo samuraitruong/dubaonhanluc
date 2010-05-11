@@ -65,10 +65,16 @@ namespace DBNL.App.Controllers
             ViewData.Model = new HomePageViewData();
             return View();
         }
+
+        public ActionResult DoIndex()
+        {
+            LuceneHelper.BuildingIndex();
+            return Content(DateTime.Now.ToString() + new ContentService().All().Count().ToString());
+        }
         public ActionResult List(int page, int rows, string sidx, string sord)
         {
 
-            var questions = PollQuestionService.GetAllItems().ToList();
+            var questions = new PollQuestionService().GetAllItems().ToList();
             var model = from entity in questions.AsQueryable()
                         select new
                         {

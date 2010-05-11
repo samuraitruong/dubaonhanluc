@@ -30,7 +30,7 @@
                      <%Html.RenderPartial("~/Views/Shared/Pagination.ascx", new PaginationViewData()
                     {
                         PageIndex = Model.ArticlesPagedList.PageNumber,
-                        DisplayItems = 5,
+                        DisplayItems = 10,
                         TotalPages = Model.ArticlesPagedList.PageCount,
                         PageActionLink = Url.RouteUrl("Category-View-Route" , new { category = Model.Category.Key, page = "{page}" }),
                         TotalCount = Model.ArticlesPagedList.TotalItemCount,
@@ -77,10 +77,10 @@
 				<% Html.RenderPartial("ControlBarEx", Model.Category); %>
 
 				<div class="PagerContainer">
-                    <%Html.RenderPartial("~/Views/Shared/Pagination.ascx", new PaginationViewData()
+                     <%Html.RenderPartial("~/Views/Shared/Pagination.ascx", new PaginationViewData()
                     {
                         PageIndex = Model.ArticlesPagedList.PageNumber,
-                        DisplayItems = 5,
+                        DisplayItems = 10,
                         TotalPages = Model.ArticlesPagedList.PageCount,
                         PageActionLink = Url.RouteUrl("Category-View-Route" , new { category = Model.Category.Key, page = "{page}" }),
                         TotalCount = Model.ArticlesPagedList.TotalItemCount,
