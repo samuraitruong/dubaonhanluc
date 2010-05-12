@@ -71,7 +71,11 @@ namespace DBNL.App.Config
        {
            get { return (int)this["featuredItemOnHP"]; }
        }
-
+        [ConfigurationProperty("extension")]
+        public string Extension
+        {
+            get { return (string)this["extension"]; }
+        }
        
        
     }

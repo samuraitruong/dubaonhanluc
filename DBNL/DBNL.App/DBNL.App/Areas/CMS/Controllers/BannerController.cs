@@ -51,7 +51,42 @@ namespace DBNL.App.Areas.CMS.Controllers
                 BannerPositions = CustomSelectList.CreateBannerPosition()
             };
             return View(new Banner());
-        } 
+        }
+        public ActionResult CreateIn(string id)
+        {
+            return View(new Banner() {BannerPosition = id });
+        }
+        [HttpPost]
+        public ActionResult CreateIn(FormCollection collection, Banner banner)
+        {
+            try
+            {
+                // TODO: Add insert logic here
+
+                if (!ModelState.IsValid || Request.Files[0].ContentLength == 0)
+                {
+                    if (Request.Files[0].ContentLength == 0) ViewData.ModelState.AddModelError("Image", "Phải chọn hình");
+                    return View(banner);
+                }
+
+
+                string fileName = "No files";
+                fileName = Request.Files[0].FileName;
+                Request.Files[0].SaveAs(Path.Combine(DBNLConfigurationManager.FileResponsity.BannerFolder, fileName));
+                banner.Status = EntityStatuses.Actived.ToString();
+                banner.BannerImage = fileName;
+                banner.CreatedDate = DateTime.Now;
+                banner.UpdatedDate = DateTime.Now;
+
+                new BannerService().Add(banner);
+                return RedirectToAction("List");
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+                //return View();
+            }
+        }
 
         //
         // POST: /Banner/Create

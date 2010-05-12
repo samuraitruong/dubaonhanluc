@@ -161,6 +161,7 @@
     <Content Include="animated_favicon1.gif" />
     <Content Include="Areas\CMS\Views\Administrations\Index.aspx" />
     <Content Include="Areas\CMS\Views\Administrations\Sample.aspx" />
+    <Content Include="Areas\CMS\Views\Banner\CreateIn.aspx" />
     <Content Include="Areas\CMS\Views\Banner\Create.aspx" />
     <Content Include="Areas\CMS\Views\Banner\Delete.aspx" />
     <Content Include="Areas\CMS\Views\Banner\Details.aspx" />
@@ -1881,6 +1882,7 @@
     <Content Include="Views\Shared\ScriptsControl.ascx" />
     <Content Include="Views\Shared\Sidebar.ascx" />
     <Content Include="Views\Shared\SlideShowBanners.ascx" />
+    <Content Include="Views\Shared\Sponsor.aspx" />
     <Content Include="Views\WebContact\Index.aspx" />
     <Content Include="Views\Home\Index.aspx" />
     <Content Include="Views\Shared\LeftNavigationControl.ascx" />

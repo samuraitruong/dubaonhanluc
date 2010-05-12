@@ -27,7 +27,7 @@ namespace DBNL.App
             AreaRegistration.RegisterAllAreas();
             routes.MapRoute(
                 "Category-View-Route-By-Month",
-                "{month}/{year}/{category}_{page}.aspx",
+                "{month}/{year}/{category}_{page}" + DBNLConfigurationManager.WebUI.Extension,
                 new
                 {
                     controller = "Article",
@@ -39,7 +39,7 @@ namespace DBNL.App
 
             routes.MapRoute(
                 "Category-View-Route-By-Date",
-                "{day}/{month}/{year}/{category}_{page}.aspx",
+                "{day}/{month}/{year}/{category}_{page}" + DBNLConfigurationManager.WebUI.Extension,
                 new
                 {
                     controller = "Article",
@@ -52,7 +52,7 @@ namespace DBNL.App
 
             routes.MapRoute(
                 "Category-View-Route",
-                "{category}_{page}.aspx",
+                "{category}_{page}" + DBNLConfigurationManager.WebUI.Extension,
                 new
                 {
                     controller = "Article",
@@ -62,7 +62,7 @@ namespace DBNL.App
 
             routes.MapRoute(
                 "Content-View-Route",
-                "{category}/{contentkey}.aspx",
+                "{category}/{contentkey}" + DBNLConfigurationManager.WebUI.Extension,
                 new
                 {
                     controller = "Article",
@@ -71,7 +71,7 @@ namespace DBNL.App
 
             routes.MapRoute(
                 "Default",                                              // Route name
-                "{controller}.aspx/{action}/{id}",                           // URL with parameters
+                "{controller}"+ DBNLConfigurationManager.WebUI.Extension+"/{action}/{id}",                           // URL with parameters
                 new { controller = "Home", action = "Index", id = "" }  // Parameter defaults
                 //new string[] { "DBNL.App.Controllers" }
             );

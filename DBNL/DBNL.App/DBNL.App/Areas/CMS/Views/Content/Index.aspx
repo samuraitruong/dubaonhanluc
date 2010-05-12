@@ -120,7 +120,10 @@ $(document).ready(function () {
                                     var edit = '<a  class="Edit" rel="' +cl + '" href="<%=Url.Action("Edit","Content")%>/' + cl +'" ><img src="<%=Url.Content("~/Images/edit_medium.png") %>" /></a>';
                                     jQuery("#grid").setRowData(ids[i],{Options:edit}) ;
                             } 
-                    } 
+                    } ,
+                    loadError : function (xhr,status,error) { 
+                        window.location.reload(true);
+                    },
                 }).navGrid('#pager', { edit: true, add: true, del: true, search: true, view: true }, {},{},{url:'<%=Url.Action("JsonDelete", "Content" )%>'}).navButtonAdd('#pager',{
                            caption:"Active/Inactive", 
                            buttonicon:"ui-icon-power", 
