@@ -214,7 +214,6 @@ $(document).ready(function () {
                                     } 
                             },
                             loadError : function (xhr,status,error) { 
-                                alert(error);
                                 window.location.reload(true);
                             },
                             loadComplete: function(){ 

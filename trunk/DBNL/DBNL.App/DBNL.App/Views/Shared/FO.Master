@@ -173,7 +173,7 @@ $(document).ready(function(){
         <div id="partner">
             <h2>
                 CÁC ĐƠN VỊ TÀI TRỢ</h2>
-            <iframe height="65" frameborder="0" width="970" scrolling="no" src="<%=Url.Content("~/scroll.html")%>">
+            <iframe height="65" frameborder="0" width="970" scrolling="no" src="<%=Url.Action("Sponsor", "Home")%>">
             </iframe>
         </div>
         <div id="wrap_ad" class="clearfix">

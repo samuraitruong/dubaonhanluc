@@ -33,6 +33,7 @@ namespace DBNL.App.Models.Statics
            posList.Add(new SelectListItem() { Text = "Bên Phải", Value = BannerPositions.Right.ToString() });
            posList.Add(new SelectListItem() { Text = "Bên Dưới", Value = BannerPositions.Bottom.ToString() });
            posList.Add(new SelectListItem() { Text = "Trang chủ", Value = BannerPositions.Main.ToString() });
+           posList.Add(new SelectListItem() { Text = "Nhà tài trợ", Value = BannerPositions.Sponsor.ToString() });
            return posList.AsEnumerable();
        }
 

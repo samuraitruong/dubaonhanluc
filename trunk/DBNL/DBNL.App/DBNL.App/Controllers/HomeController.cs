@@ -41,6 +41,16 @@ namespace DBNL.App.Controllers
             
             return View();
         }
+        [CompressFilter]
+        [CacheFilter]
+        
+        public ActionResult Sponsor()
+        {
+
+            ViewData.Model = new BannerService().GetItems(Models.Statics.BannerPositions.Sponsor);
+            return View();
+        }
+
         public ActionResult Http404(string url)
         {
             return View();

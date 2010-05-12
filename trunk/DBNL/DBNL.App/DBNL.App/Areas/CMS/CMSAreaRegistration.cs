@@ -1,4 +1,5 @@
 ﻿using System.Web.Mvc;
+using DBNL.App.Config;
 
 namespace DBNL.App.Areas.CMS
 {
@@ -16,7 +17,7 @@ namespace DBNL.App.Areas.CMS
         {
             context.MapRoute(
                 "CMS_default",
-                "CMS/{controller}.aspx/{action}/{id}",
+                "CMS/{controller}" + DBNLConfigurationManager.WebUI.Extension+"/{action}/{id}",
                 new { action = "Index", controller="Administrations" ,id = UrlParameter.Optional }
             );
         }

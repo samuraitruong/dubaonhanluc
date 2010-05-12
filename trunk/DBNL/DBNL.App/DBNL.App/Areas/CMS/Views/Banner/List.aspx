@@ -21,6 +21,7 @@
     <p>
         <%=Html.ActionLink("Thêm Mới ", "Create", "Banner") %>
     </p>
+    <div id="dynamicLink"></div>
     </div>
 </asp:Content>
 
@@ -36,13 +37,18 @@
  function bannerImageVal(elem) {
   return $(elem).attr("src");
 }
-
+ function UpdateCreateInLink(id) {
+        var createInAction = '<% = Url.Action("CreateIn", "Banner") %>/';
+        $("#dynamicLink").empty();
+        var a = $("<a/>", {href:createInAction +id, text:'Thêm banner vào mục này.' });
+        $("#dynamicLink").append(a);
+    }
 
 $(document).ready(function () {
-
             DBNL.Admin.Banners.setupGrid($("#grid"), $("#pager"));
 
              $("#BannerPosition").bind("change", function() {
+                UpdateCreateInLink($(this).val())
                 jQuery("#grid").setGridParam({ postData: {Position:  $(this).val()}})  
                                       
                                        .trigger('reloadGrid');  
