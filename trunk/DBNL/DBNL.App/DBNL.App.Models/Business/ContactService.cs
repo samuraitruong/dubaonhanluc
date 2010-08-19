@@ -33,12 +33,13 @@ namespace DBNL.App.Models.Business
             return contact;
         }
 
-        public  Contact Edit(int id, string name, string email, string status)
+        public  Contact Edit(int id, string name, string email, string status, int deparment)
         {
             Contact contact = GetItem(id);
             contact.Name = name.Trim();
             contact.Email = email.Trim();
             contact.Status = status.Trim();
+            contact.DepartmentId = deparment;
             Commit();
             return contact;
         }
@@ -48,6 +49,12 @@ namespace DBNL.App.Models.Business
             Contact contact = GetItem(id);
             this.Contacts.DeleteOnSubmit(contact);
             Commit();
+        }
+
+        public IEnumerable<Contact> GetItems(int? id)
+        {
+            if (!id.HasValue) return GetAllItems();
+            return this.Contacts.Where(p => p.DepartmentId == id.Value);
         }
     }
 }

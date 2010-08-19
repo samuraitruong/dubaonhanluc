@@ -44,7 +44,7 @@ $(document).ready(function () {
                         { name: 'Status', index: 'Status', width: 35, align: 'center', sortable: true, editable: true, edittype: 'select', style: 'select', editoptions: { dataUrl: "<%=Url.Action("GetSelectStatus", "Poll" )%>"}, hidden: false },
                       ],
                     rowNum: 10,
-                    rowList: [10, 20, 30],
+                    rowList: [5,10,15, 20,25, 30,40,50,60,70,80,90,100],
                     pager: pager,
                     sortname: 'PollName',
                     sortorder: "asc",
@@ -84,7 +84,7 @@ $(document).ready(function () {
                                         {name:"Percent", index:"Responses", width:150, align: 'center', sortable:true}     
                                       ],
                              rowNum:20, 
-                             rowList: [10, 20, 30],
+                             rowList: [5,10,15, 20,25, 30,40,50,60,70,80,90,100],
                              pager: pager_id, 
                              sortname: 'Responses', 
                              sortorder: "desc", 

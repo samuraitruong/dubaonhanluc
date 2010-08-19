@@ -11,6 +11,8 @@ using DBNL.App.Models;
 
 namespace DBNL.App.Areas.CMS.Controllers
 {
+    [RequiresAuthentication]
+    [Authorize]
     public class GenericController : Controller
     {
         //

@@ -22,6 +22,14 @@ namespace DBNL.App.Models.Business
                 return  instance.UserInRoles;
             }
         }
+        public Table<Department> Departments
+        {
+            get
+            {
+                return instance.Departments;
+            }
+        }
+
         public  Table<Navigation> Navigations
         {
             get{

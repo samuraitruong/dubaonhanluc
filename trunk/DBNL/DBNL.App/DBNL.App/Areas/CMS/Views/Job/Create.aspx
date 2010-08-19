@@ -41,7 +41,7 @@
                 <%= Html.LabelFor(model => model.Deadline) %>
             </div>
             <div class="editor-field">
-                <%= Html.TextBoxFor(model => model.Deadline, new {@class="DatePicker"})%>
+                <%= Html.TextBoxFor(model => model.Deadline, new {@class="DatePicker", value=Model.Deadline.ToShortDateString()})%>
                 <%= Html.ValidationMessageFor(model => model.Deadline)%>
             </div>
 
@@ -84,7 +84,8 @@
              {
                  filebrowserBrowseUrl: '<%= Url.Content("~/Scripts/FileManager/index.html") %>'
              });
-             $(".DatePicker").datepicker();
+             //$(".DatePicker").datepicker();
+             $('.DatePicker').datepicker({ dateFormat: 'dd/mm/yy', yearRange: '2000:2020', showButtonPanel: true, appendText: '(dd/mm/yyyy)', buttonImage: 'http://www.marocotel.com/images/btn_datepicker.gif', buttonImageOnly: true, changeMonth: true, changeYear: true });
 
          });
     </script>

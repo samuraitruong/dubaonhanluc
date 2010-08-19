@@ -15,6 +15,7 @@ using DBNL.App.Models.Extensions;
 
 namespace DBNL.App.Areas.CMS.Controllers
 {
+    [RequiresAuthentication]
     public class JobController : Controller
     {
         //
@@ -165,6 +166,24 @@ namespace DBNL.App.Areas.CMS.Controllers
                         };
             return Json(model.ToJqGridData(page, rows, null, "", new[] { "Title", "Company", "Deadline","Status"}), JsonRequestBehavior.AllowGet);
         }
+
+        [HttpPost]
+        [RequiresAuthentication]
+        public ActionResult JsonDelete(int id)
+        {
+            try
+            {
+                // TODO: Add delete logic here
+                new JobService().Delete(id);
+                return Json(true, JsonRequestBehavior.DenyGet);
+            }
+            catch
+            {
+                return Json(false, JsonRequestBehavior.DenyGet);
+            }
+        }
+
+
 
     }
 }

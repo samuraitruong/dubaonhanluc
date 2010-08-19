@@ -85,6 +85,7 @@
     <Compile Include="Business\CategoryService.cs" />
     <Compile Include="Business\ContactService.cs" />
     <Compile Include="Business\ContentService.cs" />
+    <Compile Include="Business\DepartmentService.cs" />
     <Compile Include="Business\JobService.cs" />
     <Compile Include="Business\LinkService.cs" />
     <Compile Include="Business\NavigationService.cs" />

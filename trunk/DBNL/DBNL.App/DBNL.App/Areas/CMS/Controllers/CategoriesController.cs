@@ -18,11 +18,14 @@ namespace DBNL.App.Areas.CMS.Controllers
     {
         //
         // GET: /Categories/
+        [RequiresAuthentication]
         public ActionResult JsonDelete(int id)
         {
             new CategoryService().Delete(id);
             return Json(true);
         }
+
+        [RequiresAuthentication]
         public ActionResult Index()
         {
             return RedirectToAction("List");
@@ -30,7 +33,7 @@ namespace DBNL.App.Areas.CMS.Controllers
 
         //
         // GET: /Categories/Details/5
-
+        [RequiresAuthentication]
         public ActionResult Details(int id)
         {
             return View();
@@ -38,6 +41,7 @@ namespace DBNL.App.Areas.CMS.Controllers
 
         //
         // GET: /Categories/Create
+        [RequiresAuthentication]
         public ActionResult List()
         {
             ViewData.Model = new CategoryService().GetAllCategories();
@@ -45,6 +49,7 @@ namespace DBNL.App.Areas.CMS.Controllers
         }
 
         [HttpPost]
+        [RequiresAuthentication]
         public ActionResult List(int page, int rows, string sidx, string sord, int? ParentId)
         {
             var categories = new CategoryService().List(ParentId);
@@ -66,6 +71,7 @@ namespace DBNL.App.Areas.CMS.Controllers
         }
 
         [HttpPost]
+        [RequiresAuthentication]
         public ActionResult TreeNode(int? Node, FormCollection collection)
         {
             IEnumerable<ContentCategory> categories =null;
@@ -89,6 +95,7 @@ namespace DBNL.App.Areas.CMS.Controllers
         }
 
         [HttpPost]
+        [RequiresAuthentication]
         public ActionResult FullList(int page, int rows, string sidx, string sord)
         {
             var categories = new CategoryService().List();
@@ -106,6 +113,7 @@ namespace DBNL.App.Areas.CMS.Controllers
         }
 
         [HttpPost]
+        [RequiresAuthentication]
         public ActionResult Create(ContentCategory category, FormCollection collection)
         {
             try
@@ -126,6 +134,8 @@ namespace DBNL.App.Areas.CMS.Controllers
             ViewData["Categories"] = CustomSelectList.CreateListCategories(true);
             return View(category);
         }
+        
+        [RequiresAuthentication]
         public ActionResult Create()
         {
             ViewData["Categories"] = CustomSelectList.CreateListCategories(true);
@@ -137,12 +147,21 @@ namespace DBNL.App.Areas.CMS.Controllers
 
         //
         // GET: /Categories/Edit/5
- 
+
+        [RequiresAuthentication]
         public ActionResult Edit(int id)
         {var item = new CategoryService().GetItem(id);
             ViewData["Categories"] = CustomSelectList.CreateListCategories(false);
             ViewData["Status"] = CustomSelectList.CreateEntityStatus().SetSelectedValue(item.Status);
             
+            return View(item);
+        }
+
+
+        [RequiresAuthentication]
+        public ActionResult ViewCat(int id)
+        {
+            var item = new CategoryService().GetItem(id);
             return View(item);
         }
 
@@ -171,6 +190,7 @@ namespace DBNL.App.Areas.CMS.Controllers
         }
 
         [HttpPost]
+        [RequiresAuthentication]
         public ActionResult EditRow(int? id, string oper, bool IsFeatured, string Name, int? ParentCateId, bool ShowOnHP)
         {
             if (oper == JqGridOperations.edit.ToString())
@@ -197,6 +217,7 @@ namespace DBNL.App.Areas.CMS.Controllers
             return Content("true");
         }
 
+        [RequiresAuthentication]
         public ActionResult GetSelectParentId()
         {
             IEnumerable<SelectListItem> list = CustomSelectList.CreateListCategories(true);

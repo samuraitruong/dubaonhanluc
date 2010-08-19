@@ -13,6 +13,7 @@ using DBNL.App.Models.Statics;
 
 namespace DBNL.App.Areas.CMS.Controllers
 {
+    [RequiresAuthentication]
     public class SupporterController : Controller
     {
         //

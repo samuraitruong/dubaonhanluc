@@ -45,6 +45,7 @@ namespace DBNL.App.Models.Extensions
         }
         public static string StripHTML(this string inputString)
         {
+            if (inputString == null) return string.Empty;
             return Regex.Replace
               (inputString, "<.*?>", string.Empty);
         }

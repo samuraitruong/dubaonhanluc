@@ -47,7 +47,7 @@
                         { name: 'Status', index: 'Url', width: 75, align: 'center', formatter: 'text',  sortable: true, editable: false, edittype: 'text', editoptions: { size: 20, maxlength:100}, hidden: false },
                       ],
                     rowNum: 10,
-                    rowList: [10, 20, 30],
+                    rowList: [5,10,15, 20,25, 30,40,50,60,70,80,90,100],
                     pager: pager,
                     sortname: 'Name',
                     sortorder: "asc",

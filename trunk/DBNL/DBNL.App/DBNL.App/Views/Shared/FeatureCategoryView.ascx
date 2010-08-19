@@ -15,7 +15,7 @@
 						<a href="<%= Url.ContentLink(item)%>"><img width="115" alt="nguonnhanluc" src="<% =item.ThumbnailUrl %>"/></a>
 					</div>
 					<div class="des">
-						<h3><%= Html.ContentLink(item, 12, false)%> <small><%= item.UpdatedDate.ToString("dd/MM/yyyy") %></small></h3>
+						<h3><%= Html.ContentLink(item, 12, false)%> <small><%= item.CreatedDate.ToString("dd/MM/yyyy") %></small></h3>
 						<p>&nbsp;&nbsp; <%=item.Description.TrimmedWord(24) %> </p>
 					</div>	
 				</div>

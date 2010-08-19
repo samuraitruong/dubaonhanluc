@@ -5,6 +5,7 @@ using System.Text;
 using DBNL.App.Config;
 using System.ComponentModel.DataAnnotations;
 using DBNL.App.Models.Entities.Attributes;
+using DBNL.App.Models.Business;
 
 namespace DBNL.App.Models
 {
@@ -14,10 +15,22 @@ namespace DBNL.App.Models
         public IEnumerable<Content> FeatureArtilesHonHP { 
             
             get {
+                if (this.ID == 49)
+                {
+                    return (new ContentService())
+                        .Contents
+                        .Where(p=>p.CategoryId == 49 || p.CategoryId == 53)
+                        .OrderByDescending(p => p.IsFeatured)
+                        .Skip(0)
+                        .Take(DBNLConfigurationManager.WebUI.FeaturedItemOnHP)
+                        .OrderByDescending(p1 => p1.CreatedDate)
+                        .AsEnumerable();
+                }
                 return this.Contents.OrderByDescending(p => p.IsFeatured)
-                                    .OrderByDescending(p1 => p1.UpdatedDate)
+                                    
                                     .Skip(0)
                                     .Take(DBNLConfigurationManager.WebUI.FeaturedItemOnHP)
+                                    .OrderByDescending(p1 => p1.CreatedDate)
                                     .AsEnumerable();
             }
         }

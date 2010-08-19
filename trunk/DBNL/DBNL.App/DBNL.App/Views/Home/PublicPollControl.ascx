@@ -21,7 +21,7 @@
 			<div class="clear"></div>
 			<p>
 				<input type="submit" class="k1" value="Biểu quyết" name=""/>
-				<input type="button" class="k1" onclick="location.href='<% = Url.Action("View","WebPoll") %>" value="Xem kết quả" name=""/>
+				<input type="button" class="k1" onclick="location.href='<% = Url.Action("View","WebPoll") %>'" value="Xem kết quả" name=""/>
                 <%--<%= Html.ActionLink("Xem Kết quả", "View", "WebPoll", new { id = Model.ActivePoll.Id}, new { @class = "k1" })%>--%>
 			</p>
     </div>

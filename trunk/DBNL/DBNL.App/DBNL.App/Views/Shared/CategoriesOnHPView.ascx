@@ -25,7 +25,7 @@
                         </div>
                 
     			<div class="des">
-    				<h3><a href="<%=Url.ContentLink(subitem) %>"><%=subitem.Title.TrimmedWord(16) %></a> <small>(04/03/2010)</small></h3>
+    				<h3><a href="<%=Url.ContentLink(subitem) %>"><%=subitem.Title.TrimmedWord(16) %></a> <small>(<%=subitem.CreatedDate.ToString("dd/MM/yyyy") %>)</small></h3>
     				<p>&nbsp;&nbsp; <%=subitem.Description.TrimmedWord(40)%></p>
     			</div>
 			</div>

@@ -70,7 +70,7 @@ $(document).ready(function () {
                         
                       ],
                     rowNum: 10,
-                    rowList: [10, 20, 30],
+                    rowList: [5,10,15, 20,25, 30,40,50,60,70,80,90,100],
                     pager: pager,
                     sortname: 'RoleName',
                     sortorder: "asc",
@@ -113,7 +113,7 @@ $(document).ready(function () {
                         { name: 'Password', index: 'Password', width: 35, align: 'center', sortable: true, editable: true, edittype: 'text', style: 'select', editoptions: { dataUrl: ""}, hidden: true },
                       ],
                     rowNum: 10,
-                    rowList: [10, 20, 30],
+                    rowList: [5,10,15, 20,25, 30,40,50,60,70,80,90,100],
                     pager: pager,
                     sortname: 'Name',
                     sortorder: "asc",

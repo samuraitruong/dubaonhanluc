@@ -52,7 +52,7 @@ namespace DBNL.App.Models
             if (!File.Exists(path))
             {
                 File.Create(path).Close();
-                Counter c = new Counter() { OnlineUsers = 0, Visits = 931397 };
+                Counter c = new Counter() { OnlineUsers = 0, Visits = 1477637};
                 c.Save();
                 return c;
             }

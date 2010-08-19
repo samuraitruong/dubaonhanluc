@@ -65,7 +65,7 @@
                 <%= Html.LabelFor(model => model.Picture) %>
             </div>
             <div class="editor-field">
-                <input type="file" name="Picture" />
+                <input type="file" name="PictureFile" />
                 <img width="114" height="114" src="<%= DBNLConfigurationManager.FileResponsity.PictureRelativeUrl %>/<%= Model.Picture %>
 " alt="Alternate Text" />
             </div>

@@ -14,6 +14,7 @@ using DBNL.App.Models.Extensions;
 
 namespace DBNL.App.Areas.CMS.Controllers
 {
+    [RequiresAuthentication]
     public class RolesController : Controller
     {
         //
@@ -185,6 +186,20 @@ namespace DBNL.App.Areas.CMS.Controllers
             {
                 return View();
             }
+        }
+
+        [AcceptVerbs(HttpVerbs.Post)]
+        public ActionResult EditRow(int id, Role role)
+        {
+            try
+            {
+                return Content("");
+            }
+            catch
+            {
+                
+            }
+            return Content("");
         }
 
         [AcceptVerbs(HttpVerbs.Post)]

@@ -8,6 +8,7 @@ using System.Linq.Dynamic;
 using DBNL.App.Models.Helpers;
 using DBNL.App.Models.Statics;
 using DBNL.App.Models.Extensions;
+using DBNL.App.Models;
 
 namespace DBNL.App.Areas.CMS.Controllers
 {
@@ -16,17 +17,20 @@ namespace DBNL.App.Areas.CMS.Controllers
         //
         // GET: /Content/
         [HttpPost]
+        [RequiresAuthentication]
         public ActionResult ToggleActive(int id) {
             new ContentService().ToggleActive(id);
             return Json(true);
         }
         [HttpPost]
+        [RequiresAuthentication]
         public ActionResult ToggleOnHP(int id)
         {
             new ContentService().ToggleOnHP(id);
             return Json(true);
         }
         [HttpPost]
+        [RequiresAuthentication]
         public ActionResult GetList(int page, int rows, string sidx, string sord, int? CategoryId)
         {
             IQueryable<Models.Content> contents ;
@@ -59,7 +63,8 @@ namespace DBNL.App.Areas.CMS.Controllers
             return Json(model.ToJqGridData(page, rows, null, "", new[] { "Title" }), JsonRequestBehavior.AllowGet);
         }
         
-            [HttpPost]
+        [HttpPost]
+        [RequiresAuthentication]
         public ActionResult GetOrphanArticles(int page, int rows, string sidx, string sord)
         {
             var contents = new ContentService().AllOrhanArticles();
@@ -84,6 +89,7 @@ namespace DBNL.App.Areas.CMS.Controllers
         }
 
         [HttpPost]
+        [RequiresAuthentication]
         public ActionResult List(int page, int rows, string sidx, string sord, int CategoryId)
         {
             var contents = new ContentService().List(CategoryId);
@@ -119,6 +125,8 @@ namespace DBNL.App.Areas.CMS.Controllers
                 return "";
             }
         }
+
+        [RequiresAuthentication]
         public ActionResult Index()
         {
             ViewData["Categories"] = CustomSelectList.CreateListCategories(false);
@@ -129,7 +137,7 @@ namespace DBNL.App.Areas.CMS.Controllers
 
         //
         // GET: /Content/Details/5
-
+        [RequiresAuthentication]
         public ActionResult Details(int id)
         {
             return View();
@@ -137,7 +145,7 @@ namespace DBNL.App.Areas.CMS.Controllers
 
         //
         // GET: /Content/Create
-
+        [RequiresAuthentication]
         public ActionResult Create()
         {
             ViewData["Categories"] = CustomSelectList.CreateListCategories(false);
@@ -146,6 +154,7 @@ namespace DBNL.App.Areas.CMS.Controllers
         }
 
         [HttpPost]
+        [RequiresAuthentication]
         [ValidateInput(false)]
         public ActionResult CreateIn (Models.Content content, FormCollection collection)
         {
@@ -161,10 +170,10 @@ namespace DBNL.App.Areas.CMS.Controllers
                     ViewData["Category"] = new CategoryService().GetById(content.CategoryId);
                     return View(content);
                 }
-
+                content.Content1 = StringTemplateHelper.ReplaceVideoTag(content.Content1);
                 new ContentService().Create(content, picture);
 
-                return RedirectToAction("Index", "Content");
+                return RedirectToAction("ViewCat", "Categories", new { id = content.CategoryId });
             }
             catch
             {
@@ -172,6 +181,7 @@ namespace DBNL.App.Areas.CMS.Controllers
                 return View(content);
             }
         }
+        [RequiresAuthentication]
         public ActionResult CreateIn(int id)
         {
             ViewData["Category"] = new CategoryService().GetById(id);
@@ -183,23 +193,13 @@ namespace DBNL.App.Areas.CMS.Controllers
 
         [HttpPost]
         [ValidateInput(false)]
+        [RequiresAuthentication]
         public ActionResult Create(Models.Content content, FormCollection collection)
         {
             try
             {
                 HttpPostedFileBase picture = (HttpPostedFileBase)Request.Files["Picture"];
-                // TODO: Add insert logic here
-                //Models.Content content = new Models.Content(){
-                //    Title = collection["Title"],
-                //    Content1 = collection["Content"],
-                //    Status = EntityStatuses.Actived.ToString(),
-                //    CreatedDate = DateTime.Now,
-                //    UpdatedDate = DateTime.Now,
-                //    UniqueKey = collection["Title"].ToUrlKey(),
-                //    CategoryId = int.Parse(collection["CategoryId"]),
-                //    IsFeatured = collection["IsFeatured"].Contains("true"),
-                //    Description = collection["Description"],
-                //};
+
                 content.UniqueKey = content.Title.ToUrlKey();
                 content.Status = EntityStatuses.Actived.ToString();
                 
@@ -208,10 +208,10 @@ namespace DBNL.App.Areas.CMS.Controllers
                 {
                     return View(content);
                 }
-
+                content.Content1 = StringTemplateHelper.ReplaceVideoTag(content.Content1);
                 new ContentService().Create(content, picture);
 
-                return RedirectToAction("Index");
+                return RedirectToAction("ViewCat", "Categories", new { id = content.CategoryId });
             }
             catch
             {
@@ -221,7 +221,7 @@ namespace DBNL.App.Areas.CMS.Controllers
 
         //
         // GET: /Content/Edit/5
- 
+        [RequiresAuthentication]
         public ActionResult Edit(int id)
         {
 
@@ -231,6 +231,7 @@ namespace DBNL.App.Areas.CMS.Controllers
 
             return View(item);
         }
+        [RequiresAuthentication]
         public ActionResult EditContent(int id)
         {
 
@@ -243,6 +244,7 @@ namespace DBNL.App.Areas.CMS.Controllers
         //
         // POST: /Content/Edit/5
 
+        [RequiresAuthentication]
         public ActionResult JsonDelete(int id)
         {
             new ContentService().Delete(id);
@@ -257,18 +259,22 @@ namespace DBNL.App.Areas.CMS.Controllers
                 if (!ModelState.IsValid) {
                     ViewData["Categories"] = CustomSelectList.CreateListCategories(false).SetSelectedValue(content.CategoryId.ToString());
                     return View(content); }
-                HttpPostedFileBase picture = (HttpPostedFileBase)Request.Files["Picture"];
+                HttpPostedFileBase picture = (HttpPostedFileBase)Request.Files["PictureFile"];
+                content.Content1 = StringTemplateHelper.ReplaceVideoTag(content.Content1);
+                content.UniqueKey = content.Title.ToUrlKey();
                 new ContentService().Update(content, picture);
- 
-                return RedirectToAction("Index");
+
+                return RedirectToAction("ViewCat", "Categories", new { id = content.CategoryId });
             }
             catch
             {
-                return View();
+                ViewData["Categories"] = CustomSelectList.CreateListCategories(false).SetSelectedValue(content.CategoryId.ToString());
+                return View(content);
             }
         }
         [AcceptVerbs(HttpVerbs.Post)]
         [ValidateInput(false)]
+        [RequiresAuthentication]
         public ActionResult EditContent(int id, Models.Content content, FormCollection collection)
         {
             try
@@ -277,7 +283,9 @@ namespace DBNL.App.Areas.CMS.Controllers
                 {
                     return View(content);
                 }
-                HttpPostedFileBase picture = (HttpPostedFileBase)Request.Files["Picture"];
+                HttpPostedFileBase picture = (HttpPostedFileBase)Request.Files["PictureFile"];
+                content.Content1 = StringTemplateHelper.ReplaceVideoTag(content.Content1);
+                content.UniqueKey = content.Title.ToUrlKey();
                 new ContentService().Update(content, picture);
 
                 return RedirectToAction("Index","Administrations");

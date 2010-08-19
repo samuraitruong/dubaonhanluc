@@ -5,16 +5,15 @@ function toListView() {
 }
 function onSelectDate() { }
 function toColumnView() {
-    var div = $("<div/>", { class: "ss_im_news" });
+    var div = $("<div/>");
     div.addClass("ss_im_news");
-    var ul = $("<ul/>", { class: 'k_ss_im_news' });
+    var ul = $("<ul/>");
     ul.addClass("k_ss_im_news");
     $("div[rel='Item']").each(function () {
         var li = $("<li/>", {});
 
         var item = $(this).attr('class', 'im_news_object').attr("style","min-height:270px");
         $("div:first", item).attr('class', 'im_news_pic');
-
         $("img", item).attr("height", "90").attr("width", "110");
         $(".des", item).removeAttr("class")
         li.append(item);
@@ -72,7 +71,7 @@ $(document).ready(function () {
         return false;
 
     });
-
+    
     var cookie = $.cookie('view');
     if (cookie != null && cookie == 'column')
         toColumnView();

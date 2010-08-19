@@ -1,4 +1,5 @@
 // JavaScript Document
+
 function TestTelephone(telString)
 {
     for(var i=0;i<telString.length;i++)

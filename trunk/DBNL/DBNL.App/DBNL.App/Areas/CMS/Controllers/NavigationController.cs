@@ -15,6 +15,7 @@ using System.Web.Routing;
 
 namespace DBNL.App.Areas.CMS.Controllers
 {
+    [RequiresAuthentication]
     public class NavigationController : Controller
     {
         //
@@ -51,6 +52,7 @@ namespace DBNL.App.Areas.CMS.Controllers
                 RootNavigations = CustomSelectList.CreateListNavigations(true),
                 SiteModules = CustomSelectList.CreateModuleList(),
                 OrphanArticles = CustomSelectList.CreateListOphanArticles(),
+                Departments = CustomSelectList.CreateDepartments()
             };
             return View(new Models.Navigation());
         }
@@ -82,9 +84,14 @@ namespace DBNL.App.Areas.CMS.Controllers
              if (entity.Component == SiteModules.Post.ToString())
                  return Url.Action(entity.Action, entity.Controller, new { Area = "", id = entity.ContentId });
 
+             if (entity.Component == SiteModules.WebContact.ToString())
+                 return Url.Action(entity.Action, entity.Controller, new { Area = "", id = entity.CustomData });
+
 
              if (entity.Component == SiteModules.Url.ToString())
                  return entity.ExternalUrl;
+
+
             return Url.Action(entity.Action, entity.Controller, new { Area = ""});
         }
 
@@ -107,7 +114,9 @@ namespace DBNL.App.Areas.CMS.Controllers
                         Categories = CustomSelectList.CreateListCategories(true),
                         NavigationPositions = CustomSelectList.CreateMenuPosition(),
                         RootNavigations = CustomSelectList.CreateListNavigations(true),
-                        SiteModules = CustomSelectList.CreateModuleList()
+                        SiteModules = CustomSelectList.CreateModuleList(),
+                        OrphanArticles = CustomSelectList.CreateListOphanArticles(),
+                        Departments = CustomSelectList.CreateDepartments()
                     };
 
                     return View(navigation);
@@ -151,6 +160,7 @@ namespace DBNL.App.Areas.CMS.Controllers
                 {
                     navigation.Controller = DBNL.App.Models.Statics.Controllers.WebContact.ToString();
                     navigation.Action = DBNL.App.Models.Statics.Actions.Index.ToString();
+                    navigation.CustomData = collection["DepartmentId"];
                     //navigation.Area = "";
                 }
 
@@ -173,7 +183,9 @@ namespace DBNL.App.Areas.CMS.Controllers
                     Categories = CustomSelectList.CreateListCategories(true),
                     NavigationPositions = CustomSelectList.CreateMenuPosition(),
                     RootNavigations = CustomSelectList.CreateListNavigations(true),
-                    SiteModules = CustomSelectList.CreateModuleList()
+                    SiteModules = CustomSelectList.CreateModuleList(),
+                    OrphanArticles = CustomSelectList.CreateListOphanArticles(),
+                    Departments = CustomSelectList.CreateDepartments()
                 };
 
                 return View();
@@ -190,7 +202,10 @@ namespace DBNL.App.Areas.CMS.Controllers
                 Categories = CustomSelectList.CreateListCategories(true, nav.CategoryId),
                 NavigationPositions = CustomSelectList.CreateMenuPosition(nav.Position),
                 RootNavigations = CustomSelectList.CreateListNavigations(true, nav.ParentId),
-                SiteModules = CustomSelectList.CreateModuleList(nav.Component)
+                SiteModules = CustomSelectList.CreateModuleList(nav.Component),
+                OrphanArticles = CustomSelectList.CreateListOphanArticles(),
+                Departments = CustomSelectList.CreateDepartments()
+                
             };
             
             return View(nav);
@@ -276,7 +291,8 @@ namespace DBNL.App.Areas.CMS.Controllers
                     Categories = CustomSelectList.CreateListCategories(true, navigation.CategoryId),
                     NavigationPositions = CustomSelectList.CreateMenuPosition(navigation.Position),
                     RootNavigations = CustomSelectList.CreateListNavigations(true, navigation.ParentId),
-                    SiteModules = CustomSelectList.CreateModuleList(navigation.Component)
+                    SiteModules = CustomSelectList.CreateModuleList(navigation.Component),
+                    OrphanArticles = CustomSelectList.CreateListOphanArticles()
                 };
                 return View();
             }

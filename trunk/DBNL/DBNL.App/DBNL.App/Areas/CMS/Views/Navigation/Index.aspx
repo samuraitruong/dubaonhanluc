@@ -19,16 +19,7 @@
         
     </div>
     
-     <div style="padding-top:35px" >
-     <h2>Danh sách các bài viết</h2>
-        <table id="article_grid" cellpadding="0" cellspacing="0">
-        </table>
-        <div id="article_grid_pager" style="text-align: center;"/>
-        
-    </div>
-    
-    </div>
-    <p>
+    <p style="padding-top:10px">
         <%= Html.ActionLink("Create New", "Create") %>
     </p>
 </asp:Content>
@@ -50,7 +41,7 @@
                                        
             
             });
-            //DBNL.Admin.Categories.Articles.setupGrid($("#article_grid"), $("#article_grid_pager"));
+
         });
 
         DBNL.Admin.Navigations= {
@@ -231,61 +222,7 @@
             });
             }}
         
-//        DBNL.Admin.Categories.Articles= {
-//            setupGrid: function (grid, pager) {
-//                var lastsel;
-//                grid.jqGrid({
-//                    url: "<%=Url.Action("List", "Content" )%>",
-//                    editurl : "<%=Url.Action("EditRow", "Poll" )%>",
-//                    ajaxGridOptions: {
-//                        type: "POST"
-//                    },
-//                    datatype: "json",
-//                    colNames: [ 'Id','Title'],
-//                    colModel: [
-//                    {
-//                        name: 'Id', index: 'ContentId', width: 40, align: 'left', editable: false, key: true, editoptions: {readonly:'readonly'},editrules: { edithidden: true }, hidden: true },
 
-//                        { name: 'Title', index: 'Title', width: 250, sortable: true, editable: true, edittype: 'text', editoptions: { size: 20, maxlength:100} , hidden: false }
-//                      ],
-//                    rowNum: 10,
-//                    rowList: [10, 20, 30],
-//                    pager: pager,
-//                    sortname: 'Title',
-//                    sortorder: "asc",
-//                    viewrecords: true,
-//                    width: '100%',
-//                    height: '100%',
-//                    autowidth: true,
-//                    rownumbers: true,
-//                    postData : {CategoryId: 0},
-//                    caption: 'Categories List'
-//                }).navGrid('#article_grid_pager', { edit: true, add: true, del: true, search: true, view: true }).navButtonAdd('#article_grid_pager',{
-//                           caption:"Public", 
-//                           buttonicon:"ui-icon-add", 
-//                           onClickButton: function(){ 
-//                             
-//                                 var id = jQuery("#article_grid").jqGrid('getGridParam','selrow'); 
-//                                 
-//                                 if (id) { 
-//                                         var ret = jQuery("#artile_grid").getRowData(id); 
-//                                         $.ajax({
-//                                                  type: 'POST',
-//                                                  url: "<%=Url.Action("Public", "Poll" )%>",
-//                                                  data: {Id : ret["EntityId"]},
-//                                                  success: function() {
-//                                                    $("#grid").trigger("reloadGrid")
-//                                                  },
-//                                                  dataType: 'json'
-//                                                });
-
-//                                 } else { 
-//                                 alert("Please select row");
-//                                 } 
-//                             } ,
-//                           position:"last"
-//            });
-//            }}
             
 </script>
 

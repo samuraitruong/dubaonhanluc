@@ -25,6 +25,8 @@ $(document).ready(function () {
             DBNL.Admin.Contacts.setupGrid($("#grid"), $("#pager"));
         });
 
+        var departments = $.ajax({url: '<%=Url.Action("GetList", "Department" )%>', async: false, success: function(data, result) {if (!result) alert('Failure to retrieve the Countries.');}}).responseText;
+
         DBNL.Admin.Contacts= {
             setupGrid: function (grid, pager) {
                 var lastsel;
@@ -35,17 +37,18 @@ $(document).ready(function () {
                         type: "POST"
                     },
                     datatype: "json",
-                    colNames: [ 'Id','Tên phòng ban', 'địa chỉ email', 'Status'],
+                    colNames: [ 'Id','Tên', 'địa chỉ email', 'Phòng','Status'],
                     colModel: [
                     {
                         name: 'Id', key:true, index: 'Id', width: 40, align: 'left',editable: false, editoptions: {readonly:'readonly'}, editrules: { edithidden: true }, hidden: true },
 
                         { name: 'Name', index: 'Name', sortable: true, editable: true, edittype: 'text', editrules: {required:true}, editoptions: { size: 72, maxlength:100} , hidden: false },
                         { name: 'Email', index: 'Email', width: 150, align: 'left', sortable: true, editable: true, editrules: {required:true},edittype: 'text', editoptions: { size: 72, maxlength:100}, hidden: false },
+                        { name: 'Department', index: 'Department', width: 150, align: 'left', sortable: true, editable: true, editrules: {required:true},edittype: 'select', editoptions: { size: 72, maxlength:100, value: departments}, hidden: false },
                         { name: 'Status', index: 'Status', width: 150, align: 'center', sortable: true, editable: true, edittype: 'select', style: 'select', editoptions: { dataUrl: "<%=Url.Action("GetSelectStatus", "Contact" )%>"}, hidden: false },
                       ],
                     rowNum: 10,
-                    rowList: [10, 20, 30],
+                    rowList: [5,10,15, 20,25, 30,40,50,60,70,80,90,100],
                     pager: pager,
                     sortname: 'Name',
                     sortorder: "asc",

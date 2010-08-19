@@ -34,8 +34,12 @@ namespace DBNL.App.Controllers
         {
 
             return View();
-        } 
+        }
+        public ActionResult Search()
+        {
 
+            return View();
+        } 
         //
         // POST: /WebJob/Create
 
