@@ -24,7 +24,6 @@ namespace DBNL.App.Models
 
         public class ContentMetaData
         {
-            public int Id { get; set; }
             [Required(ErrorMessageResourceName="Content_Title", ErrorMessageResourceType= typeof(DataAnnotations))]
             [DisplayName("Tựa đề bài viết")]
             public string Title { get; set; }

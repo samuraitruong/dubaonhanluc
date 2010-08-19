@@ -6,6 +6,7 @@ using System.Web.Mvc;
 using System.Web.Mvc.Ajax;
 using DBNL.App.Models.ViewData;
 using DBNL.App.Models.Business;
+using DBNL.App.Models;
 
 namespace DBNL.App.Areas.CMS.Controllers
 {
@@ -13,7 +14,7 @@ namespace DBNL.App.Areas.CMS.Controllers
     {
         //
         // GET: /Administrations/
-
+        [RequiresAuthentication]
         public ActionResult Index()
         {
             ViewData.Model = new BOHomeViewData()
@@ -24,14 +25,17 @@ namespace DBNL.App.Areas.CMS.Controllers
         }
 
         //
+        [RequiresAuthentication]
         public ActionResult Sample() {
             return View(new Models.Sample());
         }
         [HttpPost]
+        [RequiresAuthentication]
         public ActionResult Sample(Models.Sample sample)
         {
             return View(sample);
         }
+        [RequiresAuthentication]
         public ActionResult Details(int id)
         {
             return View();
@@ -39,7 +43,7 @@ namespace DBNL.App.Areas.CMS.Controllers
 
         //
         // GET: /Administrations/Create
-
+        [RequiresAuthentication]
         public ActionResult Create()
         {
             return View();
@@ -47,8 +51,9 @@ namespace DBNL.App.Areas.CMS.Controllers
 
         //
         // POST: /Administrations/Create
-
+        [RequiresAuthentication]
         [AcceptVerbs(HttpVerbs.Post)]
+        
         public ActionResult Create(FormCollection collection)
         {
             try
@@ -65,7 +70,7 @@ namespace DBNL.App.Areas.CMS.Controllers
 
         //
         // GET: /Administrations/Edit/5
- 
+        [RequiresAuthentication]
         public ActionResult Edit(int id)
         {
             return View();
@@ -73,7 +78,7 @@ namespace DBNL.App.Areas.CMS.Controllers
 
         //
         // POST: /Administrations/Edit/5
-
+        [RequiresAuthentication]
         [AcceptVerbs(HttpVerbs.Post)]
         public ActionResult Edit(int id, FormCollection collection)
         {

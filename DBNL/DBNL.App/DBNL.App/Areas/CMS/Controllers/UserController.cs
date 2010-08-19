@@ -9,10 +9,12 @@ using DBNL.App.Models.Helpers;
 using DBNL.App.Models.Statics;
 using DBNL.App.Models.Extensions;
 using System.Web.Security;
+using DBNL.App.Models;
 
 
 namespace DBNL.App.Areas.CMS.Controllers
 {
+    [RequiresAuthentication]
     public class UserController : Controller
     {
         //

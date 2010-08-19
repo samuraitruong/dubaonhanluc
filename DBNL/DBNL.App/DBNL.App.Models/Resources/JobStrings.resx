@@ -120,8 +120,20 @@
   <data name="Company" xml:space="preserve">
     <value>Company Name</value>
   </data>
+  <data name="CompanyInfo" xml:space="preserve">
+    <value>Thôn tin chi tiết công ty</value>
+  </data>
   <data name="CompanyRequiredMessage" xml:space="preserve">
     <value>Company name  is required.</value>
+  </data>
+  <data name="Deadline" xml:space="preserve">
+    <value>Hạn nộp hồ sơ</value>
+  </data>
+  <data name="Description" xml:space="preserve">
+    <value>Mô tả</value>
+  </data>
+  <data name="JobDetail" xml:space="preserve">
+    <value>Job Detail Decription</value>
   </data>
   <data name="Title" xml:space="preserve">
     <value>Job Title</value>

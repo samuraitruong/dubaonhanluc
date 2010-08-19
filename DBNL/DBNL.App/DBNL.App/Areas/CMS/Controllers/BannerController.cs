@@ -19,12 +19,12 @@ namespace DBNL.App.Areas.CMS.Controllers
     {
         //
         // GET: /Banner/
-
+        [RequiresAuthentication]
         public ActionResult Index()
         {
             return RedirectToAction("List");
         }
-
+        [RequiresAuthentication]
         public ActionResult List()
         {
             ViewData.Model = new BannerService().GetAllItems();
@@ -33,7 +33,7 @@ namespace DBNL.App.Areas.CMS.Controllers
 
         //
         // GET: /Banner/Details/5
-
+        [RequiresAuthentication]
         public ActionResult Details(int id)
         {
             ViewData.Model = new BannerService().GetItem(id);
@@ -42,7 +42,7 @@ namespace DBNL.App.Areas.CMS.Controllers
 
         //
         // GET: /Banner/Create
-
+        [RequiresAuthentication]
         public ActionResult Create()
         {
             ViewData["Extra"]= new BannerViewData() 
@@ -57,6 +57,7 @@ namespace DBNL.App.Areas.CMS.Controllers
             return View(new Banner() {BannerPosition = id });
         }
         [HttpPost]
+        [RequiresAuthentication]
         public ActionResult CreateIn(FormCollection collection, Banner banner)
         {
             try
@@ -92,6 +93,7 @@ namespace DBNL.App.Areas.CMS.Controllers
         // POST: /Banner/Create
 
         [HttpPost]
+        [RequiresAuthentication]
         public ActionResult Create(FormCollection collection, Banner banner)
         {
             try
@@ -130,7 +132,7 @@ namespace DBNL.App.Areas.CMS.Controllers
 
         //
         // GET: /Banner/Delete/5
- 
+        [RequiresAuthentication]
         public ActionResult Delete(int id)
         {
             ViewData.Model = new BannerService().GetItem(id);
@@ -142,6 +144,7 @@ namespace DBNL.App.Areas.CMS.Controllers
         
 
         [HttpPost]
+        [RequiresAuthentication]
         public ActionResult JsonDelete(int id)
         {
             try
@@ -157,6 +160,7 @@ namespace DBNL.App.Areas.CMS.Controllers
         }
 
         [HttpPost]
+        [RequiresAuthentication]
         public ActionResult Delete(int id, FormCollection collection)
         {
             try
@@ -173,7 +177,8 @@ namespace DBNL.App.Areas.CMS.Controllers
 
         //
         // GET: /Banner/Edit/5
- 
+        [RequiresAuthentication]
+
         public ActionResult Edit(int id)
         {
             ViewData.Model = new BannerViewData()
@@ -189,6 +194,7 @@ namespace DBNL.App.Areas.CMS.Controllers
         // POST: /Banner/Edit/5
 
         [HttpPost]
+        [RequiresAuthentication]
         public ActionResult Edit(int id, FormCollection collection)
         {
             try
@@ -215,18 +221,21 @@ namespace DBNL.App.Areas.CMS.Controllers
             }
         }
 
+        [RequiresAuthentication]
         public ActionResult GetSelectStatus()
         {
             IEnumerable<SelectListItem> list = CustomSelectList.CreateBannerStatus();
             return Content(list.ToHtml());
         }
-
+        
+        [RequiresAuthentication]
         public ActionResult GetSelectPosition()
         {
             IEnumerable<SelectListItem> list = CustomSelectList.CreateBannerPosition();
             return Content(list.ToHtml());
         }
 
+        [RequiresAuthentication]
         protected string getFormValue(string key)
         {
             try
@@ -239,12 +248,15 @@ namespace DBNL.App.Areas.CMS.Controllers
             }
         }
 
+        [RequiresAuthentication]
         public ActionResult Public(int id)
         {
             new BannerService().Public(id);
             return Json(true);
         }
+
         [HttpPost]
+        [RequiresAuthentication]
         public ActionResult List(int page, int rows, string sidx, string sord, string Position)
         {
             var bann = new BannerService().List(Position);
@@ -270,6 +282,7 @@ namespace DBNL.App.Areas.CMS.Controllers
         }
 
         [HttpPost]
+        [RequiresAuthentication]
         public ActionResult EditRow(int? id, string name, string Url, string image, string status, string position)
         {
             if (id.HasValue)

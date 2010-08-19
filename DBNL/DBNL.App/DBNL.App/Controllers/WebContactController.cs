@@ -20,9 +20,9 @@ namespace DBNL.App.Controllers
         //
         // GET: /WebContact/
 
-        public ActionResult Index()
+        public ActionResult Index(int? id)
         {
-            ViewData.Model = new ContactService().GetAllItems();
+            ViewData.Model = new ContactService().GetItems(id);
             return View();
         }
 

@@ -18,6 +18,7 @@ namespace DBNL.App.Areas.CMS.Controllers
         //
         // GET: /Contact/
 
+        [RequiresAuthentication]
         public ActionResult Index()
         {
             return RedirectToAction("List");
@@ -25,7 +26,7 @@ namespace DBNL.App.Areas.CMS.Controllers
 
         //
         // GET: /Contact/Details/5
-
+        [RequiresAuthentication]
         public ActionResult Details(int id)
         {
             ViewData.Model = new ContactService().GetItem(id);
@@ -35,6 +36,7 @@ namespace DBNL.App.Areas.CMS.Controllers
         //
         // GET: /Contact/Create
 
+        [RequiresAuthentication]
         public ActionResult Create()
         {
             return View();
@@ -44,6 +46,7 @@ namespace DBNL.App.Areas.CMS.Controllers
         // POST: /Contact/Create
 
         [HttpPost]
+        [RequiresAuthentication]
         public ActionResult Create(Contact contact)
         {
             try
@@ -58,6 +61,7 @@ namespace DBNL.App.Areas.CMS.Controllers
             }
         }
 
+        [RequiresAuthentication]
         public ActionResult List()
         {
             ViewData.Model = new ContactService().GetAllItems();
@@ -66,7 +70,8 @@ namespace DBNL.App.Areas.CMS.Controllers
 
         //
         // GET: /Contact/Delete/5
- 
+
+        [RequiresAuthentication]
         public ActionResult Delete(int id)
         {
             ViewData.Model = new ContactService().GetItem(id);
@@ -77,6 +82,7 @@ namespace DBNL.App.Areas.CMS.Controllers
         // POST: /Contact/Delete/5
 
         [HttpPost]
+        [RequiresAuthentication]
         public ActionResult Delete(int id, FormCollection collection)
         {
             try
@@ -92,6 +98,7 @@ namespace DBNL.App.Areas.CMS.Controllers
         }
 
         [HttpPost]
+        [RequiresAuthentication]
         public ActionResult JsonDelete(int id)
         {
             try
@@ -108,7 +115,8 @@ namespace DBNL.App.Areas.CMS.Controllers
 
         //
         // GET: /Contact/Edit/5
- 
+
+        [RequiresAuthentication]
         public ActionResult Edit(int id)
         {
             ViewData.Model = new ContactService().GetItem(id);
@@ -119,12 +127,13 @@ namespace DBNL.App.Areas.CMS.Controllers
         // POST: /Contact/Edit/5
 
         [HttpPost]
-        public ActionResult Edit(int id, string name, string email, string status)
+        [RequiresAuthentication]
+        public ActionResult Edit(int id, string name, string email, string status, int department)
         {
             try
             {
                 // TODO: Add update logic here
-                new ContactService().Edit(id, name, email, status);
+                new ContactService().Edit(id, name, email, status, department);
                 return RedirectToAction("Index");
             }
             catch
@@ -146,6 +155,7 @@ namespace DBNL.App.Areas.CMS.Controllers
         }
 
         [HttpPost]
+        [RequiresAuthentication]
         public ActionResult List(int page, int rows, string sidx, string sord)
         {
             var contact = new ContactService().List();
@@ -162,17 +172,19 @@ namespace DBNL.App.Areas.CMS.Controllers
                             Id = entity.Id,
                             Name = entity.Name,
                             Email = entity.Email,
+                            Department = entity.Department!=null?entity.Department.Name:string.Empty,
                             Status = entity.Status
                         };
             return Json(model.ToJqGridData(page, rows, null, "", new[] { "Name", "Email", "Status" }), JsonRequestBehavior.AllowGet);
         }
 
         [HttpPost]
-        public ActionResult EditRow(int? id, string name, string email, string status)
+        [RequiresAuthentication]
+        public ActionResult EditRow(int? id, string name, string email, string status, int department)
         {
             if (id.HasValue)
             {
-                new ContactService().Edit(id.Value, name, email, status);
+                new ContactService().Edit(id.Value, name, email, status, department);
             }
             else
             {
@@ -181,6 +193,7 @@ namespace DBNL.App.Areas.CMS.Controllers
             return Content("true");
         }
 
+        [RequiresAuthentication]
         public ActionResult GetSelectStatus()
         {
             IEnumerable<SelectListItem> list = CustomSelectList.CreateContactStatus();

@@ -70,11 +70,47 @@ namespace DBNL.App.Models.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Thôn tin chi tiết công ty.
+        /// </summary>
+        public static string CompanyInfo {
+            get {
+                return ResourceManager.GetString("CompanyInfo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Company name  is required..
         /// </summary>
         public static string CompanyRequiredMessage {
             get {
                 return ResourceManager.GetString("CompanyRequiredMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Hạn nộp hồ sơ.
+        /// </summary>
+        public static string Deadline {
+            get {
+                return ResourceManager.GetString("Deadline", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Mô tả.
+        /// </summary>
+        public static string Description {
+            get {
+                return ResourceManager.GetString("Description", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Job Detail Decription.
+        /// </summary>
+        public static string JobDetail {
+            get {
+                return ResourceManager.GetString("JobDetail", resourceCulture);
             }
         }
         

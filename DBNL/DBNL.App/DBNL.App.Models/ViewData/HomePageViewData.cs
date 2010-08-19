@@ -33,7 +33,18 @@ namespace DBNL.App.Models.ViewData
             var query = (new CategoryService()).GetForcusingContents(DBNLConfigurationManager.WebUI.HotestNewsCount + DBNLConfigurationManager.WebUI.OtherFeaturesNews);
 
             HostestArticle = query.Skip(0).Take(DBNLConfigurationManager.WebUI.HotestNewsCount).AsEnumerable();
-            Articles = query.Skip(DBNLConfigurationManager.WebUI.HotestNewsCount).AsEnumerable();
+
+            Articles = (new ContentService()).Contents
+                .Where(p => p.IsFeatured == true)
+                .Where(p => p.CategoryId == 50 || p.CategoryId == 41 || p.CategoryId == 42 || p.CategoryId == 51 || p.CategoryId == 46)
+                .Where(p => p.ContentId != HostestArticle.ToArray()[0].ContentId && p.ContentId != HostestArticle.ToArray()[1].ContentId)
+                .OrderByDescending(p => p.CreatedDate)
+                .Skip(0)
+                .Take(DBNLConfigurationManager.WebUI.OtherFeaturesNews)
+                .AsEnumerable();
+                
+                //query.Skip(DBNLConfigurationManager.WebUI.HotestNewsCount).AsEnumerable();
+
             //Category = CategoryService.GetFeatureCategory();
             //if (Category == null)
             //    Category = CategoryService.GetRandomCategory();

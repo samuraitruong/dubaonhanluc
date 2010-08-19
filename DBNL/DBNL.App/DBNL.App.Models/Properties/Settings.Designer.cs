@@ -38,20 +38,20 @@ namespace DBNL.App.Models.Properties {
         [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
         [global::System.Configuration.DefaultSettingValueAttribute("Data Source=eduvision.com.vn;Initial Catalog=dbnl;Persist Security Info=True;User" +
             " ID=artseed")]
-        public string dbnlConnectionString2 {
+        public string dbnlConnectionString1 {
             get {
-                return ((string)(this["dbnlConnectionString2"]));
+                return ((string)(this["dbnlConnectionString1"]));
             }
         }
         
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
-        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=eduvision.com.vn;Initial Catalog=dbnl;Persist Security Info=True;User" +
-            " ID=artseed;Password=L@tuine299")]
-        public string dbnlConnectionString1 {
+        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=112.213.89.28;Initial Catalog=dbnl;Persist Security Info=True;User ID" +
+            "=artseed;Password=L@tuine299")]
+        public string dbnlConnectionString2 {
             get {
-                return ((string)(this["dbnlConnectionString1"]));
+                return ((string)(this["dbnlConnectionString2"]));
             }
         }
     }

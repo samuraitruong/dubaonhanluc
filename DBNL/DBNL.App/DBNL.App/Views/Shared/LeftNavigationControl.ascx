@@ -5,7 +5,7 @@
         DANH MỤC</h2>
 </div>
 <div class="center_cat">
-    <%--<ul id="nav90">
+      <ul id="Ul1" class="submenu">
         
         <% 
             var index = 1;
@@ -15,21 +15,19 @@
          <% if (item.Component == DBNL.App.Models.Statics.SiteModules.Article.ToString())
             {%>
          <%} %>
-         <li class="" rel="<%=Url(item.Action, item.Controller, new { id = item.ContentId }, null)%>" ><%= Html.ActionLink(index.ToString() + ". " +item.Name, item.Action, item.Controller, new {id= item.ContentId}, null) %></li>
-        <% index++;
-            } %>
-    </ul>--%>
-      <ul id="Ul1">
-        
-        <% 
-            var index = 1;
-            
-            foreach(var item in Model) { 
-         %>
-         <% if (item.Component == DBNL.App.Models.Statics.SiteModules.Article.ToString())
-            {%>
-         <%} %>
-         <li class="" rel="<%=Url.NavigationLink(item)%>" ><%= Html.NavigationLink(index.ToString() + ". " + item.Name, item)%></li>
+         <li class="<%= index== Model.Count()? "end": "" %>" rel="<%=Url.NavigationLink(item)%>" ><%= Html.NavigationLink(index.ToString() + ". " + item.Name, item)%>
+         
+         <%if (index == Model.Count())
+           { %>
+                <ul>
+                    <% foreach (var subitem in item.Navigations)
+                       { %>
+					<li><a href="<%=Url.NavigationLink(subitem)%>"><% =subitem.Name %></a></li>
+                    <%} %>
+				</ul>
+                <%} %>
+         
+         </li>
         <% index++;
             } %>
     </ul>

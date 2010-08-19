@@ -15,8 +15,9 @@ namespace DBNL.App.Models.CronJob
         }
         public override void Excute(System.Web.Caching.CacheItemRemovedReason reason)
         {
-            LuceneHelper.IndexingAfterComplete += new AfterIndexingCoplete(HitPage);
-            LuceneHelper.BuildingIndex();
+            LuceneHelper helper = new LuceneHelper();
+            helper.IndexingAfterComplete += new AfterIndexingCoplete(HitPage);
+            helper.BuildingIndex();
             //base.Excute(reason);
         }
     }

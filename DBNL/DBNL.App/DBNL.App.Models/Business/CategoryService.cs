@@ -196,7 +196,7 @@ namespace DBNL.App.Models.Business
 
         public  IEnumerable<Content> GetForcusingContents(int count)
         {
-            var list = Contents.Where(p => p.IsFocusing == true)
+            var list = Contents.Where(p => p.IsFeatured == true && p.CategoryId ==50)
                                 .OrderByDescending(p => p.CreatedDate)
                                 .Skip(0)
                                 .Take(count)
@@ -206,7 +206,7 @@ namespace DBNL.App.Models.Business
 
             if (remain > 0)
             {
-                var query1 = Contents.Where(p => p.IsFocusing == false)
+                var query1 = Contents.Where(p => p.IsFeatured == false && p.CategoryId == 50)
                                 .OrderByDescending(p => p.CreatedDate)
                                 .Skip(0)
                                 .Take(remain).AsEnumerable();

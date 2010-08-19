@@ -116,7 +116,7 @@ $(document).ready(function () {
                         { name: 'Options', index: 'Options', align:'center', sortable:false, editable: false,width:40 }
                       ],
                     rowNum: 10,
-                    rowList: [10, 20, 30],
+                    rowList: [5,10,15, 20,25, 30,40,50,60,70,80,90,100],
                     pager: pager,
                     sortname: 'CategoryName',
                     sortorder: "asc",
@@ -192,10 +192,10 @@ $(document).ready(function () {
                                 { name: 'Options', index: 'Options', align:'center', sortable:false, editable: false , width:40},
                                 ],
                              rowNum:20, 
-                             rowList: [10, 20, 30],
+                             rowList: [5,10,15, 20,25, 30,40,50,60,70,80,90,100],
                              pager: pager_id, 
-                             sortname: 'CategoryName', 
-                             sortorder: "asc", 
+                             sortname: 'Id', 
+                             sortorder: "desc", 
                              height: '100%' ,
                              width:'100%',
                              viewrecords: true,
@@ -234,7 +234,7 @@ $(document).ready(function () {
                     }, 
                              
                     }); 
-                    jQuery("#"+subgrid_table_id).jqGrid('navGrid',"#"+pager_id,{edit:true,add:true,del:true,search: true, view: true},{afterShowForm : afterShowFormEdit},{},{})
+                    jQuery("#"+subgrid_table_id).jqGrid('navGrid',"#"+pager_id,{edit:true,add:true,del:true,search: true, view: true},{afterShowForm : afterShowFormEdit},{},{url : '<%=Url.Action("JsonDelete", "Categories" )%>'})
 
                },
                 subGridRowColapsed: function(subgrid_id, row_id) {
@@ -303,10 +303,10 @@ $(document).ready(function () {
                         { name: 'Options', index: 'Options', align:'center', formatter:'text',width: 50, sortable: false, editable: false, edittype: 'text', editoptions: { size: 20, maxlength:100} , hidden: false }
                       ],
                     rowNum: 10,
-                    rowList: [10, 20, 30],
+                    rowList: [5,10,15, 20,25, 30,40,50,60,70,80,90,100],
                     pager: pager,
-                    sortname: 'Title',
-                    sortorder: "asc",
+                    sortname: 'ContentId',
+                    sortorder: "desc",
                     viewrecords: true,
                     width: '100%',
                     height: '100%',

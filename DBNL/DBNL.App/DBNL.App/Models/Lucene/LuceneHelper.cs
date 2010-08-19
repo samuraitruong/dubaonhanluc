@@ -24,22 +24,23 @@ namespace DBNL.App.Models
 
     public class LuceneHelper
     {
-        static object locker = new object();
-        static object indexing_locker = new object();
-        static public AfterIndexingCoplete IndexingAfterComplete;
+        private object locker = new object();
+        private object indexing_locker = new object();
+        public AfterIndexingCoplete IndexingAfterComplete;
 
 
-        static Lucene.Net.Analysis.Analyzer analyzer = new Lucene.Net.Analysis.Standard.StandardAnalyzer();
+        protected Lucene.Net.Analysis.Analyzer analyzer = new Lucene.Net.Analysis.Standard.StandardAnalyzer();
 
-        public static void BuildingIndex()
+        public void BuildingIndex()
         {
 
-            System.Threading.Thread thread = new System.Threading.Thread(BuildingIndex_Thread);
-            thread.Priority = ThreadPriority.Highest;
-            thread.Start();
+            //System.Threading.Thread thread = new System.Threading.Thread(BuildingIndex_Thread);
+            //thread.Priority = ThreadPriority.Highest;
+            //thread.Start();
+            BuildingIndex_Thread();
         }
 
-        static Lucene.Net.Documents.Document create_doc(int id, string content)
+        private Lucene.Net.Documents.Document create_doc(int id, string content)
         {
             Lucene.Net.Documents.Document doc = new Lucene.Net.Documents.Document();
 
@@ -70,9 +71,9 @@ namespace DBNL.App.Models
 
 
 
-        static Lucene.Net.Search.Searcher searcher = null;
+        private Lucene.Net.Search.Searcher searcher = null;
 
-        public static void threadproc_update(object obj)
+        public  void threadproc_update(object obj)
         {
             lock (locker) // If a thread is updating the index, no other thread should be doing anything with it.
             {
@@ -116,7 +117,7 @@ namespace DBNL.App.Models
 
 
 
-        public static bool DeleteDirectory(string target_dir)
+        private bool DeleteDirectory(string target_dir)
         {
             bool result = false;
 
@@ -139,7 +140,7 @@ namespace DBNL.App.Models
             return result;
         }
 
-        public static void BuildingIndex_Thread()
+        public void BuildingIndex_Thread()
         {
             lock (indexing_locker)
             {
@@ -154,15 +155,15 @@ namespace DBNL.App.Models
                 //int totalRecords = new ContentService().All().Count();
                 int offset = 0;
                 ContentService service = new ContentService();
-                
-                var items = service.All().Skip(offset).Take(50).AsEnumerable();
+
+                var items = service.All().Skip(offset).Take(100).AsEnumerable();
                 int itemcount = items.Count();
                 Debug.WriteLine(itemcount.ToString());
                 Debug.Flush();
                 while (itemcount > 0)
                 {
-                
-                    
+
+
                     foreach (var item in items)
                     {
                         writer.AddDocument(create_doc(
@@ -171,9 +172,9 @@ namespace DBNL.App.Models
                         Debug.WriteLine(item.ContentId.ToString());
                         Debug.Flush();
                     }
-                    items = service.All().Skip(offset).Take(50).AsEnumerable();
+                    items = service.All().Skip(offset).Take(100).AsEnumerable();
                     itemcount = items.Count();
-                    offset += 50;
+                    offset += 100;
                 }
                 writer.Optimize();
                 writer.Close();
@@ -202,9 +203,11 @@ namespace DBNL.App.Models
                 IndexingAfterComplete();
                 //}
             }
+
+
         }
 
-        public static IEnumerable<Content>
+        public IEnumerable<Content>
             Search(string keyword, int page, int pageSize, out int totals)
         {
             lock (locker)
@@ -294,7 +297,7 @@ namespace DBNL.App.Models
 
         }
     
-        public static string Query(string keyword)
+        public string Query(string keyword)
         {
             Lucene.Net.QueryParsers.QueryParser parser = new Lucene.Net.QueryParsers.QueryParser("text", analyzer);
             Lucene.Net.Search.Query query = null;

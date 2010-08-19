@@ -83,7 +83,7 @@ namespace DBNL.App
             try
             {
                 JobScheduler jobScheduler = ApplicationManager.JobScheduler;
-                jobScheduler.Add(new IndexingJob(JobKeys.Indexing) { MinuesToRun = DBNLConfigurationManager.LuceneElement.Interval});
+                jobScheduler.Add(new IndexingJob(JobKeys.Indexing) { MinuesToRun = DBNLConfigurationManager.LuceneElement.Interval });
                 ApplicationManager.JobScheduler = jobScheduler;
                 ApplicationManager.Counter.Reset();
                 //ApplicationManager.Counter = Counter.Load();

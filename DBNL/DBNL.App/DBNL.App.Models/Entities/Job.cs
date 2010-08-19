@@ -23,6 +23,10 @@ namespace DBNL.App.Models
            [LocalizedDisplayName(DisplayNameResourceName = "Company", DisplayNameResourceType = typeof(DBNL.App.Models.Resources.JobStrings))]
            [Required(ErrorMessageResourceName = "CompanyRequiredMessage", ErrorMessageResourceType = typeof(DBNL.App.Models.Resources.JobStrings))]
            public string Company { get; set; }
+
+            [LocalizedDisplayName(DisplayNameResourceName = "JobDetail", DisplayNameResourceType = typeof(DBNL.App.Models.Resources.JobStrings))]
+
+           public string JobDetail { get; set; }
         }
 
     }

@@ -48,7 +48,7 @@ $(document).ready(function () {
                         { name: 'Options',index:'Options',width:40,editable: false}
                     ],
                     rowNum: 10,
-                    rowList: [10, 20, 30],
+                    rowList: [5,10,15, 20,25, 30,40,50,60,70,80,90,100],
                     pager: pager,
                     sortname: 'Name',
                     sortorder: "asc",
@@ -95,7 +95,7 @@ $(document).ready(function () {
                                         
                                       ],
                              rowNum:20, 
-                             rowList: [10, 20, 30],
+                             rowList: [5,10,15, 20,25, 30,40,50,60,70,80,90,100],
                              pager: pager_id, 
                              sortname: 'Question', 
                              sortorder: "asc", 

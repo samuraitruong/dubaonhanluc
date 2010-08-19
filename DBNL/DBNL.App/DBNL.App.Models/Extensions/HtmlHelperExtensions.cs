@@ -69,6 +69,11 @@ namespace DBNL.App.Models.Extensions
 
         public static string NavigationLink(this UrlHelper helper, Navigation navigation)
         {
+            if (navigation.Component == SiteModules.WebContact.ToString())
+            {
+                return helper.Action(navigation.Action, navigation.Controller, new { id= navigation.CustomData});
+
+            }
             if (navigation.Component == SiteModules.Article.ToString())
             {
                 return helper.RouteUrl("Category-View-Route", new { category = navigation.ContentCategory.Key });

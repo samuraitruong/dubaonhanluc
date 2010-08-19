@@ -44,7 +44,7 @@ $(document).ready(function () {
                         { name: 'Url', index: 'Url', width: 150, align: 'left', formatter: 'link', formatoptions: { prefix: "$" }, sortable: true, editable: true, edittype: 'text', editrules : {required:true}, editoptions: { size: 60, maxlength:100} , hidden: false },
                       ],
                     rowNum: 10,
-                    rowList: [10, 20, 30],
+                    rowList: [5,10,15, 20,25, 30,40,50,60,70,80,90,100],
                     pager: pager,
                     sortname: 'Title',
                     sortorder: "asc",

@@ -7,7 +7,7 @@
 <asp:Content ID="aboutContent" ContentPlaceHolderID="MainContent" runat="server">
     <h2>About</h2>
     <p>
-        Put content here.
+        
         
         <% =DBNL.App.Config.DBNLConfigurationManager.FileResponsity.BannerRelativeUrl%>
     </p>
@@ -42,7 +42,7 @@ GridDemo.Home.GridData = {
                         { name: 'Discontinued', index: 'Discontinued', width: 50, align: 'center', sortable: false, hidden: false }
                       ],
             rowNum: 10,
-            rowList: [10, 20, 30],
+            rowList: [5,10,15, 20,25, 30,40,50,60,70,80,90,100],
             pager: pager,
             sortname: 'ProductID',
             sortorder: "asc",

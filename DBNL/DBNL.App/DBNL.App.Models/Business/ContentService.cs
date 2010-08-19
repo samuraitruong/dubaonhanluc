@@ -13,6 +13,7 @@ using DBNL.App.Models.Statics;
 
 namespace DBNL.App.Models.Business
 {
+    
     public class ContentService: BaseService
     {
         public ContentService() : base() { }
@@ -26,22 +27,29 @@ namespace DBNL.App.Models.Business
             return Contents.AsEnumerable();
         }
 
+        
         public  Content Create(Content content, HttpPostedFileBase picture)
         {
-            if(picture != null && picture.ContentLength>0) {
-                string ext = VirtualPathUtility.GetExtension(picture.FileName);
-                //picture.InputStream.Write(
-                MemoryStream ms = new MemoryStream();
-                Image bitmap = Image.FromStream(picture.InputStream);
-                string filename = content.UniqueKey + ".jpg";
-                bitmap.Save(Path.Combine(DBNLConfigurationManager.FileResponsity.PictureFolder, filename), ImageFormat.Jpeg);
-                content.Picture = filename;
-                bitmap.Dispose();
-                ms.Close();
+            try
+            {
+                if (picture != null && picture.ContentLength > 0)
+                {
+                    string ext = VirtualPathUtility.GetExtension(picture.FileName);
+                    MemoryStream ms = new MemoryStream();
+                    Image bitmap = Image.FromStream(picture.InputStream);
+                    string filename = content.UniqueKey + ".jpg";
+                    bitmap.Save(Path.Combine(DBNLConfigurationManager.FileResponsity.PictureFolder, filename), ImageFormat.Jpeg);
+                    content.Picture = filename;
+                    bitmap.Dispose();
+                    ms.Close();
+                }
+            }
+            catch (IOException ex)
+            {
             }
             content.CreatedDate = DateTime.Now;
             content.UpdatedDate = DateTime.Now;
-
+            
             Contents.InsertOnSubmit(content);
             Commit();
             return content;
@@ -117,6 +125,8 @@ namespace DBNL.App.Models.Business
 
         public  void Update(Content content, HttpPostedFileBase picture)
         {
+
+            //this.Contents.Attach(content);
             Content original = GetItem(content.ContentId);
 
             original.Title = content.Title;
@@ -124,34 +134,32 @@ namespace DBNL.App.Models.Business
             original.Description = content.Description;
             original.IsFeatured = content.IsFeatured;
             original.UniqueKey = content.Title.ToUrlKey();
-            original.ContentCategory = new CategoryService().GetById(content.CategoryId);
+            original.CategoryId = content.CategoryId;
+            //original.ContentCategory = new CategoryService().GetById(content.CategoryId);
 
 
-            Commit();
+            
             try
             {
                 if (picture != null && picture.ContentLength > 0)
                 {
-                    if (string.IsNullOrEmpty(content.Picture))
+                    if (string.IsNullOrEmpty(original.Picture) || Path.HasExtension(original.Picture))
                     {
                         string ext = VirtualPathUtility.GetExtension(picture.FileName);
-                        content.Picture = content.UniqueKey + ".jpg";
+                        original.Picture = original.UniqueKey + ".jpg";
                     }
                     MemoryStream ms = new MemoryStream();
                     Image bitmap = Image.FromStream(picture.InputStream);
-                    bitmap.Save(Path.Combine(DBNLConfigurationManager.FileResponsity.PictureFolder, content.Picture), ImageFormat.Jpeg);
+                    bitmap.Save(Path.Combine(DBNLConfigurationManager.FileResponsity.PictureFolder, original.Picture), ImageFormat.Jpeg);
                     bitmap.Dispose();
                     ms.Close();
                 }
             }
             catch (Exception ex)
             {
+               
             }
-            finally {
-                Commit();
-            }
-
-
+            Commit();
         }
 
         public  IEnumerable<Content> GetHostNewsList(int item)
@@ -181,6 +189,7 @@ namespace DBNL.App.Models.Business
             var item = GetItem(id);
             if (item == null) return;
 
+            item.IsFeatured = !item.IsFeatured;
             item.IsFocusing = !item.IsFocusing;
             item.UpdatedDate = DateTime.Now;
 

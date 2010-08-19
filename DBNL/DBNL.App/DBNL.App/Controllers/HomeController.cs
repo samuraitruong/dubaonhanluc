@@ -20,7 +20,7 @@ namespace DBNL.App.Controllers
             //string query = LuceneHelper.Query("content:" +q);
             int totals = 0;
             int cpage = page.HasValue ? page.Value : 1;
-            var items = LuceneHelper.Search(q.Trim().ToLower(), cpage, DBNL.App.Config.DBNLConfigurationManager.WebUI.ArticlePagingItem, out totals);
+            var items = new LuceneHelper().Search(q.Trim().ToLower(), cpage, DBNL.App.Config.DBNLConfigurationManager.WebUI.ArticlePagingItem, out totals);
             IPagedList<Content> pagedList = items.ToPagedListEx(cpage, DBNL.App.Config.DBNLConfigurationManager.WebUI.ArticlePagingItem, totals);
             
             ViewData["keyword"] = q;
@@ -31,7 +31,7 @@ namespace DBNL.App.Controllers
         {
             //string query = LuceneHelper.Query("content:" +q);
             int totals = 0;
-            ViewData.Model= LuceneHelper.Search(q, page, 10, out totals);
+            ViewData.Model= new LuceneHelper().Search(q, page, 10, out totals);
             ViewData["keyword"] = q;
             return View();
         }
@@ -78,7 +78,7 @@ namespace DBNL.App.Controllers
 
         public ActionResult DoIndex()
         {
-            LuceneHelper.BuildingIndex();
+            new LuceneHelper().BuildingIndex();
             return Content(DateTime.Now.ToString() + new ContentService().All().Count().ToString());
         }
         public ActionResult List(int page, int rows, string sidx, string sord)

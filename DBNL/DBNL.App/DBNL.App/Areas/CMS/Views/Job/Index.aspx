@@ -77,7 +77,7 @@ $(document).ready(function () {
 
                       ],
                     rowNum: 10,
-                    rowList: [10, 20, 30],
+                    rowList: [5,10,15, 20,25, 30,40,50,60,70,80,90,100],
                     pager: pager,
                     sortname: 'Title',
                     sortorder: "asc",
@@ -86,7 +86,7 @@ $(document).ready(function () {
                     height: '100%',
                     autowidth: true,
                     rownumbers: true,
-                    caption: 'Danh sách các banner',
+                    caption: 'Danh sách công việc đang được tuyển dụng',
                     onSelectRow: function(id){
                         var row = jQuery("#grid").getRowData(id);
                         //alert(row['Status']);
@@ -102,7 +102,7 @@ $(document).ready(function () {
 
                     
                 })
-        .navGrid('#pager', { edit: true, add: true, del: true, search: true, view: true },{},{},{url:'JsonDelete'}).navButtonAdd('#pager',{
+        .navGrid('#pager', { edit: true, add: true, del: true, search: true, view: true },{},{},{url:'<%=Url.Action("JSonDelete","Job")%>'}).navButtonAdd('#pager',{
                            caption:"Active/Inactive", 
                            title:'Active or Inactive',
                            buttonicon:"ui-icon-power", 
