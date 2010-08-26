@@ -101,9 +101,14 @@ namespace DBNL.App.Models.FileManager
         {
             string fullPath = HttpContext.Current.Server.MapPath(Path);
             fullPath = System.IO.Path.Combine(fullPath, Name);
+            if(System.IO.File.Exists(fullPath))
+            {
+                Name = System.IO.Path.GetRandomFileName() + System.IO.Path.GetExtension(Name);
+                fullPath = System.IO.Path.Combine(HttpContext.Current.Server.MapPath(Path), Name);
+            }
             if (CheckFileType(Name))
             {
-
+                
                 File.SaveAs(fullPath);
                 string rest = string.Format("{{"+
                                                 

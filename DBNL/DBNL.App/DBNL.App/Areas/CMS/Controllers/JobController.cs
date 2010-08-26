@@ -39,8 +39,8 @@ namespace DBNL.App.Areas.CMS.Controllers
 
         public ActionResult Create()
         {
-            
-            return View(new Job());
+
+            return View(new Job() { Deadline =DateTime.Now});
         }
         [HttpPost]
         public ActionResult Public(int id)

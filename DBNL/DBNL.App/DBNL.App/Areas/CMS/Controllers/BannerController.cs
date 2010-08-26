@@ -25,9 +25,12 @@ namespace DBNL.App.Areas.CMS.Controllers
             return RedirectToAction("List");
         }
         [RequiresAuthentication]
-        public ActionResult List()
+        public ActionResult List(string pos)
         {
+            if(string.IsNullOrEmpty(pos))
             ViewData.Model = new BannerService().GetAllItems();
+            else
+                ViewData.Model = new BannerService().GetItems(pos);
             return View();
         }
 
@@ -139,6 +142,21 @@ namespace DBNL.App.Areas.CMS.Controllers
             return View();
         }
 
+        [RequiresAuthentication]
+        [HttpPost]
+        public ActionResult Up(int id)
+        {
+            new BannerService().MoveUp(id);
+            return Content("true");
+        }
+
+        [RequiresAuthentication]
+        [HttpPost]
+        public ActionResult Down(int id)
+        {
+            new BannerService().MoveDown(id);
+            return Content("true");
+        }
         //
         // POST: /Banner/Delete/5
         

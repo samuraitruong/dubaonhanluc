@@ -59,7 +59,7 @@ namespace DBNL.App.Models.Business
         {
             return Contents.Where(p => p.CategoryId == id && p.Status == EntityStatuses.Actived.ToString())
                 //.OrderByDescending(o => o.IsFeatured)
-                .OrderByDescending(p=>p.UpdatedDate)
+                .OrderByDescending(p=>p.CreatedDate)
                 
                 .AsQueryable();
         }
@@ -77,7 +77,7 @@ namespace DBNL.App.Models.Business
         public  IEnumerable<Content> GetFeaturedArtileByCategoryId(int id)
         {
             return Contents.Where(p => p.CategoryId == id && p.IsFeatured == true).
-                OrderByDescending(o => o.UpdatedDate).
+                OrderByDescending(o => o.CreatedDate).
                 Skip(0).
                 Take(DBNLConfigurationManager.WebUI.FeaturedContentCount).
                 AsEnumerable();

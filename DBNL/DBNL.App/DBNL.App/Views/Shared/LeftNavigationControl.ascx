@@ -17,7 +17,7 @@
          <%} %>
          <li class="<%= index== Model.Count()? "end": "" %>" rel="<%=Url.NavigationLink(item)%>" ><%= Html.NavigationLink(index.ToString() + ". " + item.Name, item)%>
          
-         <%if (index == Model.Count())
+         <%if ( item.Navigations.Count>0 )
            { %>
                 <ul>
                     <% foreach (var subitem in item.Navigations)

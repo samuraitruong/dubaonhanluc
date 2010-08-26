@@ -17,6 +17,7 @@
 </asp:Content>
 <asp:Content ContentPlaceHolderID="LeftBottomNavigationContent" runat="server">
 <% Html.RenderPartial("PublicPollControl", Model.PublicPoll); %>
+<% Html.RenderPartial("TopRecruiters"); %>
 </asp:Content>
 
 <asp:Content ID="Content4" ContentPlaceHolderID="BottomMainContent" runat="server">

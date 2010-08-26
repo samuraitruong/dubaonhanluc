@@ -15,26 +15,27 @@ namespace Migration.Tool
     {
         static void Main(string[] args)
         {
-            return;
-            DoMigration(358, 39);
-            DoMigration(372, 40);
-            DoMigration(268, 41);
-            DoMigration(344, 42);
+            //return;
+            
+            //DoMigration(358, 39);
+            //DoMigration(372, 40);
+            //DoMigration(268, 41);
+            //DoMigration(344, 42);
 
-            DoMigration(370, 44);
-            DoMigration(371, 45);
+            //DoMigration(370, 44);
+            //DoMigration(371, 45);
 
-            DoMigration(346, 47);
-            DoMigration(347, 48);
-            DoMigration(348, 49);
-            DoMigration(349, 50);
-            DoMigration(355, 51);
-            DoMigration(351, 52);
-            DoMigration(350, 53);
-            DoMigration(356, 54);
-            DoMigration(352, 55);
-            DoMigration(352, 55);
-            DoMigration(376, 82);
+            //DoMigration(346, 47);
+            //DoMigration(347, 48);
+            //DoMigration(348, 49);
+            //DoMigration(349, 50);
+            //DoMigration(355, 51);
+            //DoMigration(351, 52);
+            //DoMigration(350, 53);
+            //DoMigration(356, 54);
+            //DoMigration(352, 55);
+           // DoMigration(357, 56);
+            //DoMigration(376, 82);
             //FixDB();
         }
 

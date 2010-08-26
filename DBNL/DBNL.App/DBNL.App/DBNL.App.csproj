@@ -1175,6 +1175,8 @@
     <Content Include="images\subnav_btn.gif" />
     <Content Include="images\_notes\dwsync.xml" />
     <Content Include="Resources\Pictures\-SAN--NGHE-NGAN-HAN.jpg" />
+    <Content Include="Resources\Pictures\artseed-1257664257.jpg" />
+    <Content Include="Resources\Pictures\artseed-1257664266.jpg" />
     <Content Include="Resources\Pictures\CONG-NGHE-THONG-TIN-THIEU-HON-200-000-NHAN-LUC.jpg" />
     <Content Include="Resources\Pictures\Default.jpg" />
     <Content Include="Resources\Pictures\DIEN-DAN-GIAI-BAI-TOAN-LAO-DONG-CHO-TP-HCM--TRACH-NHIEM-CUA-CA-3-PHIA.jpg" />
@@ -1958,6 +1960,7 @@
     <Content Include="Views\Home\NewestJobControl.ascx" />
     <Content Include="Views\Home\PublicPollControl.ascx" />
     <Content Include="Views\Home\Query.aspx" />
+    <Content Include="Views\Home\TopRecruiters.ascx" />
     <Content Include="Views\HttpError\404.aspx" />
     <Content Include="Views\Shared\CategoriesOnHPView.ascx" />
     <Content Include="Views\Shared\ControlBar.ascx" />

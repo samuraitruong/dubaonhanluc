@@ -145,9 +145,9 @@ namespace DBNL.App.Models.Business
 
         public  IEnumerable<ContentCategory> GetItems(int? ParentId)
         {
-            if(!ParentId.HasValue) return Categories.Where(p=>p.ParentCategoryId == null &&  p.Invisible == false).OrderBy(p => p.CategoryName).AsEnumerable();
+            if(!ParentId.HasValue) return Categories.Where(p=>p.ParentCategoryId == null &&  p.Invisible == false && p.Status != EntityStatuses.Deleted.ToString()).OrderBy(p => p.CategoryName).AsEnumerable();
 
-            return Categories.Where(p => p.ParentCategoryId == ParentId.Value && p.Invisible == false).OrderBy(p => p.CategoryName).AsEnumerable();
+            return Categories.Where(p => p.ParentCategoryId == ParentId.Value && p.Invisible == false && p.Status != EntityStatuses.Deleted.ToString()).OrderBy(p => p.CategoryName).AsEnumerable();
 
         }
 
