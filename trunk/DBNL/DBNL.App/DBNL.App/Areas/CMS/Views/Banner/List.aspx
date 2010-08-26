@@ -43,6 +43,29 @@
         var a = $("<a/>", {href:createInAction +id, text:'Thêm banner vào mục này.' });
         $("#dynamicLink").append(a);
     }
+function moveup(id) {
+     $.ajax({
+        type: 'POST',
+        url: '<%=Url.Action("Up", "Banner" )%>',
+        data: {Id : id},
+        success: function() {
+            $("#grid").setGridParam({ postData: {Position:  $('#BannerPosition').val()}}).trigger("reloadGrid")
+        },
+        dataType: 'json'
+    });
+}
+
+function movedown(id) {
+     $.ajax({
+        type: 'POST',
+        url: '<%=Url.Action("Down", "Banner" )%>',
+        data: {Id : id},
+        success: function() {
+            $("#grid").setGridParam({ postData: {Position:  $('#BannerPosition').val()}}).trigger("reloadGrid")
+        },
+        dataType: 'json'
+    });
+}
 
 $(document).ready(function () {
             DBNL.Admin.Banners.setupGrid($("#grid"), $("#pager"));
@@ -68,7 +91,7 @@ $(document).ready(function () {
                         type: "POST"
                     },
                     datatype: "json",
-                    colNames: [ 'Id','Tên', 'Đường dẫn', 'Hình', 'Vị trí', 'Tình trạng'],
+                    colNames: [ 'Id','Tên', 'Đường dẫn', 'Hình', 'Vị trí', 'Tình trạng',''],
                     colModel: [
                     {
                         name: 'Id',index: 'Id',key:true, width: 40, align: 'left',editable: false, editoptions: {readonly:'readonly'},editrules: { edithidden: true }, hidden: true },
@@ -78,12 +101,12 @@ $(document).ready(function () {
                         { name: 'Image', index: 'Image', width: 80,formatter:imageFormater , align: 'center', editable: true, edittype: 'custom',editoptions:{custom_element: bannerImageElem, custom_value:bannerImageVal}, hidden: false },
                         { name: 'Position', index: 'Position', width: 40, align: 'center', sortable: true, editable: true, edittype: 'select', style: 'select', editoptions: { dataUrl: "<%=Url.Action("GetSelectPosition", "Banner" )%>"}, hidden: false },
                         { name: 'Status', index: 'Status', width: 50, align: 'center', sortable: true, editable: true, edittype: 'select', style: 'select', editoptions: { dataUrl: "<%=Url.Action("GetSelectStatus", "Banner" )%>"}, hidden: false },
-
+                        { name: 'Options', index: 'Options', align:'center', sortable:false, editable: false,width:60 }
                       ],
                     rowNum: 10,
                     rowList: [5,10,15, 20,25, 30,40,50,60,70,80,90,100],
                     pager: pager,
-                    sortname: 'Name',
+                    sortname: 'Order',
                     sortorder: "asc",
                     viewrecords: true,
                     width: '100%',
@@ -91,10 +114,23 @@ $(document).ready(function () {
                     autowidth: true,
                     rownumbers: true,
                     caption: 'Danh sách các banner',
+                     postData: {Position:  $('#BannerPosition').val()},
                     onSelectRow: function(id){
                         var row = jQuery("#grid").getRowData(id);
                         //alert(row['Status']);
-                    }
+                    },
+                    loadComplete: function(xhr){ 
+                            
+                            var ids = jQuery("#grid").getDataIDs(); 
+                            for(var i=0;i<ids.length;i++){ 
+                                    var cl = ids[i];
+                                    var edit = '<a  class="Edit"  rel="' +cl + '" href="<%=Url.Action("Edit","Banner")%>/' + cl +'" ><img src="<%=Url.Content("~/Images/edit_medium.png") %>" /></a>';
+                                    var up = '<a  class="Up" onclick="moveup('+cl+');return false" rel="' +cl + '" href="<%=Url.Action("Up","Banner")%>/' + cl +'" ><img src="<%=Url.Content("~/Images/arrow_up.png") %>" /></a>';
+                                    var down = '<a  class="Down" onclick="movedown('+cl+');return false" rel="' +cl + '" href="<%=Url.Action("Down","Banner")%>/' + cl +'" ><img src="<%=Url.Content("~/Images/arrow_down.png") %>" /></a>';
+
+                                    jQuery("#grid").setRowData(ids[i],{Options: up + down + edit});
+                            } 
+                    }, 
 
                     
                 })

@@ -18,19 +18,19 @@ namespace DBNL.App.Models
                 if (this.ID == 49)
                 {
                     return (new ContentService())
-                        .Contents
+                        .Contents.OrderByDescending(p => p.IsFeatured)
                         .Where(p=>p.CategoryId == 49 || p.CategoryId == 53)
-                        .OrderByDescending(p => p.IsFeatured)
+                        .Where(p=>p.IsFeatured)
+                        .OrderByDescending(p1 => p1.CreatedDate)
                         .Skip(0)
                         .Take(DBNLConfigurationManager.WebUI.FeaturedItemOnHP)
-                        .OrderByDescending(p1 => p1.CreatedDate)
                         .AsEnumerable();
                 }
                 return this.Contents.OrderByDescending(p => p.IsFeatured)
-                                    
+                                    .Where(p=>p.IsFeatured)
+                                    .OrderByDescending(p1 => p1.CreatedDate)
                                     .Skip(0)
                                     .Take(DBNLConfigurationManager.WebUI.FeaturedItemOnHP)
-                                    .OrderByDescending(p1 => p1.CreatedDate)
                                     .AsEnumerable();
             }
         }

@@ -44,9 +44,29 @@
 
     function UpdateCreateInLink(id) {
         var createInAction = '<% = Url.Action("CreateIn", "Content") %>/';
+        var deleteAction = '<% = Url.Action("JSonDelete", "Categories") %>/';
         $("#dynamicLink").empty();
         var a = $("<a/>", {href:createInAction +id, text:'Thêm bài viết vào mục này.' });
+
+        var a1 = $("<a/>", {href:'#' +id, text:'Xoá danh mục này.' });
+        a1.bind("click", function() {
+			if(!confirm("Bạn chắc là muốn thực hiện lệnh xoá này chứ. Mọi thông tin bài viết của chủ đề này sẽ bị xoá vĩnh viễn")) {
+				return;
+			}
+            $.ajax({
+                    type: 'POST',
+                    url: '<%=Url.Action("JSonDelete", "Categories" )%>/',
+                    data: {Id : id},
+                    success: function() {
+                    window.location.reload();
+                    },
+                    dataType: 'json'
+                });
+            return false;
+        });
         $("#dynamicLink").append(a);
+        $("#dynamicLink").append("<br/>");
+        $("#dynamicLink").append(a1);
     }
 $(document).ready(function () {
 

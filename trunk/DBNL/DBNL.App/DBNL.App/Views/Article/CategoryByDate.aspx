@@ -57,7 +57,7 @@
         				<div class="des">
         					<h3><%=Html.ContentLink(Model.Category.Key,item) %>
                                 
-                             <small>(<%=item.UpdatedDate.ToVNString() %>)</small></h3>
+                             <small>(<%=item.CreatedDate.ToVNString() %>)</small></h3>
         					<p><% = Html.Encode(item.Description.StripHTML().ReplaceHtmlEntities().TrimmedWord(100))%></p>
         				</div>
 		        	</div>
@@ -68,7 +68,7 @@
                     	<div class="im_news_pic"><a href="<%=Url.ContentLink(Model.Category.Key,item) %>"><img width="110" alt="nguonnhanluc" src="<%=item.ThumbnailUrl %>"></a></div>
                     	<h3>
                             <%=Html.ContentLink(Model.Category.Key,item) %>
-                        <small>(<%=item.UpdatedDate.ToVNString() %>)</small></h3>
+                        <small>(<%=item.CreatedDate.ToVNString() %>)</small></h3>
                     	<p><% = Html.Encode(item.Description.StripHTML().ReplaceHtmlEntities().TrimmedWord(100))%></p>
                   </div>
             <%}

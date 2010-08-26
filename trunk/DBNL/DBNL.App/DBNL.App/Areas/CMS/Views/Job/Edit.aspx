@@ -84,7 +84,8 @@
              {
                  filebrowserBrowseUrl: '<%= Url.Content("~/Scripts/FileManager/index.html") %>'
              });
-             $(".DatePicker").datepicker();
+             $('.DatePicker').datepicker({ dateFormat: 'dd/mm/yy', yearRange: '2000:2020', showButtonPanel: true, appendText: '(dd/mm/yyyy)', buttonImage: 'http://www.marocotel.com/images/btn_datepicker.gif', buttonImageOnly: true, changeMonth: true, changeYear: true });
+
 
          });
     </script>

@@ -121,7 +121,7 @@
     <value>Tên Công ty</value>
   </data>
   <data name="CompanyInfo" xml:space="preserve">
-    <value>Thôn tin chi tiết công ty</value>
+    <value>Thông tin tuyển dụng</value>
   </data>
   <data name="CompanyRequiredMessage" xml:space="preserve">
     <value>Tên công ty bắt buộc phải nhập.</value>
@@ -133,10 +133,10 @@
     <value>Mô tả</value>
   </data>
   <data name="JobDetail" xml:space="preserve">
-    <value>Mô tả chi tiết công việc</value>
+    <value>Yêu cầu chi tiết</value>
   </data>
   <data name="Title" xml:space="preserve">
-    <value>Tên công việc</value>
+    <value>Công việc</value>
   </data>
   <data name="TitleRequiredMessage" xml:space="preserve">
     <value>Bạn phải nhập tên công việc.</value>

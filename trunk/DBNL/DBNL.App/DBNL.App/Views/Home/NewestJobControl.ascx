@@ -11,7 +11,9 @@
                            { %>
 							<li>
 								<div class="lstitle"><%=Html.ActionLink(item.Title, "Details", "WebJob", new { id = item.Id }, null)%></div>
-								<div class="object_mt"><%=Html.ActionLink(item.Company, "View", "WebJob", new {id=item.Id},null) %></div>
+								<div class="object_mt"><%--<%=Html.ActionLink(item.Company == null ? "Unknow" : item.Company, "View", "WebJob", new { id = item.Id }, null)%>--%>
+                                    <%= Html.Encode(item.Company == null ? "Unknow" : item.Company) %>
+                                </div>
 							</li>
                             <%} %>
 						</ul>

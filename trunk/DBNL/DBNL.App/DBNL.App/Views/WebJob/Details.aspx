@@ -12,13 +12,13 @@
 			<div class="content">
                 <div class="ns_temp_top">
                     <div class="left"></div>
-                        <div class="center">Thông tin công ty.</div>
+                        <div class="center">Thông tin giới thiệu việc làm.</div>
                         <div class="right"></div>
                     </div>
                 <div class="ns_temp_content">
                     <div class="ns_detail">
                         <h3><%=Model.Company %></h3>
-                        <p><%=Model.CompanyInfo %></>p
+                        <p><%=Model.CompanyInfo %></p>
 
                         <div class="clear"></div>
                     </div>
@@ -35,10 +35,10 @@
                 <div class="ns_temp_content">
                     <div class="ns_detail">
                         <h3><%=Model.Title %></h3>
-                        <p><%=Model.Description %></>p
-                        <p><%=Model.JobDetail %></>p
-
-                        <p>Hạn nộp hồ sơ : <span><%=Model.Deadline.ToShortDateString() %></span></p>
+                        <p><%=Model.Description %><p/>
+                        <p><%=Model.JobDetail %></p>
+						<br/>
+                        <p><strong>Hạn nộp hồ sơ </strong>: <span><%=Model.Deadline.ToShortDateString() %></span></p>
 
                         <div class="clear"></div>
                     </div>

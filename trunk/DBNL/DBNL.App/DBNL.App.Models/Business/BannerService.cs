@@ -22,7 +22,7 @@ namespace DBNL.App.Models.Business
         {
             if (string.IsNullOrEmpty(pos)) return List();
 
-            return this.Banners.Where(p=>p.BannerPosition == pos).AsQueryable();
+            return this.Banners.Where(p=>p.BannerPosition == pos).OrderBy(p=>p.Order).AsQueryable();
         }
         public  Banner GetItem(int id)
         {
@@ -39,6 +39,7 @@ namespace DBNL.App.Models.Business
             banner.CreatedDate = DateTime.Now;
             banner.UpdatedDate = DateTime.Now;
             banner.BannerPosition = bannerPosition;
+            banner.Order = new BannerService().List(bannerPosition).Count()+1;
             this.Banners.InsertOnSubmit(banner);
             Commit();
             return banner;
@@ -56,7 +57,7 @@ namespace DBNL.App.Models.Business
             Banner banner = GetItem(id);
             banner.Name = name.Trim();
             banner.Url = url.Trim();
-            //banner.BannerImage = bannerImage.Trim();
+            banner.BannerImage = bannerImage.Trim();
             banner.Status = status.Trim();
             banner.UpdatedDate = DateTime.Now;
             banner.BannerPosition = bannerPosition;
@@ -66,9 +67,12 @@ namespace DBNL.App.Models.Business
 
         public  IEnumerable<Banner> GetItems(BannerPositions bannerPositions)
         {
-            return Banners.Where(p=>p.Status == EntityStatuses.Actived.ToString() &&  p.BannerPosition == bannerPositions.ToString()).AsEnumerable();
+            return Banners.Where(p=>p.Status == EntityStatuses.Actived.ToString() &&  p.BannerPosition == bannerPositions.ToString()).OrderBy(p=>p.Order).AsEnumerable();
         }
-
+        public IEnumerable<Banner> GetItems(string pos)
+        {
+            return Banners.Where(p => p.Status == EntityStatuses.Actived.ToString() && p.BannerPosition == pos).AsEnumerable();
+        }
 
         public  void Add(Banner banner)
         {
@@ -97,5 +101,40 @@ namespace DBNL.App.Models.Business
         }
 
         public  string EntitiStatuses { get; set; }
+
+        public void MoveUp(int id)
+        {
+            Banner item = GetItem(id);
+            var preItem = GetItems(item.BannerPosition)
+                .Where(p => p.Order < item.Order)
+                .OrderByDescending(p => p.Order)
+                .FirstOrDefault();
+
+            if (preItem != null)
+            {
+                int temp = item.Order;
+                item.Order = preItem.Order;
+                preItem.Order = temp;
+                Commit();
+            }
+
+        }
+        public void MoveDown(int id)
+        {
+            Banner item = GetItem(id);
+            var nextItem = GetItems(item.BannerPosition)
+                .Where(p => p.Order > item.Order)
+                .OrderBy(p => p.Order)
+                .FirstOrDefault();
+
+            if (nextItem != null)
+            {
+                int temp = item.Order;
+                item.Order = nextItem.Order;
+                nextItem.Order = temp;
+                Commit();
+            }
+
+        }
     }
 }

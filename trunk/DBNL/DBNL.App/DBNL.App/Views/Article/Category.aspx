@@ -11,10 +11,6 @@
     <link rel="Stylesheet" type="text/css" href="<%=Url.Content("~/Content/jqueryUI1.8a/css/redmond/jquery.ui.theme.css")%>" />
     <script type="text/javascript" src="<%=Url.Content("~/Content/jqueryUI1.8a/js/jquery-ui-1.8.min.js")%>" ></script>
     <script type="text/javascript" src="<%=Url.Content("~/Content/jqueryUI1.8a/development-bundle/ui/jquery.ui.datepicker.js")%>" ></script>
-
-    
-
-    
 </asp:Content>
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
 
@@ -52,7 +48,7 @@
         				<div class="des">
         					<h3><%=Html.ContentLink(Model.Category.Key,item) %>
                                 
-                             <small>(<%=item.UpdatedDate.ToVNString() %>)</small></h3>
+                             <small>(<%=item.CreatedDate.ToVNString() %>)</small></h3>
         					<p><% = Html.Encode(item.Description.StripHTML().ReplaceHtmlEntities().TrimmedWord(100))%></p>
         				</div>
 		        	</div>
@@ -63,7 +59,7 @@
                     	<div class="im_news_pic"><a href="<%=Url.ContentLink(Model.Category.Key,item) %>"><img width="110" alt="nguonnhanluc" src="<%=item.ThumbnailUrl %>"></a></div>
                     	<h3>
                             <%=Html.ContentLink(Model.Category.Key,item) %>
-                        <small>(<%=item.UpdatedDate.ToVNString() %>)</small></h3>
+                        <small>(<%=item.CreatedDate.ToVNString() %>)</small></h3>
                     	<p><% = Html.Encode(item.Description.StripHTML().ReplaceHtmlEntities().TrimmedWord(100))%></p>
                   </div>
             <%}

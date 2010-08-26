@@ -18,7 +18,18 @@ namespace DBNL.App.Areas.CMS.Controllers
     {
         //
         // GET: /Categories/
+        
+
         [RequiresAuthentication]
+        [HttpPost]
+        public ActionResult DeleteByContent(int id)
+        {
+            Content content = new ContentService().GetContentById(id);
+            return JsonDelete(content.CategoryId);
+        }
+
+        [RequiresAuthentication]
+        [HttpPost]
         public ActionResult JsonDelete(int id)
         {
             new CategoryService().Delete(id);

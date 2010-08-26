@@ -12,16 +12,24 @@
         <label>Chọn vị trí menu</label>
             <%=Html.DropDownList("Position", DBNL.App.Models.Statics.CustomSelectList.CreateMenuPosition() )%>
         </div>
-     <div>
-        <table id="grid" cellpadding="0" cellspacing="0">
-        </table>
-        <div id="pager" style="text-align: center;"/>
-        
+         <div id="container" style="width:100%">
+        <ul id="navigationTreeView" class="treeview">
+     
+         </ul>
+         <div class="GridBox" style="float:right;">
+             <table id="grid" cellpadding="0" cellspacing="0">
+            </table>
+         <div id="pager" style="text-align: center;"/>
+
+        </div>
+        <div style="clear:both">
+                <%= Html.ActionLink("Thêm mới", "Create") %>
+                <p id="dynamicLink">
+                
+                </p>
+       </div>
     </div>
-    
-    <p style="padding-top:10px">
-        <%= Html.ActionLink("Create New", "Create") %>
-    </p>
+
 </asp:Content>
 
 <asp:Content ID="Content3" runat="server" ContentPlaceHolderID="ScriptContent">
@@ -30,17 +38,61 @@
         function displayOrder(cellvalue, options, rowObject) {
             return cellvalue;
         }
+        function IsNumeric(sText)
+
+        {
+           var ValidChars = "0123456789.";
+           var IsNumber=true;
+           var Char;
+
+ 
+           for (i = 0; i < sText.length && IsNumber == true; i++) 
+              { 
+              Char = sText.charAt(i); 
+              if (ValidChars.indexOf(Char) == -1) 
+                 {
+                 IsNumber = false;
+                 }
+              }
+           return IsNumber;
+   
+           }
+
+
         $(document).ready(function () {
 
             DBNL.Admin.Navigations.setupGrid($("#grid"), $("#pager"));
             
             $("#Position").bind("change", function() {
-                jQuery("#grid").setGridParam({ postData: {Position:  $(this).val()}})  
-                                      
-                                       .trigger('reloadGrid');  
-                                       
-            
+                jQuery("#grid").setGridParam({ postData: {Position:  $(this).val(), ParentId:''}})  
+                .trigger('reloadGrid');  
             });
+
+             $("#navigationTreeView").treeview({
+			    url: "<%=Url.Action("TreeNode", "Navigation" )%>",
+                 toggle: function() {
+                    
+                   },
+
+                nodeClick : function () {
+                    var id = this.id;
+                    
+                    //$("#Category").val(id);
+                    //jQuery("#grid").setGridParam({ postData: {ParentId:  id}}).trigger('reloadGrid');  
+                    //UpdateCreateInLink(id);
+                }, 
+                everyNodeClick:function() {
+                    var id = this.id;
+                    if(IsNumeric(id)){
+                        jQuery("#grid").setGridParam({ postData: {ParentId:  id, Position:''}}).trigger('reloadGrid'); 
+                        return;
+                    }
+                    else
+                    jQuery("#grid").setGridParam({ postData: {Position:  id}}).trigger('reloadGrid'); 
+                     
+                    //UpdateCreateInLink(id);
+                }
+		    })
 
         });
 
@@ -221,14 +273,6 @@
                            position:"last"
             });
             }}
-        
-
-            
 </script>
-
-
-
-    
-
 </asp:Content>
 

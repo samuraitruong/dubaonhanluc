@@ -299,5 +299,45 @@ namespace DBNL.App.Areas.CMS.Controllers
         }
 
         public string Cotrollers { get; set; }
+
+        [HttpPost]
+        [RequiresAuthentication]
+        public ActionResult TreeNode(string Node, FormCollection collection)
+        {
+            IEnumerable<Navigation> navigations = null;
+            if (string.IsNullOrEmpty(Node ))
+            {
+             var items = from p in CustomSelectList.CreateMenuPosition()
+                             select new
+                            {
+                                text = p.Text,
+                                hasChildren = true,
+                                id = p.Value,
+                                classes = "Clickable"
+                            };
+                return  Json(items);
+                        
+            }
+            int parentId = 0;
+            NavigationService service = new NavigationService();
+
+            if(int.TryParse(Node, out parentId)) {
+                navigations = service.List(parentId,"");
+            }
+            else
+            {
+                navigations = service.GetItems(Node);
+            }
+            var query = from p in navigations
+                        select new
+                        {
+                            text = p.Name,
+                            hasChildren = p.Navigations.Count > 0,
+                            id = p.Id.ToString(),
+                            classes = "Clickable"
+                        };
+
+            return Json(query);
+        }
     }
 }

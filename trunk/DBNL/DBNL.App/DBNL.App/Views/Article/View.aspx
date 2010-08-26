@@ -16,7 +16,7 @@
 			</div>
 			<!--top page-->
 			<div class="news_article_detail">
-				<h2><% =Model.Content.Title.ToUpper() %><small>(<% =Model.Content.UpdatedDate.ToVNString() %>)</small></h2>
+				<h2><% =Model.Content.Title.ToUpper() %><small>(<% =Model.Content.CreatedDate.ToVNString() %>)</small></h2>
                 <% = Model.Content.Content1 %>
 			</div>
 			<% Html.RenderPartial("OtherNewsView", Model.OtherNewses); %>
