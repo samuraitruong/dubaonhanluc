@@ -76,6 +76,18 @@ namespace DBNL.App.Config
         {
             get { return (string)this["extension"]; }
         }
+
+        [ConfigurationProperty("ReCaptchaPrivateKey")]
+        public string ReCaptchaPrivateKey
+        {
+            get { return (string)this["ReCaptchaPrivateKey"]; }
+        }
+
+        [ConfigurationProperty("ReCaptchaPublicKey")]
+        public string ReCaptchaPublicKey
+        {
+            get { return (string)this["ReCaptchaPublicKey"]; }
+        }
        
        
     }

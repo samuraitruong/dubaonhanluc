@@ -27,5 +27,10 @@ namespace DBNL.App.Config
         {
             get { return (WebUIElement)this["WebUIElement"]; }
         }
+        [ConfigurationProperty("emailing")]
+        public EmailingElement EmailingElement
+        {
+            get { return (EmailingElement)this["emailing"]; }
+        }
     }
 }

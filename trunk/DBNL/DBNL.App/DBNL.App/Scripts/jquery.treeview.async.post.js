@@ -47,7 +47,7 @@ function load(settings, root, child, container) {
                     var url = this.url;
                     
                     var current = (url != null && url!= "")?$("<li/>").attr("id", this.id || "").html("<a target='_blank' href='" + url + "'>" + this.text + "</a>").appendTo(parent):$("<li/>").attr("id", this.id || "").html("<span>" + this.text + "</span>").appendTo(parent);
-                    if (this.hasChildren && settings.everyNodeClick != 'undefined') {
+                    if (this.hasChildren && settings.everyNodeClick!= null && settings.everyNodeClick != 'undefined') {
                     current.bind('click', settings.everyNodeClick);
                     }
                     if (!this.hasChildren) {

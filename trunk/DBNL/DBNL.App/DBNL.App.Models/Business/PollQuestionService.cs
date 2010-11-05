@@ -82,14 +82,15 @@ namespace DBNL.App.Models.Business
         {
             if (ActivePoll == null) return null;
             return ActivePoll.PollQuestions.Where(p => p.Status == EntityStatuses.Actived.ToString())
-                .OrderByDescending(p=>p.Responses)
+                .OrderBy(p=>p.Order)
                 .AsEnumerable();
         }
 
-        public  PollQuestion Edit(int id, string Question, string Status)
+        public PollQuestion Edit(int id, string Question, string Status, int Responses)
         {
             PollQuestion pollQuestion = GetItem(id);
             pollQuestion.Question = Question.Trim();
+            pollQuestion.Responses = Responses;
             if (!string.IsNullOrEmpty(Status))
                 pollQuestion.Status = Status;
             pollQuestion.UpdatedDate = DateTime.Today;
@@ -97,7 +98,7 @@ namespace DBNL.App.Models.Business
             return pollQuestion;
         }
 
-        public  PollQuestion Edit(int id, string Question, int PollId, string Status)
+        public PollQuestion Edit(int id, string Question, int PollId, string Status)
         {
             PollQuestion pollQuestion = GetItem(id);
             pollQuestion.Question = Question.Trim();
@@ -127,5 +128,44 @@ namespace DBNL.App.Models.Business
         {
             return PollQuestions.Where(p => p.PollId == PollId).Sum(p => p.Responses);
         }
+
+        public void MoveUp(int id)
+        {
+            PollQuestion item = GetItem(id);
+            var preItem = GetItems(item.PollId)
+                .Where(p => p.Order < item.Order)
+                .OrderByDescending(p => p.Order)
+                .FirstOrDefault();
+
+            if (preItem != null)
+            {
+                short temp = item.Order;
+                item.Order = preItem.Order;
+                preItem.Order = temp;
+                Commit();
+            }
+        }
+        public void MoveDown(int id)
+        {
+            PollQuestion item = GetItem(id);
+            var preItem = GetItems(item.PollId)
+                .Where(p => p.Order > item.Order)
+                .OrderBy(p => p.Order)
+                .FirstOrDefault();
+
+            if (preItem != null)
+            {
+                short temp = item.Order;
+                item.Order = preItem.Order;
+                preItem.Order = temp;
+                Commit();
+            }
+        }
+        private IEnumerable<PollQuestion> GetItems(int pollId)
+        {
+            return PollQuestions.Where(p => p.PollId == pollId);
+        }
+
+        
     }
 }

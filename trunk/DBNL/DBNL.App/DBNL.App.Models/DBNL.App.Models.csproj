@@ -85,6 +85,9 @@
     <Compile Include="Business\CategoryService.cs" />
     <Compile Include="Business\ContactService.cs" />
     <Compile Include="Business\ContentService.cs" />
+    <Compile Include="Business\AccountService.cs" />
+    <Compile Include="Business\CareerService.cs" />
+    <Compile Include="Business\ConfigurationService.cs" />
     <Compile Include="Business\DepartmentService.cs" />
     <Compile Include="Business\JobService.cs" />
     <Compile Include="Business\LinkService.cs" />
@@ -104,6 +107,14 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>DBNL.dbml</DependentUpon>
     </Compile>
+    <Compile Include="Business\Emailing\Emailer.cs" />
+    <Compile Include="Business\Emailing\EmailTemplate.cs" />
+    <Compile Include="Business\Emailing\Modificators.cs" />
+    <Compile Include="Business\Emailing\Parameters.cs" />
+    <Compile Include="Business\Emailing\ContactUsEmail.cs" />
+    <Compile Include="Business\Emailing\Template.cs" />
+    <Compile Include="Business\Emailing\TemplateParser.cs" />
+    <Compile Include="Business\Emailing\WebUtility.cs" />
     <Compile Include="Entities\Attributes\LocalizedDisplayNameAttribute.cs" />
     <Compile Include="Entities\Attributes\UsernameAttribute.cs" />
     <Compile Include="Entities\Banner.cs" />

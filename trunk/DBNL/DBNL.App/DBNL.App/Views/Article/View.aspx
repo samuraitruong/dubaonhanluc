@@ -2,6 +2,13 @@
 <%@ Import Namespace="DBNL.App.Models.Extensions" %>
 <asp:Content ContentPlaceHolderID="headerPlaceHolder" runat="server">
     <link rel="Stylesheet" type="text/css" href="<%=Url.Content("~/Content/news_article.css")%>"></link>
+
+    <% var cf = ((SiteConfigurations)ViewData["Configuration"]);%>
+    <% if (!cf.ProtectAllContent && Model.Content.Protected)
+       { %>
+    <%Html.RenderPartial("ProtectedContentControl"); %>
+    <%} %>
+
 </asp:Content>
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
     <div class="ex" id="hot_news">

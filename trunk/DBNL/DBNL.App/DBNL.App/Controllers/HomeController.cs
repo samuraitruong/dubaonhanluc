@@ -64,6 +64,14 @@ namespace DBNL.App.Controllers
         {
             return View();
         }
+        public ActionResult ContactUs()
+        {
+            return View();
+        }
+        public ActionResult Thanks()
+        {
+            return View();
+        }
         public ActionResult Sample()
         {
             return View();

@@ -16,75 +16,6 @@ fieldset.sendlink { display:inline; float:left; border:none; width:280px; paddin
 #footer .f1 { float:left; width:580px;}
 #footer .f2 { float:right; width:370px; text-align:right;}
 
- ....loading....
-	0	Started
-	0	0	DNS Lookup
-	0	0	Connecting
-	0	0	Blocking
-	0	0	Sending
-	0	3.25s	Waiting
-	+3.25s	0	Receiving
-	+5.15s	'DOMContentLoaded' (event)
-	+5.4s	'load' (event)
-Firebug's log limit has been reached. 0 entries not shown.		Preferences	 
-<html xmlns="http://www.w3.org/1999/xhtml">
-<head>
-</head>
-<body>
-<div id="wrapper"></div>
-<div id="page">
-<div id="header">
-</div>
-<div id="top_content">
-</div>
-<a name="neo_content"></a>
-<div id="wrap_dm" class="clearfix">
-<div id="wrap_cat">
-</div>
-<div id="hot_news" class="ex">
-<div class="top_hot_news">
-</div>
-<div class="news_article">
-</div>
-<div class="bottom_news_article">
-</div>
-</div>
-</div>
-<div id="partner">
-</div>
-<div id="wrap_ad" class="clearfix">
-</div>
-<div id="wrap_footer">
-<div id="top_footer">
-<div class="top_footer_inside clearfix">
-<div class="s1 fl">
-</div>
-<div class="s3 fr">
-</div>
-</div>
-</div>
-<div id="footer" class="clearfix">
-<div class="f1">
-<p>Copyright &copy; 2009 thuộc Trung Tâm Dự báo nhu cầu nhân lực và Thông tin thị trường lao động TPHCM - Sở Lao động - Thương binh và Xã hội giữ trọn bản quyền</p>
-</div>
-<div class="f2">
-<p>Địa Chỉ: 250 Nguyễn Thái Sơn, Phường 4, Quận Gò Vấp, Tp.HCM</p>
-<p>Điện Thoại : (08) 3588 8753 - Fax (08) 3588 8754</p>
-<p>
-</p>
-</div>
-</div>
-</div>
-</div>
-</body>
-</html>
-Firebug's log limit has been reached. 0 entries not shown.		Preferences	 
-<html xmlns="http://www.w3.org/1999/xhtml">
-<head>
-</head>
-<body>
-</body>
-</html>
 #wrap_footer {
 float:left;
 height:170px;
@@ -110,7 +41,7 @@ width:350px;
 #top_footer .s3 {
 padding-right:10px;
 padding-top:10px;
-width:355px;
+width:455px;
 }
 #top_footer .s3 img {
 display:inline;

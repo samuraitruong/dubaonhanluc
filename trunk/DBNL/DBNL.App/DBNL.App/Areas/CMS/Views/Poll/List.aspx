@@ -20,6 +20,32 @@
 <asp:Content ID="Content3" runat="server" ContentPlaceHolderID="ScriptContent">
     <script language="javascript" type="text/javascript" src="<%= Url.Content("~/Scripts/GridData.js") %>"></script>
     <script type="text/javascript">
+
+    function moveup(id, grid) {
+        
+     $.ajax({
+        type: 'POST',
+        url: '<%=Url.Action("Up", "PollQuestion" )%>',
+        data: {Id : id},
+        success: function() {
+            $("#"+$(grid).attr('rel')).trigger("reloadGrid")
+        },
+        dataType: 'json'
+    });
+}
+
+function movedown(id, grid) {
+     $.ajax({
+        type: 'POST',
+        url: '<%=Url.Action("Down", "PollQuestion" )%>',
+        data: {Id : id},
+        success: function() {
+            $("#" +$(grid).attr('rel')).trigger("reloadGrid")
+        },
+        dataType: 'json'
+    });
+}
+
 $(document).ready(function () {
 
             DBNL.Admin.Polls.setupGrid($("#grid"), $("#pager"));
@@ -76,18 +102,19 @@ $(document).ready(function () {
                             ajaxGridOptions: {
                                                     type: "POST"
                                                 },
-                            colNames: ['Id','Câu hỏi','Số lần chọn', '%'], 
+                            colNames: ['Id','Câu hỏi','Số lần chọn', '%',''], 
                             colModel: [ 
                                         {name:"Id", index:"Id", width:100, sortable: false, editable: false, editoptions: {readonly:'readonly'}, editrules: { edithidden: true }, key:true, hidden:true},
                                         {name:"Question", index:"Question", width:625, sortable: true, editable: true, editrules : {required:true}, editoptions: { size: 60, maxlength:100}}, 
                                         {name:"Responses", index:"Responses", width:150, align: 'center',editrules : {readonly:true}, editable:true, sortable:true} ,                                
-                                        {name:"Percent", index:"Responses", width:150, align: 'center', sortable:true}     
+                                        {name:"Percent", index:"Responses", width:150, align: 'center', sortable:true}    , 
+                                        {name:"Options", index:"Options", width:150, align: 'center', sortable:false,editable:false }   
                                       ],
                              rowNum:20, 
                              rowList: [5,10,15, 20,25, 30,40,50,60,70,80,90,100],
                              pager: pager_id, 
-                             sortname: 'Responses', 
-                             sortorder: "desc", 
+                             sortname: 'Order', 
+                             sortorder: "asc", 
                              height: '100%' ,
                              width:'100%',
                              viewrecords: true,
@@ -95,7 +122,20 @@ $(document).ready(function () {
                             rownumbers: true,
                             caption: 'Danh sách câu hỏi trong mục này',
                             userdata: {PollId:$("#grid").getRowData(row_id)["Id"]},
-                             postData: {PollId:eid}
+                            postData: {PollId:eid},
+                            loadComplete: function(xhr){ 
+                            
+                            var ids = jQuery("#"+subgrid_table_id).getDataIDs(); 
+                            for(var i=0;i<ids.length;i++){ 
+                                    var cl = ids[i];
+                                    var idup = "up_"+ subgrid_table_id+"_" + cl;
+
+                                    var up = '<a  class="Up" Id="' +idup+'" onclick="moveup('+cl+', this);return false" rel="' +subgrid_table_id + '" href="<%=Url.Action("Up","PollQuestion")%>/' + cl +'" ><img src="<%=Url.Content("~/Images/arrow_up.png") %>" /></a>';
+                                    var down = '<a  class="Down" onclick="movedown('+cl+', this);return false" rel="' +subgrid_table_id + '" href="<%=Url.Action("Down","PollQuestion")%>/' + cl +'" ><img src="<%=Url.Content("~/Images/arrow_down.png") %>" /></a>';
+
+                                    jQuery("#"+subgrid_table_id).setRowData(ids[i],{Options: up + down });
+                            } 
+                    },
                              
                     }); 
                     jQuery("#"+subgrid_table_id).jqGrid('navGrid',"#"+pager_id,{edit:true,add:true,del:true,search: true, view: true}, {width:'450'},{},{url:'<%=Url.Action("JsonDelete", "PollQuestion" )%>'})

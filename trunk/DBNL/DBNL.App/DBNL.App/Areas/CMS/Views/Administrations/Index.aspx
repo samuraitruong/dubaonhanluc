@@ -13,6 +13,8 @@
             <div id="pager" style="text-align: center;"/>
     </div>
             <p> <%= Html.ActionLink("Thêm mới", "CreateIn", "Content", new { id=Model.CommonCategory.ID},null)%></p>
+
+            <p> <%= Html.ActionLink("Quản lí cấu hình ", "Configuration" )%></p>
 </asp:Content>
 <asp:Content ID="Content3" runat="server" ContentPlaceHolderID="ScriptContent">
     <script language="javascript" type="text/javascript" src="<%= Url.Content("~/Scripts/GridData.js") %>"></script>

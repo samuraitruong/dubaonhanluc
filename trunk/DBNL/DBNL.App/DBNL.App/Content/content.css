@@ -8,7 +8,7 @@
 }
 #top_content .search {
 	float:right;
-	width:220px;
+	width:279px;
 	height:30px;
 	padding-top:7px;
 }
@@ -398,4 +398,24 @@
 #ticker
 {
     float:left !important;
+}
+.login_menu 
+{
+    float:left;
+    padding-right:5px;
+}
+.login_menu li 
+{
+    list-style-type:none;
+    xfloat:left;
+    color:White!important;
+    text-decoration:none;
+}
+.login_menu li a
+{
+    color:White;
+}
+.login_menu li a:hover
+{
+    color:#FDB300;
 }

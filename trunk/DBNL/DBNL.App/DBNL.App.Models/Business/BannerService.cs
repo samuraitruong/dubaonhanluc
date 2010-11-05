@@ -136,5 +136,20 @@ namespace DBNL.App.Models.Business
             }
 
         }
+
+        public Banner Edit(int id, string name, string url, string bannerImage, string status, string bannerPosition, string w, string h)
+        {
+            Banner banner = GetItem(id);
+            banner.Name = name.Trim();
+            banner.Url = url.Trim();
+            banner.BannerImage = bannerImage.Trim();
+            banner.Status = status.Trim();
+            banner.UpdatedDate = DateTime.Now;
+            banner.BannerPosition = bannerPosition;
+            banner.Width = w;
+            banner.Height = h;
+            Commit();
+            return banner;
+        }
     }
 }

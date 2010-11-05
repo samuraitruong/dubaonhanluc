@@ -13,8 +13,9 @@ namespace DBNL.App.Config
 
         public static DBNLConfigurationSection GetInsance()
         {
-            if(instance == null) {
-             instance = (DBNLConfigurationSection)ConfigurationManager.GetSection("DBNL.App.Config");
+            if (instance == null)
+            {
+                instance = (DBNLConfigurationSection)ConfigurationManager.GetSection("DBNL.App.Config");
             }
             return instance;
         }
@@ -32,10 +33,20 @@ namespace DBNL.App.Config
                 return GetInsance().LuceneElement;
             }
         }
-        public static WebUIElement WebUI{
-            get{
+        public static WebUIElement WebUI
+        {
+            get
+            {
                 return GetInsance().WebUIElement;
             }
         }
-    }
+        public static EmailingElement   Emails
+        {
+            get
+            {
+                return GetInsance().EmailingElement;
+            }
+        }
+
+    } 
 }

@@ -18,5 +18,6 @@ namespace DBNL.App.Models.ViewData
         public IEnumerable<Content> HotNews { get; set; }
 
         public IEnumerable<Banner> SlideShowBanners { get; set; }
+          
     }
 }

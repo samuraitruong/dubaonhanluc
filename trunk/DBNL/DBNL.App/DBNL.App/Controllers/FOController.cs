@@ -7,6 +7,7 @@ using System.Web.Mvc.Ajax;
 using DBNL.App.Models.ViewData;
 using DBNL.App.Models.Business;
 using DBNL.App.Models.Statics;
+using DBNL.App.Models;
 
 namespace DBNL.App.Controllers
 {
@@ -30,6 +31,7 @@ namespace DBNL.App.Controllers
                 HotNews = new ContentService().GetHostNewsList(DBNL.App.Config.DBNLConfigurationManager.WebUI.MarqueeItemCount)
                 
             };
+            ViewData["Configuration"] = new SiteConfigurations();
         }
         
     }

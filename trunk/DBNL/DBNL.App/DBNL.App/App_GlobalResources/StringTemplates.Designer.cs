@@ -61,11 +61,11 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to &lt;p style=&quot;text-align: center;&quot;&gt;&lt;object type=&quot;application/x-shockwave-flash&quot; data=&quot;http://dubaonhanluchcmc.com/vcastr3.swf&quot; width=&quot;400&quot; height=&quot;300&quot; id=&quot;vcastr3&quot;&gt;
+        ///   Looks up a localized string similar to &lt;p style=&quot;text-align: center;&quot;&gt;&lt;object type=&quot;application/x-shockwave-flash&quot; data=&quot;http://dubaonhanluchcmc.gov.vn/vcastr3.swf&quot; width=&quot;400&quot; height=&quot;300&quot; id=&quot;vcastr3&quot;&gt;
         ///		&lt;param name=&apos;wmode&apos; value=&apos;opaque&apos; /&gt;
-        ///		&lt;param name=&apos;movie&apos; value=&apos;http://dubaonhanluchcmc.com/vcastr3.swf&apos; /&gt;
+        ///		&lt;param name=&apos;movie&apos; value=&apos;http://dubaonhanluchcmc.gov.vn/vcastr3.swf&apos; /&gt;
         ///		&lt;param name=&apos;allowFullScreen&apos; value=&apos;true&apos; /&gt;
-        ///		&lt;param name=&apos;FlashVars&apos; value=&apos;xml=&lt;vcastr&gt;&lt;channel&gt;&lt;item&gt;&lt;source&gt;{0}&lt;/source&gt;&lt;duration&gt;&lt;/duration&gt;&lt;title&gt;{1}&lt;/title&gt;&lt;/item&gt;&lt;/channel&gt;&lt;config&gt;&lt;bufferTime&gt;4&lt;/bufferTime&gt;&lt;contralPanelAl [rest of string was truncated]&quot;;.
+        ///		&lt;param name=&apos;FlashVars&apos; value=&apos;xml=&lt;vcastr&gt;&lt;channel&gt;&lt;item&gt;&lt;source&gt;{0}&lt;/source&gt;&lt;duration&gt;&lt;/duration&gt;&lt;title&gt;{1}&lt;/title&gt;&lt;/item&gt;&lt;/channel&gt;&lt;config&gt;&lt;bufferTime&gt;4&lt;/bufferTime&gt;&lt;contralP [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string VideoPlayer {
             get {

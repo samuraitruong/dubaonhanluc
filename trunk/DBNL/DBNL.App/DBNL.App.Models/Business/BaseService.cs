@@ -22,6 +22,27 @@ namespace DBNL.App.Models.Business
                 return  instance.UserInRoles;
             }
         }
+        public Table<Configuration> Configurations
+        {
+            get
+            {
+                return instance.Configurations;
+            }
+        }
+        public Table<Career> Careers
+        {
+            get
+            {
+                return instance.Careers;
+            }
+        }
+        public Table<Account> Accounts
+        {
+            get
+            {
+                return instance.Accounts;
+            }
+        }
         public Table<Department> Departments
         {
             get

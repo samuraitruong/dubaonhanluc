@@ -1,0 +1,60 @@
+/*** FEEDBACK FORM ***/
+#feedback {
+	background-color: #f5f5f5;
+	color: #333333;
+	line-height: 1.25;
+	border: 1px solid #ddd;
+	margin: 5px 0px 17px 24px;
+	padding: 5px 15px 12px 10px;
+	width: 576px;
+	float:left;
+}
+
+#feedback.editorial {
+	font-family: Georgia, "Times New Roman", Times, serif;
+}
+
+#feedback table, #feedback form {
+	margin: 0px;
+	padding:0px;
+}
+#feedback label {
+	color: #333;
+	padding: 5px 0;
+	font-weight: bold;
+	width:500px;
+}
+
+#feedback .field {
+	border: 1px #DADADA solid;
+	background: #fff;
+	color: #333;
+	width: 570px;
+	padding: 3px;
+	margin: 2px 0px 8px 0px;
+}
+#feedback .intro
+{
+    padding: 5px 0px 5px 0px;
+    
+}
+#feedback .header
+{
+    font-size: 20px!important;
+    font-weight:bolder!important;
+    text-transform:uppercase;
+    
+    
+}
+.asterisk
+{
+    color: #B44E31;
+    font-size:1em;
+}
+.small {
+color:#666666;
+font-size:1.1em;
+font-weight:normal;
+line-height:1;
+}
+

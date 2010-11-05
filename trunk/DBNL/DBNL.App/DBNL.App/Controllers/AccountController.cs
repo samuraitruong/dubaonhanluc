@@ -7,12 +7,15 @@ using System.Web;
 using System.Web.Mvc;
 using System.Web.Security;
 using System.Web.UI;
+using DBNL.App.Controllers.Attributes;
+using DBNL.App.Models;
+using DBNL.App.Models.Business;
 
 namespace DBNL.App.Controllers
 {
 
     [HandleError]
-    public class AccountController : Controller
+    public class AccountController : FOController
     {
 
         // This constructor is used by the MVC framework to instantiate the controller using
@@ -28,8 +31,8 @@ namespace DBNL.App.Controllers
         // information.
         public AccountController(IFormsAuthentication formsAuth, IMembershipService service)
         {
-            FormsAuth = formsAuth ?? new FormsAuthenticationService();
-            MembershipService = service ?? new AccountMembershipService();
+            //FormsAuth = formsAuth ?? new FormsAuthenticationService();
+            //MembershipService = service ?? new AccountMembershipService();
         }
 
         public IFormsAuthentication FormsAuth
@@ -43,8 +46,48 @@ namespace DBNL.App.Controllers
             get;
             private set;
         }
+        [CaptchaValidator]
+        [AcceptVerbs(HttpVerbs.Post)]
+        public ActionResult Login(string Login, string Password, bool captchaValid)
+        {
+            if (!captchaValid)
+            {
+                ModelState.AddModelError("Captcha", "Bạn nhập sai mã số xác nhận. ");
+                return View();
+            }
+            if (ModelState.IsValid)
+            {
+                try
+                {
+                    Account account = new AccountService().Authenticate(Login, FormsAuthentication.HashPasswordForStoringInConfigFile(Password, "MD5"));
+                    if (account != null)
+                    {
+                        SessionManager.Account = account;
+                        FormsAuthentication.SetAuthCookie(Login, true);
+                        FormsAuthentication.RedirectFromLoginPage(Login, true);
+                        return RedirectToAction("Index", "Home");
+                    }
+                    else
+                    {
+                        ModelState.AddModelError("System", "Sai tên đăng nhập hoặc mật khẩu không đúng. ");
+                    }
+                }
+                catch (Exception ex)
+                {
+                    ModelState.AddModelError("System", "Không thể thực hiện thao tác này vào lúc này. ");
+                }
+            }
 
-        public ActionResult LogOn()
+            return View();
+        }
+        public ActionResult SignOut()
+        {
+             FormsAuthentication.SignOut();
+             SessionManager.Account = null;
+             Redirect(this.Request.RawUrl);
+             return RedirectToAction("Index", "Home");
+        }
+        public ActionResult Login()
         {
 
             return View();
@@ -83,37 +126,44 @@ namespace DBNL.App.Controllers
         public ActionResult Register()
         {
 
-            ViewData["PasswordLength"] = MembershipService.MinPasswordLength;
+           /// ViewData["PasswordLength"] = MembershipService.MinPasswordLength;
 
-            return View();
+            return View(new Account() {Id =0 });
         }
-
+        [CaptchaValidator]
         [AcceptVerbs(HttpVerbs.Post)]
-        public ActionResult Register(string userName, string email, string password, string confirmPassword)
+        public ActionResult Register([Bind(Exclude = "Id")]Account account, string PasswordConfirm, bool captchaValid)
         {
-
-            ViewData["PasswordLength"] = MembershipService.MinPasswordLength;
-
-            if (ValidateRegistration(userName, email, password, confirmPassword))
+            if (!captchaValid)
             {
-                // Attempt to register the user
-                MembershipCreateStatus createStatus = MembershipService.CreateUser(userName, password, email);
-
-                if (createStatus == MembershipCreateStatus.Success)
-                {
-                    FormsAuth.SignIn(userName, false /* createPersistentCookie */);
-                    return RedirectToAction("Index", "Home");
-                }
-                else
-                {
-                    ModelState.AddModelError("_FORM", ErrorCodeToString(createStatus));
-                }
+                ModelState.AddModelError("Captcha", "Mã xác nhận không hợp lệ, vui lòng nhập lại");
+            }
+            if (account.Password != PasswordConfirm)
+            {
+                ModelState.AddModelError("PasswordConfirm", "Mật khẩu xác nhận không trùng khớp");
             }
 
+            Account test = new AccountService().GetItem(a => a.Email == account.Email || a.Login == account.Login);
+            if (test != null)
+            {
+                ModelState.AddModelError("FORM_ERR", "Email hoặc tên đăng nhập đã có người đăng ký. vui lòng chọn tên khác.");
+            }
+            if (ModelState.IsValid)
+            {
+                account.Password = FormsAuthentication.HashPasswordForStoringInConfigFile(account.Password, "MD5");
+                //account.Career = new CareerService().GetItem(CareerId);
+                bool result = (new AccountService()).Register(account);
+               return RedirectToAction("Confirmation");
+            }
+            
             // If we got this far, something failed, redisplay form
             return View();
         }
+         public ActionResult Confirmation(){
+            return View();
+         }
 
+        
         [Authorize]
         public ActionResult ChangePassword()
         {
