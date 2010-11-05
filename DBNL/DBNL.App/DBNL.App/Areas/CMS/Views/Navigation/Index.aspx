@@ -88,7 +88,7 @@
                         return;
                     }
                     else
-                    jQuery("#grid").setGridParam({ postData: {Position:  id}}).trigger('reloadGrid'); 
+                    jQuery("#grid").setGridParam({ postData: {Position:  id, ParentId:''}}).trigger('reloadGrid'); 
                      
                     //UpdateCreateInLink(id);
                 }

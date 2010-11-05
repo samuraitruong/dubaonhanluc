@@ -30,6 +30,21 @@
                 <%= Html.ValidationMessageFor(model => model.banner.Url) %>
             </div>
             
+            
+            <div class="editor-label">
+                <%= Html.LabelFor(model => model.banner.Width)%>
+            </div>
+            <div class="editor-field">
+                <%= Html.TextBoxFor(model => model.banner.Width)%>
+                
+            </div>
+            <div class="editor-label">
+                <%= Html.LabelFor(model => model.banner.Height)%>
+            </div>
+            <div class="editor-field">
+                <%= Html.TextBoxFor(model => model.banner.Height)%>
+            </div>
+
             <div class="editor-label">
                 <%= Html.Label("Banner Image:") %>
             </div>

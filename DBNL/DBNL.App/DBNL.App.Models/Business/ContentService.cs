@@ -135,6 +135,7 @@ namespace DBNL.App.Models.Business
             original.IsFeatured = content.IsFeatured;
             original.UniqueKey = content.Title.ToUrlKey();
             original.CategoryId = content.CategoryId;
+            original.Protected = content.Protected;
             //original.ContentCategory = new CategoryService().GetById(content.CategoryId);
 
 

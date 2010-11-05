@@ -168,4 +168,7 @@
   <data name="Welcome" xml:space="preserve">
     <value>Xin chào</value>
   </data>
+  <data name="Member" xml:space="preserve">
+    <value>Thành viên</value>
+  </data>
 </root>

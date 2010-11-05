@@ -22,6 +22,9 @@
         </div>
         <div style="clear:both">
                 <%= Html.ActionLink("Thêm mới", "Create") %>
+                <span style="float:right;padding-right: 20px; pading-top:10px;display:inline-block" id="deleteLink">
+                
+                </span>
                 <p id="dynamicLink">
                 
                 </p>
@@ -46,6 +49,7 @@
         var createInAction = '<% = Url.Action("CreateIn", "Content") %>/';
         var deleteAction = '<% = Url.Action("JSonDelete", "Categories") %>/';
         $("#dynamicLink").empty();
+        $("#deleteLink").empty();
         var a = $("<a/>", {href:createInAction +id, text:'Thêm bài viết vào mục này.' });
 
         var a1 = $("<a/>", {href:'#' +id, text:'Xoá danh mục này.' });
@@ -65,8 +69,8 @@
             return false;
         });
         $("#dynamicLink").append(a);
-        $("#dynamicLink").append("<br/>");
-        $("#dynamicLink").append(a1);
+        
+        $("#deleteLink").append(a1);
     }
 $(document).ready(function () {
 

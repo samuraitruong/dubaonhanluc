@@ -30,6 +30,21 @@
                 <%= Html.ValidationMessageFor(p=>p.Url) %>
             </div>
             
+            <div class="editor-label">
+                <%= Html.LabelFor(p=>p.Width) %>
+            </div>
+            <div class="editor-field">
+                <%= Html.TextBoxFor(p => p.Width)%>
+                <%= Html.ValidationMessageFor(p => p.Width)%>
+            </div>
+            <div class="editor-label">
+                <%= Html.LabelFor(p=>p.Height) %>
+            </div>
+            <div class="editor-field">
+                <%= Html.TextBoxFor(p => p.Height)%>
+                <%= Html.ValidationMessageFor(p => p.Height)%>
+            </div>
+
             <div>
                 <label>Banner Image:</label>
                 <input type="file" name="banimg" />

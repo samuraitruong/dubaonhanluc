@@ -130,6 +130,16 @@ namespace DBNL.App.Models.Statics
             return items;
         }
 
+        public static IEnumerable<SelectListItem> CreateCareerList()
+        {
+            List<SelectListItem> list = new List<SelectListItem>();
+            foreach (var item in new CareerService().GetAllItems().Where(p=>p.Status == EntityStatuses.Actived.ToString()))
+            {
+                list.Add(new SelectListItem() { Text = item.Name, Value = item.Id.ToString() });
+            }
+            return list.AsEnumerable();
+        }
+
         public static IEnumerable<SelectListItem> CreateModuleList(string comp)
         {
             IEnumerable<SelectListItem> items = CreateModuleList();
@@ -141,9 +151,9 @@ namespace DBNL.App.Models.Statics
         public static IEnumerable<SelectListItem> CreateListOphanArticles()
         {
             List<SelectListItem> list = new List<SelectListItem>();
-            foreach (var item in new ContentService().AllOrhanArticles())
+            foreach (var item in new CareerService().GetAllItems())
             {
-                list.Add(new SelectListItem() { Text = item.Title, Value = item.ContentId.ToString() });
+                list.Add(new SelectListItem() { Text = item.Name, Value = item.Id.ToString() });
             }
             return list.AsEnumerable();
         }

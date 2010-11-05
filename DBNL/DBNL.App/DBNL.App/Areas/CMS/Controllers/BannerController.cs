@@ -105,7 +105,7 @@ namespace DBNL.App.Areas.CMS.Controllers
 
                 if (!ModelState.IsValid || Request.Files[0].ContentLength==0)
                 {
-                    if (Request.Files[0].ContentLength == 0) ViewData.ModelState.AddModelError("Image","Phải chọn hình");
+                    if (Request.Files[0].ContentLength == 0) ViewData.ModelState.AddModelError("Image","Phải chọn hình hoặc flash video");
                     ViewData["Extra"] = new BannerViewData()
                     {
                         banner = new Banner(),
@@ -230,7 +230,7 @@ namespace DBNL.App.Areas.CMS.Controllers
                     fileName = Request.Files[0].FileName;
                     Request.Files[0].SaveAs(Path.Combine(DBNLConfigurationManager.FileResponsity.BannerFolder, fileName));
                 }
-                new BannerService().Edit(id, collection["banner.Name"], collection["banner.Url"], fileName, collection["BannerStatus"], collection["BannerPosition"]);
+                new BannerService().Edit(id, collection["banner.Name"], collection["banner.Url"], fileName, collection["BannerStatus"], collection["BannerPosition"], collection["banner.Width"], collection["banner.Height"]);
                 return RedirectToAction("List");
             }
             catch

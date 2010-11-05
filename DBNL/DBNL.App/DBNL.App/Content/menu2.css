@@ -15,7 +15,7 @@
 
 /* Everything else is theming */
 
-#nav2 { float:left; width:700px; height:37px; text-align:left;}
+#nav2 { float:left; width:640px; height:37px; text-align:left;}
 #nav2 li a:hover { color:#fff; text-decoration:none;}
 #nav2 a { padding:0 20px 0 16px; color:#fff; font-size:12px; font-weight:bold; text-transform:uppercase; line-height:34px; background:url(../images/line.jpg) right center no-repeat;}
 #nav2 li.end a { background:none;}

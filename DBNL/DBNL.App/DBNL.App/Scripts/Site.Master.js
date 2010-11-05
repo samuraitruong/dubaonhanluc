@@ -1,5 +1,16 @@
-﻿$(document).ready(function() {
+﻿$(document).ready(function () {
     GridDemo.SiteMaster.setDefaults();
+    $.ajaxSetup({
+        complete: function (data, status) {
+            
+            try {
+            
+            } catch (err) {
+            
+            }
+
+        }
+    });
 });
 
 var DBNL = {

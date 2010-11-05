@@ -136,6 +136,7 @@ namespace DBNL.App.Areas.CMS.Controllers
                 {
                     if (navigation.CategoryId.HasValue)
                     {
+                        navigation.ContentId = null;
                         navigation.Controller = DBNL.App.Models.Statics.Controllers.Article.ToString();
                         navigation.Action = DBNL.App.Models.Statics.Actions.Category.ToString();
                         navigation.Area = "";

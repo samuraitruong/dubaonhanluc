@@ -28,6 +28,8 @@ namespace DBNL.App.Models
         }
         private  void CheckForValidRequest()
         {
+            canMakePoll = true;
+            return;
             UserClientInfo info = SessionManager.SecurityPollData;
             canMakePoll = (info ==null);
         }

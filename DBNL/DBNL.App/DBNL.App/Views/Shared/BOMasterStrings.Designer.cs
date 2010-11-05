@@ -151,6 +151,15 @@ namespace DBNL.App.Views.Shared {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Member.
+        /// </summary>
+        public static string Member {
+            get {
+                return ResourceManager.GetString("Member", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Menus.
         /// </summary>
         public static string Menu {

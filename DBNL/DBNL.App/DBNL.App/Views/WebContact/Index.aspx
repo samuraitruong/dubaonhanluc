@@ -1,5 +1,16 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Views/Shared/FO.Master" Inherits="System.Web.Mvc.ViewPage<IEnumerable<DBNL.App.Models.Contact>>" %>
-
+<%@ Import Namespace="DBNL.App.Extensions" %>
+<asp:Content ContentPlaceHolderID="headerPlaceHolder" runat="server">
+<link type="text/css" rel="Stylesheet" href="<%=Url.Content("~/Content/table.css") %>" />
+    <link rel="Stylesheet" type="text/css" href="<%=Url.Content("~/Content/news_article.css")%>"></link>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $(".stripeMe tr").mouseover(function () { $(this).addClass("over"); }).mouseout(function () { $(this).removeClass("over"); });
+            $(".stripeMe tr:even").addClass("alt");
+        });
+</script>
+<link rel="Stylesheet" type="text/css" href="<%=Url.Content("~/Content/text.css")%>"></link>
+</asp:Content>
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
     <div class="ex" id="hot_news">
 		<div class="top_hot_news">
@@ -38,22 +49,12 @@
 			<div class="clear"></div>
             <p>
                 <%=Html.ActionLink("Download PDF", "Pdf", null, new {target = "_blank" })%>
+                <%=Html.ActionLink("Gưi ý kiến phản hồi", "Send", null, new { })%>
             </p>
 		</div>
 	</div>
 </asp:Content>
-<asp:Content ID="Content2" ContentPlaceHolderID="headerPlaceHolder" runat="server">
-    <link type="text/css" rel="Stylesheet" href="<%=Url.Content("~/Content/table.css") %>" />
-    <link rel="Stylesheet" type="text/css" href="<%=Url.Content("~/Content/news_article.css")%>"></link>
-    <script type="text/javascript">
-        $(document).ready(function () {
-            $(".stripeMe tr").mouseover(function () { $(this).addClass("over"); }).mouseout(function () { $(this).removeClass("over"); });
-            $(".stripeMe tr:even").addClass("alt");
-        });
-</script>
 
-
-</asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="UnderMenuContent" runat="server">
 </asp:Content>
 <asp:Content ID="Content4" ContentPlaceHolderID="MidlePageMainContent" runat="server">

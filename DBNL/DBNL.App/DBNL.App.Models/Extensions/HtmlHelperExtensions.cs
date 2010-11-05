@@ -15,6 +15,7 @@ namespace DBNL.App.Models.Extensions
 {
     public static class HtmlHelperExtensions
     {
+       
 
         public static string CategoryLink(this UrlHelper helper, ContentCategory category)
         {
@@ -192,12 +193,25 @@ namespace DBNL.App.Models.Extensions
             sb.Append("<ul>");
             
             foreach (var item in banners) {
-                sb.AppendFormat("<li><a href='{0}' alt='{2}' target='_blank'><img src='{1}' alt='{2}' /></a></li>",
+                if (item.BannerImage.ToLower().EndsWith(".swf"))
+                {
+                    sb.AppendFormat("<li><a href='{0}' alt='{2}' target='_blank'><span class='flash_banner' rel='{1}' width='{3}' height='{4}' /></a></li>",
+                        item.Url,
+                        string.Format("{0}/{1}", DBNLConfigurationManager.FileResponsity.BannerRelativeUrl, item.BannerImage),
+                        item.Name,
+                        string.IsNullOrEmpty(item.Width)?"204": item.Width,
+                        string.IsNullOrEmpty(item.Height)?"120": item.Height
+                        );
+                }
+                else
+                {
+                    sb.AppendFormat("<li><a href='{0}' alt='{2}' target='_blank'><img src='{1}' alt='{2}' /></a></li>",
 
-                    item.Url,
-                    string.Format("{0}/{1}", DBNLConfigurationManager.FileResponsity.BannerRelativeUrl, item.BannerImage),
-                    item.Name
-                    );
+                        item.Url,
+                        string.Format("{0}/{1}", DBNLConfigurationManager.FileResponsity.BannerRelativeUrl, item.BannerImage),
+                        item.Name
+                        );
+                }
             }
             sb.Append("</ul>");
 
@@ -211,13 +225,28 @@ namespace DBNL.App.Models.Extensions
 
             foreach (var item in banners)
             {
-                sb.AppendFormat("<li><a href='{0}' alt='{2}' target='_blank'><img src='{1}' alt='{2}' width='{3}' /></a></li>",
+                if (item.BannerImage.ToLower().EndsWith(".swf"))
+                {
+                    sb.AppendFormat("<li><a href='{0}' alt='{2}' target='_blank'><span class='flash_banner' rel='{1}' width='{3}' height='{4}' /></a></li>",
+                         item.Url,
+                         string.Format("{0}/{1}", DBNLConfigurationManager.FileResponsity.BannerRelativeUrl, item.BannerImage),
+                         item.Name,
+                         string.IsNullOrEmpty(item.Width) ? "204" : item.Width,
+                         string.IsNullOrEmpty(item.Height) ? "120" : item.Height
+                         );
+                }
+                else
+                {
+                    sb.AppendFormat("<li><a href='{0}' alt='{2}' target='_blank'><img src='{1}' alt='{2}' width='{3}' /></a></li>",
 
-                    item.Url,
-                    string.Format("{0}/{1}", DBNLConfigurationManager.FileResponsity.BannerRelativeUrl, item.BannerImage),
-                    item.Name,
-                    witdh
-                    );
+                     item.Url,
+                     string.Format("{0}/{1}", DBNLConfigurationManager.FileResponsity.BannerRelativeUrl, item.BannerImage),
+                     item.Name,
+                     witdh
+                     );
+                }
+
+                
             }
             sb.Append("</ul>");
             return sb.ToString();

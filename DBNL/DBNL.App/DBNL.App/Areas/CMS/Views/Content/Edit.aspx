@@ -69,9 +69,14 @@
                 <img width="114" height="114" src="<%= DBNLConfigurationManager.FileResponsity.PictureRelativeUrl %>/<%= Model.Picture %>
 " alt="Alternate Text" />
             </div>
-            
+            <div class="editor-label">
+                <%= Html.LabelFor(model => model.Protected) %>
+            </div>
+            <div class="editor-field">
+                <%=Html.CheckBoxFor(model=>model.Protected) %>
+            </div>
             <p>
-                <input type="submit" value="Save" />
+                <input type="submit" value="Cập nhật" />
             </p>
         </fieldset>
 

@@ -44,8 +44,9 @@ namespace DBNL.App.Models
 
             [DisplayName("Mô tả")]
             public string Description { get; set; }
-            
-            
+
+            [DisplayName("Bảo vệ")]
+            public string Protected { get; set; }
             
         }
 

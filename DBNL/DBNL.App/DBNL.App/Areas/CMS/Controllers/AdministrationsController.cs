@@ -12,6 +12,21 @@ namespace DBNL.App.Areas.CMS.Controllers
 {
     public class AdministrationsController : Controller
     {
+        [RequiresAuthentication]
+        public ActionResult Configuration()
+        {
+           
+            return View(new SiteConfigurations());
+        }
+
+        [RequiresAuthentication]
+        [HttpPost]
+        public ActionResult Configuration(SiteConfigurations cf)
+        {
+            return RedirectToAction("Index");
+        }
+
+
         //
         // GET: /Administrations/
         [RequiresAuthentication]

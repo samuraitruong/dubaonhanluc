@@ -39,6 +39,12 @@
                         { %>
                     <li><%= Html.ActionLink(BOMasterStrings.User, "Index", "User", new { area = "CMS" }, null)%></li>
                     <%} %>
+
+                    <% if (SessionManager.Profile.HasPermission(DBNL.App.Models.Statics.SiteModules.User))
+                        { %>
+                    <li><%= Html.ActionLink(BOMasterStrings.Member, "Index", "Member", new { area = "CMS" }, null)%></li>
+                    <%} %>
+
                      <% if (SessionManager.Profile.HasPermission(DBNL.App.Models.Statics.SiteModules.Role))
                         { %>
                     <li><%= Html.ActionLink(BOMasterStrings.Group, "Index", "Roles", new { area = "CMS" }, null)%></li>

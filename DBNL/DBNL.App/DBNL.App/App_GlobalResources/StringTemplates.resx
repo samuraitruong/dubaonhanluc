@@ -118,9 +118,9 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="VideoPlayer" xml:space="preserve">
-    <value>&lt;p style="text-align: center;"&gt;&lt;object type="application/x-shockwave-flash" data="http://dubaonhanluchcmc.com/vcastr3.swf" width="400" height="300" id="vcastr3"&gt;
+    <value>&lt;p style="text-align: center;"&gt;&lt;object type="application/x-shockwave-flash" data="http://dubaonhanluchcmc.gov.vn/vcastr3.swf" width="400" height="300" id="vcastr3"&gt;
 		&lt;param name='wmode' value='opaque' /&gt;
-		&lt;param name='movie' value='http://dubaonhanluchcmc.com/vcastr3.swf' /&gt;
+		&lt;param name='movie' value='http://dubaonhanluchcmc.gov.vn/vcastr3.swf' /&gt;
 		&lt;param name='allowFullScreen' value='true' /&gt;
 		&lt;param name='FlashVars' value='xml=&lt;vcastr&gt;&lt;channel&gt;&lt;item&gt;&lt;source&gt;{0}&lt;/source&gt;&lt;duration&gt;&lt;/duration&gt;&lt;title&gt;{1}&lt;/title&gt;&lt;/item&gt;&lt;/channel&gt;&lt;config&gt;&lt;bufferTime&gt;4&lt;/bufferTime&gt;&lt;contralPanelAlpha&gt;0.75&lt;/contralPanelAlpha&gt;&lt;controlPanelBgColor&gt;0x757d85&lt;/controlPanelBgColor&gt;&lt;controlPanelBtnColor&gt;0xffffff&lt;/controlPanelBtnColor&gt;&lt;contralPanelBtnGlowColro&gt;0x3c4045&lt;/contralPanelBtnGlowColro&gt;&lt;controlPanelMode&gt;float&lt;/controlPanelMode&gt;&lt;defautVolume&gt;1&lt;/defautVolume&gt;&lt;isAutoPlay&gt;true&lt;/isAutoPlay&gt;&lt;isloadbegin&gt;true&lt;/isloadbegin&gt;&lt;isShowAbout&gt;true&lt;/isShowAbout&gt;&lt;scaleMode &gt;showAll&lt;/scaleMode &gt;&lt;/config&gt;&lt;/vcastr&gt;' /&gt;
 	&lt;/object&gt;&lt;/p&gt;</value>

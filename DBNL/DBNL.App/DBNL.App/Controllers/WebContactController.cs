@@ -12,6 +12,8 @@ using DBNL.App.Models.ActionResults;
 using System.Xml;
 using iTextSharp.text.xml;
 using System.Drawing;
+using DBNL.App.Models.Business.Emailing;
+using DBNL.App.Controllers.Attributes;
 
 namespace DBNL.App.Controllers
 {
@@ -141,8 +143,56 @@ namespace DBNL.App.Controllers
 
             return result;
         }
+        public ActionResult Thanks()
+        {
+            return View();
+        }
+        public ActionResult Send()
+        {
+            return View();
+        }
+        public ActionResult ContactUs()
+        {
+            return View();
+        }
+        public ActionResult ContactUsConfirmation()
+        {
+            return View();
+        }
+        
+        [HttpPost]
+        public ActionResult ContactUs(string Name, String Phone, string Email, string Message, string Address, string Company, string Subject)
+        {
+            if (string.IsNullOrEmpty(Name)) ModelState.AddModelError("Name", "Vui lòng nhập tên.");
+            if (string.IsNullOrEmpty(Email)) ModelState.AddModelError("Email", "Vui lòng nhập email.");
+            if (string.IsNullOrEmpty(Subject)) ModelState.AddModelError("Subject", "Vui lòng nhập Chủ đề.");
 
+            if (ModelState.IsValid)
+            {
+                ContactUsEmail.Send(Name, Email, Phone, Address, Company, Subject, Message);
+                return RedirectToAction("ContactUsConfirmation");
+            }
+            return View();
+        }
+        [HttpPost]
+        [CaptchaValidator]
+        public ActionResult Send(string Name, String Phone, string Email, string Message, string Address, string Company, string Subject, bool captchaValid)
+        {
+            if (!captchaValid)
+            {
+                ModelState.AddModelError("_FORM", "Nội dung bạn nhập không khớp với mã kiểm tra so với hình trên. Vui lòng kiểm tra lại.");
+            }
+            if (string.IsNullOrEmpty(Name)) ModelState.AddModelError("Name", "Vui lòng nhập tên.");
+            if (string.IsNullOrEmpty(Email)) ModelState.AddModelError("Email", "Vui lòng nhập email.");
+            if (string.IsNullOrEmpty(Subject)) ModelState.AddModelError("Subject", "Vui lòng nhập Chủ đề.");
 
+            if (ModelState.IsValid)
+            {
+                ContactUsEmail.Send(Name, Email, Phone, Address, Company, Subject, Message);
+                return RedirectToAction("Thanks");
+            }
+            return View();
+        }
         public ActionResult Pdf()
         {
             var data = new ContactService().GetAllItems();

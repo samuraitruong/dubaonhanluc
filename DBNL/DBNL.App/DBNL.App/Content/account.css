@@ -1,0 +1,679 @@
+.alpha {
+    margin-right:0;
+    width:632px;
+    position:relative;
+    z-index:1;
+    font-size:1em;
+}
+#join-flow-main.cage {
+background:url("../images/form/bg_main_bottom.png") no-repeat scroll left bottom transparent;
+}
+
+.cage {
+background-color:#FFFFFF;
+margin-bottom:20px;
+position:relative;
+}
+#join-flow-main.cage .section-head {
+background:url("http://static.eventful.com/store/skin/join/bg_main_top.png") no-repeat scroll left top transparent;
+}
+.section-head {
+background-color:#AEAEAE;
+background-repeat:repeat-x;
+position:relative;
+}
+#join-flow-main.cage .main-info {
+border-color:#CECECE;
+height:450px;
+}
+.cage .section.last {
+border-bottom:medium none;
+padding-bottom:0;
+}
+.cage .section {
+border-bottom:1px solid #DDDDDD;
+border-left:1px solid #DDDDDD;
+border-right:1px solid #DDDDDD;
+position:relative;
+}
+.section {
+padding:15px;
+}
+
+#join-flow-main.cage {
+background:url("../images/form/bg_main_bottom.png") no-repeat scroll left bottom transparent;
+}
+#join-flow-main.cage .section-head {
+background:url("http://static.eventful.com/store/skin/join/bg_main_top.png") no-repeat scroll left top transparent;
+}
+#join-flow-main.cage .main-info {
+border-color:#CECECE;
+height:600px;
+}
+#join-flow-main.cage .fav-block {
+padding:10px 0 15px 15px;
+}
+#join-flow-main.cage .buttons {
+border-top:1px solid #E5E5E5;
+margin:0 15px;
+padding:15px 0;
+position:relative;
+text-align:center;
+}
+#join-flow-main.cage #join-flow-buttons .loading {
+background:url("http://static.eventful.com/store/skin/throbbers/throbber_32x32.gif") no-repeat scroll 460px 23px transparent;
+}
+#join-flow-main.cage #join-flow-skip-all {
+bottom:5px;
+font-weight:bold;
+position:absolute;
+right:15px;
+}
+#join-flow-summary {
+background:url("http://static.eventful.com/store/skin/join/bg_summary_2.png") no-repeat scroll left top transparent;
+color:#4C4C4C;
+margin:0 0 15px;
+padding-top:30px;
+}
+#join-flow-summary .section {
+border-bottom:1px solid #CECECE;
+border-left:medium none;
+border-right:1px solid #CECECE;
+padding-bottom:10px;
+padding-top:53px;
+}
+#join-flow-counts {
+padding-left:14px;
+}
+#join-flow-counts .summary-count {
+color:#FFFFFF;
+float:left;
+font-size:2.25em;
+margin-right:29px;
+padding-top:6px;
+text-align:center;
+width:40px;
+}
+#count-users.summary-count {
+margin-right:0;
+}
+#join-flow-counts .smaller {
+font-size:1.65em;
+padding-top:9px;
+}
+#join-flow-added {
+height:16px;
+margin-top:20px;
+padding:3px;
+}
+#join-flow-added img {
+margin-right:5px;
+vertical-align:-20%;
+}
+#join-flow-added.element-added {
+padding:5px 0 5px 34px;
+}
+#join-flow-user-info {
+border-top:1px solid #E5E5E5;
+margin-top:15px;
+padding-top:8px;
+}
+#join-flow-user-info h5.summary-username {
+font-size:1.15em;
+margin-bottom:3px;
+}
+#join-flow-user-info h5 span {
+font-weight:normal;
+}
+#join-flow-user-info img {
+background-color:#FFFFFF;
+border:1px solid #A6A6A6;
+float:left;
+margin-right:10px;
+padding:6px;
+}
+#join-flow-user-info .summary-info {
+float:right;
+width:195px;
+}
+#join-flow-user-info .summary-info h5 {
+color:#4C4C4C;
+margin-bottom:5px;
+}
+#join-flow-user-info .summary-info h5.last {
+margin-bottom:0;
+}
+#join-flow-ahead-adder {
+color:#4D4D4D;
+font-size:1.25em;
+left:15px;
+padding:2px;
+position:absolute;
+top:90px;
+width:265px;
+}
+#join-flow-ahead-adder input {
+color:#4D4D4D;
+padding:2px;
+width:90% !important;
+}
+#join-flow-ahead-adder input.inactive {
+color:#CCCCCC;
+}
+#join-flow-ahead-adder .diminished {
+color:#FFFFFF;
+font-weight:normal;
+}
+#join-flow-ahead-adder .highlight .diminished {
+color:#222222;
+}
+#join-flow-ahead-adder .type-ahead-popover {
+font-size:0.9em;
+left:auto;
+overflow:hidden;
+top:auto;
+width:265px;
+}
+#join-flow-ahead-adder .type-ahead-popover li {
+overflow:hidden;
+}
+#join-flow-ahead-adder .type-ahead .progress {
+left:auto;
+right:3px;
+top:3px;
+}
+#join-flow-favs .empty {
+margin-left:15px;
+}
+#join-flow-favs .empty h2, #join-flow-favs .empty h3 {
+background-color:transparent;
+color:#4D4D4D;
+}
+#join-flow-favs .empty h3 {
+font-size:1em;
+font-weight:normal;
+}
+#join-flow-favs .fav {
+background-color:#FFFFFF;
+display:inline;
+float:left;
+height:119px;
+padding:0 0 20px 15px;
+position:relative;
+width:290px;
+}
+#join-flow-favs .fav .fav-item {
+float:left;
+position:relative;
+width:290px;
+}
+#join-flow-favs .fav .fav-image {
+border:1px solid #E5E5E5;
+float:left;
+margin-right:15px;
+padding:11px;
+}
+#join-flow-favs .fav .fav-info {
+float:left;
+height:87px;
+margin-bottom:14px;
+overflow:hidden;
+width:155px;
+}
+#join-flow-favs .fav .fav-info h3 {
+background-color:#FFFFFF;
+color:#4C4C4C;
+}
+#join-flow-favs .fav .fav-info h4 {
+color:#4C4C4C;
+font-size:0.95em;
+font-weight:normal;
+}
+#join-flow-favs .fav .fav-action {
+background:url("http://static.eventful.com/store/skin/join/bg_add_nope.gif") no-repeat scroll 0 0 transparent;
+cursor:pointer;
+float:left;
+height:18px;
+width:20px;
+}
+#join-flow-favs .fav .btn-fav-add {
+margin-right:7px;
+width:31px;
+}
+#join-flow-favs .fav .btn-fav-add:hover {
+background-position:0 -18px;
+}
+#join-flow-favs .fav .btn-fav-nope {
+background-position:-31px 0;
+width:37px;
+}
+#join-flow-favs .fav .btn-fav-nope:hover {
+background-position:-31px -18px;
+}
+#join-flow-favs .fav .fav-action span {
+display:none;
+}
+#form-join {
+color:#4C4C4C;
+}
+#form-join .buttons {
+position:relative;
+}
+#form-join .buttons #inp-join-submit {
+left:115px;
+position:relative;
+}
+#form-join .field-container {
+height:36px;
+left:120px;
+position:relative;
+width:330px;
+}
+#form-join .field-name {
+font-size:1.1em;
+left:-125px;
+position:absolute;
+text-align:right;
+top:3px;
+width:110px;
+}
+#form-join .field-name .diminished {
+font-size:0.8em;
+}
+#form-join input, #form-join select {
+border:1px solid #CCCCCC;
+color:#4C4C4C;
+font-size:1.1em;
+padding:2px;
+position:relative;
+}
+#form-join input {
+width:300px;
+}
+#form-join select {
+width:306px;
+}
+#form-join input.checkbox {
+border:0 none;
+vertical-align:top;
+width:auto;
+}
+#form-join .checkbox-container {
+height:20px;
+}
+#form-join #inp-join-city {
+width:75px;
+}
+#form-join #inp-country {
+margin-left:7px;
+width:215px;
+}
+#form-join #inp-captcha {
+width:141px;
+}
+#form-join .input-captcha {
+background:none no-repeat scroll right -2px transparent;
+display:block;
+width:306px;
+}
+#form-join .tooltip {
+color:#999999;
+font-size:0.9em;
+height:57px;
+left:322px;
+overflow:hidden;
+position:absolute;
+top:0;
+width:110px;
+}
+#form-join .has-error .tooltip {
+display:none !important;
+}
+#form-join .has-error input, #form-join .has-error select {
+border:1px solid #FF0000 !important;
+}
+#form-join .form-error, #form-join .form-summary {
+background:none repeat scroll 0 0 #FFFFFF;
+border:1px solid #FF0000;
+color:#FF0000;
+padding:10px;
+position:absolute;
+text-align:left;
+visibility:hidden;
+width:160px;
+}
+#form-join #error-join-email {
+width:250px;
+}
+#form-join .form-error {
+left:337px;
+top:0;
+}
+#form-join .form-summary {
+left:435px;
+top:6px;
+}
+#form-join .alert-error {
+background-image:url("http://static.eventful.com/store/skin/chrome/site_elements.png");
+background-position:0 -1210px;
+cursor:pointer;
+height:13px;
+left:315px;
+overflow:hidden;
+position:absolute;
+top:3px;
+visibility:hidden;
+width:14px;
+}
+#form-join .show-errors .form-error, #form-join label.show-errors .form-error, #form-join .has-error .alert-error, #form-join label.has-error .alert-error, #form-join .show-errors, #form-join.loading .progress {
+visibility:visible !important;
+}
+#form-join #item-international, #form-join.international #item-domestic, #form-join #error-join-city, #form-join .thirteen-container {
+display:none;
+}
+#form-join.international #item-international, #form-join.thirteen .thirteen-container {
+display:list-item;
+}
+#form-join .progress {
+background-image:url("http://static.eventful.com/store/skin/throbbers/throbber_32x32.gif");
+height:32px;
+left:435px;
+position:absolute;
+top:9px;
+visibility:hidden;
+width:32px;
+}
+#form-join #btn-join {
+border:0 none;
+left:110px;
+margin:15px 0 0;
+padding:0;
+}
+#form-join .btn-yes, #form-join .btn-no {
+border:medium none;
+cursor:pointer;
+font-size:0;
+height:18px;
+}
+#form-join .btn-yes {
+background:url("http://static.eventful.com/store/skin/buttons/demand/btn_yes.png") repeat scroll 0 0 transparent;
+width:33px;
+}
+#form-join .btn-no {
+background:url("http://static.eventful.com/store/skin/buttons/demand/btn_no.png") repeat scroll 0 0 transparent;
+width:27px;
+}
+#form-join #inp-mobile1 {
+width:45px;
+}
+#form-join #inp-mobile2 {
+width:54px;
+}
+#form-join #inp-mobile3 {
+display:none;
+}
+#form-join #inp-carrier {
+width:189px;
+}
+.thirteen-container {
+margin-bottom:10px;
+}
+.layout_a .cols-2-1 .alpha {
+position:relative;
+z-index:1;
+}
+#content.layout_a {
+padding-top:20px;
+}
+#join-flow-main.cage .buttons {
+border-top:medium none;
+margin:10px 0 0;
+padding:0;
+position:relative;
+text-align:left;
+}
+#disclaimer {
+bottom:10px;
+color:#CCCCCC;
+display:block;
+font-size:0.8em;
+padding-top:0;
+position:relative;
+text-align:center;
+}
+#join-flow-why {
+margin-bottom:15px;
+}
+.hidden 
+{
+    display:none;
+}
+button.shiny, button.shiny-small, button.shiny-negative, button.shiny-negative-small, button.shiny-negative-small-tall, button.shiny-negative-small-jumbo, button.shiny-negative-medium, button.shiny-negative-medium-tall, button.shiny-negative-medium-jumbo, button.shiny-negative-medium-jumbo-200x40, button.shiny-negative-large, button.shiny-negative-large-tall, button.shiny-negative-large-jumbo, button.shiny-negative-190x25, button.blue-126x25, button.shiny-positive, button.shiny-positive-small, button.shiny-positive-small-tall, button.shiny-positive-small-jumbo, button.shiny-positive-medium, button.shiny-positive-medium-tall, button.shiny-positive-medium-jumbo, button.shiny-positive-medium-jumbo-200x40, button.shiny-positive-large, button.shiny-positive-large-jumbo, button.shiny-positive-jumbo-245x40, button.shiny-positive-jumbo-80x40, button.shiny-positive-124x31, button.tools-medium, button.tools-large {
+border:medium none;
+color:#FFFFFF;
+cursor:pointer;
+font-weight:bold;
+height:21px;
+line-height:21px;
+margin:0.25em;
+padding:0;
+text-align:center;
+}
+button.shiny, button.shiny.small, button.shiny-small, button.shiny-negative {
+background:url("http://static.eventful.com/store/skin/chrome/site_elements.png") no-repeat scroll 0 -402px transparent;
+width:68px;
+}
+button.shiny.negative.small.tall, button.shiny-negative-small-tall {
+background:url("http://static.eventful.com/store/skin/chrome/site_elements.png") no-repeat scroll 0 -450px transparent;
+height:27px;
+line-height:27px;
+width:68px;
+}
+button.shiny-negative-small-jumbo {
+background:url("http://static.eventful.com/store/skin/buttons/btn_small_negative_jumbo.png") no-repeat scroll 0 0 transparent;
+font-size:20px;
+height:40px;
+width:131px;
+}
+button.shiny.medium, button.shiny.negative.medium, button.shiny-negative-medium {
+background:url("http://static.eventful.com/store/skin/chrome/site_elements.png") no-repeat scroll 0 -498px transparent;
+width:128px;
+}
+button.shiny.negative.medium.tall, button.shiny-negative-medium-tall {
+background:url("http://static.eventful.com/store/skin/chrome/site_elements.png") no-repeat scroll 0 -546px transparent;
+height:27px;
+line-height:27px;
+width:128px;
+}
+button.shiny-negative-medium-jumbo {
+background:url("http://static.eventful.com/store/skin/buttons/btn_medium_negative_jumbo.png") no-repeat scroll 0 0 transparent;
+font-size:20px;
+height:40px;
+width:161px;
+}
+button.shiny-negative-medium-jumbo-200x40 {
+background:url("http://static.eventful.com/store/skin/buttons/btn_medium_negative_jumbo_200x40.png") no-repeat scroll 0 0 transparent;
+font-size:18px;
+height:40px;
+width:200px;
+}
+button.shiny.large, button.shiny.negative.large, button.shiny-negative-large {
+background:url("http://static.eventful.com/store/skin/chrome/site_elements.png") no-repeat scroll 0 -642px transparent;
+height:27px;
+line-height:27px;
+width:178px;
+}
+button.shiny.negative.large.tall, button.shiny-negative-large-tall {
+background:url("http://static.eventful.com/store/skin/chrome/site_elements.png") no-repeat scroll 0 -642px transparent;
+height:27px;
+line-height:27px;
+width:178px;
+}
+button.shiny-negative-large-jumbo {
+background:url("http://static.eventful.com/store/skin/buttons/btn_large_negative_jumbo.png") no-repeat scroll 0 0 transparent;
+font-size:20px;
+height:40px;
+width:302px;
+}
+button.shiny.positive, button.shiny-positive, button.shiny.positive.small, button.shiny-positive-small {
+background:url("http://static.eventful.com/store/skin/chrome/site_elements.png") no-repeat scroll 0 -381px transparent;
+width:68px;
+}
+button.shiny.positive.small.tall, button.shiny-positive-small-tall {
+background:url("http://static.eventful.com/store/skin/chrome/site_elements.png") no-repeat scroll 0 -423px transparent;
+height:27px;
+line-height:27px;
+width:68px;
+}
+button.shiny-positive-small-jumbo {
+background:url("http://static.eventful.com/store/skin/buttons/btn_small_jumbo.png") no-repeat scroll 0 0 transparent;
+font-size:20px;
+height:40px;
+width:131px;
+}
+button.shiny.positive.medium, button.shiny-positive-medium {
+background:url("http://static.eventful.com/store/skin/chrome/site_elements.png") no-repeat scroll 0 -477px transparent;
+width:128px;
+}
+button.shiny.positive.medium.tall, button.shiny-positive-medium-tall {
+background:url("http://static.eventful.com/store/skin/chrome/site_elements.png") no-repeat scroll 0 -519px transparent;
+height:27px;
+line-height:27px;
+width:128px;
+}
+button.shiny-positive-medium-jumbo {
+background:url("http://static.eventful.com/store/skin/buttons/btn_medium_jumbo.png") no-repeat scroll 0 0 transparent;
+font-size:20px;
+height:40px;
+width:161px;
+}
+button.shiny-positive-medium-jumbo-200x40 {
+background:url("http://static.eventful.com/store/skin/buttons/btn_medium_jumbo_200x40.png") no-repeat scroll 0 0 transparent;
+font-size:18px;
+height:40px;
+width:200px;
+}
+button.shiny.positive.large, button.shiny-positive-large {
+background:url("http://static.eventful.com/store/skin/chrome/site_elements.png") no-repeat scroll 0 -615px transparent;
+height:27px;
+line-height:27px;
+width:178px;
+}
+button.shiny-positive-large-jumbo {
+background:url("http://static.eventful.com/store/skin/buttons/btn_large_jumbo.png") no-repeat scroll 0 0 transparent;
+font-size:20px;
+height:40px;
+width:302px;
+}
+button.shiny-positive-jumbo-245x40 {
+background:url("http://static.eventful.com/store/skin/buttons/btn_jumbo_245x40.png") no-repeat scroll 0 0 transparent;
+font-size:20px;
+height:40px;
+width:245px;
+}
+button.shiny-positive-jumbo-80x40 {
+background:url("http://static.eventful.com/store/skin/buttons/btn_jumbo_80x40.png") no-repeat scroll 0 0 transparent;
+font-size:20px;
+height:40px;
+width:80px;
+}
+button.shiny-positive-124x31 {
+background:url("http://static.eventful.com/store/skin/buttons/btn_124x31.png") no-repeat scroll 0 0 transparent;
+font-size:16px;
+height:31px;
+width:124px;
+}
+button.shiny:active {
+left:1px;
+position:relative;
+top:1px;
+}
+a.button {
+color:#FFFFFF;
+}
+a.button:hover {
+background-color:transparent !important;
+color:#FFFFFF;
+}
+button.tools-medium, button.tools-large {
+color:#505050;
+margin:0;
+padding:0;
+position:relative;
+}
+button.tools-medium {
+background:url("http://static.eventful.com/store/skin/buttons/btn_tools_medium_135x36.png") no-repeat scroll 0 0 transparent;
+font-size:11px;
+height:36px;
+width:135px;
+}
+button.tools-large {
+background:url("http://static.eventful.com/store/skin/buttons/btn_tools_large_280x36.png") no-repeat scroll 0 0 transparent;
+font-size:16px;
+height:36px;
+width:280px;
+}
+button.tools-medium span.warn, button.tools-large span.warn {
+background:url("http://static.eventful.com/store/skin/icons/icn_warning.png") no-repeat scroll 0 0 transparent;
+height:13px;
+position:absolute;
+width:14px;
+}
+button.tools-medium span.lt, button.tools-medium span.rt, button.tools-large span.lt, button.tools-large span.rt {
+top:12px;
+}
+button.tools-medium span.lt, button.tools-large span.lt {
+left:25px;
+}
+button.tools-medium span.rt, button.tools-large span.rt {
+right:25px;
+}
+.fake-button {
+border:medium none;
+color:#FFFFFF;
+cursor:pointer;
+font-weight:bold;
+height:21px;
+line-height:21px;
+margin:0.25em;
+padding:0;
+text-align:center;
+}
+#disclaimer {
+bottom:10px;
+color:#CCCCCC;
+display:block;
+font-size:0.8em;
+padding-top:0;
+position:relative;
+text-align:center;
+}
+#join-flow-why {
+margin-bottom:15px;
+}
+
+.section-head .main-head {
+border-bottom:1px solid #E5E5E5;
+padding-bottom:5px;
+border-bottom:1px solid #E5E5E5;
+padding-bottom:5px;
+color:#4D4D4D;
+}
+.section-head .main-head h2
+{
+    font-size :1.5em;
+    }
+    
+    .section-head  
+    {
+        padding:10px 15px;
+        background-color:#AEAEAE;
+        background-repeat:repeat-x;
+        position:relative;
+    }
+    
+    .required
+    {
+        font-size:0.6em;
+        color:Red;
+    }

@@ -84,5 +84,26 @@ namespace DBNL.App.Models
             HttpSessionState session = HttpContext.Current.Session;
             session["TimeStamp"] = value;
         } }
+
+        public static Account Account
+        {
+            get
+            {
+                HttpSessionState session = HttpContext.Current.Session;
+
+                if (session["Account"] != null)
+                {
+                    return (Account)session["Account"];
+                }
+                return null;
+
+            }
+            set
+            {
+                HttpSessionState session = HttpContext.Current.Session;
+                session["Account"] = value;
+            }
+
+        }
     }
 }

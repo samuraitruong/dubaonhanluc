@@ -1,0 +1,28 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<email-template>
+    <subject>
+      Ý kiến đóng góp : ${Subject}
+    </subject>
+    <addresses>
+        <entry name="From" value="${From}" />
+        <entry name="ReplyTo" value="${From}" />
+        <entry name="To" value="${To}" />
+        <!-- To Address maybe more than one.-->
+    </addresses>
+    <body format="text/html" encoding="utf-8">
+        <![CDATA[
+        Yêu cầu/Ý kiến gửi thông qua website trung tâm
+        
+        <br/>
+        <br/>
+        Email : ${From}<br/>
+        Tên : ${Name}<br/>
+        Địa chỉ : ${Address}<br/>
+        Phone  : ${Phone}<br/>
+        Công ty : ${Company}<br/>
+        <br/><br/>
+        Nội dung<br/>
+        ${Body}
+        ]]>
+    </body>
+</email-template>

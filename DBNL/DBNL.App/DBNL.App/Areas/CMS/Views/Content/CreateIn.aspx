@@ -68,7 +68,12 @@
             <div class="editor-field">
                 <input type="file" name="Picture" />
             </div>
-           
+           <div class="editor-label">
+                <%= Html.LabelFor(model => model.Protected) %>
+            </div>
+            <div class="editor-field">
+                <%=Html.CheckBoxFor(model=>model.Protected) %>
+            </div>
             <p>
                 <input type="submit" value="Create" />
             </p>

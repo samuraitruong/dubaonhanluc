@@ -12,9 +12,27 @@ using DBNL.App.Models;
 
 namespace DBNL.App.Areas.CMS.Controllers
 {
+     
+
     [RequiresAuthentication]
     public class PollQuestionController : Controller
     {
+        [RequiresAuthentication]
+        [HttpPost]
+        public ActionResult Up(int id)
+        {
+            new PollQuestionService().MoveUp(id);
+            return Content("true");
+        }
+
+        [RequiresAuthentication]
+        [HttpPost]
+        public ActionResult Down(int id)
+        {
+            new PollQuestionService().MoveDown(id);
+            return Content("true");
+        }
+
         [HttpPost]
         public ActionResult JsonDelete(int id)
         {
@@ -25,11 +43,11 @@ namespace DBNL.App.Areas.CMS.Controllers
         //
         // GET: /PollQuestion/
         [HttpPost]
-        public ActionResult EditRow(int? id, string Question, int? PollId, string Status)
+        public ActionResult EditRow(int? id, string Question, int? PollId, string Status, int Responses)
         {
             if (id.HasValue)
             {
-                new PollQuestionService().Edit(id.Value, Question, Status);
+                new PollQuestionService().Edit(id.Value, Question, Status, Responses);
             }
             else
             {
