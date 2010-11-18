@@ -56,11 +56,7 @@
                 
             </p>
             
-             <p id="departmentLink">
-                <label for="ExternalUrl">Phòng ban:</label>
-                 <%=Html.DropDownList("DepartmentId", data.Departments)%>
-                
-            </p>
+             
 
             <p>
                 <input type="submit" value="Thêm mới" />
@@ -78,7 +74,6 @@
     <script language="javascript" type="text/javascript">
         $("#extCategory").hide();
         $("#extLink").hide();
-        $("#departmentLink").hide();
         $("#articleLink").hide();
 
 
@@ -92,9 +87,6 @@
                 }
                 else if ($(this).val() == 'Post') {
                     $("#articleLink").show();
-                }
-                else if ($(this).val() == 'WebContact') {
-                    $("#departmentLink").show();
                 }
                 else {
                     $("#extCategory").hide();

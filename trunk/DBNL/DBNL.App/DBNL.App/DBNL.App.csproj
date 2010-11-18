@@ -252,6 +252,14 @@
     <Content Include="Content\calendar.css" />
     <Content Include="Content\account.css" />
     <Content Include="Content\Copy of account.css" />
+    <Content Include="Content\flowplayer\example\flowplayer-3.2.4.min.js" />
+    <Content Include="Content\flowplayer\example\index.html" />
+    <Content Include="Content\flowplayer\example\style.css" />
+    <Content Include="Content\flowplayer\flowplayer-3.2.5.swf" />
+    <Content Include="Content\flowplayer\flowplayer.audio-3.2.5.swf" />
+    <Content Include="Content\flowplayer\flowplayer.controls-3.2.3.swf" />
+    <Content Include="Content\flowplayer\LICENSE.txt" />
+    <Content Include="Content\flowplayer\README.txt" />
     <Content Include="Content\jquery.fancybox-1.3.1.css" />
     <Content Include="Content\text.css" />
     <Content Include="Content\job.css" />

@@ -15,7 +15,19 @@ namespace DBNL.App.Models.Extensions
 {
     public static class HtmlHelperExtensions
     {
-       
+
+
+        public static MvcHtmlString StaticLink(this HtmlHelper htmlHelper, string url, string text, object htmlAttributes)
+        {
+            TagBuilder imglink = new TagBuilder("a");
+            imglink.MergeAttribute("href", url);
+            imglink.InnerHtml = text;
+            imglink.MergeAttributes((IDictionary<string, string>)htmlAttributes, true);
+            return MvcHtmlString.Create(imglink.ToString());
+             
+
+        }
+
 
         public static string CategoryLink(this UrlHelper helper, ContentCategory category)
         {
@@ -70,6 +82,12 @@ namespace DBNL.App.Models.Extensions
 
         public static string NavigationLink(this UrlHelper helper, Navigation navigation)
         {
+            if (navigation.Component == SiteModules.Url.ToString())
+            {
+                return helper.Content(navigation.ExternalUrl);
+
+            }
+
             if (navigation.Component == SiteModules.WebContact.ToString())
             {
                 return helper.Action(navigation.Action, navigation.Controller, new { id= navigation.CustomData});
@@ -89,6 +107,11 @@ namespace DBNL.App.Models.Extensions
         }
         public static MvcHtmlString NavigationLink(this HtmlHelper helper, Navigation navigation)
         {
+            if (navigation.Component == SiteModules.Url.ToString())
+            {
+                return helper.StaticLink(navigation.ExternalUrl,navigation.Name, null);
+
+            }
             if (navigation.Component == SiteModules.Article.ToString())
             {
                 return helper.RouteLink(navigation.Name, "Category-View-Route", new { category = navigation.ContentCategory.Key });
@@ -101,13 +124,17 @@ namespace DBNL.App.Models.Extensions
 
                 return helper.RouteLink(content.Title,"Content-View-Route", new { category = content.ContentCategory.Key, contentkey = content.UniqueKey });
             }
-
-
             return helper.ActionLink(navigation.Name, navigation.Action, navigation.Controller, new { id = navigation.CategoryId }, null);
         }
 
         public static MvcHtmlString NavigationLink(this HtmlHelper helper,string name, Navigation navigation)
         {
+            if (navigation.Component == SiteModules.Url.ToString())
+            {
+                return helper.StaticLink(navigation.ExternalUrl, name, null);
+
+            }
+
             if (navigation.Component == SiteModules.Article.ToString())
             {
                 return helper.RouteLink(name, "Category-View-Route", new { category = navigation.ContentCategory.Key });
