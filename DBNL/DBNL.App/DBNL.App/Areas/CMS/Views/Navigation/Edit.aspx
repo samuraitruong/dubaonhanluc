@@ -57,7 +57,7 @@
                 <%= Html.LabelFor(model => model.CategoryId)%>
             </div>
             <div class="editor-field ContentId">
-                <%= Html.DropDownList("ContentId", data.Categories, new { width = 150 })%>
+                <%= Html.DropDownList("CategoryId", data.Categories, new { width = 150 })%>
                 <%= Html.ValidationMessageFor(model => model.CategoryId)%>
             </div>
 
@@ -69,21 +69,16 @@
                 <%= Html.ValidationMessageFor(model => model.ExternalUrl) %>
             </div>
              <div class="editor-label ArticleId">
-                <%= Html.LabelFor(model => model.CategoryId)%>
+                <%= Html.LabelFor(model => model.ContentId)%>
             </div>
             <div class="editor-field ArticleId">
                 <%=Html.DropDownList("ContentId", data.OrphanArticles)%>
-                <%= Html.ValidationMessageFor(model => model.CategoryId)%>
+                <%= Html.ValidationMessageFor(model => model.ContentId)%>
             </div>
 
              <p id="articleLink">
                 <label for="ExternalUrl">Chọn bài viết:</label>
                  
-                
-            </p>
-            <p id="departmentLink">
-                <label for="ExternalUrl">Phòng ban:</label>
-                 <%=Html.DropDownList("DepartmentId", data.Departments)%>
                 
             </p>
             <p>
@@ -120,9 +115,6 @@
         }
         else if (val == 'Post') {
             $(".ArticleId").show();
-        }
-        else if ($(this).val() == 'WebContact') {
-            $("#departmentLink").show();
         }
         else {
             $(".ContentId").hide();

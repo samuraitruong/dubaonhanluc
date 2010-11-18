@@ -162,7 +162,7 @@ namespace DBNL.App.Models.Business
             original.ParentId = navigation.ParentId;
             original.RelativeUrl = navigation.RelativeUrl;
             original.Status = navigation.Status;
-
+            original.ContentId = navigation.ContentId;
             Commit();
         }
 

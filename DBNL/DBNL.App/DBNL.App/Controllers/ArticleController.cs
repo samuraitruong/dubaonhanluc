@@ -150,6 +150,7 @@ namespace DBNL.App.Controllers
         {
             DBNL.App.Models.Content content = new ContentService().GetContentByKey(contentkey);
             if (content == null) return RedirectToAction("Index", "Http404");
+            content.Content1 = StringTemplateHelper.ReplaceVideoTag(content.Content1);
             ViewData.Model = new ViewContentDataView()
             {
                 Content = content,
@@ -164,6 +165,7 @@ namespace DBNL.App.Controllers
         {
             DBNL.App.Models.Content content = new ContentService().GetContentById(id);
             if (content == null) return RedirectToAction("Index", "Http404");
+            content.Content1 = StringTemplateHelper.ReplaceVideoTag(content.Content1);
             ViewData.Model = new ViewContentDataView() { Content = content,
             FeaturedContents = new ContentService().GetFeaturedArtileByCategoryId(content.CategoryId),
             OtherNewses = new ContentService().GetOlderNews(content)

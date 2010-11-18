@@ -170,7 +170,7 @@ namespace DBNL.App.Areas.CMS.Controllers
                     ViewData["Category"] = new CategoryService().GetById(content.CategoryId);
                     return View(content);
                 }
-                content.Content1 = StringTemplateHelper.ReplaceVideoTag(content.Content1);
+                //content.Content1 = StringTemplateHelper.ReplaceVideoTag(content.Content1);
                 new ContentService().Create(content, picture);
 
                 return RedirectToAction("ViewCat", "Categories", new { id = content.CategoryId });
@@ -208,7 +208,7 @@ namespace DBNL.App.Areas.CMS.Controllers
                 {
                     return View(content);
                 }
-                content.Content1 = StringTemplateHelper.ReplaceVideoTag(content.Content1);
+                //content.Content1 = StringTemplateHelper.ReplaceVideoTag(content.Content1);
                 new ContentService().Create(content, picture);
 
                 return RedirectToAction("ViewCat", "Categories", new { id = content.CategoryId });
@@ -260,7 +260,7 @@ namespace DBNL.App.Areas.CMS.Controllers
                     ViewData["Categories"] = CustomSelectList.CreateListCategories(false).SetSelectedValue(content.CategoryId.ToString());
                     return View(content); }
                 HttpPostedFileBase picture = (HttpPostedFileBase)Request.Files["PictureFile"];
-                content.Content1 = StringTemplateHelper.ReplaceVideoTag(content.Content1);
+               // content.Content1 = StringTemplateHelper.ReplaceVideoTag(content.Content1);
                 content.UniqueKey = content.Title.ToUrlKey();
                 new ContentService().Update(content, picture);
 
@@ -284,7 +284,7 @@ namespace DBNL.App.Areas.CMS.Controllers
                     return View(content);
                 }
                 HttpPostedFileBase picture = (HttpPostedFileBase)Request.Files["PictureFile"];
-                content.Content1 = StringTemplateHelper.ReplaceVideoTag(content.Content1);
+                //content.Content1 = StringTemplateHelper.ReplaceVideoTag(content.Content1);
                 content.UniqueKey = content.Title.ToUrlKey();
                 new ContentService().Update(content, picture);
 

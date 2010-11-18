@@ -88,7 +88,11 @@ namespace DBNL.App.Config
         {
             get { return (string)this["ReCaptchaPublicKey"]; }
         }
-       
+        [ConfigurationProperty("VideoPlayer")]
+        public string VideoPlayer
+        {
+            get { return (string)this["VideoPlayer"]; }
+        }
        
     }
 }

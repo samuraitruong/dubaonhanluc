@@ -239,7 +239,7 @@ namespace DBNL.App.Areas.CMS.Controllers
                 }
                 if (collection["Component"] == SiteModules.Post.ToString())
                 {
-                    if (navigation.CategoryId.HasValue)
+                    if (navigation.ContentId.HasValue)
                     {
                         navigation.Controller = DBNL.App.Models.Statics.Controllers.Article.ToString();
                         navigation.Action = DBNL.App.Models.Statics.Actions.View.ToString();

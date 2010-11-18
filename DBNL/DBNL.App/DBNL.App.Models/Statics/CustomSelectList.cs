@@ -150,10 +150,11 @@ namespace DBNL.App.Models.Statics
 
         public static IEnumerable<SelectListItem> CreateListOphanArticles()
         {
+            
             List<SelectListItem> list = new List<SelectListItem>();
-            foreach (var item in new CareerService().GetAllItems())
+            foreach (var item in new ContentService().AllOrhanArticles().AsEnumerable())
             {
-                list.Add(new SelectListItem() { Text = item.Name, Value = item.Id.ToString() });
+                list.Add(new SelectListItem() { Text = item.Title, Value = item.ContentId.ToString() });
             }
             return list.AsEnumerable();
         }
