@@ -167,8 +167,8 @@
   <Table Name="artseed.Career" Member="Careers">
     <Type Name="Career">
       <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
-      <Column Name="Name" Type="System.String" DbType="NChar(10) NOT NULL" CanBeNull="false" />
-      <Column Name="Status" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="Name" Type="System.String" DbType="Nvarchar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="Status" Type="System.String" DbType="nchar(10) NOT NULL" CanBeNull="false" />
       <Association Name="Career_Account" Member="Accounts" ThisKey="Id" OtherKey="CareerId" Type="Account" />
     </Type>
   </Table>

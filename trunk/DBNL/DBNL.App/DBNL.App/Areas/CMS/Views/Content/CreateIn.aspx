@@ -11,6 +11,7 @@
                  filebrowserBrowseUrl: '<%= Url.Content("~/Scripts/FileManager/index.html") %>'
              }
           );
+             $('.DatePicker').datepicker({ dateFormat: 'dd/mm/yy', yearRange: '2000:2020', showButtonPanel: true, appendText: '(dd/mm/yyyy)', buttonImage: 'http://www.marocotel.com/images/btn_datepicker.gif', buttonImageOnly: true, changeMonth: true, changeYear: true });
         });
     </script>
 </asp:Content>
@@ -74,6 +75,15 @@
             <div class="editor-field">
                 <%=Html.CheckBoxFor(model=>model.Protected) %>
             </div>
+
+           <div class="editor-label">
+                <%= Html.LabelFor(model => model.CreatedDate) %>
+            </div>
+            <div class="editor-field">
+                <%= Html.TextBoxFor(model => model.CreatedDate, new { @class="DatePicker",size = 16, maxlength = 255, value=DateTime.Now.ToString("dd/MM/yyyy") })%>
+                <%= Html.ValidationMessageFor(model => model.CreatedDate)%>
+            </div>
+
             <p>
                 <input type="submit" value="Create" />
             </p>
