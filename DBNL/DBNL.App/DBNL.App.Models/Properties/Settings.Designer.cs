@@ -26,7 +26,8 @@ namespace DBNL.App.Models.Properties {
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
-        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=eduvision.com.vn;Initial Catalog=dbnl;User ID=artseed")]
+        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=112.78.2.58,1455;Initial Catalog=dbnl;Persist Security Info=True;User" +
+            " ID=eduvision_db2;Password=abcxyz")]
         public string dbnlConnectionString {
             get {
                 return ((string)(this["dbnlConnectionString"]));
@@ -36,19 +37,8 @@ namespace DBNL.App.Models.Properties {
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
-        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=eduvision.com.vn;Initial Catalog=dbnl;Persist Security Info=True;User" +
-            " ID=artseed")]
-        public string dbnlConnectionString1 {
-            get {
-                return ((string)(this["dbnlConnectionString1"]));
-            }
-        }
-        
-        [global::System.Configuration.ApplicationScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
         [global::System.Configuration.DefaultSettingValueAttribute("Data Source=112.213.89.28;Initial Catalog=dbnl;Persist Security Info=True;User ID" +
-            "=artseed;Password=L@tuine299")]
+            "=artseed")]
         public string dbnlConnectionString2 {
             get {
                 return ((string)(this["dbnlConnectionString2"]));

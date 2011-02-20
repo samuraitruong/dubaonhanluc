@@ -47,7 +47,7 @@ namespace DBNL.App.Models.Business
             catch (IOException ex)
             {
             }
-            content.CreatedDate = DateTime.Now;
+            //content.CreatedDate = DateTime.Now;
             content.UpdatedDate = DateTime.Now;
             
             Contents.InsertOnSubmit(content);
@@ -136,6 +136,8 @@ namespace DBNL.App.Models.Business
             original.UniqueKey = content.Title.ToUrlKey();
             original.CategoryId = content.CategoryId;
             original.Protected = content.Protected;
+            original.CreatedDate = content.CreatedDate;
+            original.UpdatedDate = DateTime.Now;
             //original.ContentCategory = new CategoryService().GetById(content.CategoryId);
 
 
